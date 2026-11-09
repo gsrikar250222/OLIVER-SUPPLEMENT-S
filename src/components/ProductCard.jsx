@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Heart, ShoppingBag, Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useWishlist } from '../context/WishlistContext.jsx';
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();
   const { isWishlisted, toggleWishlist } = useWishlist();
-  const [showQuickSizes, setShowQuickSizes] = useState(false);
   const [added, setAdded] = useState(false);
-  const navigate = useNavigate();
 
   const wishlisted = isWishlisted(product.id);
   const discountPercent = product.originalPrice 
@@ -21,10 +18,7 @@ export default function ProductCard({ product }) {
     e.stopPropagation();
     addToCart(product, size, product.colors?.[0]?.name, 1);
     setAdded(true);
-    setTimeout(() => {
-      setAdded(false);
-      setShowQuickSizes(false);
-    }, 1200);
+    setTimeout(() => setAdded(false), 1500);
   };
 
   const handleWishlistClick = (e) => {
@@ -34,90 +28,73 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="product-card" onMouseLeave={() => setShowQuickSizes(false)}>
-      <div className="product-thumb-wrap">
-        <Link to={`/product/${product.id}`} className="product-image-link">
+    <div className="product-card" data-product-id={product.id}>
+      <div className="product-media">
+        <Link to={`/product/${product.id}`}>
           <img 
             src={`/${product.primaryImage.replace(/^\//, '')}`} 
             alt={product.name} 
-            className="product-img primary-img"
+            className="product-img img-primary" 
             loading="lazy" 
           />
           {product.hoverImage && (
             <img 
               src={`/${product.hoverImage.replace(/^\//, '')}`} 
-              alt={`${product.name} alternate view`} 
-              className="product-img hover-img"
+              alt={product.name} 
+              className="product-img img-secondary" 
               loading="lazy" 
             />
           )}
         </Link>
 
-        {/* Badges */}
-        {product.badge && (
-          <span className={`product-badge badge-${product.badge.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>
-            {product.badge}
-          </span>
-        )}
-
-        {discountPercent > 0 && !product.badge && (
-          <span className="product-badge badge-discount">
-            {discountPercent}% OFF
-          </span>
+        {/* Badge */}
+        {(product.badge || discountPercent > 0) && (
+          <div className="product-badge-wrap">
+            <span className="badge badge-sale">
+              {product.badge || `${discountPercent}% OFF`}
+            </span>
+          </div>
         )}
 
         {/* Wishlist Button */}
         <button 
-          className={`wishlist-btn ${wishlisted ? 'active' : ''}`}
+          className={`product-wishlist-btn ${wishlisted ? 'active' : ''}`}
           onClick={handleWishlistClick}
-          aria-label={wishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
           title={wishlisted ? "Remove from Wishlist" : "Save to Wishlist"}
+          aria-label="Wishlist"
         >
-          <Heart size={18} fill={wishlisted ? "#e11d48" : "none"} color={wishlisted ? "#e11d48" : "#111111"} />
+          <svg width="17" height="17" viewBox="0 0 24 24" fill={wishlisted ? "#e11d48" : "none"} stroke="currentColor" strokeWidth="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
         </button>
 
-        {/* Quick Add Overlay */}
-        <div className="quick-add-wrap">
-          {showQuickSizes ? (
-            <div className="quick-size-selector">
-              <span className="quick-size-title">Select Size:</span>
-              <div className="quick-size-buttons">
-                {product.sizes.map(size => (
-                  <button 
-                    key={size}
-                    className="size-btn-quick"
-                    onClick={(e) => handleQuickAdd(size, e)}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-            </div>
-          ) : (
+        {/* Quick Sizes Hover Bar */}
+        <div className="product-quick-sizes">
+          {product.sizes.map(size => (
             <button 
-              className="btn-quick-add"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                if (product.sizes && product.sizes.length === 1) {
-                  handleQuickAdd(product.sizes[0], e);
-                } else {
-                  setShowQuickSizes(true);
-                }
-              }}
+              key={size}
+              className="quick-size-btn"
+              onClick={(e) => handleQuickAdd(size, e)}
             >
-              <ShoppingBag size={15} />
-              <span>{added ? 'ADDED!' : '+ QUICK ADD'}</span>
+              {size}
             </button>
-          )}
+          ))}
         </div>
       </div>
 
       <div className="product-info">
-        <span className="product-category">{product.categoryName}</span>
-        <h3 className="product-title">
-          <Link to={`/product/${product.id}`}>{product.name}</Link>
-        </h3>
+        <div className="product-meta">
+          <span className="product-cat">{product.categoryName}</span>
+          <div className="product-rating">
+            <span style={{ color: 'var(--accent-amber)' }}>★</span>
+            <span style={{ fontWeight: 700, color: 'var(--charcoal)' }}>{product.rating}</span>
+            <span style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>({product.reviewCount})</span>
+          </div>
+        </div>
+
+        <Link to={`/product/${product.id}`}>
+          <h3 className="product-name">{product.name}</h3>
+        </Link>
 
         <div className="product-pricing">
           <span className="price-current">₹{product.price.toLocaleString('en-IN')}</span>
@@ -125,28 +102,19 @@ export default function ProductCard({ product }) {
             <span className="price-original">₹{product.originalPrice.toLocaleString('en-IN')}</span>
           )}
           {discountPercent > 0 && (
-            <span className="price-discount-tag">({discountPercent}% OFF)</span>
+            <span className="price-discount">{discountPercent}% OFF</span>
           )}
         </div>
 
-        {/* Color swatches preview */}
-        {product.colors && product.colors.length > 0 && (
-          <div className="product-color-swatches">
-            {product.colors.slice(0, 4).map((c, idx) => (
-              <span 
-                key={idx} 
-                className="color-dot" 
-                style={{ backgroundColor: c.hex }} 
-                title={c.name}
-              />
-            ))}
-            {product.colors.length > 4 && (
-              <span className="color-more">+{product.colors.length - 4}</span>
-            )}
-          </div>
-        )}
+        <div className="product-actions" style={{ marginTop: '10px' }}>
+          <button 
+            className="btn btn-navy btn-sm btn-block"
+            onClick={(e) => handleQuickAdd('M', e)}
+          >
+            {added ? 'Added to Bag!' : 'Add To Cart'}
+          </button>
+        </div>
       </div>
     </div>
   );
 }
-

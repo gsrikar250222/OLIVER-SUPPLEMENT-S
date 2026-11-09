@@ -95,6 +95,8 @@ const server = http.createServer(async (req, res) => {
   const pathname = decodeURIComponent(parsedUrl.pathname);
   const searchParams = parsedUrl.searchParams;
 
+  console.log(`[${new Date().toLocaleTimeString()}] ${req.method} ${pathname}`);
+
   // ==========================================
   // API ROUTES
   // ==========================================

@@ -4,20 +4,6 @@ import { useCart } from '../context/CartContext.jsx';
 import { useWishlist } from '../context/WishlistContext.jsx';
 import { api } from '../services/api.js';
 import ProductGrid from '../components/ProductGrid.jsx';
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  ArrowRight, 
-  ShoppingBag, 
-  Heart, 
-  ShieldCheck, 
-  Truck, 
-  RotateCcw, 
-  Zap, 
-  Award,
-  Sparkles,
-  Check
-} from 'lucide-react';
 
 export default function Home({ onOpenSizeGuide }) {
   const { addToCart } = useCart();
@@ -30,31 +16,22 @@ export default function Home({ onOpenSizeGuide }) {
       id: 1,
       image: "assets/banners/desktop/Web-Banner-06-10-26-_Desktop_-_Main-Banner_.jpg_158ea.jpg",
       mobileImage: "assets/banners/mobile/Web-Banner-06-10-26-_Mobile_-_Main-Banner_.jpg_1_9131220d-650e-4f5c-926b-d7b364248d41561a.jpg",
-      subtitle: "AUTUMN / WINTER 2026",
-      title: "ARCHITECTURAL ATHLETIC COUTURE",
-      description: "Drop-shoulder heavyweight streetwear engineered for maximum silhouette drape and gym durability.",
       link: "/category/oversized",
-      btnText: "EXPLORE OVERSIZED"
+      alt: "REPVAULT High-Performance Athletic Campaign — Chase Greatness"
     },
     {
       id: 2,
       image: "assets/banners/desktop/Web-Banner-04-11-26-_Desktop_-_Running__jpg_29808428-b8eb-4329-ba16-134e3abbb28a7e28.jpg",
       mobileImage: "assets/banners/mobile/Web-Banner-04-11-26-_Mobile_-_Running__jpg_eae16368-80d5-42aa-98c2-c23b29812ef8c1b8.jpg",
-      subtitle: "COMPRESSION DIVISION",
-      title: "SECOND-SKIN ANATOMICAL PERFORMANCE",
-      description: "Graduated vascular support panels engineered to maximize oxygen delivery during heavy training.",
       link: "/category/compression",
-      btnText: "DISCOVER COMPRESSION"
+      alt: "REPVAULT Compression Technology — Second-Skin Performance"
     },
     {
       id: 3,
       image: "assets/banners/desktop/Web-Banner-09-07-26-_Womens_-_Desktop__jpg8bb8.jpg",
       mobileImage: "assets/banners/mobile/Web-Banner-09-07-26-_Womens_-_Mobile__jpg045a.jpg",
-      subtitle: "WOMEN'S SCULPT SERIES",
-      title: "HIGH-IMPACT ATHLETIC SILHOUETTES",
-      description: "Squat-proof sculpt leggings and engineered high-support crossover sports bras.",
       link: "/category/womens",
-      btnText: "SHOP WOMEN'S"
+      alt: "REPVAULT Women's Activewear Collection"
     }
   ];
 
@@ -67,318 +44,325 @@ export default function Home({ onOpenSizeGuide }) {
     return () => clearInterval(timer);
   }, [heroBanners.length]);
 
-  // Featured Spotlight State (Repvault Aesthetic Hooded Zip-Up)
-  const spotlightGallery = [
+  // Featured Spotlight State (Men vs Women toggle)
+  const [spotlightGender, setSpotlightGender] = useState('women'); // 'women' or 'men'
+
+  // Women's Spotlight: Aesthetic Hooded Zip-Up (Matching User Screenshot)
+  const womenThumbs = [
     "assets/featured/zipup-main.jpg",
     "assets/featured/zipup-thumb-1.jpg",
     "assets/featured/zipup-thumb-2.jpg",
     "assets/featured/zipup-thumb-3.jpg"
   ];
-  const [spotlightActiveImg, setSpotlightActiveImg] = useState(spotlightGallery[0]);
-  const [spotlightColor, setSpotlightColor] = useState('Chalk Beige');
-  const [spotlightSize, setSpotlightSize] = useState('M');
-  const [spotlightAdded, setSpotlightAdded] = useState(false);
+  const [womenActiveImg, setWomenActiveImg] = useState(womenThumbs[0]);
+  const [womenColor, setWomenColor] = useState('CHALK BEIGE');
+  const [womenSize, setWomenSize] = useState('M');
 
-  // Men's Tab Featured Products
-  const [menTab, setMenTab] = useState('oversized');
-  const [menProducts, setMenProducts] = useState([]);
-  const [loadingMen, setLoadingMen] = useState(true);
+  // Men's Spotlight: Vault OG Dropped-Shoulder Heavyweight Tee
+  const menThumbs = [
+    "assets/categories/oversized/repvault-oversized-lookbook-black.jpg",
+    "assets/categories/oversized/repvault-oversized-tee-black.jpg",
+    "assets/categories/oversized/repvault-oversized-tee-detail.jpg",
+    "assets/categories/oversized/oversized-back-1.jpg"
+  ];
+  const [menActiveImg, setMenActiveImg] = useState(menThumbs[0]);
+  const [menColor, setMenColor] = useState('Stealth Black');
+  const [menSize, setMenSize] = useState('M');
 
   // Bestsellers & Trending Drops
   const [bestsellers, setBestsellers] = useState([]);
   const [loadingBestsellers, setLoadingBestsellers] = useState(true);
 
+  // Men's Section Products
+  const [menProducts, setMenProducts] = useState([]);
+  const [loadingMen, setLoadingMen] = useState(true);
+
   useEffect(() => {
     async function loadData() {
+      setLoadingBestsellers(true);
+      const b = await api.getProducts({ featured: true, limit: 8 });
+      setBestsellers(b);
+      setLoadingBestsellers(false);
+
       setLoadingMen(true);
-      const mProducts = await api.getProducts({ category: menTab, limit: 4 });
-      setMenProducts(mProducts);
+      const m = await api.getProducts({ gender: 'men', limit: 4 });
+      setMenProducts(m);
       setLoadingMen(false);
     }
     loadData();
-  }, [menTab]);
-
-  useEffect(() => {
-    async function loadBestsellers() {
-      setLoadingBestsellers(true);
-      const bProducts = await api.getProducts({ featured: true, limit: 8 });
-      setBestsellers(bProducts);
-      setLoadingBestsellers(false);
-    }
-    loadBestsellers();
   }, []);
 
-  const handleSpotlightAddToCart = () => {
-    const spotlightProduct = {
+  const handleAddSpotlightWomen = () => {
+    addToCart({
       id: "rv-hd-01",
       name: "Repvault Aesthetic Hooded Zip-Up",
       categoryName: "Hoodies & Jackets",
       price: 1299,
       originalPrice: 2499,
-      primaryImage: spotlightActiveImg
-    };
-    addToCart(spotlightProduct, spotlightSize, spotlightColor, 1);
-    setSpotlightAdded(true);
-    setTimeout(() => setSpotlightAdded(false), 2000);
+      primaryImage: womenActiveImg
+    }, womenSize, womenColor, 1);
   };
 
-  const handleSpotlightBuyNow = () => {
-    handleSpotlightAddToCart();
-    navigate('/checkout');
+  const handleAddSpotlightMen = () => {
+    addToCart({
+      id: "rv-ov-01",
+      name: "Vault OG Dropped-Shoulder Heavyweight Tee",
+      categoryName: "Men's Oversized Tees",
+      price: 1299,
+      originalPrice: 2299,
+      primaryImage: menActiveImg
+    }, menSize, menColor, 1);
   };
 
   return (
-    <div className="home-page">
-      {/* 1. HERO CAMPAIGN SLIDER */}
+    <div className="home-page-wrap">
+      {/* 1. HERO CAMPAIGN BANNER SLIDER */}
       <section className="hero-section">
-        {heroBanners.map((banner, idx) => (
-          <div 
-            key={banner.id} 
-            className={`hero-slide ${idx === currentHero ? 'active' : ''}`}
-          >
-            <picture>
-              <source media="(max-width: 768px)" srcSet={`/${banner.mobileImage}`} />
-              <img 
-                src={`/${banner.image}`} 
-                alt={banner.title} 
-                className="hero-banner-img"
-              />
-            </picture>
-            <div className="hero-overlay">
-              <div className="container hero-content">
-                <span className="hero-subtitle">{banner.subtitle}</span>
-                <h1 className="hero-title">{banner.title}</h1>
-                <p className="hero-desc">{banner.description}</p>
-                <div className="hero-cta-group">
-                  <Link to={banner.link} className="btn btn-primary hero-btn">
-                    {banner.btnText} <ArrowRight size={18} />
-                  </Link>
-                  <Link to="/shop" className="btn btn-outline-white hero-btn">
-                    VIEW ALL PRODUCTS
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-
-        {/* Hero Slider Controls */}
+        <Link to={heroBanners[currentHero].link} className="hero-banner-link" aria-label="Shop Campaign">
+          <picture>
+            <source media="(max-width: 768px)" srcSet={`/${heroBanners[currentHero].mobileImage}`} />
+            <img 
+              src={`/${heroBanners[currentHero].image}`} 
+              alt={heroBanners[currentHero].alt} 
+              className="hero-banner-img" 
+              loading="eager" 
+              fetchpriority="high" 
+            />
+          </picture>
+        </Link>
         <button 
-          className="hero-arrow hero-prev" 
-          onClick={() => setCurrentHero((currentHero - 1 + heroBanners.length) % heroBanners.length)}
-          aria-label="Previous Slide"
+          className="hero-arrow-btn prev" 
+          aria-label="Previous Campaign Banner"
+          onClick={(e) => {
+            e.preventDefault();
+            setCurrentHero((currentHero - 1 + heroBanners.length) % heroBanners.length);
+          }}
         >
-          <ChevronLeft size={28} />
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
         </button>
         <button 
-          className="hero-arrow hero-next" 
-          onClick={() => setCurrentHero((currentHero + 1) % heroBanners.length)}
-          aria-label="Next Slide"
+          className="hero-arrow-btn next" 
+          aria-label="Next Campaign Banner"
+          onClick={(e) => {
+            e.preventDefault();
+            setCurrentHero((currentHero + 1) % heroBanners.length);
+          }}
         >
-          <ChevronRight size={28} />
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
         </button>
-
-        <div className="hero-dots">
+        <div className="hero-dots-indicator">
           {heroBanners.map((_, i) => (
-            <button 
+            <span 
               key={i} 
               className={`hero-dot ${i === currentHero ? 'active' : ''}`}
               onClick={() => setCurrentHero(i)}
-              aria-label={`Go to slide ${i + 1}`}
             />
           ))}
         </div>
       </section>
 
-      {/* 2. PROMO RIBBON */}
-      <section className="promo-ribbon">
-        <div className="ribbon-ticker">
-          <span>• 260 GSM HEAVYWEIGHT DROP SHOULDER SILHOUETTES</span>
-          <span>• GRADUATED COMPRESSION RASHGUARDS</span>
-          <span>• 100% SQUAT-PROOF SCULPT ACTIVEWEAR</span>
-          <span>• FREE EXPRESS SHIPPING OVER ₹1,000</span>
-          <span>• CASH ON DELIVERY AVAILABLE ALL-INDIA</span>
-          <span>• ENGINEERED ATHLETIC DIVISION 2026</span>
+      {/* 2. EXPLORE BY CATEGORY (5-Col Grid matching original design) */}
+      <section className="container explore-cat-section" id="explore-by-category">
+        <div className="explore-cat-header">
+          <div className="explore-cat-title-wrap">
+            <span className="subtitle">EXPLORE</span>
+            <h2 className="title">BY CATEGORY</h2>
+          </div>
+          <Link to="/shop" className="explore-view-all-link">
+            VIEW ALL
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </Link>
+        </div>
+
+        <div className="explore-5col-grid">
+          {/* 1. T-SHIRTS */}
+          <Link to="/category/t-shirts" className="explore-cat-card">
+            <img src="/assets/categories/t-shirts/Category_Banners_TSHIRT__jpgd40f.jpg" alt="T-Shirts" loading="lazy" />
+            <div className="explore-cat-overlay"></div>
+            <div className="explore-cat-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>
+              </svg>
+              T-SHIRTS
+            </div>
+          </Link>
+
+          {/* 2. JOGGERS */}
+          <Link to="/category/joggers" className="explore-cat-card">
+            <img src="/assets/categories/joggers/Category_Banners_JOGGERS__jpgb5f9.jpg" alt="Joggers" loading="lazy" />
+            <div className="explore-cat-overlay"></div>
+            <div className="explore-cat-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M6 2L4 22h4l2-10 2 10h4l-2-20z"/>
+              </svg>
+              JOGGERS
+            </div>
+          </Link>
+
+          {/* 3. STRINGERS */}
+          <Link to="/category/stringers" className="explore-cat-card">
+            <img src="/assets/categories/stringers/Category_Banners_STRINGERS__jpgd40f.jpg" alt="Stringers" loading="lazy" />
+            <div className="explore-cat-overlay"></div>
+            <div className="explore-cat-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              </svg>
+              STRINGERS
+            </div>
+          </Link>
+
+          {/* 4. SHORTS */}
+          <Link to="/category/shorts" className="explore-cat-card">
+            <img src="/assets/categories/shorts/Category_Banners_SHORTS__jpg_4c2913df-c57c-4ef3-8d45-4290e386e79af553.jpg" alt="Shorts" loading="lazy" />
+            <div className="explore-cat-overlay"></div>
+            <div className="explore-cat-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M3 4h18v10l-4 6-5-3-5 3-4-6V4z"/>
+              </svg>
+              SHORTS
+            </div>
+          </Link>
+
+          {/* 5. WOMEN */}
+          <Link to="/category/womens" className="explore-cat-card">
+            <img src="/assets/categories/womens/Nav-Bar-Banners-_Womens_-_800-x-458_-_01__jpgc804.jpg" alt="Women" loading="lazy" />
+            <div className="explore-cat-overlay"></div>
+            <div className="explore-cat-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="7"/>
+                <path d="M12 19v3M9 22h6"/>
+              </svg>
+              WOMEN
+            </div>
+          </Link>
         </div>
       </section>
 
-      {/* 3. EXPLORE BY CATEGORY */}
-      <section className="container section-pad" id="explore-categories">
-        <div className="section-header text-center">
-          <span className="section-eyebrow">CURATED DIVISIONS</span>
-          <h2 className="section-headline">EXPLORE BY CATEGORY</h2>
-          <p className="section-subtext">Precision-engineered collections designed for power, form, and athletic aesthetics.</p>
+      {/* 3. FEATURED SPOTLIGHT SECTION (MATCHING USER SCREENSHOT EXACTLY) */}
+      <section className="container featured-spotlight-section" id="featured-spotlight">
+        <div className="featured-spotlight-header">
+          <div className="featured-spotlight-title-wrap">
+            <span className="subtitle">FEATURED DROP</span>
+            <h2 className="title">New Arrivals</h2>
+          </div>
+          <div className="spotlight-gender-tabs">
+            <button 
+              className={`spotlight-tab-btn ${spotlightGender === 'men' ? 'active' : ''}`}
+              onClick={() => setSpotlightGender('men')}
+            >
+              MEN
+            </button>
+            <button 
+              className={`spotlight-tab-btn ${spotlightGender === 'women' ? 'active' : ''}`}
+              onClick={() => setSpotlightGender('women')}
+            >
+              WOMEN
+            </button>
+          </div>
         </div>
 
-        <div className="category-tiles-grid">
-          <Link to="/category/oversized" className="category-tile large-tile">
-            <img src="/assets/categories/oversized/repvault-oversized-lookbook-black.jpg" alt="Oversized Streetwear" />
-            <div className="category-tile-overlay">
-              <span className="cat-count">8 STYLES</span>
-              <h3>MEN'S OVERSIZED</h3>
-              <span className="cat-action">Shop Division &rarr;</span>
-            </div>
-          </Link>
-
-          <Link to="/category/compression" className="category-tile">
-            <img src="/assets/categories/compression/repvault-compression-short-black.jpg" alt="Compression Tech" />
-            <div className="category-tile-overlay">
-              <span className="cat-count">8 STYLES</span>
-              <h3>COMPRESSION WEAR</h3>
-              <span className="cat-action">Shop Division &rarr;</span>
-            </div>
-          </Link>
-
-          <Link to="/category/joggers" className="category-tile">
-            <img src="/assets/categories/joggers/Category_Banners_JOGGERS__jpgb5f9.jpg" alt="Joggers & Tracks" />
-            <div className="category-tile-overlay">
-              <span className="cat-count">8 STYLES</span>
-              <h3>JOGGERS & TRACKS</h3>
-              <span className="cat-action">Shop Division &rarr;</span>
-            </div>
-          </Link>
-
-          <Link to="/category/womens" className="category-tile large-tile">
-            <img src="/assets/categories/womens/repvault-womens-banner-3bc0d.jpg" alt="Women's Activewear" />
-            <div className="category-tile-overlay">
-              <span className="cat-count">8 STYLES</span>
-              <h3>WOMEN'S ACTIVEWEAR</h3>
-              <span className="cat-action">Shop Division &rarr;</span>
-            </div>
-          </Link>
-
-          <Link to="/category/t-shirts" className="category-tile">
-            <img src="/assets/categories/t-shirts/Category_Banners_TSHIRT__jpgd40f.jpg" alt="Gym T-Shirts & Polos" />
-            <div className="category-tile-overlay">
-              <span className="cat-count">8 STYLES</span>
-              <h3>GYM TEES & POLOS</h3>
-              <span className="cat-action">Shop Division &rarr;</span>
-            </div>
-          </Link>
-
-          <Link to="/category/hoodies" className="category-tile">
-            <img src="/assets/featured/zipup-main.jpg" alt="Aesthetic Hoodies" />
-            <div className="category-tile-overlay">
-              <span className="cat-count">8 STYLES</span>
-              <h3>HOODIES & ZIP-UPS</h3>
-              <span className="cat-action">Shop Division &rarr;</span>
-            </div>
-          </Link>
-        </div>
-      </section>
-
-      {/* 4. FEATURED PRODUCT SPOTLIGHT (Repvault Aesthetic Hooded Zip-Up) */}
-      <section className="featured-spotlight-section">
-        <div className="container">
+        {/* WOMEN'S SPOTLIGHT CARD (Active default matching screenshot) */}
+        {spotlightGender === 'women' && (
           <div className="featured-spotlight-card">
-            {/* Gallery Multi-Angle Split */}
+            {/* Gallery Split */}
             <div className="featured-gallery-split">
-              {/* Vertical Thumbnails Stack */}
               <div className="featured-thumbs-stack">
-                {spotlightGallery.map((imgUrl, i) => (
+                {womenThumbs.map((thumb, idx) => (
                   <div 
-                    key={i} 
-                    className={`thumb-box ${spotlightActiveImg === imgUrl ? 'active' : ''}`}
-                    onClick={() => setSpotlightActiveImg(imgUrl)}
+                    key={idx} 
+                    className={`featured-thumb-item ${womenActiveImg === thumb ? 'active' : ''}`}
+                    onClick={() => setWomenActiveImg(thumb)}
                   >
-                    <img src={`/${imgUrl}`} alt={`Repvault Zip-Up View ${i + 1}`} />
+                    <img src={`/${thumb}`} alt={`Zip-Up Angle ${idx + 1}`} />
                   </div>
                 ))}
               </div>
-
-              {/* Main Large Image */}
               <div className="featured-main-image-wrap">
-                <img 
-                  src={`/${spotlightActiveImg}`} 
-                  alt="Repvault Aesthetic Hooded Zip-Up" 
-                  className="featured-main-img" 
-                />
-                <span className="featured-floating-tag">BESTSELLER DROP</span>
+                <img src={`/${womenActiveImg}`} alt="Repvault Aesthetic Hooded Zip-Up" />
               </div>
             </div>
 
-            {/* Product Configuration Info */}
+            {/* Product Info & Actions */}
             <div className="featured-spotlight-info">
-              <div className="spotlight-header-top">
-                <span className="spotlight-eyebrow">NEW ARRIVALS SPOTLIGHT</span>
-                <div className="spotlight-nav-arrows">
-                  <button className="spotlight-arrow" onClick={() => {
-                    const idx = spotlightGallery.indexOf(spotlightActiveImg);
-                    setSpotlightActiveImg(spotlightGallery[(idx - 1 + spotlightGallery.length) % spotlightGallery.length]);
-                  }}>
-                    <ChevronLeft size={18} />
+              <div className="featured-spotlight-top">
+                <h3 className="featured-spotlight-title">Repvault Aesthetic Hooded<br />Zip-Up</h3>
+                <div className="featured-nav-arrows">
+                  <button 
+                    className="featured-nav-btn" 
+                    aria-label="Switch"
+                    onClick={() => setSpotlightGender('men')}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <polyline points="15 18 9 12 15 6"/>
+                    </svg>
                   </button>
-                  <button className="spotlight-arrow" onClick={() => {
-                    const idx = spotlightGallery.indexOf(spotlightActiveImg);
-                    setSpotlightActiveImg(spotlightGallery[(idx + 1) % spotlightGallery.length]);
-                  }}>
-                    <ChevronRight size={18} />
+                  <button 
+                    className="featured-nav-btn" 
+                    aria-label="Switch"
+                    onClick={() => setSpotlightGender('men')}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <polyline points="9 18 15 12 9 6"/>
+                    </svg>
                   </button>
                 </div>
               </div>
 
-              <h2 className="spotlight-title">Repvault Aesthetic Hooded Zip-Up</h2>
+              <div className="featured-spotlight-price">&#8377;1,299</div>
 
-              <div className="spotlight-price-row">
-                <span className="spotlight-price">₹1,299</span>
-                <span className="spotlight-orig-price">₹2,499</span>
-                <span className="spotlight-discount-badge">SAVE 48%</span>
-              </div>
-
-              {/* Color Selection */}
-              <div className="spotlight-option-block">
-                <span className="option-label">COLOR: <strong>{spotlightColor.toUpperCase()}</strong></span>
-                <div className="color-selector-pills">
-                  <button 
-                    className={`color-pill-btn ${spotlightColor === 'Chalk Beige' ? 'active' : ''}`}
+              {/* Color Swatches */}
+              <div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#666', textTransform: 'uppercase', marginBottom: '8px' }}>
+                  Color: <span style={{ color: '#141416' }}>{womenColor}</span>
+                </div>
+                <div className="featured-color-selector">
+                  <div 
+                    className={`featured-color-dot ${womenColor === 'CHALK BEIGE' ? 'active' : ''}`}
+                    style={{ background: '#eae4d5' }} 
+                    title="CHALK BEIGE" 
                     onClick={() => {
-                      setSpotlightColor('Chalk Beige');
-                      setSpotlightActiveImg('assets/featured/zipup-main.jpg');
+                      setWomenColor('CHALK BEIGE');
+                      setWomenActiveImg('assets/featured/zipup-main.jpg');
                     }}
-                    title="Chalk Beige"
-                  >
-                    <span className="pill-circle" style={{ backgroundColor: '#eae4d5' }}></span>
-                  </button>
-                  <button 
-                    className={`color-pill-btn ${spotlightColor === 'Midnight Black' ? 'active' : ''}`}
+                  />
+                  <div 
+                    className={`featured-color-dot ${womenColor === 'MIDNIGHT BLACK' ? 'active' : ''}`}
+                    style={{ background: '#111111' }} 
+                    title="MIDNIGHT BLACK" 
                     onClick={() => {
-                      setSpotlightColor('Midnight Black');
-                      setSpotlightActiveImg('assets/featured/zipup-thumb-2.jpg');
+                      setWomenColor('MIDNIGHT BLACK');
+                      setWomenActiveImg('assets/featured/zipup-thumb-2.jpg');
                     }}
-                    title="Midnight Black"
-                  >
-                    <span className="pill-circle" style={{ backgroundColor: '#111113' }}></span>
-                  </button>
-                  <button 
-                    className={`color-pill-btn ${spotlightColor === 'Heather Mist' ? 'active' : ''}`}
+                  />
+                  <div 
+                    className={`featured-color-dot ${womenColor === 'HEATHER MIST' ? 'active' : ''}`}
+                    style={{ background: '#d5d7dc' }} 
+                    title="HEATHER MIST" 
                     onClick={() => {
-                      setSpotlightColor('Heather Mist');
-                      setSpotlightActiveImg('assets/featured/zipup-thumb-3.jpg');
+                      setWomenColor('HEATHER MIST');
+                      setWomenActiveImg('assets/featured/zipup-thumb-3.jpg');
                     }}
-                    title="Heather Mist"
-                  >
-                    <span className="pill-circle" style={{ backgroundColor: '#d5d7dc' }}></span>
-                  </button>
+                  />
                 </div>
               </div>
 
-              {/* Size Selection */}
-              <div className="spotlight-option-block">
-                <div className="size-header-row">
-                  <span className="option-label">SIZE: <strong>{spotlightSize}</strong></span>
-                  <button 
-                    className="size-guide-link-btn"
-                    onClick={() => onOpenSizeGuide?.()}
-                  >
-                    Size Guide
-                  </button>
+              {/* Size Selector */}
+              <div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#666', textTransform: 'uppercase', marginBottom: '8px' }}>
+                  Size: <span style={{ color: '#141416' }}>{womenSize}</span>
                 </div>
-                <div className="size-buttons-row">
+                <div className="featured-size-selector">
                   {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
                     <button 
                       key={size}
-                      className={`size-btn ${spotlightSize === size ? 'active' : ''}`}
-                      onClick={() => setSpotlightSize(size)}
+                      className={`featured-size-btn ${womenSize === size ? 'active' : ''}`}
+                      onClick={() => setWomenSize(size)}
                     >
                       {size}
                     </button>
@@ -386,172 +370,188 @@ export default function Home({ onOpenSizeGuide }) {
                 </div>
               </div>
 
-              {/* Actions */}
-              <div className="spotlight-actions">
-                <button 
-                  className="btn btn-primary spotlight-add-btn"
-                  onClick={handleSpotlightAddToCart}
-                >
-                  <ShoppingBag size={18} />
-                  <span>{spotlightAdded ? 'ADDED TO BAG!' : 'ADD TO CART'}</span>
+              {/* Action Buttons Row */}
+              <div className="featured-actions-row">
+                <button className="featured-add-cart-btn" onClick={handleAddSpotlightWomen}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+                  </svg>
+                  ADD TO CART
                 </button>
                 <button 
-                  className="btn btn-outline spotlight-buy-btn"
-                  onClick={handleSpotlightBuyNow}
-                >
-                  BUY NOW
-                </button>
-                <button 
-                  className={`btn-wishlist-spotlight ${isWishlisted('rv-hd-01') ? 'active' : ''}`}
+                  className={`featured-wishlist-btn ${isWishlisted('rv-hd-01') ? 'active' : ''}`}
                   onClick={() => toggleWishlist({
                     id: "rv-hd-01",
                     name: "Repvault Aesthetic Hooded Zip-Up",
                     price: 1299,
-                    primaryImage: spotlightActiveImg
+                    primaryImage: womenActiveImg
                   })}
-                  aria-label="Wishlist"
+                  aria-label="Save to Wishlist" 
+                  title="Save to Wishlist"
                 >
-                  <Heart size={20} fill={isWishlisted('rv-hd-01') ? "#e11d48" : "none"} color={isWishlisted('rv-hd-01') ? "#e11d48" : "#111111"} />
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill={isWishlisted('rv-hd-01') ? "#e11d48" : "none"} stroke="currentColor" strokeWidth="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                  </svg>
                 </button>
               </div>
+            </div>
+          </div>
+        )}
 
-              {/* Value Bullet Points */}
-              <div className="spotlight-perks">
-                <div className="perk-item">
-                  <Check size={16} /> <span>Two-way matte gunmetal YKK zipper</span>
+        {/* MEN'S SPOTLIGHT CARD */}
+        {spotlightGender === 'men' && (
+          <div className="featured-spotlight-card">
+            {/* Gallery Split */}
+            <div className="featured-gallery-split">
+              <div className="featured-thumbs-stack">
+                {menThumbs.map((thumb, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`featured-thumb-item ${menActiveImg === thumb ? 'active' : ''}`}
+                    onClick={() => setMenActiveImg(thumb)}
+                  >
+                    <img src={`/${thumb}`} alt={`Men Angle ${idx + 1}`} />
+                  </div>
+                ))}
+              </div>
+              <div className="featured-main-image-wrap">
+                <img src={`/${menActiveImg}`} alt="Vault OG Dropped-Shoulder Heavyweight Tee" />
+              </div>
+            </div>
+
+            {/* Product Info & Actions */}
+            <div className="featured-spotlight-info">
+              <div className="featured-spotlight-top">
+                <h3 className="featured-spotlight-title">Vault OG Dropped-Shoulder<br />Heavyweight Tee</h3>
+                <div className="featured-nav-arrows">
+                  <button 
+                    className="featured-nav-btn" 
+                    aria-label="Switch"
+                    onClick={() => setSpotlightGender('women')}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                  </button>
+                  <button 
+                    className="featured-nav-btn" 
+                    aria-label="Switch"
+                    onClick={() => setSpotlightGender('women')}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                  </button>
                 </div>
-                <div className="perk-item">
-                  <Check size={16} /> <span>360 GSM French terry structured double-hood</span>
+              </div>
+
+              <div className="featured-spotlight-price">&#8377;1,299</div>
+
+              {/* Color Swatches */}
+              <div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#666', textTransform: 'uppercase', marginBottom: '8px' }}>
+                  Color: <span style={{ color: '#141416' }}>{menColor}</span>
                 </div>
-                <div className="perk-item">
-                  <Check size={16} /> <span>Integrated thumbholes & athletic crop drape</span>
+                <div className="featured-color-selector">
+                  <div 
+                    className={`featured-color-dot ${menColor === 'Stealth Black' ? 'active' : ''}`}
+                    style={{ background: '#111111' }} 
+                    title="Stealth Black" 
+                    onClick={() => {
+                      setMenColor('Stealth Black');
+                      setMenActiveImg('assets/categories/oversized/repvault-oversized-lookbook-black.jpg');
+                    }}
+                  />
+                  <div 
+                    className={`featured-color-dot ${menColor === 'Washed Charcoal' ? 'active' : ''}`}
+                    style={{ background: '#2E3033' }} 
+                    title="Washed Charcoal" 
+                    onClick={() => {
+                      setMenColor('Washed Charcoal');
+                      setMenActiveImg('assets/categories/oversized/repvault-oversized-tee-black.jpg');
+                    }}
+                  />
+                  <div 
+                    className={`featured-color-dot ${menColor === 'Military Olive' ? 'active' : ''}`}
+                    style={{ background: '#444C38' }} 
+                    title="Military Olive" 
+                    onClick={() => {
+                      setMenColor('Military Olive');
+                      setMenActiveImg('assets/categories/oversized/Product-Banner-05-08-26-_OG-Oversized-T-Shirt-Olive__jpg287f.jpg');
+                    }}
+                  />
                 </div>
+              </div>
+
+              {/* Size Selector */}
+              <div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#666', textTransform: 'uppercase', marginBottom: '8px' }}>
+                  Size: <span style={{ color: '#141416' }}>{menSize}</span>
+                </div>
+                <div className="featured-size-selector">
+                  {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
+                    <button 
+                      key={size}
+                      className={`featured-size-btn ${menSize === size ? 'active' : ''}`}
+                      onClick={() => setMenSize(size)}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Buttons Row */}
+              <div className="featured-actions-row">
+                <button className="featured-add-cart-btn" onClick={handleAddSpotlightMen}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+                  </svg>
+                  ADD TO CART
+                </button>
+                <button 
+                  className={`featured-wishlist-btn ${isWishlisted('rv-ov-01') ? 'active' : ''}`}
+                  onClick={() => toggleWishlist({
+                    id: "rv-ov-01",
+                    name: "Vault OG Dropped-Shoulder Heavyweight Tee",
+                    price: 1299,
+                    primaryImage: menActiveImg
+                  })}
+                  aria-label="Save to Wishlist" 
+                  title="Save to Wishlist"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill={isWishlisted('rv-ov-01') ? "#e11d48" : "none"} stroke="currentColor" strokeWidth="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </section>
 
-      {/* 5. MEN'S COLLECTION DIVISION */}
-      <section className="container section-pad">
-        <div className="section-header-split">
-          <div>
-            <span className="section-eyebrow">MEN'S ATHLETIC DIVISION</span>
-            <h2 className="section-headline">BUILT FOR POWER & REFINEMENT</h2>
-          </div>
-          {/* Category Tabs */}
-          <div className="gender-tabs">
-            <button 
-              className={`gender-tab ${menTab === 'oversized' ? 'active' : ''}`}
-              onClick={() => setMenTab('oversized')}
-            >
-              Oversized Tees
-            </button>
-            <button 
-              className={`gender-tab ${menTab === 'compression' ? 'active' : ''}`}
-              onClick={() => setMenTab('compression')}
-            >
-              Compression
-            </button>
-            <button 
-              className={`gender-tab ${menTab === 't-shirts' ? 'active' : ''}`}
-              onClick={() => setMenTab('t-shirts')}
-            >
-              Polos & Tees
-            </button>
-            <button 
-              className={`gender-tab ${menTab === 'joggers' ? 'active' : ''}`}
-              onClick={() => setMenTab('joggers')}
-            >
-              Cargo Joggers
-            </button>
-          </div>
+      {/* 4. BESTSELLERS & TRENDING DROPS */}
+      <section className="container section" style={{ padding: '40px 24px 60px' }}>
+        <div className="section-header" style={{ marginBottom: '28px' }}>
+          <span className="subtitle">FEATURED COLLECTION</span>
+          <h2 className="title">Bestsellers & Trending Drops</h2>
         </div>
-
-        <ProductGrid products={menProducts} loading={loadingMen} count={4} />
-
-        <div className="text-center mt-32">
-          <Link to={`/category/${menTab}`} className="btn btn-outline">
-            VIEW ALL {menTab.toUpperCase()} ({8}) &rarr;
-          </Link>
-        </div>
-      </section>
-
-      {/* 6. TECHNICAL PERFORMANCE EDITORIAL BANNER */}
-      <section className="editorial-banner-section">
-        <div className="container editorial-inner">
-          <div className="editorial-content">
-            <span className="editorial-tag">TEXTILE ENGINEERING</span>
-            <h2>VAULT ARMOR-WEAVE & AEROVENT TECH</h2>
-            <p>
-              Every Repvault garment undergoes bio-polishing, silver ion antimicrobial infusion, and high-tenacity tension testing. Built to withstand knurled barbells, explosive sprints, and relentless wash cycles.
-            </p>
-            <div className="editorial-features-grid">
-              <div className="feat-box">
-                <h4>260+ GSM</h4>
-                <p>Dense compact combed cotton with structural rigidity</p>
-              </div>
-              <div className="feat-box">
-                <h4>Omnistretch</h4>
-                <p>4-way recovery memory that prevents neckline curling</p>
-              </div>
-              <div className="feat-box">
-                <h4>Silver-Ion</h4>
-                <p>Permanent microbial anti-odor yarn integration</p>
-              </div>
-            </div>
-            <Link to="/shop" className="btn btn-primary mt-24">
-              EXPERIENCE THE FABRIC &rarr;
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. BESTSELLERS & TRENDING DROPS */}
-      <section className="container section-pad">
-        <div className="section-header text-center">
-          <span className="section-eyebrow">TRENDING ACROSS INDIA</span>
-          <h2 className="section-headline">REPVAULT BESTSELLERS</h2>
-          <p className="section-subtext">The most coveted high-performance athletic apparel of the season.</p>
-        </div>
-
         <ProductGrid products={bestsellers} loading={loadingBestsellers} count={8} />
       </section>
 
-      {/* 8. TRUST STRIP */}
-      <section className="trust-strip-section">
-        <div className="container trust-strip-grid">
-          <div className="trust-card">
-            <ShieldCheck size={32} />
-            <div>
-              <h4>Architectural Quality</h4>
-              <p>Heavyweight fabrics engineered with zero distortion</p>
-            </div>
-          </div>
-          <div className="trust-card">
-            <Truck size={32} />
-            <div>
-              <h4>Express 2-4 Day Delivery</h4>
-              <p>Shipped directly from warehouse with live tracking</p>
-            </div>
-          </div>
-          <div className="trust-card">
-            <RotateCcw size={32} />
-            <div>
-              <h4>7-Day Doorstep Exchange</h4>
-              <p>Effortless size swaps and customer care support</p>
-            </div>
-          </div>
-          <div className="trust-card">
-            <Zap size={32} />
-            <div>
-              <h4>Cash on Delivery</h4>
-              <p>Pay upon delivery across 24,000+ Indian PIN codes</p>
-            </div>
-          </div>
+      {/* 5. SHOP MEN'S ATHLETIC DIVISION */}
+      <section className="container section-alt" style={{ padding: '60px 24px', borderRadius: '12px', marginBottom: '60px' }}>
+        <div className="section-header" style={{ marginBottom: '28px' }}>
+          <span className="subtitle">MEN'S COLLECTION</span>
+          <h2 className="title">Engineered Heavyweight & Performance Gear</h2>
+        </div>
+        <ProductGrid products={menProducts} loading={loadingMen} count={4} />
+        <div style={{ textAlign: 'center', marginTop: '36px' }}>
+          <Link to="/shop?gender=men" className="btn btn-outline" style={{ display: 'inline-flex', padding: '12px 32px' }}>
+            VIEW ALL MEN'S APPAREL &rarr;
+          </Link>
         </div>
       </section>
     </div>
   );
 }
-

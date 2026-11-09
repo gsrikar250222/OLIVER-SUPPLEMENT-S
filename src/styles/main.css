@@ -4,79 +4,10 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Typography & Font Face Declarations (Local Offline Assets)
+   1. Typography & Font Hierarchy (Loaded via Google Fonts)
    -------------------------------------------------------------------------- */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('../fonts/montserrat_n5.07ef3781d9c78c8b93c98419da7ad4fbeebb6635.woff2') format('woff2');
-}
+/* Font family 'Montserrat' and 'Space Grotesk' loaded via <link> in HTML */
 
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('../fonts/montserrat_n5.07ef3781d9c78c8b93c98419da7ad4fbeebb6635.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  font-style: italic;
-  font-weight: 500;
-  font-display: swap;
-  src: url('../fonts/montserrat_i5.d3a783eb0cc26f2fda1e99d1dfec3ebaea1dc164.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('../fonts/montserrat_n6.1326b3e84230700ef15b3a29fb520639977513e0.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  font-style: italic;
-  font-weight: 600;
-  font-display: swap;
-  src: url('../fonts/montserrat_i6.e90155dd2f004112a61c0322d66d1f59dadfa84b.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('../fonts/montserrat_n7.3c434e22befd5c18a6b4afadb1e3d77c128c7939.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  font-style: italic;
-  font-weight: 700;
-  font-display: swap;
-  src: url('../fonts/montserrat_i7.a0d4a463df4f146567d871890ffb3c80408e7732.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url('../fonts/montserrat_n7.3c434e22befd5c18a6b4afadb1e3d77c128c7939.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  src: url('../fonts/montserrat_n7.5d9fa6e2cae713c8fb539a9876489d86207fe957.woff.woff2') format('woff2');
-}
 
 /* --------------------------------------------------------------------------
    2. Design Tokens & Color Palette (REPVAULT Matching Architecture)
