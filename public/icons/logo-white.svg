@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 68" fill="none">
+  <!-- REPVAULT Luxury Fashion Identity - White Version -->
+  <!-- Geometric Luxury Monogram -->
+  <g id="brand-symbol" transform="translate(4, 4)">
+    <rect x="2" y="2" width="56" height="56" rx="14" fill="#ffffff" />
+    <rect x="3.5" y="3.5" width="53" height="53" rx="12.5" stroke="#e4e4e7" stroke-width="1.5" fill="none"/>
+    
+    <!-- Stylized Precision R-Vault Glyph -->
+    <path d="M22 17 V43 M22 17 H34 C39.5 17 39.5 28 34 28 H22 M32 28 L41 43" 
+          stroke="#0a0a0c" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Subtle Kinetic Chevron Accent -->
+    <path d="M38 18 L43 23 L38 28" 
+          stroke="#0a0a0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+  </g>
+
+  <!-- Typography: Luxury High-Fashion Spacing -->
+  <g transform="translate(74, 38)">
+    <text font-family="'Space Grotesk', 'Montserrat', -apple-system, sans-serif" 
+          font-size="25" 
+          font-weight="800" 
+          letter-spacing="6" 
+          fill="#ffffff">REPVAULT</text>
+  </g>
+  <g transform="translate(76, 52)">
+    <text font-family="'Space Grotesk', 'Montserrat', -apple-system, sans-serif" 
+          font-size="8" 
+          font-weight="600" 
+          letter-spacing="5.5" 
+          fill="#a1a1aa">ATHLETIC COUTURE • EST. 2026</text>
+  </g>
+</svg>

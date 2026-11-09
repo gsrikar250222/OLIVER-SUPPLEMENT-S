@@ -1,60 +1,127 @@
-# REPVAULT — Engineered High-Performance Athletic Gymwear
+# REPVAULT | Engineered Athletic Couture & High-Performance Apparel
 
-**REPVAULT** is a premium athletic clothing e-commerce website and interactive 3D apparel showcase.
-
-> **Tagline:** BUILT FOR THE GRIND.
-
----
-
-## 🌟 Highlights & Features
-
-- **Interactive 3D WebGL Showroom & Preloader**: Real-time 3D procedural garment models (T-shirts & Track Pants) built with Three.js featuring 360° rotation, real-time lighting, decals, and colorway swatches.
-- **Complete Brand Transformation**: Engineered typography, custom SVG Vault Shield monograms, and modern athletic streetwear aesthetics.
-- **Men's & Women's Collections**:
-  - Oversized gym T-shirts, compression armor, performance training crews, minimalist polo shirts, Y-back stringers, hoodies, hybrid track joggers, utility cargo pants, and 2-in-1 shorts.
-  - High-impact seamless sports bras and high-rise squat-proof leggings.
-  - Tactical backpacks and performance headwear.
-- **Full E-Commerce State Management**:
-  - Filter by category, sorting by price and arrival date, live search modal, dynamic product cards.
-  - Slide-out quick size selector drawer (S, M, L, XL, XXL).
-  - Multi-angle product detail pages (PDP) with accordion specifications, size charts, and zoom gallery.
-  - Persistent shopping cart drawer with local storage and quantity adjustments.
-- **Responsive Architecture**: Fully responsive across desktop, laptop, tablet, and mobile devices.
+> **Official Flagship E-Commerce Platform**  
+> Complete brand transformation & React migration for **REPVAULT**, an architectural athletic fashion brand crafting 260 GSM heavyweight oversized streetwear, precision compression rashguards, performance 2-in-1 shorts, and tailored luxury sportswear.
 
 ---
 
-## 📁 Project Structure
+## 🏛️ Brand Identity & Logo Redesign
 
-```text
-repvault_website/
-├── index.html                  # Main homepage with 3D preloader & new arrivals spotlight
-├── collections.html            # E-commerce product catalog with interactive filters & sorting
-├── product.html                # Dynamic product detail page (PDP)
-├── loading.html                # Standalone 3D Collections Lab & Preloader
-├── 3d-collections.html         # Canonical 3D visualizer page
-├── server.js                   # Zero-dependency local Node.js static HTTP server
-├── css/
-│   └── styles.css              # Design tokens, responsive grid, animations & transitions
-├── js/
-│   ├── app.js                  # Frontend state controller, cart drawer, search, PDP logic
-│   └── products.js             # Catalog data, pricing in INR, categories, and image mappings
-├── icons/                      # SVG brand logos & icons
-├── fonts/                      # Montserrat web fonts
-└── assets/                     # High-definition sportswear photography, banners & video showcases
-```
+- **Brand Monogram:** Geometric architectural vault key monogram with high-tension precision lines.
+- **Wordmark:** Luxury high-tracking geometric typography: `REPVAULT • ATHLETIC COUTURE • EST. 2026`.
+- **Assets:**
+  - `public/icons/logo.svg` — Dark monogram & typography on transparent background for light UI.
+  - `public/icons/logo-white.svg` — White monogram & typography on transparent background for dark UI & footer.
+  - `public/icons/logo-icon.svg` & `public/favicon.svg` — Square monogram icon for browser tabs & mobile navigation.
 
 ---
 
-## 🚀 Getting Started
+## ⚡ Key Highlights & Architecture
 
-To run the site locally:
+1. **Complete React Architecture (Strictly No Tailwind CSS):**
+   - Built with **React 18**, **React Router v6**, and **Vite**.
+   - Modular, responsive CSS based on the REPVAULT design system.
+   - Zero splash screens or artificial loading delays — opens directly and uses skeleton loaders during asynchronous data fetching.
 
+2. **Expanded 80-Product Catalog (8 Unique Products Per Category):**
+   - **Men's Oversized Tees:** 260 GSM boxy silhouettes, acid-washed minerals, technical blueprint back-prints.
+   - **Compression Wear:** Graduated vascular rashguards, flatlock seam baselayers, thermal full-sleeves.
+   - **Gym T-Shirts & Polos:** Anti-curl performance pique polos, Supima cotton crews, seamless knits.
+   - **Tanks & Stringers:** Deep-cut Y-back stringers, featherweight aeromesh running tanks, raw-edge cuts.
+   - **Training Shorts:** 2-in-1 compression inner liner shorts with bounce-free phone pockets & laser vents.
+   - **Joggers & Track Pants:** Hybrid slim-taper joggers, raw-washed straight tracks, utility carpenter cargos.
+   - **Performance & Ironclad:** Barbell-proof knurling-resistant gear, squat grip silicone prints, heavy powerlifting tops.
+   - **Hoodies & Jackets:** French terry aesthetic crop zip-ups with two-way gunmetal YKK zips, 400 GSM pullovers.
+   - **Women's Activewear:** High-impact sculpt sports bras, 100% squat-proof seamless high-rise leggings.
+   - **Gear & Accessories:** 1000D Cordura 35L tactical backpacks with shoe pockets, snapback caps, heavy lifting straps.
+
+3. **Complete Shopping Journey:**
+   - **Homepage:** Editorial hero carousel, Explore by Category, Featured Product Spotlight, Division tabs, textile engineering highlights, bestsellers.
+   - **Catalog & Shop:** Instant multi-facet filter sidebar (Categories, Gender, Size, Price Range), real-time sorting, and active filter chips.
+   - **Product Detail Page (PDP):** Multi-angle gallery stack with zoom preview, color swatches, size selector with interactive Size Guide modal, stock alert, quantity stepper, Add to Cart, Buy Now, accordion technical specs, and related styles.
+   - **Slide-Out Bag Drawer & Cart Page:** Free express shipping threshold meter (₹1,000 threshold), coupon code engine (`VAULT10`, `WELCOME20`, `REP50`), line item controls.
+   - **Checkout & Real Order Placement:** Full shipping address form, payment selector (UPI, Credit/Debit Card, Net Banking, COD), and server-side order generation.
+   - **Order Confirmation & Tracking:** Unique Order IDs (`RV-XXXXXX-XXXX`), verified checkmark, printable receipt, and interactive 5-stage delivery tracking simulator.
+   - **Wishlist & Authentication:** Persistent wishlist with Move to Bag actions, user account sign-in/registration.
+
+4. **REST API Backend (`server.js`):**
+   - `GET /api/categories` — Catalog divisions with counts and imagery.
+   - `GET /api/products` — Filterable and sortable catalog list with search and pagination.
+   - `GET /api/products/:id` — Single product details.
+   - `POST /api/coupons/validate` — Validates coupon codes and computes discounts.
+   - `POST /api/orders` — Validates order details, calculates taxes/shipping, and persists to `data/orders.json`.
+   - `GET /api/orders/:id` — Order status retrieval and tracking timeline.
+   - `POST /api/auth/login` & `POST /api/auth/register` — Session authentication.
+
+---
+
+## 🚀 Running the Project
+
+### Development (React + Vite)
 ```bash
-node server.js
+npm run dev
+# Vite runs at http://localhost:3000
 ```
 
-Then open your browser at:
-- **Homepage**: `http://localhost:3000`
-- **3D Showroom**: `http://localhost:3000/loading.html`
-- **Catalog**: `http://localhost:3000/collections.html`
-- **Product Detail**: `http://localhost:3000/product.html?id=rv-polo-black`
+### Production Build & Server
+```bash
+# 1. Compile production bundle
+npm run build
+
+# 2. Start REST API & static server
+npm run server
+# Server live at http://localhost:3000
+```
+
+---
+
+## 📁 Source Code Organization
+
+```
+repvault_website/
+├── public/                 # Static assets, icons, logo SVGs, favicon
+│   ├── favicon.svg
+│   └── icons/
+├── src/
+│   ├── assets/             # Brand logos & imagery
+│   ├── components/         # Reusable UI components
+│   │   ├── AnnouncementBar.jsx
+│   │   ├── CartDrawer.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── ProductCard.jsx
+│   │   ├── ProductGrid.jsx
+│   │   ├── SearchModal.jsx
+│   │   ├── SizeGuideModal.jsx
+│   │   ├── SkeletonCard.jsx
+│   │   └── Toast.jsx
+│   ├── context/            # Global state providers
+│   │   ├── AuthContext.jsx
+│   │   ├── CartContext.jsx
+│   │   └── WishlistContext.jsx
+│   ├── data/               # 80-Product Catalog dataset
+│   │   └── products.js
+│   ├── pages/              # Route pages
+│   │   ├── Cart.jsx
+│   │   ├── Category.jsx
+│   │   ├── Checkout.jsx
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── NotFound.jsx
+│   │   ├── OrderConfirmation.jsx
+│   │   ├── ProductDetails.jsx
+│   │   ├── Register.jsx
+│   │   ├── Shop.jsx
+│   │   └── Wishlist.jsx
+│   ├── services/           # REST API client
+│   │   └── api.js
+│   ├── styles/             # Master CSS (No Tailwind)
+│   │   └── main.css
+│   ├── App.jsx             # Main Router layout
+│   └── main.jsx            # Application entry point
+├── data/
+│   └── orders.json         # Order persistence store
+├── server.js               # Node REST API & static server
+├── vite.config.js          # Vite config
+└── package.json
+```
