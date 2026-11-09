@@ -44,21 +44,9 @@ export default function Home({ onOpenSizeGuide }) {
     return () => clearInterval(timer);
   }, [heroBanners.length]);
 
-  // Featured Spotlight State (Men vs Women toggle)
-  const [spotlightGender, setSpotlightGender] = useState('women'); // 'women' or 'men'
-
-  // Women's Spotlight: Aesthetic Hooded Zip-Up (Matching User Screenshot)
-  const womenThumbs = [
-    "assets/featured/zipup-main.jpg",
-    "assets/featured/zipup-thumb-1.jpg",
-    "assets/featured/zipup-thumb-2.jpg",
-    "assets/featured/zipup-thumb-3.jpg"
-  ];
-  const [womenActiveImg, setWomenActiveImg] = useState(womenThumbs[0]);
-  const [womenColor, setWomenColor] = useState('CHALK BEIGE');
-  const [womenSize, setWomenSize] = useState('M');
-
-  // Men's Spotlight: Vault OG Dropped-Shoulder Heavyweight Tee
+  // -------------------------------------------------------------
+  // MEN'S SPOTLIGHT (UPPER SECTION)
+  // -------------------------------------------------------------
   const menThumbs = [
     "assets/categories/oversized/repvault-oversized-lookbook-black.jpg",
     "assets/categories/oversized/repvault-oversized-tee-black.jpg",
@@ -69,38 +57,16 @@ export default function Home({ onOpenSizeGuide }) {
   const [menColor, setMenColor] = useState('Stealth Black');
   const [menSize, setMenSize] = useState('M');
 
-  // Bestsellers & Trending Drops
-  const [bestsellers, setBestsellers] = useState([]);
-  const [loadingBestsellers, setLoadingBestsellers] = useState(true);
+  const handleMenPrevImg = () => {
+    const idx = menThumbs.indexOf(menActiveImg);
+    const prev = (idx - 1 + menThumbs.length) % menThumbs.length;
+    setMenActiveImg(menThumbs[prev]);
+  };
 
-  // Men's Section Products
-  const [menProducts, setMenProducts] = useState([]);
-  const [loadingMen, setLoadingMen] = useState(true);
-
-  useEffect(() => {
-    async function loadData() {
-      setLoadingBestsellers(true);
-      const b = await api.getProducts({ featured: true, limit: 8 });
-      setBestsellers(b);
-      setLoadingBestsellers(false);
-
-      setLoadingMen(true);
-      const m = await api.getProducts({ gender: 'men', limit: 4 });
-      setMenProducts(m);
-      setLoadingMen(false);
-    }
-    loadData();
-  }, []);
-
-  const handleAddSpotlightWomen = () => {
-    addToCart({
-      id: "rv-hd-01",
-      name: "Repvault Aesthetic Hooded Zip-Up",
-      categoryName: "Hoodies & Jackets",
-      price: 1299,
-      originalPrice: 2499,
-      primaryImage: womenActiveImg
-    }, womenSize, womenColor, 1);
+  const handleMenNextImg = () => {
+    const idx = menThumbs.indexOf(menActiveImg);
+    const next = (idx + 1) % menThumbs.length;
+    setMenActiveImg(menThumbs[next]);
   };
 
   const handleAddSpotlightMen = () => {
@@ -113,6 +79,83 @@ export default function Home({ onOpenSizeGuide }) {
       primaryImage: menActiveImg
     }, menSize, menColor, 1);
   };
+
+  // -------------------------------------------------------------
+  // WOMEN'S SPOTLIGHT (BOTTOM SECTION)
+  // -------------------------------------------------------------
+  const womenThumbs = [
+    "assets/featured/zipup-main.jpg",
+    "assets/featured/zipup-thumb-1.jpg",
+    "assets/featured/zipup-thumb-2.jpg",
+    "assets/featured/zipup-thumb-3.jpg"
+  ];
+  const [womenActiveImg, setWomenActiveImg] = useState(womenThumbs[0]);
+  const [womenColor, setWomenColor] = useState('CHALK BEIGE');
+  const [womenSize, setWomenSize] = useState('M');
+
+  const handleWomenPrevImg = () => {
+    const idx = womenThumbs.indexOf(womenActiveImg);
+    const prev = (idx - 1 + womenThumbs.length) % womenThumbs.length;
+    setWomenActiveImg(womenThumbs[prev]);
+  };
+
+  const handleWomenNextImg = () => {
+    const idx = womenThumbs.indexOf(womenActiveImg);
+    const next = (idx + 1) % womenThumbs.length;
+    setWomenActiveImg(womenThumbs[next]);
+  };
+
+  const handleAddSpotlightWomen = () => {
+    addToCart({
+      id: "rv-hd-01",
+      name: "Repvault Aesthetic Hooded Zip-Up",
+      categoryName: "Hoodies & Jackets",
+      price: 1299,
+      originalPrice: 2499,
+      primaryImage: womenActiveImg
+    }, womenSize, womenColor, 1);
+  };
+
+  // -------------------------------------------------------------
+  // CATALOG PRODUCTS FETCHING
+  // -------------------------------------------------------------
+  const [bestsellers, setBestsellers] = useState([]);
+  const [loadingBestsellers, setLoadingBestsellers] = useState(true);
+
+  const [menProducts, setMenProducts] = useState([]);
+  const [loadingMen, setLoadingMen] = useState(true);
+
+  const [womenProducts, setWomenProducts] = useState([]);
+  const [loadingWomen, setLoadingWomen] = useState(true);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        setLoadingBestsellers(true);
+        const b = await api.getProducts({ featured: true, limit: 8 });
+        setBestsellers(b || []);
+      } finally {
+        setLoadingBestsellers(false);
+      }
+
+      try {
+        setLoadingMen(true);
+        const m = await api.getProducts({ gender: 'men', limit: 4 });
+        setMenProducts(m || []);
+      } finally {
+        setLoadingMen(false);
+      }
+
+      try {
+        setLoadingWomen(true);
+        const w = await api.getProducts({ category: 'womens', limit: 4 });
+        setWomenProducts(w || []);
+      } finally {
+        setLoadingWomen(false);
+      }
+    }
+    loadData();
+  }, []);
 
   return (
     <div className="home-page-wrap">
@@ -244,312 +287,365 @@ export default function Home({ onOpenSizeGuide }) {
         </div>
       </section>
 
-      {/* 3. FEATURED SPOTLIGHT SECTION (MATCHING USER SCREENSHOT EXACTLY) */}
-      <section className="container featured-spotlight-section" id="featured-spotlight">
-        <div className="featured-spotlight-header">
+      {/* 3. MEN'S SPOTLIGHT SECTION (UPPER SECTION) */}
+      <section className="container featured-spotlight-section" id="mens-spotlight">
+        <div className="featured-spotlight-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <div className="featured-spotlight-title-wrap">
-            <span className="subtitle">FEATURED DROP</span>
+            <span className="subtitle">FEATURED DROP — MEN'S DIVISION</span>
             <h2 className="title">New Arrivals</h2>
           </div>
-          <div className="spotlight-gender-tabs">
-            <button 
-              className={`spotlight-tab-btn ${spotlightGender === 'men' ? 'active' : ''}`}
-              onClick={() => setSpotlightGender('men')}
-            >
-              MEN
-            </button>
-            <button 
-              className={`spotlight-tab-btn ${spotlightGender === 'women' ? 'active' : ''}`}
-              onClick={() => setSpotlightGender('women')}
-            >
-              WOMEN
-            </button>
-          </div>
+          <Link to="/shop?gender=men" className="explore-view-all-link" style={{ fontSize: '0.82rem', fontWeight: 700, color: '#111' }}>
+            VIEW ALL MEN'S &rarr;
+          </Link>
         </div>
 
-        {/* WOMEN'S SPOTLIGHT CARD (Active default matching screenshot) */}
-        {spotlightGender === 'women' && (
-          <div className="featured-spotlight-card">
-            {/* Gallery Split */}
-            <div className="featured-gallery-split">
-              <div className="featured-thumbs-stack">
-                {womenThumbs.map((thumb, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`featured-thumb-item ${womenActiveImg === thumb ? 'active' : ''}`}
-                    onClick={() => setWomenActiveImg(thumb)}
-                  >
-                    <img src={`/${thumb}`} alt={`Zip-Up Angle ${idx + 1}`} />
-                  </div>
-                ))}
-              </div>
-              <div className="featured-main-image-wrap">
-                <img src={`/${womenActiveImg}`} alt="Repvault Aesthetic Hooded Zip-Up" />
-              </div>
-            </div>
-
-            {/* Product Info & Actions */}
-            <div className="featured-spotlight-info">
-              <div className="featured-spotlight-top">
-                <h3 className="featured-spotlight-title">Repvault Aesthetic Hooded<br />Zip-Up</h3>
-                <div className="featured-nav-arrows">
-                  <button 
-                    className="featured-nav-btn" 
-                    aria-label="Switch"
-                    onClick={() => setSpotlightGender('men')}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <polyline points="15 18 9 12 15 6"/>
-                    </svg>
-                  </button>
-                  <button 
-                    className="featured-nav-btn" 
-                    aria-label="Switch"
-                    onClick={() => setSpotlightGender('men')}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <polyline points="9 18 15 12 9 6"/>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <div className="featured-spotlight-price">&#8377;1,299</div>
-
-              {/* Color Swatches */}
-              <div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#666', textTransform: 'uppercase', marginBottom: '8px' }}>
-                  Color: <span style={{ color: '#141416' }}>{womenColor}</span>
-                </div>
-                <div className="featured-color-selector">
-                  <div 
-                    className={`featured-color-dot ${womenColor === 'CHALK BEIGE' ? 'active' : ''}`}
-                    style={{ background: '#eae4d5' }} 
-                    title="CHALK BEIGE" 
-                    onClick={() => {
-                      setWomenColor('CHALK BEIGE');
-                      setWomenActiveImg('assets/featured/zipup-main.jpg');
-                    }}
-                  />
-                  <div 
-                    className={`featured-color-dot ${womenColor === 'MIDNIGHT BLACK' ? 'active' : ''}`}
-                    style={{ background: '#111111' }} 
-                    title="MIDNIGHT BLACK" 
-                    onClick={() => {
-                      setWomenColor('MIDNIGHT BLACK');
-                      setWomenActiveImg('assets/featured/zipup-thumb-2.jpg');
-                    }}
-                  />
-                  <div 
-                    className={`featured-color-dot ${womenColor === 'HEATHER MIST' ? 'active' : ''}`}
-                    style={{ background: '#d5d7dc' }} 
-                    title="HEATHER MIST" 
-                    onClick={() => {
-                      setWomenColor('HEATHER MIST');
-                      setWomenActiveImg('assets/featured/zipup-thumb-3.jpg');
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/* Size Selector */}
-              <div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#666', textTransform: 'uppercase', marginBottom: '8px' }}>
-                  Size: <span style={{ color: '#141416' }}>{womenSize}</span>
-                </div>
-                <div className="featured-size-selector">
-                  {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
-                    <button 
-                      key={size}
-                      className={`featured-size-btn ${womenSize === size ? 'active' : ''}`}
-                      onClick={() => setWomenSize(size)}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Buttons Row */}
-              <div className="featured-actions-row">
-                <button className="featured-add-cart-btn" onClick={handleAddSpotlightWomen}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
-                  </svg>
-                  ADD TO CART
-                </button>
-                <button 
-                  className={`featured-wishlist-btn ${isWishlisted('rv-hd-01') ? 'active' : ''}`}
-                  onClick={() => toggleWishlist({
-                    id: "rv-hd-01",
-                    name: "Repvault Aesthetic Hooded Zip-Up",
-                    price: 1299,
-                    primaryImage: womenActiveImg
-                  })}
-                  aria-label="Save to Wishlist" 
-                  title="Save to Wishlist"
+        <div className="featured-spotlight-card">
+          {/* Gallery Split */}
+          <div className="featured-gallery-split">
+            <div className="featured-thumbs-stack">
+              {menThumbs.map((thumb, idx) => (
+                <div 
+                  key={idx} 
+                  className={`featured-thumb-item ${menActiveImg === thumb ? 'active' : ''}`}
+                  onClick={() => setMenActiveImg(thumb)}
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill={isWishlisted('rv-hd-01') ? "#e11d48" : "none"} stroke="currentColor" strokeWidth="2">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                  </svg>
-                </button>
-              </div>
+                  <img src={`/${thumb}`} alt={`Men Drop Angle ${idx + 1}`} />
+                </div>
+              ))}
+            </div>
+            <div className="featured-main-image-wrap">
+              <img src={`/${menActiveImg}`} alt="Vault OG Dropped-Shoulder Heavyweight Tee" />
             </div>
           </div>
-        )}
 
-        {/* MEN'S SPOTLIGHT CARD */}
-        {spotlightGender === 'men' && (
-          <div className="featured-spotlight-card">
-            {/* Gallery Split */}
-            <div className="featured-gallery-split">
-              <div className="featured-thumbs-stack">
-                {menThumbs.map((thumb, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`featured-thumb-item ${menActiveImg === thumb ? 'active' : ''}`}
-                    onClick={() => setMenActiveImg(thumb)}
-                  >
-                    <img src={`/${thumb}`} alt={`Men Angle ${idx + 1}`} />
-                  </div>
-                ))}
-              </div>
-              <div className="featured-main-image-wrap">
-                <img src={`/${menActiveImg}`} alt="Vault OG Dropped-Shoulder Heavyweight Tee" />
+          {/* Product Info & Actions */}
+          <div className="featured-spotlight-info">
+            <div className="featured-spotlight-top">
+              <h3 className="featured-spotlight-title">Vault OG Dropped-Shoulder<br />Heavyweight Tee</h3>
+              <div className="featured-nav-arrows">
+                <button 
+                  className="featured-nav-btn" 
+                  aria-label="Previous Image"
+                  onClick={handleMenPrevImg}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="15 18 9 12 15 6"/>
+                  </svg>
+                </button>
+                <button 
+                  className="featured-nav-btn" 
+                  aria-label="Next Image"
+                  onClick={handleMenNextImg}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </button>
               </div>
             </div>
 
-            {/* Product Info & Actions */}
-            <div className="featured-spotlight-info">
-              <div className="featured-spotlight-top">
-                <h3 className="featured-spotlight-title">Vault OG Dropped-Shoulder<br />Heavyweight Tee</h3>
-                <div className="featured-nav-arrows">
-                  <button 
-                    className="featured-nav-btn" 
-                    aria-label="Switch"
-                    onClick={() => setSpotlightGender('women')}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <polyline points="15 18 9 12 15 6"/>
-                    </svg>
-                  </button>
-                  <button 
-                    className="featured-nav-btn" 
-                    aria-label="Switch"
-                    onClick={() => setSpotlightGender('women')}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <polyline points="9 18 15 12 9 6"/>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <div className="featured-spotlight-price">&#8377;1,299</div>
+              <span style={{ fontSize: '1rem', color: '#999', textDecoration: 'line-through' }}>&#8377;2,299</span>
+              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#e11d48', background: '#ffe4e6', padding: '3px 8px', borderRadius: '4px' }}>43% OFF</span>
+            </div>
 
-              {/* Color Swatches */}
-              <div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#666', textTransform: 'uppercase', marginBottom: '8px' }}>
-                  Color: <span style={{ color: '#141416' }}>{menColor}</span>
-                </div>
-                <div className="featured-color-selector">
-                  <div 
-                    className={`featured-color-dot ${menColor === 'Stealth Black' ? 'active' : ''}`}
-                    style={{ background: '#111111' }} 
-                    title="Stealth Black" 
-                    onClick={() => {
-                      setMenColor('Stealth Black');
-                      setMenActiveImg('assets/categories/oversized/repvault-oversized-lookbook-black.jpg');
-                    }}
-                  />
-                  <div 
-                    className={`featured-color-dot ${menColor === 'Washed Charcoal' ? 'active' : ''}`}
-                    style={{ background: '#2E3033' }} 
-                    title="Washed Charcoal" 
-                    onClick={() => {
-                      setMenColor('Washed Charcoal');
-                      setMenActiveImg('assets/categories/oversized/repvault-oversized-tee-black.jpg');
-                    }}
-                  />
-                  <div 
-                    className={`featured-color-dot ${menColor === 'Military Olive' ? 'active' : ''}`}
-                    style={{ background: '#444C38' }} 
-                    title="Military Olive" 
-                    onClick={() => {
-                      setMenColor('Military Olive');
-                      setMenActiveImg('assets/categories/oversized/Product-Banner-05-08-26-_OG-Oversized-T-Shirt-Olive__jpg287f.jpg');
-                    }}
-                  />
-                </div>
+            {/* Color Swatches */}
+            <div>
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#666', textTransform: 'uppercase', marginBottom: '8px' }}>
+                Color: <span style={{ color: '#141416' }}>{menColor}</span>
               </div>
+              <div className="featured-color-selector">
+                <div 
+                  className={`featured-color-dot ${menColor === 'Stealth Black' ? 'active' : ''}`}
+                  style={{ background: '#111111' }} 
+                  title="Stealth Black" 
+                  onClick={() => {
+                    setMenColor('Stealth Black');
+                    setMenActiveImg('assets/categories/oversized/repvault-oversized-lookbook-black.jpg');
+                  }}
+                />
+                <div 
+                  className={`featured-color-dot ${menColor === 'Washed Charcoal' ? 'active' : ''}`}
+                  style={{ background: '#2E3033' }} 
+                  title="Washed Charcoal" 
+                  onClick={() => {
+                    setMenColor('Washed Charcoal');
+                    setMenActiveImg('assets/categories/oversized/repvault-oversized-tee-black.jpg');
+                  }}
+                />
+                <div 
+                  className={`featured-color-dot ${menColor === 'Military Olive' ? 'active' : ''}`}
+                  style={{ background: '#444C38' }} 
+                  title="Military Olive" 
+                  onClick={() => {
+                    setMenColor('Military Olive');
+                    setMenActiveImg('assets/categories/oversized/Product-Banner-05-08-26-_OG-Oversized-T-Shirt-Olive__jpg287f.jpg');
+                  }}
+                />
+              </div>
+            </div>
 
-              {/* Size Selector */}
-              <div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#666', textTransform: 'uppercase', marginBottom: '8px' }}>
+            {/* Size Selector */}
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#666', textTransform: 'uppercase' }}>
                   Size: <span style={{ color: '#141416' }}>{menSize}</span>
                 </div>
-                <div className="featured-size-selector">
-                  {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
-                    <button 
-                      key={size}
-                      className={`featured-size-btn ${menSize === size ? 'active' : ''}`}
-                      onClick={() => setMenSize(size)}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
+                {onOpenSizeGuide && (
+                  <button 
+                    onClick={onOpenSizeGuide}
+                    style={{ background: 'none', border: 'none', color: '#003B5C', fontSize: '0.75rem', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}
+                  >
+                    Size Guide
+                  </button>
+                )}
               </div>
-
-              {/* Action Buttons Row */}
-              <div className="featured-actions-row">
-                <button className="featured-add-cart-btn" onClick={handleAddSpotlightMen}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
-                  </svg>
-                  ADD TO CART
-                </button>
-                <button 
-                  className={`featured-wishlist-btn ${isWishlisted('rv-ov-01') ? 'active' : ''}`}
-                  onClick={() => toggleWishlist({
-                    id: "rv-ov-01",
-                    name: "Vault OG Dropped-Shoulder Heavyweight Tee",
-                    price: 1299,
-                    primaryImage: menActiveImg
-                  })}
-                  aria-label="Save to Wishlist" 
-                  title="Save to Wishlist"
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill={isWishlisted('rv-ov-01') ? "#e11d48" : "none"} stroke="currentColor" strokeWidth="2">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                  </svg>
-                </button>
+              <div className="featured-size-selector">
+                {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
+                  <button 
+                    key={size}
+                    className={`featured-size-btn ${menSize === size ? 'active' : ''}`}
+                    onClick={() => setMenSize(size)}
+                  >
+                    {size}
+                  </button>
+                ))}
               </div>
             </div>
+
+            {/* Action Buttons Row */}
+            <div className="featured-actions-row">
+              <button className="featured-add-cart-btn" onClick={handleAddSpotlightMen}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+                </svg>
+                ADD TO CART
+              </button>
+              <button 
+                className={`featured-wishlist-btn ${isWishlisted('rv-ov-01') ? 'active' : ''}`}
+                onClick={() => toggleWishlist({
+                  id: "rv-ov-01",
+                  name: "Vault OG Dropped-Shoulder Heavyweight Tee",
+                  price: 1299,
+                  primaryImage: menActiveImg
+                })}
+                aria-label="Save to Wishlist" 
+                title="Save to Wishlist"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill={isWishlisted('rv-ov-01') ? "#e11d48" : "none"} stroke="currentColor" strokeWidth="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </button>
+            </div>
+
+            <div style={{ fontSize: '0.78rem', color: '#666', marginTop: '4px' }}>
+              <Link to="/product/rv-ov-01" style={{ color: '#003B5C', fontWeight: 600 }}>
+                View Full Product Specs &amp; Sizing &rarr;
+              </Link>
+            </div>
           </div>
-        )}
+        </div>
       </section>
 
       {/* 4. BESTSELLERS & TRENDING DROPS */}
       <section className="container section" style={{ padding: '40px 24px 60px' }}>
         <div className="section-header" style={{ marginBottom: '28px' }}>
           <span className="subtitle">FEATURED COLLECTION</span>
-          <h2 className="title">Bestsellers & Trending Drops</h2>
+          <h2 className="title">Bestsellers &amp; Trending Drops</h2>
         </div>
         <ProductGrid products={bestsellers} loading={loadingBestsellers} count={8} />
       </section>
 
       {/* 5. SHOP MEN'S ATHLETIC DIVISION */}
-      <section className="container section-alt" style={{ padding: '60px 24px', borderRadius: '12px', marginBottom: '60px' }}>
+      <section className="container section-alt" style={{ padding: '60px 24px', borderRadius: '12px', marginBottom: '40px' }}>
         <div className="section-header" style={{ marginBottom: '28px' }}>
           <span className="subtitle">MEN'S COLLECTION</span>
-          <h2 className="title">Engineered Heavyweight & Performance Gear</h2>
+          <h2 className="title">Engineered Heavyweight &amp; Performance Gear</h2>
         </div>
         <ProductGrid products={menProducts} loading={loadingMen} count={4} />
         <div style={{ textAlign: 'center', marginTop: '36px' }}>
           <Link to="/shop?gender=men" className="btn btn-outline" style={{ display: 'inline-flex', padding: '12px 32px' }}>
             VIEW ALL MEN'S APPAREL &rarr;
           </Link>
+        </div>
+      </section>
+
+      {/* 6. WOMEN'S SPOTLIGHT SECTION (PLACED AT BOTTOM AS REQUESTED) */}
+      <section className="container featured-spotlight-section women-spotlight-section" id="womens-spotlight">
+        <div className="featured-spotlight-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '24px' }}>
+          <div className="featured-spotlight-title-wrap">
+            <span className="subtitle">WOMEN'S DIVISION — SCULPT &amp; AESTHETIC DROP</span>
+            <h2 className="title">Repvault Aesthetic &amp; Sculpt Collection</h2>
+          </div>
+          <Link to="/category/womens" className="explore-view-all-link" style={{ fontSize: '0.82rem', fontWeight: 700, color: '#111' }}>
+            VIEW ALL WOMEN'S &rarr;
+          </Link>
+        </div>
+
+        {/* Women's Spotlight Card */}
+        <div className="featured-spotlight-card">
+          {/* Gallery Split */}
+          <div className="featured-gallery-split">
+            <div className="featured-thumbs-stack">
+              {womenThumbs.map((thumb, idx) => (
+                <div 
+                  key={idx} 
+                  className={`featured-thumb-item ${womenActiveImg === thumb ? 'active' : ''}`}
+                  onClick={() => setWomenActiveImg(thumb)}
+                >
+                  <img src={`/${thumb}`} alt={`Women Zip-Up Angle ${idx + 1}`} />
+                </div>
+              ))}
+            </div>
+            <div className="featured-main-image-wrap">
+              <img src={`/${womenActiveImg}`} alt="Repvault Aesthetic Hooded Zip-Up" />
+            </div>
+          </div>
+
+          {/* Product Info & Actions */}
+          <div className="featured-spotlight-info">
+            <div className="featured-spotlight-top">
+              <h3 className="featured-spotlight-title">Repvault Aesthetic Hooded<br />Zip-Up</h3>
+              <div className="featured-nav-arrows">
+                <button 
+                  className="featured-nav-btn" 
+                  aria-label="Previous Image"
+                  onClick={handleWomenPrevImg}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="15 18 9 12 15 6"/>
+                  </svg>
+                </button>
+                <button 
+                  className="featured-nav-btn" 
+                  aria-label="Next Image"
+                  onClick={handleWomenNextImg}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div className="featured-spotlight-price">&#8377;1,299</div>
+              <span style={{ fontSize: '1rem', color: '#999', textDecoration: 'line-through' }}>&#8377;2,499</span>
+              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#e11d48', background: '#ffe4e6', padding: '3px 8px', borderRadius: '4px' }}>48% OFF</span>
+            </div>
+
+            {/* Color Swatches */}
+            <div>
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#666', textTransform: 'uppercase', marginBottom: '8px' }}>
+                Color: <span style={{ color: '#141416' }}>{womenColor}</span>
+              </div>
+              <div className="featured-color-selector">
+                <div 
+                  className={`featured-color-dot ${womenColor === 'CHALK BEIGE' ? 'active' : ''}`}
+                  style={{ background: '#eae4d5' }} 
+                  title="CHALK BEIGE" 
+                  onClick={() => {
+                    setWomenColor('CHALK BEIGE');
+                    setWomenActiveImg('assets/featured/zipup-main.jpg');
+                  }}
+                />
+                <div 
+                  className={`featured-color-dot ${womenColor === 'MIDNIGHT BLACK' ? 'active' : ''}`}
+                  style={{ background: '#111111' }} 
+                  title="MIDNIGHT BLACK" 
+                  onClick={() => {
+                    setWomenColor('MIDNIGHT BLACK');
+                    setWomenActiveImg('assets/featured/zipup-thumb-2.jpg');
+                  }}
+                />
+                <div 
+                  className={`featured-color-dot ${womenColor === 'HEATHER MIST' ? 'active' : ''}`}
+                  style={{ background: '#d5d7dc' }} 
+                  title="HEATHER MIST" 
+                  onClick={() => {
+                    setWomenColor('HEATHER MIST');
+                    setWomenActiveImg('assets/featured/zipup-thumb-3.jpg');
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Size Selector */}
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#666', textTransform: 'uppercase' }}>
+                  Size: <span style={{ color: '#141416' }}>{womenSize}</span>
+                </div>
+                {onOpenSizeGuide && (
+                  <button 
+                    onClick={onOpenSizeGuide}
+                    style={{ background: 'none', border: 'none', color: '#003B5C', fontSize: '0.75rem', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}
+                  >
+                    Size Guide
+                  </button>
+                )}
+              </div>
+              <div className="featured-size-selector">
+                {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
+                  <button 
+                    key={size}
+                    className={`featured-size-btn ${womenSize === size ? 'active' : ''}`}
+                    onClick={() => setWomenSize(size)}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Buttons Row */}
+            <div className="featured-actions-row">
+              <button className="featured-add-cart-btn" onClick={handleAddSpotlightWomen}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+                </svg>
+                ADD TO CART
+              </button>
+              <button 
+                className={`featured-wishlist-btn ${isWishlisted('rv-hd-01') ? 'active' : ''}`}
+                onClick={() => toggleWishlist({
+                  id: "rv-hd-01",
+                  name: "Repvault Aesthetic Hooded Zip-Up",
+                  price: 1299,
+                  primaryImage: womenActiveImg
+                })}
+                aria-label="Save to Wishlist" 
+                title="Save to Wishlist"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill={isWishlisted('rv-hd-01') ? "#e11d48" : "none"} stroke="currentColor" strokeWidth="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </button>
+            </div>
+
+            <div style={{ fontSize: '0.78rem', color: '#666', marginTop: '4px' }}>
+              <Link to="/product/rv-hd-01" style={{ color: '#003B5C', fontWeight: 600 }}>
+                View Full Product Specs &amp; Sizing &rarr;
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Curated Women's Collection Showcase Grid */}
+        <div style={{ marginTop: '48px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#141416', letterSpacing: '-0.3px', margin: 0 }}>
+              Trending in Women's Activewear
+            </h3>
+            <span style={{ fontSize: '0.85rem', color: '#666' }}>Engineered High-Rise &amp; Sculpt Bras</span>
+          </div>
+          <ProductGrid products={womenProducts} loading={loadingWomen} count={4} />
+          <div style={{ textAlign: 'center', marginTop: '36px' }}>
+            <Link to="/category/womens" className="btn btn-outline" style={{ display: 'inline-flex', padding: '12px 32px' }}>
+              EXPLORE COMPLETE WOMEN'S COLLECTION &rarr;
+            </Link>
+          </div>
         </div>
       </section>
     </div>
