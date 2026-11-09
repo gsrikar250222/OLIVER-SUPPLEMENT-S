@@ -97,6 +97,23 @@ const server = http.createServer(async (req, res) => {
 
   console.log(`[${new Date().toLocaleTimeString()}] ${req.method} ${pathname}`);
 
+  // Legacy page redirects - Ensure starting directly with React store with no 3D landing page
+  if (pathname === '/collections.html') {
+    res.writeHead(302, { 'Location': '/shop' });
+    res.end();
+    return;
+  }
+  if (pathname === '/product.html') {
+    res.writeHead(302, { 'Location': '/shop' });
+    res.end();
+    return;
+  }
+  if (pathname === '/loading.html' || pathname.toLowerCase().includes('3d') || pathname === '/legacy-index.html') {
+    res.writeHead(302, { 'Location': '/' });
+    res.end();
+    return;
+  }
+
   // ==========================================
   // API ROUTES
   // ==========================================

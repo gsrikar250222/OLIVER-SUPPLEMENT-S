@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useWishlist } from '../context/WishlistContext.jsx';
@@ -10,7 +10,9 @@ export default function Home({ onOpenSizeGuide }) {
   const { isWishlisted, toggleWishlist } = useWishlist();
   const navigate = useNavigate();
 
-  // Hero Banners Slider
+  // -------------------------------------------------------------
+  // HERO CAMPAIGN BANNER SLIDER (SWIPEABLE & RESPONSIVE)
+  // -------------------------------------------------------------
   const heroBanners = [
     {
       id: 1,
@@ -36,13 +38,54 @@ export default function Home({ onOpenSizeGuide }) {
   ];
 
   const [currentHero, setCurrentHero] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const autoPlayRef = useRef(null);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
+  const startAutoPlay = () => {
+    stopAutoPlay();
+    autoPlayRef.current = setInterval(() => {
       setCurrentHero(prev => (prev + 1) % heroBanners.length);
     }, 6000);
-    return () => clearInterval(timer);
+  };
+
+  const stopAutoPlay = () => {
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+  };
+
+  useEffect(() => {
+    startAutoPlay();
+    return () => stopAutoPlay();
   }, [heroBanners.length]);
+
+  const handleHeroPrev = (e) => {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    setCurrentHero(prev => (prev - 1 + heroBanners.length) % heroBanners.length);
+    startAutoPlay();
+  };
+
+  const handleHeroNext = (e) => {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    setCurrentHero(prev => (prev + 1) % heroBanners.length);
+    startAutoPlay();
+  };
+
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+    stopAutoPlay();
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX === null) return;
+    const diff = e.changedTouches[0].clientX - touchStartX;
+    if (diff > 45) {
+      handleHeroPrev();
+    } else if (diff < -45) {
+      handleHeroNext();
+    } else {
+      startAutoPlay();
+    }
+    setTouchStartX(null);
+  };
 
   // -------------------------------------------------------------
   // MEN'S SPOTLIGHT (UPPER SECTION)
@@ -57,15 +100,19 @@ export default function Home({ onOpenSizeGuide }) {
   const [menColor, setMenColor] = useState('Stealth Black');
   const [menSize, setMenSize] = useState('M');
 
-  const handleMenPrevImg = () => {
+  const handleMenPrevImg = (e) => {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
     const idx = menThumbs.indexOf(menActiveImg);
-    const prev = (idx - 1 + menThumbs.length) % menThumbs.length;
+    const curr = idx >= 0 ? idx : 0;
+    const prev = (curr - 1 + menThumbs.length) % menThumbs.length;
     setMenActiveImg(menThumbs[prev]);
   };
 
-  const handleMenNextImg = () => {
+  const handleMenNextImg = (e) => {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
     const idx = menThumbs.indexOf(menActiveImg);
-    const next = (idx + 1) % menThumbs.length;
+    const curr = idx >= 0 ? idx : 0;
+    const next = (curr + 1) % menThumbs.length;
     setMenActiveImg(menThumbs[next]);
   };
 
@@ -93,15 +140,19 @@ export default function Home({ onOpenSizeGuide }) {
   const [womenColor, setWomenColor] = useState('CHALK BEIGE');
   const [womenSize, setWomenSize] = useState('M');
 
-  const handleWomenPrevImg = () => {
+  const handleWomenPrevImg = (e) => {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
     const idx = womenThumbs.indexOf(womenActiveImg);
-    const prev = (idx - 1 + womenThumbs.length) % womenThumbs.length;
+    const curr = idx >= 0 ? idx : 0;
+    const prev = (curr - 1 + womenThumbs.length) % womenThumbs.length;
     setWomenActiveImg(womenThumbs[prev]);
   };
 
-  const handleWomenNextImg = () => {
+  const handleWomenNextImg = (e) => {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
     const idx = womenThumbs.indexOf(womenActiveImg);
-    const next = (idx + 1) % womenThumbs.length;
+    const curr = idx >= 0 ? idx : 0;
+    const next = (curr + 1) % womenThumbs.length;
     setWomenActiveImg(womenThumbs[next]);
   };
 
@@ -160,7 +211,13 @@ export default function Home({ onOpenSizeGuide }) {
   return (
     <div className="home-page-wrap">
       {/* 1. HERO CAMPAIGN BANNER SLIDER */}
-      <section className="hero-section">
+      <section 
+        className="hero-section"
+        onMouseEnter={stopAutoPlay}
+        onMouseLeave={startAutoPlay}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <Link to={heroBanners[currentHero].link} className="hero-banner-link" aria-label="Shop Campaign">
           <picture>
             <source media="(max-width: 768px)" srcSet={`/${heroBanners[currentHero].mobileImage}`} />
@@ -176,10 +233,7 @@ export default function Home({ onOpenSizeGuide }) {
         <button 
           className="hero-arrow-btn prev" 
           aria-label="Previous Campaign Banner"
-          onClick={(e) => {
-            e.preventDefault();
-            setCurrentHero((currentHero - 1 + heroBanners.length) % heroBanners.length);
-          }}
+          onClick={handleHeroPrev}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <polyline points="15 18 9 12 15 6"/>
@@ -188,10 +242,7 @@ export default function Home({ onOpenSizeGuide }) {
         <button 
           className="hero-arrow-btn next" 
           aria-label="Next Campaign Banner"
-          onClick={(e) => {
-            e.preventDefault();
-            setCurrentHero((currentHero + 1) % heroBanners.length);
-          }}
+          onClick={handleHeroNext}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <polyline points="9 18 15 12 9 6"/>
@@ -199,10 +250,17 @@ export default function Home({ onOpenSizeGuide }) {
         </button>
         <div className="hero-dots-indicator">
           {heroBanners.map((_, i) => (
-            <span 
+            <button 
               key={i} 
+              type="button"
               className={`hero-dot ${i === currentHero ? 'active' : ''}`}
-              onClick={() => setCurrentHero(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setCurrentHero(i);
+                startAutoPlay();
+              }}
             />
           ))}
         </div>
@@ -308,13 +366,34 @@ export default function Home({ onOpenSizeGuide }) {
                   key={idx} 
                   className={`featured-thumb-item ${menActiveImg === thumb ? 'active' : ''}`}
                   onClick={() => setMenActiveImg(thumb)}
+                  title={`View angle ${idx + 1}`}
                 >
                   <img src={`/${thumb}`} alt={`Men Drop Angle ${idx + 1}`} />
                 </div>
               ))}
             </div>
             <div className="featured-main-image-wrap">
+              <button 
+                type="button"
+                className="featured-img-nav-arrow prev" 
+                aria-label="Previous Men's Angle"
+                onClick={handleMenPrevImg}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polyline points="15 18 9 12 15 6"/>
+                </svg>
+              </button>
               <img src={`/${menActiveImg}`} alt="Vault OG Dropped-Shoulder Heavyweight Tee" />
+              <button 
+                type="button"
+                className="featured-img-nav-arrow next" 
+                aria-label="Next Men's Angle"
+                onClick={handleMenNextImg}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </button>
             </div>
           </div>
 
@@ -324,6 +403,7 @@ export default function Home({ onOpenSizeGuide }) {
               <h3 className="featured-spotlight-title">Vault OG Dropped-Shoulder<br />Heavyweight Tee</h3>
               <div className="featured-nav-arrows">
                 <button 
+                  type="button"
                   className="featured-nav-btn" 
                   aria-label="Previous Image"
                   onClick={handleMenPrevImg}
@@ -333,6 +413,7 @@ export default function Home({ onOpenSizeGuide }) {
                   </svg>
                 </button>
                 <button 
+                  type="button"
                   className="featured-nav-btn" 
                   aria-label="Next Image"
                   onClick={handleMenNextImg}
@@ -356,28 +437,34 @@ export default function Home({ onOpenSizeGuide }) {
                 Color: <span style={{ color: '#141416' }}>{menColor}</span>
               </div>
               <div className="featured-color-selector">
-                <div 
+                <button 
+                  type="button"
                   className={`featured-color-dot ${menColor === 'Stealth Black' ? 'active' : ''}`}
                   style={{ background: '#111111' }} 
                   title="Stealth Black" 
+                  aria-label="Color Stealth Black"
                   onClick={() => {
                     setMenColor('Stealth Black');
                     setMenActiveImg('assets/categories/oversized/repvault-oversized-lookbook-black.jpg');
                   }}
                 />
-                <div 
+                <button 
+                  type="button"
                   className={`featured-color-dot ${menColor === 'Washed Charcoal' ? 'active' : ''}`}
                   style={{ background: '#2E3033' }} 
                   title="Washed Charcoal" 
+                  aria-label="Color Washed Charcoal"
                   onClick={() => {
                     setMenColor('Washed Charcoal');
                     setMenActiveImg('assets/categories/oversized/repvault-oversized-tee-black.jpg');
                   }}
                 />
-                <div 
+                <button 
+                  type="button"
                   className={`featured-color-dot ${menColor === 'Military Olive' ? 'active' : ''}`}
                   style={{ background: '#444C38' }} 
                   title="Military Olive" 
+                  aria-label="Color Military Olive"
                   onClick={() => {
                     setMenColor('Military Olive');
                     setMenActiveImg('assets/categories/oversized/Product-Banner-05-08-26-_OG-Oversized-T-Shirt-Olive__jpg287f.jpg');
@@ -394,6 +481,7 @@ export default function Home({ onOpenSizeGuide }) {
                 </div>
                 {onOpenSizeGuide && (
                   <button 
+                    type="button"
                     onClick={onOpenSizeGuide}
                     style={{ background: 'none', border: 'none', color: '#003B5C', fontSize: '0.75rem', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}
                   >
@@ -405,6 +493,7 @@ export default function Home({ onOpenSizeGuide }) {
                 {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
                   <button 
                     key={size}
+                    type="button"
                     className={`featured-size-btn ${menSize === size ? 'active' : ''}`}
                     onClick={() => setMenSize(size)}
                   >
@@ -416,13 +505,14 @@ export default function Home({ onOpenSizeGuide }) {
 
             {/* Action Buttons Row */}
             <div className="featured-actions-row">
-              <button className="featured-add-cart-btn" onClick={handleAddSpotlightMen}>
+              <button type="button" className="featured-add-cart-btn" onClick={handleAddSpotlightMen}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
                 </svg>
                 ADD TO CART
               </button>
               <button 
+                type="button"
                 className={`featured-wishlist-btn ${isWishlisted('rv-ov-01') ? 'active' : ''}`}
                 onClick={() => toggleWishlist({
                   id: "rv-ov-01",
@@ -493,13 +583,34 @@ export default function Home({ onOpenSizeGuide }) {
                   key={idx} 
                   className={`featured-thumb-item ${womenActiveImg === thumb ? 'active' : ''}`}
                   onClick={() => setWomenActiveImg(thumb)}
+                  title={`View angle ${idx + 1}`}
                 >
                   <img src={`/${thumb}`} alt={`Women Zip-Up Angle ${idx + 1}`} />
                 </div>
               ))}
             </div>
             <div className="featured-main-image-wrap">
+              <button 
+                type="button"
+                className="featured-img-nav-arrow prev" 
+                aria-label="Previous Women's Angle"
+                onClick={handleWomenPrevImg}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polyline points="15 18 9 12 15 6"/>
+                </svg>
+              </button>
               <img src={`/${womenActiveImg}`} alt="Repvault Aesthetic Hooded Zip-Up" />
+              <button 
+                type="button"
+                className="featured-img-nav-arrow next" 
+                aria-label="Next Women's Angle"
+                onClick={handleWomenNextImg}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </button>
             </div>
           </div>
 
@@ -509,6 +620,7 @@ export default function Home({ onOpenSizeGuide }) {
               <h3 className="featured-spotlight-title">Repvault Aesthetic Hooded<br />Zip-Up</h3>
               <div className="featured-nav-arrows">
                 <button 
+                  type="button"
                   className="featured-nav-btn" 
                   aria-label="Previous Image"
                   onClick={handleWomenPrevImg}
@@ -518,6 +630,7 @@ export default function Home({ onOpenSizeGuide }) {
                   </svg>
                 </button>
                 <button 
+                  type="button"
                   className="featured-nav-btn" 
                   aria-label="Next Image"
                   onClick={handleWomenNextImg}
@@ -541,28 +654,34 @@ export default function Home({ onOpenSizeGuide }) {
                 Color: <span style={{ color: '#141416' }}>{womenColor}</span>
               </div>
               <div className="featured-color-selector">
-                <div 
+                <button 
+                  type="button"
                   className={`featured-color-dot ${womenColor === 'CHALK BEIGE' ? 'active' : ''}`}
                   style={{ background: '#eae4d5' }} 
                   title="CHALK BEIGE" 
+                  aria-label="Color Chalk Beige"
                   onClick={() => {
                     setWomenColor('CHALK BEIGE');
                     setWomenActiveImg('assets/featured/zipup-main.jpg');
                   }}
                 />
-                <div 
+                <button 
+                  type="button"
                   className={`featured-color-dot ${womenColor === 'MIDNIGHT BLACK' ? 'active' : ''}`}
                   style={{ background: '#111111' }} 
                   title="MIDNIGHT BLACK" 
+                  aria-label="Color Midnight Black"
                   onClick={() => {
                     setWomenColor('MIDNIGHT BLACK');
                     setWomenActiveImg('assets/featured/zipup-thumb-2.jpg');
                   }}
                 />
-                <div 
+                <button 
+                  type="button"
                   className={`featured-color-dot ${womenColor === 'HEATHER MIST' ? 'active' : ''}`}
                   style={{ background: '#d5d7dc' }} 
                   title="HEATHER MIST" 
+                  aria-label="Color Heather Mist"
                   onClick={() => {
                     setWomenColor('HEATHER MIST');
                     setWomenActiveImg('assets/featured/zipup-thumb-3.jpg');
@@ -579,6 +698,7 @@ export default function Home({ onOpenSizeGuide }) {
                 </div>
                 {onOpenSizeGuide && (
                   <button 
+                    type="button"
                     onClick={onOpenSizeGuide}
                     style={{ background: 'none', border: 'none', color: '#003B5C', fontSize: '0.75rem', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}
                   >
@@ -590,6 +710,7 @@ export default function Home({ onOpenSizeGuide }) {
                 {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
                   <button 
                     key={size}
+                    type="button"
                     className={`featured-size-btn ${womenSize === size ? 'active' : ''}`}
                     onClick={() => setWomenSize(size)}
                   >
@@ -601,13 +722,14 @@ export default function Home({ onOpenSizeGuide }) {
 
             {/* Action Buttons Row */}
             <div className="featured-actions-row">
-              <button className="featured-add-cart-btn" onClick={handleAddSpotlightWomen}>
+              <button type="button" className="featured-add-cart-btn" onClick={handleAddSpotlightWomen}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
                 </svg>
                 ADD TO CART
               </button>
               <button 
+                type="button"
                 className={`featured-wishlist-btn ${isWishlisted('rv-hd-01') ? 'active' : ''}`}
                 onClick={() => toggleWishlist({
                   id: "rv-hd-01",
