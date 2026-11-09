@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64" fill="none" class="repvault-logo">
+  <defs>
+    <linearGradient id="rv-brand-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#141416"/>
+      <stop offset="100%" stop-color="#003b5c"/>
+    </linearGradient>
+    <linearGradient id="rv-volt-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dbff00"/>
+      <stop offset="100%" stop-color="#bce000"/>
+    </linearGradient>
+  </defs>
+  <!-- Vault Monogram Shield Icon -->
+  <g transform="translate(6, 6)">
+    <!-- Hexagonal Vault Shield Outer -->
+    <path d="M26 2 L48 14 L48 38 L26 50 L4 38 L4 14 Z" stroke="#141416" stroke-width="3.5" stroke-linejoin="round" fill="#ffffff"/>
+    <!-- Intersecting R and V Energy Lines -->
+    <path d="M16 16 L16 36 M16 16 L28 16 C33 16 33 24 28 24 L16 24 M23 24 L31 36" stroke="#141416" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M26 31 L33 43 L40 31" stroke="url(#rv-volt-accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- Typography -->
+  <g transform="translate(68, 41)">
+    <text font-family="'Montserrat', sans-serif" font-weight="900" font-size="28" letter-spacing="4" fill="#141416">REP<tspan fill="#003b5c">VAULT</tspan></text>
+  </g>
+  <g transform="translate(70, 55)">
+    <text font-family="'Montserrat', sans-serif" font-weight="700" font-size="8.5" letter-spacing="6" fill="#71717a">ENGINEERED PERFORMANCE</text>
+  </g>
+</svg>

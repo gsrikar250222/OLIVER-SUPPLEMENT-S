@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 54" fill="none">
+  <defs>
+    <linearGradient id="rv-icon-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dbff00"/>
+      <stop offset="100%" stop-color="#00e599"/>
+    </linearGradient>
+  </defs>
+  <path d="M27 2 L50 15 L50 39 L27 52 L4 39 L4 15 Z" stroke="url(#rv-icon-grad)" stroke-width="4" stroke-linejoin="round" fill="#131a24"/>
+  <path d="M17 18 L17 38 M17 18 L29 18 C34 18 34 26 29 26 L17 26 M24 26 L32 38" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M27 32 L34 44 L41 32" stroke="url(#rv-icon-grad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+

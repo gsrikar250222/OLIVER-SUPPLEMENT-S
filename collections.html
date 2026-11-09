@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineered Catalog | REPVAULT Athletic Wear</title>
+  <meta name="description" content="Explore REPVAULT's full collection of high-performance gymwear, compression garments, tapered joggers, and heavyweight athletic tees.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="icons/logo-icon.svg">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar">
+    <div class="announcement-content">
+      <span>FREE ALL-INDIA EXPRESS SHIPPING ON ORDERS OVER ₹1,999</span>
+      <span class="announcement-sep">•</span>
+      <span>USE CODE: <strong>VAULT10</strong> FOR EXTRA 10% OFF</span>
+      <span class="announcement-sep">•</span>
+      <span>7-DAY ZERO-HASSLE DOORSTEP EXCHANGE</span>
+    </div>
+  </aside>
+
+  <!-- Sticky Header with REPVAULT Navigation -->
+  <header class="header-wrapper">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="nav-brand" aria-label="REPVAULT Home">
+          <img src="icons/logo.svg" alt="REPVAULT Logo" height="38">
+        </a>
+
+        <!-- Desktop Navigation: MEN | WOMEN | COMPRESSION | NEW ARRIVALS | SALE | ACCESSORIES -->
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="collections.html?category=t-shirts" class="nav-link">
+              MEN
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="nav-dropdown">
+              <a href="collections.html?category=t-shirts" class="dropdown-link">T-Shirts & Polos</a>
+              <a href="collections.html?category=joggers" class="dropdown-link">Joggers & Tracks</a>
+              <a href="collections.html?category=shorts" class="dropdown-link">Performance Shorts</a>
+              <a href="collections.html?category=stringers" class="dropdown-link">Stringers & Tanks</a>
+              <a href="collections.html?category=compression" class="dropdown-link">Compression Gear</a>
+              <a href="collections.html?category=oversized" class="dropdown-link">Oversized Drops</a>
+              <a href="collections.html" class="dropdown-link" style="border-top: 1px solid var(--border-gray); font-weight: 700; color: var(--primary-navy);">View All Men's &rarr;</a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="collections.html?category=womens" class="nav-link">
+              WOMEN
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="nav-dropdown">
+              <a href="collections.html?category=womens" class="dropdown-link">High-Rise Leggings</a>
+              <a href="collections.html?category=womens" class="dropdown-link">Seamless Sports Bras</a>
+              <a href="collections.html?category=womens" class="dropdown-link">Cropped Athletic Tees</a>
+              <a href="collections.html?category=womens" class="dropdown-link">Training Shorts</a>
+              <a href="collections.html?category=womens" class="dropdown-link" style="border-top: 1px solid var(--border-gray); font-weight: 700; color: var(--primary-navy);">View All Women's &rarr;</a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="collections.html?category=compression" class="nav-link">COMPRESSION</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="collections.html?sort=newest" class="nav-link">NEW ARRIVALS</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="collections.html?filter=sale" class="nav-link" style="color: var(--accent-crimson); font-weight: 700;">
+              SALE
+              <span style="font-size: 0.65rem; background: var(--accent-crimson); color: #fff; padding: 1px 6px; border-radius: 2px; margin-left: 2px;">50% OFF</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="collections.html?category=accessories" class="nav-link">ACCESSORIES</a>
+          </li>
+
+          <!-- 3D LAB -->
+          <li class="nav-item">
+            <a href="loading.html" class="nav-link" style="color: #00BFFF; font-weight: 700; display: inline-flex; align-items: center; gap: 5px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              3D LAB
+              <span style="font-size: 0.6rem; background: linear-gradient(90deg, #00BFFF, #873BFF); color: #fff; padding: 1px 5px; border-radius: 2px;">LIVE</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Action Icons -->
+        <div class="nav-actions">
+          <button class="action-btn search-open-btn" aria-label="Search Drops" title="Search (Esc)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
+
+          <button class="action-btn account-btn" id="header-account-btn" aria-label="Customer Account" title="My Account">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </button>
+
+          <a href="collections.html" class="action-btn" aria-label="Wishlist" title="Saved Wishlist">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+            <span class="action-badge wishlist-count-badge" style="display: none;">0</span>
+          </a>
+
+          <button class="action-btn cart-open-btn" aria-label="Open Cart" title="Shopping Cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span class="action-badge cart-count-badge" style="display: none;">0</span>
+          </button>
+
+          <button class="action-btn nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="drawer-backdrop" id="mobile-menu-backdrop"></div>
+  <aside class="cart-drawer" id="mobile-menu-drawer" style="right: auto; left: 0; transform: translateX(-100%);">
+    <div class="drawer-header">
+      <img src="icons/logo.svg" alt="REPVAULT" height="32">
+      <button class="drawer-close-btn" id="mobile-menu-close" aria-label="Close Menu">✕</button>
+    </div>
+    <div class="drawer-body">
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px;">
+        <li><a href="index.html" class="nav-link" style="font-size: 1.05rem;">Home</a></li>
+        <li><a href="collections.html" class="nav-link active" style="font-size: 1.05rem;">All Products</a></li>
+        <li style="border-top: 1px solid var(--border-gray); padding-top: 10px;">
+          <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Men's Category</span>
+        </li>
+        <li><a href="collections.html?category=t-shirts" class="nav-link" style="padding-left: 8px;">T-Shirts & Polos</a></li>
+        <li><a href="collections.html?category=joggers" class="nav-link" style="padding-left: 8px;">Joggers & Tracks</a></li>
+        <li><a href="collections.html?category=compression" class="nav-link" style="padding-left: 8px;">Compression Tech</a></li>
+        <li><a href="collections.html?category=oversized" class="nav-link" style="padding-left: 8px;">Oversized Line</a></li>
+        <li><a href="collections.html?category=shorts" class="nav-link" style="padding-left: 8px;">Performance Shorts</a></li>
+        <li><a href="collections.html?category=stringers" class="nav-link" style="padding-left: 8px;">Stringers & Tanks</a></li>
+        <li style="border-top: 1px solid var(--border-gray); padding-top: 10px;">
+          <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Women's Category</span>
+        </li>
+        <li><a href="collections.html?category=womens" class="nav-link" style="padding-left: 8px;">Women's Activewear</a></li>
+        <li style="border-top: 1px solid var(--border-gray); padding-top: 10px;">
+          <a href="collections.html?category=accessories" class="nav-link">Accessories & Gear</a>
+        </li>
+        <li>
+          <a href="collections.html?filter=sale" class="nav-link" style="color: var(--accent-crimson); font-weight: 700;">50% Off Flash Sale</a>
+        </li>
+        <li style="border-top: 1px solid var(--border-gray); padding-top: 10px;">
+          <a href="loading.html" class="nav-link" style="color: #00BFFF; font-weight: 700; display: flex; align-items: center; justify-content: space-between;">
+            <span style="display: flex; align-items: center; gap: 8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              3D Collections Lab
+            </span>
+            <span style="font-size: 0.65rem; background: linear-gradient(90deg, #00BFFF, #873BFF); color: #fff; padding: 2px 7px; border-radius: 3px; font-weight: 800;">LIVE 360°</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Collection Header Banner -->
+  <section class="section-sm" style="background: var(--light-gray); border-bottom: 1px solid var(--border-gray); padding: 40px 0 32px;">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <span class="section-tag" id="catalog-breadcrumb">ATHLETIC CATALOG</span>
+          <h1 style="font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; text-transform: uppercase; color: var(--charcoal); margin: 6px 0;" id="catalog-collection-title">
+            All Products
+          </h1>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); max-width: 640px;" id="catalog-collection-desc">
+            Engineered athletic wear designed for maximum muscular expansion, zero chafing, and high-tensile squat resistance.
+          </p>
+        </div>
+        <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;" id="catalog-product-counter">
+          Showing 20 Products
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Catalog Area -->
+  <main class="section">
+    <div class="container">
+      <!-- Catalog Toolbar: Filter Drawer Toggle | Category Pills | Sort Dropdown -->
+      <div class="catalog-toolbar">
+        <button class="filter-btn-toggle" id="open-filter-drawer-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="4" y1="21" x2="4" y2="14"/>
+            <line x1="4" y1="10" x2="4" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12" y2="3"/>
+            <line x1="20" y1="21" x2="20" y2="16"/>
+            <line x1="20" y1="12" x2="20" y2="3"/>
+            <line x1="1" y1="14" x2="7" y2="14"/>
+            <line x1="9" y1="8" x2="15" y2="8"/>
+            <line x1="17" y1="16" x2="23" y2="16"/>
+          </svg>
+          <span>Filters & Refine</span>
+        </button>
+
+        <!-- Category Horizontal Quick Pills -->
+        <div class="category-pills" id="category-pills-wrap">
+          <button class="category-pill active" data-cat="all">All (20)</button>
+          <button class="category-pill" data-cat="t-shirts">T-Shirts</button>
+          <button class="category-pill" data-cat="joggers">Joggers</button>
+          <button class="category-pill" data-cat="compression">Compression</button>
+          <button class="category-pill" data-cat="oversized">Oversized</button>
+          <button class="category-pill" data-cat="shorts">Shorts</button>
+          <button class="category-pill" data-cat="stringers">Stringers</button>
+          <button class="category-pill" data-cat="training">Training</button>
+          <button class="category-pill" data-cat="womens">Women's</button>
+          <button class="category-pill" data-cat="accessories">Accessories</button>
+        </div>
+
+        <!-- Sorting Dropdown -->
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Sort:</span>
+          <select class="sort-select" id="sort-select-box">
+            <option value="featured">Featured / Best Match</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+            <option value="newest">New Arrivals</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Active Filters Display Strip -->
+      <div id="active-filters-strip" style="display: none; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+        <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Active Filters:</span>
+        <div id="active-filter-tags" style="display: flex; gap: 8px; flex-wrap: wrap;"></div>
+        <button id="clear-all-filters-btn" style="font-size: 0.75rem; color: var(--accent-crimson); font-weight: 700; text-decoration: underline; background: none; border: none; cursor: pointer;">
+          Clear All
+        </button>
+      </div>
+
+      <!-- 20 Product Cards Grid -->
+      <div class="product-grid" id="catalog-products-grid">
+
+        <div class="product-card reveal-init stagger-1" data-product-id="rv-polo-black">
+          <div class="product-media">
+            <a href="product.html?id=rv-polo-black">
+              <img src="assets/categories/t-shirts/repvault-polo-tshirt-black-1bf0a.jpg" alt="Vault Pro Athletic Polo — Stealth Black" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/t-shirts/repvault-polo-tshirt-black-2bf0a.jpg" alt="Vault Pro Athletic Polo — Stealth Black" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">35% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-polo-black" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-polo-black')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-polo-black')" id="qv-btn-rv-polo-black">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-polo-black', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-polo-black', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-polo-black', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-polo-black', 'XL')">XL</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-polo-black', 'XXL')">XXL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">T-Shirts & Polos</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.9</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(342)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-polo-black">
+              <h3 class="product-name">Vault Pro Athletic Polo — Stealth Black</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,499</span>
+              <span class="price-original">₹2,299</span>
+              <span class="price-discount">35% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-polo-black', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-2" data-product-id="rv-tee-classic">
+          <div class="product-media">
+            <a href="product.html?id=rv-tee-classic">
+              <img src="assets/categories/t-shirts/repvault-polo-tshirt-black-2bf0a.jpg" alt="Vault Core Performance Crew — Stealth Black" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/t-shirts/repvault-polo-tshirt-black-1bf0a.jpg" alt="Vault Core Performance Crew — Stealth Black" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">33% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-tee-classic" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-tee-classic')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-tee-classic')" id="qv-btn-rv-tee-classic">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-tee-classic', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-tee-classic', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-tee-classic', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-tee-classic', 'XL')">XL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">T-Shirts & Polos</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.8</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(189)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-tee-classic">
+              <h3 class="product-name">Vault Core Performance Crew — Stealth Black</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,199</span>
+              <span class="price-original">₹1,799</span>
+              <span class="price-discount">33% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-tee-classic', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-3" data-product-id="rv-ironclad-yback-stringer">
+          <div class="product-media">
+            <a href="product.html?id=rv-ironclad-yback-stringer">
+              <img src="assets/categories/stringers/Category_Banners_STRINGERS__jpgd40f.jpg" alt="Vault Ironclad Y-Back Power Stringer — Stealth Black" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/stringers/SpeedRunningTankSeagreen_137e3.jpg" alt="Vault Ironclad Y-Back Power Stringer — Stealth Black" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">35% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-ironclad-yback-stringer" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-ironclad-yback-stringer')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-ironclad-yback-stringer')" id="qv-btn-rv-ironclad-yback-stringer">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-ironclad-yback-stringer', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-ironclad-yback-stringer', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-ironclad-yback-stringer', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-ironclad-yback-stringer', 'XL')">XL</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-ironclad-yback-stringer', 'XXL')">XXL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Stringers & Tanks</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.9</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(310)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-ironclad-yback-stringer">
+              <h3 class="product-name">Vault Ironclad Y-Back Power Stringer — Stealth Black</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,099</span>
+              <span class="price-original">₹1,699</span>
+              <span class="price-discount">35% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-ironclad-yback-stringer', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-4" data-product-id="rv-hybrid-slim-track">
+          <div class="product-media">
+            <a href="product.html?id=rv-hybrid-slim-track">
+              <img src="assets/categories/joggers/repvault-hybrid-slim-track-black.jpg" alt="Engineered Hybrid Slim Track Pants — Matte Black" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/joggers/Category_Banners_JOGGERS__jpgb5f9.jpg" alt="Engineered Hybrid Slim Track Pants — Matte Black" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">34% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-hybrid-slim-track" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-hybrid-slim-track')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-hybrid-slim-track')" id="qv-btn-rv-hybrid-slim-track">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-hybrid-slim-track', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-hybrid-slim-track', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-hybrid-slim-track', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-hybrid-slim-track', 'XL')">XL</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-hybrid-slim-track', 'XXL')">XXL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Joggers & Tracks</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">5</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(412)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-hybrid-slim-track">
+              <h3 class="product-name">Engineered Hybrid Slim Track Pants — Matte Black</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,899</span>
+              <span class="price-original">₹2,899</span>
+              <span class="price-discount">34% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-hybrid-slim-track', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-1" data-product-id="rv-carpenter-cargo">
+          <div class="product-media">
+            <a href="product.html?id=rv-carpenter-cargo">
+              <img src="assets/categories/joggers/Carpenter_pants_3582a.png" alt="Vault Utility Carpenter Cargo Pants — Raw Sand" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/joggers/Carpenter_pants_29ffb.png" alt="Vault Utility Carpenter Cargo Pants — Raw Sand" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">33% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-carpenter-cargo" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-carpenter-cargo')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-carpenter-cargo')" id="qv-btn-rv-carpenter-cargo">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-carpenter-cargo', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-carpenter-cargo', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-carpenter-cargo', 'XL')">XL</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-carpenter-cargo', 'XXL')">XXL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Joggers & Tracks</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.9</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(156)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-carpenter-cargo">
+              <h3 class="product-name">Vault Utility Carpenter Cargo Pants — Raw Sand</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹2,199</span>
+              <span class="price-original">₹3,299</span>
+              <span class="price-discount">33% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-carpenter-cargo', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-2" data-product-id="rv-comp-short-black">
+          <div class="product-media">
+            <a href="product.html?id=rv-comp-short-black">
+              <img src="assets/categories/compression/repvault-compression-short-black.jpg" alt="Vault Armor Muscle Compression Tee — Obsidian Black" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/compression/repvault-compression-tshirt-black-10334a.png" alt="Vault Armor Muscle Compression Tee — Obsidian Black" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">35% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-comp-short-black" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-comp-short-black')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-comp-short-black')" id="qv-btn-rv-comp-short-black">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-comp-short-black', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-comp-short-black', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-comp-short-black', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-comp-short-black', 'XL')">XL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Compression Tech</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">5</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(520)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-comp-short-black">
+              <h3 class="product-name">Vault Armor Muscle Compression Tee — Obsidian Black</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,299</span>
+              <span class="price-original">₹1,999</span>
+              <span class="price-discount">35% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-comp-short-black', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-3" data-product-id="rv-comp-long-black">
+          <div class="product-media">
+            <a href="product.html?id=rv-comp-long-black">
+              <img src="assets/categories/compression/repvault-compression-long-black.jpg" alt="Vault Armor Full-Sleeve Compression — Obsidian Black" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/compression/repvault-compression-fullsleeve-white-1045a0.png" alt="Vault Armor Full-Sleeve Compression — Obsidian Black" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">35% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-comp-long-black" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-comp-long-black')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-comp-long-black')" id="qv-btn-rv-comp-long-black">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-comp-long-black', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-comp-long-black', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-comp-long-black', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-comp-long-black', 'XL')">XL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Compression Tech</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.9</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(288)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-comp-long-black">
+              <h3 class="product-name">Vault Armor Full-Sleeve Compression — Obsidian Black</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,499</span>
+              <span class="price-original">₹2,299</span>
+              <span class="price-discount">35% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-comp-long-black', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-4" data-product-id="rv-comp-long-white">
+          <div class="product-media">
+            <a href="product.html?id=rv-comp-long-white">
+              <img src="assets/categories/compression/repvault-compression-fullsleeve-white-1045a0.png" alt="Vault Armor Full-Sleeve Compression — Pure White" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/compression/repvault-compression-tshirt-white-100af8.png" alt="Vault Armor Full-Sleeve Compression — Pure White" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">35% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-comp-long-white" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-comp-long-white')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-comp-long-white')" id="qv-btn-rv-comp-long-white">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-comp-long-white', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-comp-long-white', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-comp-long-white', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-comp-long-white', 'XL')">XL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Compression Tech</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.8</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(164)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-comp-long-white">
+              <h3 class="product-name">Vault Armor Full-Sleeve Compression — Pure White</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,499</span>
+              <span class="price-original">₹2,299</span>
+              <span class="price-discount">35% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-comp-long-white', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-1" data-product-id="rv-2in1-shorts-black">
+          <div class="product-media">
+            <a href="product.html?id=rv-2in1-shorts-black">
+              <img src="assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg" alt="Vault Velocity 2-in-1 Compression Shorts — Stealth Black" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/shorts/repvault-2in1-compression-shorts-white-1097f7.png" alt="Vault Velocity 2-in-1 Compression Shorts — Stealth Black" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">33% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-2in1-shorts-black" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-2in1-shorts-black')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-2in1-shorts-black')" id="qv-btn-rv-2in1-shorts-black">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-2in1-shorts-black', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-2in1-shorts-black', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-2in1-shorts-black', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-2in1-shorts-black', 'XL')">XL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Performance Shorts</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.9</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(387)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-2in1-shorts-black">
+              <h3 class="product-name">Vault Velocity 2-in-1 Compression Shorts — Stealth Black</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,399</span>
+              <span class="price-original">₹2,099</span>
+              <span class="price-discount">33% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-2in1-shorts-black', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-2" data-product-id="rv-2in1-shorts-red">
+          <div class="product-media">
+            <a href="product.html?id=rv-2in1-shorts-red">
+              <img src="assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp589c.jpg" alt="Vault Laser-Airflow 2-in-1 Shorts — Crimson Volt" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp95aa.jpg" alt="Vault Laser-Airflow 2-in-1 Shorts — Crimson Volt" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">33% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-2in1-shorts-red" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-2in1-shorts-red')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-2in1-shorts-red')" id="qv-btn-rv-2in1-shorts-red">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-2in1-shorts-red', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-2in1-shorts-red', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-2in1-shorts-red', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-2in1-shorts-red', 'XL')">XL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Performance Shorts</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.8</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(142)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-2in1-shorts-red">
+              <h3 class="product-name">Vault Laser-Airflow 2-in-1 Shorts — Crimson Volt</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,399</span>
+              <span class="price-original">₹2,099</span>
+              <span class="price-discount">33% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-2in1-shorts-red', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-3" data-product-id="rv-speed-tank-green">
+          <div class="product-media">
+            <a href="product.html?id=rv-speed-tank-green">
+              <img src="assets/categories/stringers/SpeedRunningTankSeagreen_3f995.jpg" alt="Vault Aero Speed Running Tank — Sea Green" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/stringers/SpeedRunningTankSeagreen_3a3d8.jpg" alt="Vault Aero Speed Running Tank — Sea Green" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">38% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-speed-tank-green" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-speed-tank-green')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-speed-tank-green')" id="qv-btn-rv-speed-tank-green">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-speed-tank-green', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-speed-tank-green', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-speed-tank-green', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-speed-tank-green', 'XL')">XL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Stringers & Tanks</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.8</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(220)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-speed-tank-green">
+              <h3 class="product-name">Vault Aero Speed Running Tank — Sea Green</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹999</span>
+              <span class="price-original">₹1,599</span>
+              <span class="price-discount">38% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-speed-tank-green', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-4" data-product-id="rv-og-oversized-olive">
+          <div class="product-media">
+            <a href="product.html?id=rv-og-oversized-olive">
+              <img src="assets/categories/oversized/Product-Banner-05-08-26-_OG-Oversized-T-Shirt-Olive__jpg63e8.jpg" alt="Vault OG Dropped-Shoulder Oversized Tee — Olive Drab" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/oversized/Product-Banner-05-08-26-_OG-Oversized-T-Shirt-Olive__jpg287f.jpg" alt="Vault OG Dropped-Shoulder Oversized Tee — Olive Drab" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">33% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-og-oversized-olive" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-og-oversized-olive')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-og-oversized-olive')" id="qv-btn-rv-og-oversized-olive">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-og-oversized-olive', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-og-oversized-olive', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-og-oversized-olive', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-og-oversized-olive', 'XL')">XL</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-og-oversized-olive', 'XXL')">XXL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Oversized Line</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.9</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(395)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-og-oversized-olive">
+              <h3 class="product-name">Vault OG Dropped-Shoulder Oversized Tee — Olive Drab</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,399</span>
+              <span class="price-original">₹2,099</span>
+              <span class="price-discount">33% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-og-oversized-olive', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-1" data-product-id="rv-raw-washed-tracks">
+          <div class="product-media">
+            <a href="product.html?id=rv-raw-washed-tracks">
+              <img src="assets/categories/oversized/Raw-washed-tracks-d-_7a311.jpg" alt="Vault Acid-Washed Relaxed Heavy Tracks — Dark Grey" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/oversized/Raw-washed-tracks-d-_6e6cf.jpg" alt="Vault Acid-Washed Relaxed Heavy Tracks — Dark Grey" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">33% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-raw-washed-tracks" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-raw-washed-tracks')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-raw-washed-tracks')" id="qv-btn-rv-raw-washed-tracks">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-raw-washed-tracks', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-raw-washed-tracks', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-raw-washed-tracks', 'XL')">XL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Oversized Line</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">5</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(215)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-raw-washed-tracks">
+              <h3 class="product-name">Vault Acid-Washed Relaxed Heavy Tracks — Dark Grey</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,999</span>
+              <span class="price-original">₹2,999</span>
+              <span class="price-discount">33% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-raw-washed-tracks', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-2" data-product-id="rv-performance-tee-black">
+          <div class="product-media">
+            <a href="product.html?id=rv-performance-tee-black">
+              <img src="assets/categories/training/repvault-performance-black-2c8ea.jpg" alt="Vault Apex High-Output Training Tee — Pitch Black" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/training/repvault-performance-black-22c12.jpg" alt="Vault Apex High-Output Training Tee — Pitch Black" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">34% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-performance-tee-black" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-performance-tee-black')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-performance-tee-black')" id="qv-btn-rv-performance-tee-black">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-performance-tee-black', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-performance-tee-black', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-performance-tee-black', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-performance-tee-black', 'XL')">XL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Training & Ironclad</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.8</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(198)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-performance-tee-black">
+              <h3 class="product-name">Vault Apex High-Output Training Tee — Pitch Black</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,249</span>
+              <span class="price-original">₹1,899</span>
+              <span class="price-discount">34% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-performance-tee-black', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-3" data-product-id="rv-ironclad-tracks">
+          <div class="product-media">
+            <a href="product.html?id=rv-ironclad-tracks">
+              <img src="assets/categories/training/IroncladStraightTracks_5_13c3a21d-ce7a-4a93-9a04-53f6bb1c86f6.webpf67f.jpg" alt="Vault Ironclad Reinforced Straight Tracks — Charcoal" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/training/Frame_275_jpg6974.jpg" alt="Vault Ironclad Reinforced Straight Tracks — Charcoal" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">32% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-ironclad-tracks" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-ironclad-tracks')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-ironclad-tracks')" id="qv-btn-rv-ironclad-tracks">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-ironclad-tracks', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-ironclad-tracks', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-ironclad-tracks', 'XL')">XL</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-ironclad-tracks', 'XXL')">XXL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Training & Ironclad</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.9</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(172)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-ironclad-tracks">
+              <h3 class="product-name">Vault Ironclad Reinforced Straight Tracks — Charcoal</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,899</span>
+              <span class="price-original">₹2,799</span>
+              <span class="price-discount">32% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-ironclad-tracks', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-4" data-product-id="rv-elevate-backpack">
+          <div class="product-media">
+            <a href="product.html?id=rv-elevate-backpack">
+              <img src="assets/categories/accessories/ElevateBackpacks_4a394.jpg" alt="Vault Elevate Weatherproof Tactical Backpack — 35L" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/accessories/ElevateBackpacks_4bbb4.jpg" alt="Vault Elevate Weatherproof Tactical Backpack — 35L" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">38% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-elevate-backpack" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-elevate-backpack')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-elevate-backpack')" id="qv-btn-rv-elevate-backpack">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-elevate-backpack', 'One Size (35L)')">One Size (35L)</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Gear & Backpacks</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">5</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(467)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-elevate-backpack">
+              <h3 class="product-name">Vault Elevate Weatherproof Tactical Backpack — 35L</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹2,499</span>
+              <span class="price-original">₹3,999</span>
+              <span class="price-discount">38% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-elevate-backpack', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-1" data-product-id="rv-athletic-cap">
+          <div class="product-media">
+            <a href="product.html?id=rv-athletic-cap">
+              <img src="assets/categories/accessories/gym-caps-men9766.jpg" alt="Vault Shield Curved-Brim Performance Cap — Pitch Black" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/accessories/ElevateBackpacks_4a394.jpg" alt="Vault Shield Curved-Brim Performance Cap — Pitch Black" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">42% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-athletic-cap" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-athletic-cap')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-athletic-cap')" id="qv-btn-rv-athletic-cap">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-athletic-cap', 'Adjustable (One Size)')">Adjustable (One Size)</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Gear & Backpacks</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.8</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(154)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-athletic-cap">
+              <h3 class="product-name">Vault Shield Curved-Brim Performance Cap — Pitch Black</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹699</span>
+              <span class="price-original">₹1,199</span>
+              <span class="price-discount">42% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-athletic-cap', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-2" data-product-id="rv-pro-sports-bra-blue">
+          <div class="product-media">
+            <a href="product.html?id=rv-pro-sports-bra-blue">
+              <img src="assets/categories/womens/pro-sports-bra-ocean-blue-size-up29fe.png" alt="Vault Sculpt High-Impact Sports Bra — Ocean Blue" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/womens/pro-sports-bra-rust-size-up97f3.png" alt="Vault Sculpt High-Impact Sports Bra — Ocean Blue" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">33% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-pro-sports-bra-blue" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-pro-sports-bra-blue')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-pro-sports-bra-blue')" id="qv-btn-rv-pro-sports-bra-blue">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-pro-sports-bra-blue', 'XS')">XS</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-pro-sports-bra-blue', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-pro-sports-bra-blue', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-pro-sports-bra-blue', 'L')">L</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Women's Activewear</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">4.9</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(312)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-pro-sports-bra-blue">
+              <h3 class="product-name">Vault Sculpt High-Impact Sports Bra — Ocean Blue</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,199</span>
+              <span class="price-original">₹1,799</span>
+              <span class="price-discount">33% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-pro-sports-bra-blue', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-3" data-product-id="rv-highrise-leggings-navy">
+          <div class="product-media">
+            <a href="product.html?id=rv-highrise-leggings-navy">
+              <img src="assets/categories/womens/Active-High-Rise-Leggings-Navy-Key-Highlights8a2e.png" alt="Vault Sculpt High-Rise Seamless Leggings — Midnight Navy" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/womens/pro-sports-bra-ocean-blue-size-up29fe.png" alt="Vault Sculpt High-Rise Seamless Leggings — Midnight Navy" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">32% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-highrise-leggings-navy" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-highrise-leggings-navy')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-highrise-leggings-navy')" id="qv-btn-rv-highrise-leggings-navy">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-highrise-leggings-navy', 'XS')">XS</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-highrise-leggings-navy', 'S')">S</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-highrise-leggings-navy', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-highrise-leggings-navy', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-highrise-leggings-navy', 'XL')">XL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Women's Activewear</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">5</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(420)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-highrise-leggings-navy">
+              <h3 class="product-name">Vault Sculpt High-Rise Seamless Leggings — Midnight Navy</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹1,699</span>
+              <span class="price-original">₹2,499</span>
+              <span class="price-discount">32% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-highrise-leggings-navy', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal-init stagger-4" data-product-id="rv-flagship-hoodie-black">
+          <div class="product-media">
+            <a href="product.html?id=rv-flagship-hoodie-black">
+              <img src="assets/categories/mens/MH0108518aef.jpg" alt="Vault Thrive Engineered Pullover Hoodie — Matte Black" class="product-img img-primary" loading="lazy">
+              <img src="assets/categories/mens/1407b.jpg" alt="Vault Thrive Engineered Pullover Hoodie — Matte Black" class="product-img img-secondary" loading="lazy">
+            </a>
+            <div class="product-badge-wrap">
+              <span class="badge badge-sale">34% OFF</span>
+            </div>
+            <button class="product-wishlist-btn" data-product-id="rv-flagship-hoodie-black" onclick="event.preventDefault(); window.REPVAULT.toggleWishlist('rv-flagship-hoodie-black')" title="Save to Wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <button class="btn btn-white btn-sm" style="position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.25s ease; white-space: nowrap; z-index: 5;" onclick="event.preventDefault(); window.AppUI.openQuickView('rv-flagship-hoodie-black')" id="qv-btn-rv-flagship-hoodie-black">
+              Quick View
+            </button>
+            <div class="product-quick-sizes">
+              
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-flagship-hoodie-black', 'M')">M</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-flagship-hoodie-black', 'L')">L</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-flagship-hoodie-black', 'XL')">XL</button>
+  
+    <button class="quick-size-btn" onclick="event.preventDefault(); window.REPVAULT.addToCart('rv-flagship-hoodie-black', 'XXL')">XXL</button>
+  
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-cat">Men's Flagship</span>
+              <div class="product-rating">
+                <span style="color: var(--accent-amber);">★</span>
+                <span style="font-weight: 700; color: var(--charcoal);">5</span>
+                <span style="color: var(--text-muted); font-size: 0.7rem;">(388)</span>
+              </div>
+            </div>
+            <a href="product.html?id=rv-flagship-hoodie-black">
+              <h3 class="product-name">Vault Thrive Engineered Pullover Hoodie — Matte Black</h3>
+            </a>
+            <div class="product-pricing">
+              <span class="price-current">₹2,299</span>
+              <span class="price-original">₹3,499</span>
+              <span class="price-discount">34% OFF</span>
+            </div>
+            <div class="product-actions" style="margin-top: 10px;">
+              <button class="btn btn-navy btn-sm btn-block" onclick="window.REPVAULT.addToCart('rv-flagship-hoodie-black', 'M')">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Filter Sidebar Drawer -->
+  <div class="drawer-backdrop" id="filter-drawer-backdrop"></div>
+  <aside class="filter-sidebar-drawer" id="filter-drawer">
+    <div class="filter-drawer-header">
+      <h3>Filters & Refine</h3>
+      <button class="drawer-close-btn" id="close-filter-drawer-btn">✕</button>
+    </div>
+    <div class="filter-drawer-body">
+      <!-- 1. Category Filter -->
+      <div class="filter-group">
+        <div class="filter-group-title">Category</div>
+        <div class="filter-pill-wrap" id="drawer-category-filters">
+          <button class="filter-chip active" data-cat="all">All</button>
+          <button class="filter-chip" data-cat="t-shirts">T-Shirts</button>
+          <button class="filter-chip" data-cat="joggers">Joggers</button>
+          <button class="filter-chip" data-cat="compression">Compression</button>
+          <button class="filter-chip" data-cat="oversized">Oversized</button>
+          <button class="filter-chip" data-cat="shorts">Shorts</button>
+          <button class="filter-chip" data-cat="stringers">Stringers</button>
+          <button class="filter-chip" data-cat="training">Training</button>
+          <button class="filter-chip" data-cat="womens">Women's</button>
+          <button class="filter-chip" data-cat="accessories">Accessories</button>
+        </div>
+      </div>
+
+      <!-- 2. Size Filter -->
+      <div class="filter-group">
+        <div class="filter-group-title">Size</div>
+        <div class="filter-pill-wrap" id="drawer-size-filters">
+          <button class="filter-chip" data-size="S">S</button>
+          <button class="filter-chip" data-size="M">M</button>
+          <button class="filter-chip" data-size="L">L</button>
+          <button class="filter-chip" data-size="XL">XL</button>
+          <button class="filter-chip" data-size="XXL">XXL</button>
+        </div>
+      </div>
+
+      <!-- 3. Price Filter -->
+      <div class="filter-group">
+        <div class="filter-group-title">Price Range</div>
+        <div class="filter-pill-wrap" id="drawer-price-filters">
+          <button class="filter-chip active" data-price="all">All Prices</button>
+          <button class="filter-chip" data-price="under-1000">Under ₹1,000</button>
+          <button class="filter-chip" data-price="1000-1500">₹1,000 – ₹1,500</button>
+          <button class="filter-chip" data-price="above-1500">Above ₹1,500</button>
+        </div>
+      </div>
+
+      <!-- 4. Availability Filter -->
+      <div class="filter-group">
+        <div class="filter-group-title">Availability</div>
+        <label style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--charcoal); cursor: pointer;">
+          <input type="checkbox" id="in-stock-only-checkbox" checked style="accent-color: var(--primary-navy); width: 16px; height: 16px;">
+          <span>In-Stock Items Only (Ships in 24h)</span>
+        </label>
+      </div>
+    </div>
+    <div class="filter-drawer-footer">
+      <button class="btn btn-secondary" style="flex: 1;" id="reset-filter-drawer-btn">Reset All</button>
+      <button class="btn btn-navy" style="flex: 2;" id="apply-filter-drawer-btn">Apply Filters</button>
+    </div>
+  </aside>
+
+  <!-- Quick View Modal -->
+  <div class="quick-view-modal" id="quick-view-modal">
+    <div class="drawer-backdrop" id="quick-view-backdrop"></div>
+    <div class="quick-view-dialog" id="quick-view-dialog">
+      <button class="quick-view-close" id="quick-view-close-btn">✕</button>
+      <div class="quick-view-img-wrap" style="aspect-ratio: 3 / 4; border-radius: var(--radius-xs); overflow: hidden; background: var(--light-gray);">
+        <img src="" alt="" id="qv-image" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div class="quick-view-info" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <span class="section-tag" id="qv-category" style="margin-bottom: 4px;">Category</span>
+          <h2 style="font-size: 1.35rem; font-weight: 800; text-transform: uppercase; margin: 4px 0 10px; color: var(--charcoal);" id="qv-title">
+            Product Title
+          </h2>
+          <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px;">
+            <span style="font-size: 1.35rem; font-weight: 800; color: var(--primary-navy);" id="qv-price">₹0</span>
+            <span style="font-size: 0.95rem; text-decoration: line-through; color: var(--text-muted);" id="qv-orig-price">₹0</span>
+            <span style="font-size: 0.72rem; font-weight: 700; background: var(--accent-crimson); color: #fff; padding: 2px 6px; border-radius: 2px;" id="qv-discount">0% OFF</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px;" id="qv-description">
+            Product description.
+          </p>
+
+          <div style="margin-bottom: 20px;">
+            <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 8px;">
+              Select Size: <strong id="qv-selected-size">M</strong>
+            </div>
+            <div class="size-pill-grid" id="qv-size-options"></div>
+          </div>
+        </div>
+
+        <div>
+          <button class="btn btn-navy" id="qv-add-btn" style="width: 100%; height: 48px; font-weight: 700; letter-spacing: 1px; margin-bottom: 10px;">
+            ADD TO CART
+          </button>
+          <a href="#" id="qv-view-details-link" style="display: block; text-align: center; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--primary-navy); letter-spacing: 0.5px;">
+            View Full Technical Specifications &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="drawer-backdrop" id="cart-drawer-backdrop"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="drawer-header">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-weight: 800; font-size: 1.05rem; letter-spacing: 0.5px; text-transform: uppercase;">YOUR CART</span>
+        <span class="action-badge cart-count-badge" style="position: static;">0</span>
+      </div>
+      <button class="drawer-close-btn" id="cart-close-btn">✕</button>
+    </div>
+    <div class="free-shipping-progress">
+      <div class="free-shipping-text" id="shipping-progress-text">Add ₹1,999 more for FREE Express Shipping</div>
+      <div class="progress-track">
+        <div class="progress-fill" id="shipping-progress-fill" style="width: 0%;"></div>
+      </div>
+    </div>
+    <div class="drawer-body" id="cart-items-container"></div>
+    <div class="drawer-footer" id="cart-footer" style="display: none;">
+      <div class="cart-summary-row">
+        <span>Estimated Subtotal</span>
+        <span style="font-weight: 800; font-size: 1.15rem; color: var(--text-primary);" id="cart-subtotal-val">₹0</span>
+      </div>
+      <button class="btn btn-buy-now" id="checkout-btn" onclick="startCheckoutFlow()">PROCEED TO CHECKOUT &rarr;</button>
+    </div>
+  </aside>
+
+  <!-- Live Search Modal -->
+  <div class="modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal-box">
+      <div class="search-input-wrap">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="search-input" id="search-input-field" placeholder="Search catalog..." autocomplete="off">
+        <button class="drawer-close-btn" id="search-close-btn">✕</button>
+      </div>
+      <div class="search-results-list" id="search-results-box"></div>
+    </div>
+  </div>
+
+  <!-- Quick Size Drawer -->
+  <div class="quick-size-drawer" id="quick-size-drawer">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+      <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase;">Select Athletic Size</span>
+      <button onclick="closeQuickSizeDrawer()">✕</button>
+    </div>
+    <div class="size-pill-grid" id="quick-size-pills"></div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="icons/logo.svg" alt="REPVAULT" height="34">
+          <p>Engineered performance apparel crafted for high-output athletes. Zero compromises on fabric resilience, muscle support, and athletic movement.</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Shop Men's</h4>
+          <ul class="footer-links">
+            <li><a href="collections.html?category=t-shirts" class="footer-link">T-Shirts & Polos</a></li>
+            <li><a href="collections.html?category=joggers" class="footer-link">Joggers & Tracks</a></li>
+            <li><a href="collections.html?category=compression" class="footer-link">Compression Tech</a></li>
+            <li><a href="collections.html?category=oversized" class="footer-link">Oversized Line</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Shop Women's</h4>
+          <ul class="footer-links">
+            <li><a href="collections.html?category=womens" class="footer-link">High-Rise Leggings</a></li>
+            <li><a href="collections.html?category=womens" class="footer-link">Seamless Sports Bras</a></li>
+            <li><a href="collections.html?category=accessories" class="footer-link">Gear & Accessories</a></li>
+            <li><a href="collections.html?filter=sale" class="footer-link" style="color: var(--accent-crimson); font-weight: 700;">50% Off Flash Sale</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Support</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" onclick="alert('7-Day Free Doorstep Size Exchange')" class="footer-link">7-Day Free Exchange</a></li>
+            <li><a href="javascript:void(0)" onclick="alert('Free shipping on orders above ₹1,999')" class="footer-link">Shipping & Returns</a></li>
+            <li><a href="javascript:void(0)" onclick="alert('Contact: support@repvault.in')" class="footer-link">Contact Support</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 REPVAULT Athletics Inc. All rights reserved.</div>
+        <div>100% Secure Checkout • Express Doorstep Dispatch</div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
