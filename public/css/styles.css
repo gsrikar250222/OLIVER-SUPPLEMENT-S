@@ -109,7 +109,10 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  touch-action: manipulation;
+  touch-action: pan-x pan-y;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -117,9 +120,24 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  max-width: 100vw;
   background-color: var(--bg-primary);
   color: var(--text-primary);
+  touch-action: pan-x pan-y;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+input, select, textarea, button {
   touch-action: manipulation;
+}
+
+@media (max-width: 768px) {
+  /* Prevent iOS Safari from auto-zooming when focusing on inputs */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
 }
 
 img, video, svg {
@@ -2226,7 +2244,19 @@ input, select, textarea {
     font-size: 1.65rem;
   }
   .hero-section {
-    min-height: 70vh;
+    min-height: auto;
+  }
+  .explore-cat-header, .featured-spotlight-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .nav-actions {
+    gap: 6px;
+  }
+  .action-btn {
+    width: 36px;
+    height: 36px;
   }
   .hero-content {
     padding: 24px 0;
@@ -3953,91 +3983,6 @@ input, select, textarea {
 @media (max-width: 500px) {
   .oversized-grid-4col {
     grid-template-columns: 1fr;
-  }
-}
-
-
-/* ==========================================================================
-   REPVAULT 3D Interactive Loading Screen Overlay
-   ========================================================================== */
-.repvault-loader-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100000;
-  background: #090B12;
-  display: flex;
-  flex-direction: column;
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
-}
-.repvault-loader-overlay.hidden {
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(1.03);
-  pointer-events: none;
-}
-.loader-top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 24px;
-  background: rgba(9, 11, 18, 0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  z-index: 10;
-}
-.loader-tagline {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: #737B8C;
-  text-transform: uppercase;
-}
-.loader-skip-btn {
-  font-family: inherit;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #00BFFF;
-  background: rgba(0, 191, 255, 0.1);
-  border: 1px solid rgba(0, 191, 255, 0.3);
-  padding: 8px 18px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.loader-skip-btn:hover {
-  background: #00BFFF;
-  color: #10182D;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(0, 191, 255, 0.35);
-}
-.loader-frame-container {
-  flex: 1;
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-.loader-frame-container iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-}
-@media (max-width: 640px) {
-  .loader-tagline {
-    display: none;
-  }
-  .loader-top-bar {
-    padding: 10px 16px;
   }
 }
 
