@@ -33,9 +33,9 @@ function saveOrder(order) {
 
 // Coupons Database
 const COUPONS = {
-  'VAULT10': { code: 'VAULT10', type: 'percent', value: 10, minOrder: 0, desc: '10% Off Sitewide' },
-  'WELCOME20': { code: 'WELCOME20', type: 'percent', value: 20, minOrder: 1499, desc: '20% Off Orders Over ₹1,499' },
-  'REP50': { code: 'REP50', type: 'flat', value: 50, minOrder: 999, desc: '₹50 Flat Off' },
+  'OLIVER10': { code: 'OLIVER10', type: 'percent', value: 10, minOrder: 0, desc: '10% Off Sitewide' },
+  'FUEL20': { code: 'FUEL20', type: 'percent', value: 20, minOrder: 2499, desc: '20% Off Orders Over ₹2,499' },
+  'FIRSTORDER': { code: 'FIRSTORDER', type: 'flat', value: 200, minOrder: 1499, desc: '₹200 Flat Off Your First Order' },
   'FREESHIP': { code: 'FREESHIP', type: 'free_shipping', value: 0, minOrder: 0, desc: 'Free Express Shipping' }
 };
 
@@ -146,7 +146,7 @@ const server = http.createServer(async (req, res) => {
 
     if (search) {
       const q = search.toLowerCase().trim();
-      list = list.filter(p => 
+      list = list.filter(p =>
         p.name.toLowerCase().includes(q) ||
         p.categoryName.toLowerCase().includes(q) ||
         p.description.toLowerCase().includes(q) ||
@@ -204,7 +204,7 @@ const server = http.createServer(async (req, res) => {
       if (!coupon) {
         return sendJson(res, 400, {
           success: false,
-          message: `Invalid coupon code '${code}'. Try VAULT10 or WELCOME20.`
+          message: `Invalid coupon code '${code}'. Try OLIVER10, FUEL20, or FIRSTORDER.`
         });
       }
 
@@ -270,12 +270,12 @@ const server = http.createServer(async (req, res) => {
         }
       }
 
-      // Free shipping over 1000
-      const shipping = subtotal >= 1000 || couponCode === 'FREESHIP' ? 0 : 99;
-      const gst = Math.round((subtotal - discount) * 0.05); // 5% GST on apparel
+      // Free shipping over 999
+      const shipping = subtotal >= 999 || couponCode === 'FREESHIP' ? 0 : 99;
+      const gst = Math.round((subtotal - discount) * 0.18); // 18% GST on Sports Nutrition
       const total = subtotal - discount + shipping + gst;
 
-      const orderId = `RV-${Date.now().toString().slice(-6)}-${Math.floor(1000 + Math.random() * 9000)}`;
+      const orderId = `OLIVER-${Date.now().toString().slice(-6)}-${Math.floor(1000 + Math.random() * 9000)}`;
       const estDeliveryDate = new Date(Date.now() + 4 * 24 * 60 * 60 * 1000).toLocaleDateString('en-IN', {
         weekday: 'short',
         month: 'short',
@@ -346,7 +346,7 @@ const server = http.createServer(async (req, res) => {
         id: 'usr_' + Date.now().toString().slice(-6),
         name: email.split('@')[0].toUpperCase(),
         email: email,
-        token: 'rv_token_' + Buffer.from(email + ':' + Date.now()).toString('base64')
+        token: 'oliver_token_' + Buffer.from(email + ':' + Date.now()).toString('base64')
       };
 
       return sendJson(res, 200, {
@@ -372,7 +372,7 @@ const server = http.createServer(async (req, res) => {
         id: 'usr_' + Date.now().toString().slice(-6),
         name,
         email,
-        token: 'rv_token_' + Buffer.from(email + ':' + Date.now()).toString('base64')
+        token: 'oliver_token_' + Buffer.from(email + ':' + Date.now()).toString('base64')
       };
 
       return sendJson(res, 201, {
@@ -456,7 +456,7 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`===================================================`);
-  console.log(` REPVAULT REST API & E-COMMERCE SERVER LIVE`);
+  console.log(` OLIVER SUPPLEMENT SHOP REST API & SERVER LIVE`);
   console.log(` URL: http://localhost:${PORT}`);
   console.log(` API Products: http://localhost:${PORT}/api/products`);
   console.log(` API Categories: http://localhost:${PORT}/api/categories`);

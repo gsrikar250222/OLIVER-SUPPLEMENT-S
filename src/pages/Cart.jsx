@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
-import { Trash2, ArrowRight, Tag, X, Check, ShoppingBag, ShieldCheck, Truck } from 'lucide-react';
+import { Trash2, ArrowRight, Tag, X, Check, ShoppingBag, ShieldCheck, Truck, Shield } from 'lucide-react';
 
 export default function Cart() {
   const { 
@@ -10,29 +10,29 @@ export default function Cart() {
     updateQuantity, 
     subtotal, 
     shippingFee, 
-    freeShipping, 
-    amountNeededForFreeShipping, 
-    freeShippingProgress, 
+    discountAmount, 
+    grandTotal,
+    catalogSavings,
     coupon, 
     applyCoupon, 
     removeCoupon, 
-    discount, 
-    gst, 
-    total,
     totalItemsCount
   } = useCart();
 
   const [couponInput, setCouponInput] = useState('');
   const [couponError, setCouponError] = useState('');
-  const [applying, setApplying] = useState(false);
   const navigate = useNavigate();
 
-  const handleApplyCoupon = async (e) => {
+  const freeShippingThreshold = 999;
+  const isFreeShipping = subtotal >= freeShippingThreshold;
+  const neededForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
+  const shippingProgress = Math.min(100, Math.round((subtotal / freeShippingThreshold) * 100));
+
+  const handleApplyCoupon = (e) => {
     e.preventDefault();
     setCouponError('');
-    setApplying(true);
-    const res = await applyCoupon(couponInput);
-    setApplying(false);
+    if (!couponInput.trim()) return;
+    const res = applyCoupon(couponInput);
     if (!res.success) {
       setCouponError(res.message);
     } else {
@@ -43,37 +43,44 @@ export default function Cart() {
   if (cart.length === 0) {
     return (
       <div className="container empty-page-wrap section-pad text-center">
-        <ShoppingBag size={64} strokeWidth={1} className="empty-cart-icon" />
-        <h1 className="empty-page-title">YOUR SHOPPING BAG IS EMPTY</h1>
-        <p className="empty-page-desc">Looks like you haven't added any athletic styles yet.</p>
-        <Link to="/shop" className="btn btn-primary mt-24">
-          EXPLORE THE VAULT CATALOG &rarr;
+        <ShoppingBag size={64} className="empty-cart-icon" />
+        <h1 className="empty-page-title">YOUR SUPPLEMENT BAG IS EMPTY</h1>
+        <p className="empty-page-desc">
+          Fuel your body with 100% genuine whey protein, creatine, and performance nutrition.
+        </p>
+        <Link to="/shop" className="btn-primary mt-24">
+          EXPLORE SPORTS NUTRITION &rarr;
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="cart-page container section-pad">
-      <h1 className="page-title">YOUR SHOPPING BAG ({totalItemsCount} ITEMS)</h1>
+    <div className="cart-page-wrap container section-pad">
+      <div className="cart-page-header">
+        <h1 className="page-title">YOUR SUPPLEMENT BAG ({totalItemsCount} ITEMS)</h1>
+        <Link to="/shop" className="continue-shopping-link">
+          &larr; Continue Shopping
+        </Link>
+      </div>
 
       {/* Free Shipping Tracker */}
       <div className="cart-free-shipping-box">
         <div className="free-shipping-text">
-          {freeShipping ? (
+          {isFreeShipping ? (
             <span className="unlocked-text">
-              <Check size={18} /> YOU'VE UNLOCKED <strong>FREE EXPRESS SHIPPING</strong>!
+              <Check size={18} /> YOU'VE UNLOCKED <strong>FREE ALL-INDIA EXPRESS SHIPPING</strong>!
             </span>
           ) : (
             <span>
-              Add <strong>₹{amountNeededForFreeShipping.toLocaleString('en-IN')}</strong> more to your bag for <strong>FREE EXPRESS SHIPPING</strong>!
+              Add <strong>₹{neededForFreeShipping.toLocaleString('en-IN')}</strong> more to unlock <strong>FREE EXPRESS SHIPPING</strong>!
             </span>
           )}
         </div>
         <div className="free-shipping-progress-track">
           <div 
             className="progress-fill" 
-            style={{ width: `${freeShippingProgress}%` }}
+            style={{ width: `${shippingProgress}%` }}
           />
         </div>
       </div>
@@ -82,10 +89,10 @@ export default function Cart() {
         {/* Left: Cart Items Table */}
         <div className="cart-items-section">
           <div className="cart-table-header">
-            <span>PRODUCT</span>
+            <span>SUPPLEMENT ITEM</span>
             <span>PRICE</span>
-            <span>QUANTITY</span>
-            <span>SUBTOTAL</span>
+            <span>QTY</span>
+            <span>TOTAL</span>
           </div>
 
           <div className="cart-table-rows">
@@ -95,150 +102,152 @@ export default function Cart() {
                 <div className="cart-col-product">
                   <Link to={`/product/${item.productId}`}>
                     <img 
-                      src={`/${item.image.replace(/^\//, '')}`} 
+                      src={item.image} 
                       alt={item.name} 
                       className="cart-row-img" 
                     />
                   </Link>
                   <div className="cart-row-info">
-                    <span className="cart-row-cat">{item.categoryName}</span>
-                    <Link to={`/product/${item.productId}`} className="cart-row-title">
-                      {item.name}
+                    <span className="cart-row-brand">{item.brand}</span>
+                    <Link to={`/product/${item.productId}`}>
+                      <h4 className="cart-row-name">{item.name}</h4>
                     </Link>
-                    <div className="cart-row-variants">
-                      <span>Size: <strong>{item.size}</strong></span>
-                      {item.color && <span>• Color: <strong>{item.color}</strong></span>}
+                    <div className="cart-row-meta">
+                      <span className="meta-pill">{item.weight || item.size}</span>
+                      {item.flavor && item.flavor !== 'Standard' && (
+                        <span className="meta-pill">{item.flavor}</span>
+                      )}
                     </div>
-                    <button 
-                      className="cart-btn-remove"
-                      onClick={() => removeFromCart(item.cartItemId)}
-                    >
-                      <Trash2 size={15} /> Remove
-                    </button>
                   </div>
                 </div>
 
-                {/* Price Column */}
+                {/* Unit Price */}
                 <div className="cart-col-price">
-                  <span>₹{item.price.toLocaleString('en-IN')}</span>
-                  {item.originalPrice && (
-                    <span className="cart-orig-price">₹{item.originalPrice.toLocaleString('en-IN')}</span>
+                  <span className="col-price-val">₹{item.price.toLocaleString('en-IN')}</span>
+                  {item.mrp && item.mrp > item.price && (
+                    <span className="col-mrp-val">₹{item.mrp.toLocaleString('en-IN')}</span>
                   )}
                 </div>
 
-                {/* Quantity Column */}
+                {/* Quantity */}
                 <div className="cart-col-qty">
-                  <div className="qty-control">
+                  <div className="cart-qty-picker">
                     <button 
-                      className="qty-btn"
+                      type="button" 
                       onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
-                    >
-                      -
-                    </button>
-                    <span className="qty-number">{item.quantity}</span>
+                    >-</button>
+                    <span>{item.quantity}</span>
                     <button 
-                      className="qty-btn"
+                      type="button" 
                       onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
-                    >
-                      +
-                    </button>
+                    >+</button>
                   </div>
                 </div>
 
-                {/* Subtotal Column */}
-                <div className="cart-col-subtotal">
-                  <span>₹{(item.price * item.quantity).toLocaleString('en-IN')}</span>
+                {/* Row Total & Delete */}
+                <div className="cart-col-total">
+                  <span className="col-total-val">
+                    ₹{(item.price * item.quantity).toLocaleString('en-IN')}
+                  </span>
+                  <button 
+                    type="button" 
+                    className="cart-item-delete-btn"
+                    onClick={() => removeFromCart(item.cartItemId)}
+                    aria-label="Remove item"
+                  >
+                    <Trash2 size={16} />
+                  </button>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="cart-actions-bottom">
-            <Link to="/shop" className="btn btn-outline">
-              &larr; CONTINUE SHOPPING
-            </Link>
+          {/* Guarantee Badges */}
+          <div className="cart-guarantee-strip">
+            <div className="guarantee-box">
+              <ShieldCheck size={20} className="g-icon" />
+              <div>
+                <strong>Direct Importer Authenticity</strong>
+                <span>Every tub is sealed with official brand hologram</span>
+              </div>
+            </div>
+            <div className="guarantee-box">
+              <Truck size={20} className="g-icon" />
+              <div>
+                <strong>Express Delivery</strong>
+                <span>Dispatches from temperature-controlled warehouses</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Right: Order Summary Card */}
+        {/* Right: Order Summary */}
         <aside className="cart-summary-sidebar">
           <div className="summary-card">
-            <h3 className="summary-title">ORDER SUMMARY</h3>
+            <h3 className="summary-card-title">ORDER SUMMARY</h3>
 
-            {/* Coupon Code Input */}
-            <div className="coupon-summary-box">
+            {/* Promo Code Form */}
+            <div className="cart-promo-section">
               {coupon ? (
-                <div className="applied-coupon-pill">
-                  <div className="coupon-info">
+                <div className="applied-coupon-box">
+                  <div className="applied-coupon-info">
                     <Tag size={16} />
-                    <span><strong>{coupon.code}</strong> applied ({coupon.description})</span>
+                    <span><strong>{coupon.code}</strong> Applied</span>
                   </div>
-                  <button onClick={removeCoupon} className="btn-remove-coupon">
-                    <X size={16} />
-                  </button>
+                  <button className="coupon-remove-text" onClick={removeCoupon}>Remove</button>
                 </div>
               ) : (
-                <form onSubmit={handleApplyCoupon} className="coupon-form">
+                <form onSubmit={handleApplyCoupon} className="cart-coupon-form">
                   <input 
                     type="text" 
-                    placeholder="Coupon code (VAULT10)" 
+                    placeholder="Coupon code (e.g. OLIVER10)..."
                     value={couponInput}
                     onChange={(e) => setCouponInput(e.target.value)}
+                    className="cart-coupon-input"
                   />
-                  <button type="submit" disabled={applying}>
-                    {applying ? '...' : 'APPLY'}
-                  </button>
+                  <button type="submit" className="cart-coupon-btn">APPLY</button>
                 </form>
               )}
-              {couponError && <p className="coupon-error-msg">{couponError}</p>}
+              {couponError && <span className="coupon-err-msg">{couponError}</span>}
             </div>
 
-            {/* Calculation Lines */}
-            <div className="summary-lines">
-              <div className="summary-line">
-                <span>Subtotal ({totalItemsCount} items)</span>
+            {/* Financial Rows */}
+            <div className="summary-rows-list">
+              <div className="summary-row">
+                <span>Items Subtotal</span>
                 <span>₹{subtotal.toLocaleString('en-IN')}</span>
               </div>
-
-              {discount > 0 && (
-                <div className="summary-line discount-line">
-                  <span>Discount</span>
-                  <span>-₹{discount.toLocaleString('en-IN')}</span>
+              {discountAmount > 0 && (
+                <div className="summary-row discount-row">
+                  <span>Coupon Discount</span>
+                  <span>-₹{discountAmount.toLocaleString('en-IN')}</span>
                 </div>
               )}
-
-              <div className="summary-line">
+              <div className="summary-row">
                 <span>Estimated Shipping</span>
-                <span>{shippingFee === 0 ? <strong className="green-text">FREE</strong> : `₹${shippingFee}`}</span>
+                <span>{shippingFee === 0 ? <strong className="free-text">FREE</strong> : `₹${shippingFee}`}</span>
               </div>
-
-              <div className="summary-line">
-                <span>Estimated GST (5%)</span>
-                <span>₹{gst.toLocaleString('en-IN')}</span>
-              </div>
-
-              <div className="summary-line total-line">
-                <span>Estimated Total</span>
-                <span>₹{total.toLocaleString('en-IN')}</span>
+              {catalogSavings > 0 && (
+                <div className="summary-row savings-row">
+                  <span>Total Savings on MRP</span>
+                  <span className="savings-val">₹{catalogSavings.toLocaleString('en-IN')}</span>
+                </div>
+              )}
+              <div className="summary-row total-row">
+                <strong>GRAND TOTAL</strong>
+                <strong className="grand-price">₹{grandTotal.toLocaleString('en-IN')}</strong>
               </div>
             </div>
 
             <button 
-              className="btn btn-primary full-width checkout-btn-main"
+              className="btn-primary checkout-proceed-btn" 
               onClick={() => navigate('/checkout')}
             >
-              PROCEED TO CHECKOUT &rarr;
+              PROCEED TO SECURE CHECKOUT <ArrowRight size={18} />
             </button>
 
-            <div className="summary-reassurance">
-              <div className="reassurance-item">
-                <Truck size={18} />
-                <span>Express courier dispatch within 24 hours</span>
-              </div>
-              <div className="reassurance-item">
-                <ShieldCheck size={18} />
-                <span>256-bit encrypted secure checkout</span>
-              </div>
+            <div className="summary-security-footer">
+              <Shield size={14} /> 256-Bit SSL Encrypted Checkout &bull; UPI & COD Accepted
             </div>
           </div>
         </aside>
@@ -246,4 +255,3 @@ export default function Cart() {
     </div>
   );
 }
-

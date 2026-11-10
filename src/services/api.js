@@ -1,65 +1,33 @@
 import { CATEGORIES, PRODUCTS, getProductById, getProductsByCategory, searchProducts } from '../data/products.js';
 
-const API_BASE = '/api';
-
 export const api = {
   // Categories
   async getCategories() {
-    try {
-      const res = await fetch(`${API_BASE}/categories`);
-      if (res.ok) {
-        const data = await res.json();
-        return data.categories;
-      }
-    } catch (e) {
-      console.warn('API fallback for categories:', e);
-    }
     return CATEGORIES;
   },
 
   // Products
   async getProducts(params = {}) {
-    try {
-      const query = new URLSearchParams();
-      if (params.category && params.category !== 'all') query.set('category', params.category);
-      if (params.gender && params.gender !== 'all') query.set('gender', params.gender);
-      if (params.search) query.set('search', params.search);
-      if (params.sort) query.set('sort', params.sort);
-      if (params.featured) query.set('featured', 'true');
-      if (params.limit) query.set('limit', params.limit);
-      if (params.page) query.set('page', params.page);
-
-      const res = await fetch(`${API_BASE}/products?${query.toString()}`);
-      if (res.ok) {
-        const data = await res.json();
-        return data.products;
-      }
-    } catch (e) {
-      console.warn('API fallback for products:', e);
-    }
-
-    // Client-side fallback
     let list = [...PRODUCTS];
     if (params.category && params.category !== 'all') {
-      list = list.filter(p => p.category === params.category);
+      list = list.filter(p => p.categorySlug === params.category || p.category === params.category);
     }
-    if (params.gender && params.gender !== 'all') {
-      list = list.filter(p => p.gender === params.gender || p.gender === 'unisex');
+    if (params.brand && params.brand !== 'all') {
+      list = list.filter(p => p.brand.toLowerCase() === params.brand.toLowerCase());
     }
     if (params.search) {
       list = searchProducts(params.search);
-    }
-    if (params.featured) {
-      list = list.filter(p => p.badge === 'BESTSELLER' || p.badge === 'NEW DROP');
     }
     if (params.sort === 'price-low') {
       list.sort((a, b) => a.price - b.price);
     } else if (params.sort === 'price-high') {
       list.sort((a, b) => b.price - a.price);
     } else if (params.sort === 'rating') {
-      list.sort((a, b) => b.rating - a.rating);
+      list.sort((a, b) => (b.rating || 0) - (a.rating || 0));
     } else if (params.sort === 'reviews') {
-      list.sort((a, b) => b.reviewCount - a.reviewCount);
+      list.sort((a, b) => (b.reviews || 0) - (a.reviews || 0));
+    } else if (params.sort === 'bestseller') {
+      list.sort((a, b) => (b.reviews || 0) - (a.reviews || 0));
     }
     if (params.limit) {
       list = list.slice(0, params.limit);
@@ -69,194 +37,137 @@ export const api = {
 
   // Single Product
   async getProduct(id) {
-    try {
-      const res = await fetch(`${API_BASE}/products/${id}`);
-      if (res.ok) {
-        const data = await res.json();
-        return data.product;
-      }
-    } catch (e) {
-      console.warn('API fallback for single product:', e);
-    }
     return getProductById(id) || null;
   },
 
-  // Coupons
-  async validateCoupon(code, subtotal) {
-    try {
-      const res = await fetch(`${API_BASE}/coupons/validate`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code, subtotal })
-      });
-      const data = await res.json();
-      return data;
-    } catch (e) {
-      console.warn('API fallback for coupon:', e);
-      const upper = (code || '').toUpperCase().trim();
-      if (upper === 'VAULT10') {
-        return {
-          success: true,
-          coupon: {
-            code: 'VAULT10',
-            description: '10% Off Sitewide',
-            discountAmount: Math.round(subtotal * 0.10)
-          }
-        };
-      }
-      if (upper === 'WELCOME20') {
-        if (subtotal < 1499) {
-          return { success: false, message: 'WELCOME20 requires a minimum order of ₹1,499' };
+  // Validate Coupon
+  async validateCoupon(code, subtotal = 0) {
+    const clean = (code || '').trim().toUpperCase();
+    if (clean === 'OLIVER10') {
+      return {
+        success: true,
+        coupon: {
+          code: 'OLIVER10',
+          description: '10% Off Sports Nutrition',
+          discountAmount: Math.round(subtotal * 0.10)
         }
-        return {
-          success: true,
-          coupon: {
-            code: 'WELCOME20',
-            description: '20% Off Orders Over ₹1,499',
-            discountAmount: Math.round(subtotal * 0.20)
-          }
-        };
-      }
-      if (upper === 'REP50') {
-        return {
-          success: true,
-          coupon: {
-            code: 'REP50',
-            description: '₹50 Flat Off',
-            discountAmount: 50
-          }
-        };
-      }
-      return { success: false, message: `Invalid coupon '${code}'. Try VAULT10 or WELCOME20.` };
+      };
     }
+    if (clean === 'FUEL20') {
+      if (subtotal < 4999) {
+        return { success: false, message: 'FUEL20 requires a minimum cart subtotal of ₹4,999' };
+      }
+      return {
+        success: true,
+        coupon: {
+          code: 'FUEL20',
+          description: '20% Off Orders over ₹4,999',
+          discountAmount: Math.round(subtotal * 0.20)
+        }
+      };
+    }
+    if (clean === 'FIRSTORDER') {
+      return {
+        success: true,
+        coupon: {
+          code: 'FIRSTORDER',
+          description: 'Flat ₹300 Off First Purchase',
+          discountAmount: Math.min(300, subtotal)
+        }
+      };
+    }
+    return { success: false, message: `Invalid coupon '${code}'. Try OLIVER10 or FIRSTORDER.` };
   },
 
   // Create Order
   async createOrder(orderPayload) {
-    try {
-      const res = await fetch(`${API_BASE}/orders`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(orderPayload)
-      });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        return data.order;
+    const orderId = `OLIVER-${Date.now().toString().slice(-6)}-${Math.floor(1000 + Math.random() * 9000)}`;
+    const estDeliveryDate = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toLocaleDateString('en-IN', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric'
+    });
+
+    const newOrder = {
+      id: orderId,
+      createdAt: new Date().toISOString(),
+      status: 'Order Confirmed & Verified',
+      statusTimeline: [
+        { status: 'Order Confirmed', date: new Date().toLocaleString('en-IN'), completed: true },
+        { status: 'Importer Hologram & Batch Verification', date: 'In progress', completed: true },
+        { status: 'Dispatched from Temperature Controlled Hub', date: 'Expected within 24 hours', completed: false },
+        { status: 'Out for Delivery', date: 'Expected by ' + estDeliveryDate, completed: false },
+        { status: 'Delivered with Seal Intact', date: estDeliveryDate, completed: false }
+      ],
+      estimatedDelivery: estDeliveryDate,
+      customer: orderPayload.customer,
+      shippingAddress: orderPayload.shippingAddress,
+      paymentMethod: orderPayload.paymentMethod || 'UPI',
+      paymentStatus: orderPayload.paymentMethod === 'Cash on Delivery (COD)' ? 'Pending (COD)' : 'Paid Online (Verified)',
+      items: orderPayload.items || [],
+      pricing: {
+        subtotal: orderPayload.subtotal,
+        discount: orderPayload.discount,
+        shipping: orderPayload.shipping,
+        total: orderPayload.total
       }
-      throw new Error(data.message || 'Failed to place order');
+    };
+
+    // Save to local storage orders history
+    try {
+      const existing = JSON.parse(localStorage.getItem('oliver_orders') || '[]');
+      existing.unshift(newOrder);
+      localStorage.setItem('oliver_orders', JSON.stringify(existing));
     } catch (e) {
-      console.warn('API fallback for order creation:', e);
-      // Fallback local order generation
-      const orderId = `RV-${Date.now().toString().slice(-6)}-${Math.floor(1000 + Math.random() * 9000)}`;
-      const estDeliveryDate = new Date(Date.now() + 4 * 24 * 60 * 60 * 1000).toLocaleDateString('en-IN', {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric'
-      });
-
-      const fallbackOrder = {
-        id: orderId,
-        createdAt: new Date().toISOString(),
-        status: 'Order Placed',
-        statusTimeline: [
-          { status: 'Order Placed', date: new Date().toLocaleString('en-IN'), completed: true },
-          { status: 'Quality Verification', date: 'Expected within 12 hours', completed: true },
-          { status: 'Dispatched from Warehouse', date: 'Expected within 24 hours', completed: false },
-          { status: 'Out for Delivery', date: 'Expected by ' + estDeliveryDate, completed: false },
-          { status: 'Delivered', date: estDeliveryDate, completed: false }
-        ],
-        estimatedDelivery: estDeliveryDate,
-        customer: orderPayload.customer,
-        shippingAddress: orderPayload.shippingAddress,
-        paymentMethod: orderPayload.paymentMethod || 'UPI',
-        paymentStatus: orderPayload.paymentMethod === 'COD' ? 'Pending (Cash on Delivery)' : 'Paid (Verified)',
-        items: orderPayload.items,
-        pricing: {
-          subtotal: orderPayload.subtotal,
-          discount: orderPayload.discount,
-          shipping: orderPayload.shipping,
-          gst: orderPayload.gst,
-          total: orderPayload.total
-        }
-      };
-
-      // Store in localStorage for client persistence
-      try {
-        const storedOrders = JSON.parse(localStorage.getItem('repvault_orders') || '[]');
-        storedOrders.unshift(fallbackOrder);
-        localStorage.setItem('repvault_orders', JSON.stringify(storedOrders));
-      } catch (err) {}
-
-      return fallbackOrder;
+      console.error('Error saving order to localStorage:', e);
     }
+
+    return newOrder;
   },
 
   // Get Order By ID
   async getOrder(id) {
     try {
-      const res = await fetch(`${API_BASE}/orders/${id}`);
-      if (res.ok) {
-        const data = await res.json();
-        return data.order;
-      }
-    } catch (e) {
-      console.warn('API fallback for getOrder:', e);
-    }
-    // Search localStorage
-    try {
-      const storedOrders = JSON.parse(localStorage.getItem('repvault_orders') || '[]');
-      return storedOrders.find(o => o.id === id) || null;
-    } catch (err) {
-      return null;
-    }
-  },
+      const existing = JSON.parse(localStorage.getItem('oliver_orders') || '[]');
+      const found = existing.find(o => o.id === id);
+      if (found) return found;
+    } catch (e) {}
 
-  // Auth Login
-  async login(email, password) {
-    try {
-      const res = await fetch(`${API_BASE}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-      const data = await res.json();
-      if (res.ok) return data;
-      throw new Error(data.message);
-    } catch (e) {
-      return {
-        success: true,
-        user: {
-          id: 'usr_' + Date.now().toString().slice(-6),
-          name: email.split('@')[0].toUpperCase(),
-          email,
-          token: 'rv_mock_token'
+    // Mock fallback if user visited directly
+    const estDeliveryDate = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toLocaleDateString('en-IN', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric'
+    });
+    return {
+      id: id || 'OLIVER-94281-5501',
+      createdAt: new Date().toISOString(),
+      status: 'In Transit',
+      estimatedDelivery: estDeliveryDate,
+      statusTimeline: [
+        { status: 'Order Placed', date: 'Yesterday', completed: true },
+        { status: 'Batch & Hologram Verified', date: 'Yesterday', completed: true },
+        { status: 'Dispatched from Central Warehouse', date: 'Today, 8:30 AM', completed: true },
+        { status: 'Out for Delivery', date: 'Tomorrow', completed: false },
+        { status: 'Delivered', date: estDeliveryDate, completed: false }
+      ],
+      customer: { name: 'Rahul Sharma', email: 'rahul.athlete@gmail.com', phone: '+91 98765 43210' },
+      shippingAddress: { address: 'Flat 402, Iron Heights, Bandra West', city: 'Mumbai', state: 'Maharashtra', pincode: '400050' },
+      paymentMethod: 'UPI (Google Pay)',
+      paymentStatus: 'Paid Online (Verified)',
+      items: [
+        {
+          productId: 'p01',
+          name: 'Gold Standard 100% Whey Protein',
+          price: 3299,
+          quantity: 1,
+          weight: '2 kg (4.4 lbs)',
+          size: '2 kg (4.4 lbs)',
+          flavor: 'Double Rich Chocolate',
+          image: '/assets/products/01_whey_protein_gold_standard.jpg'
         }
-      };
-    }
-  },
-
-  // Auth Register
-  async register(name, email, password) {
-    try {
-      const res = await fetch(`${API_BASE}/auth/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password })
-      });
-      const data = await res.json();
-      if (res.ok) return data;
-      throw new Error(data.message);
-    } catch (e) {
-      return {
-        success: true,
-        user: {
-          id: 'usr_' + Date.now().toString().slice(-6),
-          name,
-          email,
-          token: 'rv_mock_token'
-        }
-      };
-    }
+      ],
+      pricing: { subtotal: 3299, discount: 330, shipping: 0, total: 2969 }
+    };
   }
 };
-

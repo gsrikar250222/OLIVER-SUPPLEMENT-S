@@ -1,26 +1,41 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
-import { User, Mail, Lock, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Lock, Mail, User, Phone, ArrowRight, ShieldCheck } from 'lucide-react';
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: ''
+  });
   const [error, setError] = useState('');
   const { register, loading } = useAuth();
   const navigate = useNavigate();
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    if (!name || !email || !password) {
-      setError('Please fill in all required fields.');
+
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match.');
       return;
     }
-    const res = await register(name, email, password);
+    if (formData.password.length < 6) {
+      setError('Password must contain at least 6 characters.');
+      return;
+    }
+
+    const res = await register(formData.name, formData.email, formData.password, formData.phone);
     if (res.success) {
-      navigate('/shop');
+      navigate('/account');
     } else {
       setError(res.message);
     }
@@ -31,10 +46,12 @@ export default function Register() {
       <div className="auth-card">
         <div className="auth-header text-center">
           <Link to="/">
-            <img src="/icons/logo.svg" alt="REPVAULT" width="180" className="auth-logo" />
+            <img src="/icons/logo.svg" alt="OLIVER Supplement Shop" height="42" className="auth-logo" />
           </Link>
-          <h1 className="auth-title">CREATE VAULT ACCOUNT</h1>
-          <p className="auth-subtitle">Join the athletic couture division and enjoy member-only benefits.</p>
+          <h1 className="auth-title">CREATE ATHLETE ACCOUNT</h1>
+          <p className="auth-subtitle">
+            Join 50,000+ athletes. Get exclusive 10% discount on your first order and instant tracking notifications.
+          </p>
         </div>
 
         {error && <div className="checkout-alert-error mb-20">{error}</div>}
@@ -46,9 +63,10 @@ export default function Register() {
               <User size={18} className="field-icon" />
               <input 
                 type="text" 
-                placeholder="Rahul Sharma" 
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                name="name"
+                placeholder="e.g. Vikram Sharma" 
+                value={formData.name}
+                onChange={handleInputChange}
                 required
               />
             </div>
@@ -60,44 +78,70 @@ export default function Register() {
               <Mail size={18} className="field-icon" />
               <input 
                 type="email" 
-                placeholder="athlete@repvault.com" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
+                placeholder="vikram@athlete.com" 
+                value={formData.email}
+                onChange={handleInputChange}
                 required
               />
             </div>
           </div>
 
           <div className="form-field">
-            <label>Create Password</label>
+            <label>Mobile Number (For Courier OTP)</label>
             <div className="input-with-icon">
-              <Lock size={18} className="field-icon" />
+              <Phone size={18} className="field-icon" />
               <input 
-                type="password" 
-                placeholder="At least 6 characters" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                type="tel" 
+                name="phone"
+                maxLength={10}
+                placeholder="9876543210" 
+                value={formData.phone}
+                onChange={handleInputChange}
                 required
-                minLength={6}
               />
             </div>
           </div>
 
-          <button type="submit" className="btn btn-primary full-width" disabled={loading}>
-            {loading ? 'CREATING ACCOUNT...' : 'JOIN THE VAULT'} <ArrowRight size={18} />
+          <div className="form-field">
+            <label>Password</label>
+            <div className="input-with-icon">
+              <Lock size={18} className="field-icon" />
+              <input 
+                type="password" 
+                name="password"
+                placeholder="••••••••••••" 
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="form-field">
+            <label>Confirm Password</label>
+            <div className="input-with-icon">
+              <Lock size={18} className="field-icon" />
+              <input 
+                type="password" 
+                name="confirmPassword"
+                placeholder="••••••••••••" 
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          </div>
+
+          <button type="submit" className="btn-primary auth-submit-btn" disabled={loading}>
+            {loading ? 'CREATING ATHLETE PROFILE...' : 'REGISTER ATHLETE PROFILE'} <ArrowRight size={16} />
           </button>
         </form>
 
         <div className="auth-footer text-center mt-24">
-          <p>
-            Already have an account?{' '}
-            <Link to="/login" className="auth-switch-link">
-              Sign In
-            </Link>
-          </p>
+          <p>Already an Oliver member? <Link to="/login">Sign In &rarr;</Link></p>
         </div>
       </div>
     </div>
   );
 }
-

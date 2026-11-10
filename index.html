@@ -3,29 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
-  <title>REPVAULT | Engineered Athletic Couture & High-Performance Apparel</title>
-  <meta name="description" content="REPVAULT is an architectural athletic fashion brand crafting heavyweight oversized streetwear, precision compression rashguards, performance shorts, and tailored luxury sportswear.">
-  <link rel="icon" type="image/svg+xml" href="/icons/logo-icon.svg">
+  <title>OLIVER SUPPLEMENT SHOP | Fuel Your Body. Build Your Best.</title>
+  <meta name="description" content="OLIVER SUPPLEMENT SHOP — Premium Sports Nutrition, 100% Genuine Whey Protein, Isolate, Mass Gainers, Creatine, Pre-Workout, and Health Supplements. Performance Without Compromise.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
   <script>
-    // Bulletproof mobile pinch-zoom and gesture prevention
+    // Mobile pinch-zoom and gesture prevention for solid app feel
     document.addEventListener('gesturestart', function(e) { e.preventDefault(); }, { passive: false });
     document.addEventListener('gesturechange', function(e) { e.preventDefault(); }, { passive: false });
     document.addEventListener('gestureend', function(e) { e.preventDefault(); }, { passive: false });
-
-    document.addEventListener('touchstart', function(e) {
-      if (e.touches && e.touches.length > 1) {
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    document.addEventListener('touchmove', function(e) {
-      if (e.touches && e.touches.length > 1) {
-        e.preventDefault();
-      }
-    }, { passive: false });
 
     var lastTouchEnd = 0;
     document.addEventListener('touchend', function(e) {
@@ -35,15 +23,9 @@
       }
       lastTouchEnd = now;
     }, { passive: false });
-
-    document.addEventListener('wheel', function(e) {
-      if (e.ctrlKey) {
-        e.preventDefault();
-      }
-    }, { passive: false });
   </script>
 </head>
-<body>
+<body class="oliver-theme">
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>

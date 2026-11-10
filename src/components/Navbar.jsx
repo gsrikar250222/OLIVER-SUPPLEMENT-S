@@ -1,253 +1,402 @@
-import React, { useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { 
+  Search, 
+  User, 
+  Heart, 
+  ShoppingBag, 
+  Menu, 
+  X, 
+  ChevronDown, 
+  Zap, 
+  Flame, 
+  ShieldCheck, 
+  Award, 
+  Percent,
+  BookOpen
+} from 'lucide-react';
 import { useCart } from '../context/CartContext.jsx';
 import { useWishlist } from '../context/WishlistContext.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 
-export default function Navbar({ onOpenSearch }) {
+export default function Navbar({ onOpenSearch, onOpenGuide }) {
   const { totalItemsCount, openCart } = useCart();
   const { wishlistCount } = useWishlist();
   const { user, isAuthenticated, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+
+  // Close mobile menu on page transition
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setActiveDropdown(null);
+  }, [location.pathname]);
+
+  // Handle sticky header scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
-      <header className="header-wrapper">
+      <header className={`header-wrapper ${isScrolled ? 'header-scrolled' : ''}`}>
         <div className="container">
           <nav className="navbar">
-            {/* Brand Logo */}
-            <Link to="/" className="nav-brand" aria-label="REPVAULT Home">
-              <img src="/icons/logo.svg" alt="REPVAULT Logo" height="38" />
+            {/* Mobile Hamburger Button */}
+            <button 
+              className="mobile-menu-btn" 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle Navigation Menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+
+            {/* OLIVER Brand Logo */}
+            <Link to="/" className="nav-brand" aria-label="OLIVER SUPPLEMENT SHOP">
+              <img 
+                src="/icons/logo.svg" 
+                alt="OLIVER Supplement Shop" 
+                height="44" 
+                className="brand-logo-img"
+              />
             </Link>
 
-            {/* Desktop Navigation Categories */}
+            {/* Desktop Navigation */}
             <ul className="nav-menu">
-              {/* 1. MEN with Dropdown */}
+              {/* Home */}
               <li className="nav-item">
-                <Link to="/shop?gender=men" className="nav-link">
-                  MEN
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="6 9 12 15 18 9"/>
-                  </svg>
+                <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+                  HOME
+                </NavLink>
+              </li>
+
+              {/* Shop All */}
+              <li className="nav-item">
+                <NavLink to="/shop" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+                  SHOP ALL
+                </NavLink>
+              </li>
+
+              {/* CATEGORIES Mega Menu */}
+              <li 
+                className="nav-item has-mega"
+                onMouseEnter={() => setActiveDropdown('categories')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <Link to="/shop" className="nav-link">
+                  CATEGORIES <ChevronDown size={14} className="nav-chevron" />
                 </Link>
-                <div className="nav-dropdown">
-                  <Link to="/category/oversized" className="dropdown-link">Oversized Streetwear <span className="badge-subtle">Popular</span></Link>
-                  <Link to="/category/compression" className="dropdown-link">Compression Tech</Link>
-                  <Link to="/category/t-shirts" className="dropdown-link">T-Shirts & Polos</Link>
-                  <Link to="/category/shorts" className="dropdown-link">Performance Shorts</Link>
-                  <Link to="/category/joggers" className="dropdown-link">Joggers & Tracks</Link>
-                  <Link to="/category/training" className="dropdown-link">Ironclad Training</Link>
-                  <Link to="/category/hoodies" className="dropdown-link">Hoodies & Jackets</Link>
-                  <Link to="/shop?gender=men" className="dropdown-link" style={{ borderTop: '1px solid var(--border-gray)', fontWeight: 700, color: 'var(--primary-navy)' }}>
-                    View All Men's &rarr;
-                  </Link>
+
+                <div className={`nav-dropdown mega-menu ${activeDropdown === 'categories' ? 'visible' : ''}`}>
+                  <div className="mega-menu-grid">
+                    {/* Column 1: Proteins */}
+                    <div className="mega-col">
+                      <div className="mega-heading">
+                        <Flame size={15} className="mega-icon red" /> PROTEIN FORMULAS
+                      </div>
+                      <Link to="/category/whey-protein" className="dropdown-link">
+                        Whey Protein <span className="badge-subtle">Top Choice</span>
+                      </Link>
+                      <Link to="/category/whey-isolate" className="dropdown-link">
+                        Whey Protein Isolate <span className="badge-hot">90% Pure</span>
+                      </Link>
+                      <Link to="/category/mass-gainers" className="dropdown-link">
+                        Mass Gainers (Calorie Dense)
+                      </Link>
+                      <Link to="/category/plant-protein" className="dropdown-link">
+                        Organic Plant Protein
+                      </Link>
+                    </div>
+
+                    {/* Column 2: Performance & Energy */}
+                    <div className="mega-col">
+                      <div className="mega-heading">
+                        <Zap size={15} className="mega-icon" /> PERFORMANCE & PUMP
+                      </div>
+                      <Link to="/category/creatine" className="dropdown-link">
+                        Creatine Monohydrate & Creapure
+                      </Link>
+                      <Link to="/category/pre-workout" className="dropdown-link">
+                        High-Octane Pre-Workouts
+                      </Link>
+                      <Link to="/category/amino-acids" className="dropdown-link">
+                        BCAA & EAA Amino Acids
+                      </Link>
+                      <Link to="/category/electrolytes" className="dropdown-link">
+                        Electrolytes & Endurance
+                      </Link>
+                    </div>
+
+                    {/* Column 3: Health & Wellness */}
+                    <div className="mega-col">
+                      <div className="mega-heading">
+                        <ShieldCheck size={15} className="mega-icon green" /> HEALTH & LONGEVITY
+                      </div>
+                      <Link to="/category/vitamins-minerals" className="dropdown-link">
+                        Daily Multivitamins & Minerals
+                      </Link>
+                      <Link to="/category/fish-oil-omega-3" className="dropdown-link">
+                        Triple-Strength Fish Oil & Omega-3
+                      </Link>
+                      <Link to="/category/protein-bars-snacks" className="dropdown-link">
+                        High-Protein Bars & Snacks
+                      </Link>
+                      <Link to="/category/healthy-foods" className="dropdown-link">
+                        Clean Peanut Butter & Rolled Oats
+                      </Link>
+                    </div>
+
+                    {/* Column 4: Featured Promo Card */}
+                    <div className="mega-col promo-col">
+                      <div className="mega-promo-card">
+                        <span className="promo-badge">AUTHENTICITY</span>
+                        <h4>100% Genuine Guaranteed</h4>
+                        <p>Every batch verified with direct brand importer holograms and QR scratch codes.</p>
+                        <Link to="/shop" className="promo-cta">
+                          EXPLORE ALL 65 SUPPLEMENTS &rarr;
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </li>
 
-              {/* 2. WOMEN with Dropdown */}
-              <li className="nav-item">
-                <Link to="/category/womens" className="nav-link">
-                  WOMEN
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="6 9 12 15 18 9"/>
-                  </svg>
+              {/* BRANDS Mega Menu */}
+              <li 
+                className="nav-item has-mega"
+                onMouseEnter={() => setActiveDropdown('brands')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <Link to="/brands" className="nav-link">
+                  BRANDS <ChevronDown size={14} className="nav-chevron" />
                 </Link>
-                <div className="nav-dropdown">
-                  <Link to="/category/womens" className="dropdown-link">High-Rise Sculpt Leggings</Link>
-                  <Link to="/category/womens" className="dropdown-link">High-Impact Sports Bras</Link>
-                  <Link to="/category/hoodies" className="dropdown-link">Aesthetic Crop Zip-Ups</Link>
-                  <Link to="/category/womens" className="dropdown-link">Biker Shorts</Link>
-                  <Link to="/category/womens" className="dropdown-link" style={{ borderTop: '1px solid var(--border-gray)', fontWeight: 700, color: 'var(--primary-navy)' }}>
-                    View All Women's &rarr;
-                  </Link>
+
+                <div className={`nav-dropdown mega-menu brands-mega ${activeDropdown === 'brands' ? 'visible' : ''}`}>
+                  <div className="brands-mega-grid">
+                    {[
+                      { name: 'OLIVER Pro Nutrition', tag: 'Flagship In-House', img: '/assets/brands/oliver.svg', link: '/shop?brand=OLIVER+Pro+Nutrition' },
+                      { name: 'Optimum Nutrition', tag: 'Gold Standard', img: '/assets/brands/optimum-nutrition.svg', link: '/shop?brand=Optimum+Nutrition' },
+                      { name: 'MuscleTech', tag: 'Nitro-Tech Science', img: '/assets/brands/muscletech.svg', link: '/shop?brand=MuscleTech' },
+                      { name: 'Dymatize', tag: 'ISO-100 Leaders', img: '/assets/brands/dymatize.svg', link: '/shop?brand=Dymatize' },
+                      { name: 'Myprotein', tag: 'Impact Whey', img: '/assets/brands/myprotein.svg', link: '/shop?brand=Myprotein' },
+                      { name: 'Cellucor', tag: 'C4 Pre-Workout', img: '/assets/brands/cellucor.svg', link: '/shop?brand=Cellucor' },
+                      { name: 'MuscleBlaze', tag: 'Biozyme Series', img: '/assets/brands/muscleblaze.svg', link: '/shop?brand=MuscleBlaze' },
+                      { name: 'GNC', tag: 'Live Well Foundation', img: '/assets/brands/gnc.svg', link: '/shop?brand=GNC' }
+                    ].map((b) => (
+                      <Link key={b.name} to={b.link} className="brand-mega-card">
+                        <span className="brand-card-name">{b.name}</span>
+                        <span className="brand-card-tag">{b.tag}</span>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mega-bottom-bar">
+                    <Link to="/brands" className="view-all-brands-btn">
+                      View All Certified Partner Brands &rarr;
+                    </Link>
+                  </div>
                 </div>
               </li>
 
-              {/* 3. COMPRESSION */}
+              {/* DEALS */}
               <li className="nav-item">
-                <Link to="/category/compression" className="nav-link">COMPRESSION</Link>
-              </li>
-
-              {/* 4. NEW ARRIVALS */}
-              <li className="nav-item">
-                <Link to="/shop?sort=bestseller" className="nav-link">NEW ARRIVALS</Link>
-              </li>
-
-              {/* 5. SALE */}
-              <li className="nav-item">
-                <Link to="/shop?sort=price-low" className="nav-link" style={{ color: 'var(--accent-crimson)', fontWeight: 700 }}>
-                  SALE
-                  <span style={{ fontSize: '0.65rem', background: 'var(--accent-crimson)', color: '#fff', padding: '1px 6px', borderRadius: '2px', marginLeft: '4px' }}>
-                    50% OFF
-                  </span>
+                <Link to="/shop?sort=discount" className="nav-link deals-link">
+                  <Percent size={14} className="deals-icon" /> DEALS
+                  <span className="sale-pill">UP TO 35% OFF</span>
                 </Link>
               </li>
 
-              {/* 6. ACCESSORIES */}
+              {/* ABOUT */}
               <li className="nav-item">
-                <Link to="/category/accessories" className="nav-link">ACCESSORIES</Link>
+                <NavLink to="/about" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+                  ABOUT
+                </NavLink>
               </li>
             </ul>
 
-            {/* Action Icons: Search | Account | Wishlist | Cart */}
+            {/* Action Bar (Search, Nutrition Guide, Account, Wishlist, Cart) */}
             <div className="nav-actions">
-              {/* Search Button */}
+              {/* Search Trigger */}
               <button 
                 className="action-btn search-open-btn" 
-                aria-label="Search Drops" 
-                title="Search"
                 onClick={onOpenSearch}
+                aria-label="Search Supplements" 
+                title="Search Supplements"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="11" cy="11" r="8"/>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                </svg>
+                <Search size={20} />
               </button>
 
-              {/* Account Button */}
-              {isAuthenticated ? (
+              {/* Nutrition & Dosage Guide Trigger */}
+              {onOpenGuide && (
                 <button 
-                  className="action-btn account-btn" 
-                  aria-label="Customer Account" 
-                  title={`Logged in as ${user.name}`}
-                  onClick={() => {
-                    if (window.confirm(`Signed in as ${user.name}. Sign out?`)) logout();
-                  }}
+                  className="action-btn guide-open-btn" 
+                  onClick={onOpenGuide}
+                  aria-label="Dosage & Nutrition Calculator" 
+                  title="Protein Calculator & Guide"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                    <circle cx="12" cy="7" r="4"/>
-                  </svg>
-                  <span className="user-initial">{user.name.charAt(0)}</span>
+                  <BookOpen size={20} />
+                  <span className="guide-dot"></span>
                 </button>
-              ) : (
-                <Link to="/login" className="action-btn account-btn" aria-label="Customer Account" title="Sign In">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                    <circle cx="12" cy="7" r="4"/>
-                  </svg>
-                </Link>
               )}
 
-              {/* Wishlist Button */}
-              <Link to="/wishlist" className="action-btn" aria-label="Wishlist" title="Saved Wishlist">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                </svg>
+              {/* Account */}
+              <Link 
+                to={isAuthenticated ? "/account" : "/login"} 
+                className="action-btn user-btn" 
+                aria-label="User Account"
+                title={isAuthenticated ? `Logged in as ${user?.name || 'Athlete'}` : "Login to Oliver"}
+              >
+                <User size={20} />
+                {isAuthenticated && <span className="auth-indicator-dot"></span>}
+              </Link>
+
+              {/* Wishlist */}
+              <Link 
+                to="/wishlist" 
+                className="action-btn wishlist-btn" 
+                aria-label="Wishlist" 
+                title="Wishlist"
+              >
+                <Heart size={20} />
                 {wishlistCount > 0 && (
-                  <span className="action-badge wishlist-count-badge" style={{ display: 'inline-flex' }}>
-                    {wishlistCount}
-                  </span>
+                  <span className="action-badge wishlist-count">{wishlistCount}</span>
                 )}
               </Link>
 
-              {/* Cart Button with Volt Badge */}
+              {/* Cart Drawer Trigger */}
               <button 
                 className="action-btn cart-open-btn" 
-                aria-label="Open Cart" 
-                title="Shopping Bag"
                 onClick={openCart}
+                aria-label="Shopping Cart" 
+                title="Shopping Bag"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                  <line x1="3" y1="6" x2="21" y2="6"/>
-                  <path d="M16 10a4 4 0 0 1-8 0"/>
-                </svg>
+                <ShoppingBag size={20} />
                 {totalItemsCount > 0 && (
-                  <span className="action-badge cart-count-badge" style={{ display: 'inline-flex' }}>
-                    {totalItemsCount}
-                  </span>
+                  <span className="action-badge cart-count">{totalItemsCount}</span>
                 )}
-              </button>
-
-              {/* Mobile Hamburger Toggle */}
-              <button 
-                className="action-btn nav-toggle" 
-                id="mobile-nav-toggle" 
-                aria-label="Toggle Navigation"
-                onClick={() => setMobileMenuOpen(true)}
-              >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="3" y1="12" x2="21" y2="12"/>
-                  <line x1="3" y1="6" x2="21" y2="6"/>
-                  <line x1="3" y1="18" x2="21" y2="18"/>
-                </svg>
               </button>
             </div>
           </nav>
         </div>
       </header>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div 
-          className="drawer-backdrop" 
-          id="mobile-menu-backdrop" 
-          style={{ display: 'block', opacity: 1 }}
-          onClick={() => setMobileMenuOpen(false)}
-        />
-      )}
-
-      <aside 
-        className="cart-drawer" 
-        id="mobile-menu-drawer" 
-        style={{ 
-          right: 'auto', 
-          left: 0, 
-          transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
-          transition: 'transform 0.35s ease'
-        }}
-      >
-        <div className="drawer-header">
-          <img src="/icons/logo.svg" alt="REPVAULT" height="32" />
+      {/* Mobile Drawer Navigation */}
+      <div 
+        className={`mobile-nav-backdrop ${mobileMenuOpen ? 'active' : ''}`}
+        onClick={() => setMobileMenuOpen(false)}
+      />
+      <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-drawer-header">
+          <Link to="/" className="mobile-brand" onClick={() => setMobileMenuOpen(false)}>
+            <img src="/icons/logo.svg" alt="OLIVER Supplement Shop" height="36" />
+          </Link>
           <button 
-            className="drawer-close-btn" 
-            onClick={() => setMobileMenuOpen(false)} 
+            className="mobile-close-btn" 
+            onClick={() => setMobileMenuOpen(false)}
             aria-label="Close Menu"
           >
-            ✕
+            <X size={22} />
           </button>
         </div>
 
-        <div className="drawer-body" style={{ padding: '20px' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <Link to="/shop" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '1rem', fontWeight: 800, padding: '8px 0', borderBottom: '1px solid var(--border-gray)' }}>
-              ALL PRODUCTS &rarr;
+        <div className="mobile-drawer-body">
+          <div className="mobile-search-box" onClick={() => { setMobileMenuOpen(false); onOpenSearch(); }}>
+            <Search size={16} />
+            <span>Search 65+ supplements...</span>
+          </div>
+
+          <div className="mobile-links-list">
+            <Link to="/" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>
+              HOME
             </Link>
-            <Link to="/shop?gender=men" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '0.95rem', fontWeight: 700, padding: '6px 0' }}>
-              Men's Athletic Division
+            <Link to="/shop" className="mobile-link highlight-red" onClick={() => setMobileMenuOpen(false)}>
+              SHOP ALL SUPPLEMENTS
             </Link>
-            <Link to="/category/womens" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '0.95rem', fontWeight: 700, padding: '6px 0' }}>
-              Women's Activewear
-            </Link>
-            <Link to="/category/oversized" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '0.95rem', fontWeight: 700, padding: '6px 0' }}>
-              Oversized Tees (260 GSM)
-            </Link>
-            <Link to="/category/compression" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '0.95rem', fontWeight: 700, padding: '6px 0' }}>
-              Compression Tech Wear
-            </Link>
-            <Link to="/category/t-shirts" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '0.95rem', fontWeight: 700, padding: '6px 0' }}>
-              Gym T-Shirts & Polos
-            </Link>
-            <Link to="/category/shorts" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '0.95rem', fontWeight: 700, padding: '6px 0' }}>
-              Training Shorts
-            </Link>
-            <Link to="/category/joggers" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '0.95rem', fontWeight: 700, padding: '6px 0' }}>
-              Joggers & Cargo Tracks
-            </Link>
-            <Link to="/category/hoodies" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '0.95rem', fontWeight: 700, padding: '6px 0' }}>
-              Aesthetic Hoodies & Zip-Ups
-            </Link>
-            <Link to="/category/accessories" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '0.95rem', fontWeight: 700, padding: '6px 0' }}>
-              Tactical Backpacks & Gear
-            </Link>
-            <Link to="/shop?sort=price-low" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--accent-crimson)', padding: '6px 0' }}>
-              50% Off Flash Sale
-            </Link>
+
+            <div className="mobile-accordion-section">
+              <div className="mobile-section-title">TOP CATEGORIES</div>
+              <Link to="/category/whey-protein" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; Whey Protein Powders
+              </Link>
+              <Link to="/category/whey-isolate" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; Whey Protein Isolate (90%+)
+              </Link>
+              <Link to="/category/mass-gainers" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; Mass Gainers
+              </Link>
+              <Link to="/category/creatine" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; Creatine Monohydrate & Creapure
+              </Link>
+              <Link to="/category/pre-workout" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; High-Stim Pre-Workout
+              </Link>
+              <Link to="/category/amino-acids" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; BCAA & EAA Amino Acids
+              </Link>
+              <Link to="/category/vitamins-minerals" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; Daily Multivitamins & Minerals
+              </Link>
+              <Link to="/category/fish-oil-omega-3" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; Fish Oil & Omega-3
+              </Link>
+              <Link to="/category/protein-bars-snacks" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; Protein Bars & Snacks
+              </Link>
+            </div>
+
+            <div className="mobile-accordion-section">
+              <div className="mobile-section-title">CERTIFIED BRANDS</div>
+              <Link to="/brands" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; View All 10 Brands
+              </Link>
+              <Link to="/shop?brand=Optimum+Nutrition" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; Optimum Nutrition (ON)
+              </Link>
+              <Link to="/shop?brand=MuscleTech" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; MuscleTech
+              </Link>
+              <Link to="/shop?brand=Dymatize" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; Dymatize
+              </Link>
+              <Link to="/shop?brand=OLIVER+Pro+Nutrition" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; OLIVER Pro Nutrition
+              </Link>
+            </div>
+
+            <div className="mobile-accordion-section">
+              <div className="mobile-section-title">CUSTOMER HELP & TRACKING</div>
+              <Link to="/track-order" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; Track Live Shipment
+              </Link>
+              <Link to="/about" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; About OLIVER Shop
+              </Link>
+              <Link to="/contact" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; Contact Support (+91 98888 01234)
+              </Link>
+              <Link to="/faq" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>
+                &bull; Authenticity & FAQ
+              </Link>
+            </div>
           </div>
         </div>
-      </aside>
+
+        <div className="mobile-drawer-footer">
+          <Link 
+            to={isAuthenticated ? "/account" : "/login"} 
+            className="mobile-account-cta" 
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <User size={16} />
+            <span>{isAuthenticated ? 'My Athlete Account' : 'Login / Register'}</span>
+          </Link>
+        </div>
+      </div>
     </>
   );
 }

@@ -1,3870 +1,3422 @@
 /**
- * REPVAULT Product Catalog & Store State
- * 80 Original high-fashion athletic products across 10 categories
- * All with realistic INR pricing, stock tracking, and multi-angle galleries
+ * OLIVER SUPPLEMENT SHOP — AUTHORITATIVE PRODUCT CATALOG
+ * 100% Authentic Sports Nutrition, Whey Protein & Fitness Supplements
+ * Verified against asset archive with 65 genuine supplement products
  */
 
 export const CATEGORIES = [
   {
-    "id": "oversized",
-    "name": "Men's Oversized Tees",
-    "slug": "oversized",
-    "description": "Drop-shoulder heavyweight streetwear engineered for maximum silhouette drape and breathable gym comfort.",
-    "banner": "assets/categories/oversized/repvault-oversized-lookbook-black.jpg",
-    "itemCount": 8
+    "id": "whey-protein",
+    "name": "Whey Protein",
+    "slug": "whey-protein",
+    "description": "Fast-absorbing premium whey concentrate and isolate blends for peak muscle protein synthesis and recovery.",
+    "banner": "/assets/products/01_whey_protein_gold_standard.jpg",
+    "itemCount": 9
   },
   {
-    "id": "compression",
-    "name": "Compression Wear",
-    "slug": "compression",
-    "description": "Second-skin ergonomic compression panels delivering maximum vascular support and thermal regulation.",
-    "banner": "assets/categories/compression/repvault-compression-short-black.jpg",
-    "itemCount": 8
+    "id": "whey-isolate",
+    "name": "Whey Protein Isolate",
+    "slug": "whey-isolate",
+    "description": "Ultra-filtered 90%+ pure protein with minimal carbs, lactose, and fat for shredded lean muscle definition.",
+    "banner": "/assets/products/02_whey_isolate.jpg",
+    "itemCount": 4
   },
   {
-    "id": "t-shirts",
-    "name": "Gym T-Shirts & Polos",
-    "slug": "t-shirts",
-    "description": "Athletic tapered crewnecks and anti-curl performance pique polos for elite everyday training.",
-    "banner": "assets/categories/t-shirts/Category_Banners_TSHIRT__jpgd40f.jpg",
-    "itemCount": 8
+    "id": "mass-gainers",
+    "name": "Mass Gainers",
+    "slug": "mass-gainers",
+    "description": "Calorie-dense complex carbs and multi-stage proteins engineered for hardgainers building serious size.",
+    "banner": "/assets/products/06_mass_gainer.jpg",
+    "itemCount": 4
   },
   {
-    "id": "stringers",
-    "name": "Tanks & Stringers",
-    "slug": "stringers",
-    "description": "Deep cut Y-back and racerback stringers precision-cut to accentuate upper-body physique during workouts.",
-    "banner": "assets/categories/stringers/Category_Banners_STRINGERS__jpgd40f.jpg",
-    "itemCount": 8
+    "id": "creatine",
+    "name": "Creatine",
+    "slug": "creatine",
+    "description": "Pure micronized & Creapure creatine monohydrate to regenerate cellular ATP, power output, and muscle fullness.",
+    "banner": "/assets/products/11_creatine_monohydrate.jpg",
+    "itemCount": 5
   },
   {
-    "id": "shorts",
-    "name": "Training Shorts",
-    "slug": "shorts",
-    "description": "2-in-1 compression inner liner shorts with laser-cut ventilation and zippered phone pockets.",
-    "banner": "assets/categories/shorts/Category_Banners_SHORTS__jpg_4c2913df-c57c-4ef3-8d45-4290e386e79af553.jpg",
-    "itemCount": 8
+    "id": "pre-workout",
+    "name": "Pre-Workout",
+    "slug": "pre-workout",
+    "description": "High-octane formulas powered by Citrulline, Beta-Alanine, and caffeine for explosive energy, pumps, and focus.",
+    "banner": "/assets/products/14_c4_pre_workout.jpg",
+    "itemCount": 5
   },
   {
-    "id": "joggers",
-    "name": "Joggers & Track Pants",
-    "slug": "joggers",
-    "description": "Hybrid slim-taper joggers, raw-washed straight tracks, and utility carpenter pants.",
-    "banner": "assets/categories/joggers/Category_Banners_JOGGERS__jpgb5f9.jpg",
-    "itemCount": 8
+    "id": "amino-acids",
+    "name": "BCAA & EAA",
+    "slug": "amino-acids",
+    "description": "Fermented BCAAs, complete EAAs, L-Glutamine, and Citrulline Malate to combat fatigue and catabolism.",
+    "banner": "/assets/products/16_bcaa_amino_acids.jpg",
+    "itemCount": 11
   },
   {
-    "id": "training",
-    "name": "Performance & Ironclad",
-    "slug": "training",
-    "description": "High-durability gym wear built to resist barbell friction, heavy loads, and relentless sweat sessions.",
-    "banner": "assets/categories/training/Frame_275_jpg6974.jpg",
-    "itemCount": 8
+    "id": "vitamins-minerals",
+    "name": "Vitamins & Minerals",
+    "slug": "vitamins-minerals",
+    "description": "Bioactive multivitamins, joint mobility formulas, ZMA, D3+K2, and foundational micronutrient packs.",
+    "banner": "/assets/products/21_multivitamin.jpg",
+    "itemCount": 13
   },
   {
-    "id": "hoodies",
-    "name": "Hoodies & Jackets",
-    "slug": "hoodies",
-    "description": "French terry zip-up aesthetic hoodies, thermal fleece pullovers, and pump-cover warmup jackets.",
-    "banner": "assets/featured/zipup-main.jpg",
-    "itemCount": 8
+    "id": "fish-oil-omega-3",
+    "name": "Fish Oil & Omega-3",
+    "slug": "fish-oil-omega-3",
+    "description": "Triple strength molecularly distilled EPA and DHA fatty acids for heart, brain, joint, and cellular recovery.",
+    "banner": "/assets/products/23_omega_3_fish_oil.jpg",
+    "itemCount": 2
   },
   {
-    "id": "womens",
-    "name": "Women's Activewear",
-    "slug": "womens",
-    "description": "High-impact support sports bras, 4-way sculpting high-rise leggings, and breathable crop zip jackets.",
-    "banner": "assets/categories/womens/repvault-womens-banner-3bc0d.jpg",
-    "itemCount": 8
+    "id": "protein-bars-snacks",
+    "name": "Protein Bars & Snacks",
+    "slug": "protein-bars-snacks",
+    "description": "Convenient on-the-go athlete nutrition: high protein, low sugar bars and macro-friendly snacks.",
+    "banner": "/assets/products/63_protein_bar.jpg",
+    "itemCount": 1
   },
   {
-    "id": "accessories",
-    "name": "Gear & Accessories",
-    "slug": "accessories",
-    "description": "High-density Cordura gym backpacks, moisture-wicking snapback caps, and training duffels.",
-    "banner": "assets/categories/accessories/Statement-Backpack-_A_-Description__jpge39d.jpg",
-    "itemCount": 8
+    "id": "electrolytes",
+    "name": "Electrolytes & Hydration",
+    "slug": "electrolytes",
+    "description": "Cellular hydration salts and mineral replenishments for endurance, anti-cramping, and stamina.",
+    "banner": "/assets/products/20_citrulline_malate.jpg",
+    "itemCount": 0
+  },
+  {
+    "id": "health-wellness",
+    "name": "Health & Wellness",
+    "slug": "health-wellness",
+    "description": "Digestive enzymes, probiotics, detox complexes, and vitality boosters for total athlete health.",
+    "banner": "/assets/products/22_daily_wellness.jpg",
+    "itemCount": 0
+  },
+  {
+    "id": "plant-protein",
+    "name": "Plant Protein",
+    "slug": "plant-protein",
+    "description": "100% organic vegan pea, brown rice, and botanical protein blends with complete amino acid spectra.",
+    "banner": "/assets/products/29_plant_protein.jpg",
+    "itemCount": 2
+  },
+  {
+    "id": "healthy-foods",
+    "name": "Healthy Foods",
+    "slug": "healthy-foods",
+    "description": "Clean complex fuel: whole rolled oats, 100% natural peanut butter, raw almonds, chia, flax, and protein muesli.",
+    "banner": "/assets/products/58_peanut_butter.jpg",
+    "itemCount": 6
+  },
+  {
+    "id": "fitness-accessories",
+    "name": "Fitness Accessories",
+    "slug": "fitness-accessories",
+    "description": "Leakproof shakers, 45L tactical gym duffels, and essential workout equipment built for iron warriors.",
+    "banner": "/assets/products/30_power_house_shaker.jpg",
+    "itemCount": 3
   }
+];
+
+export const BRANDS = [
+  "OLIVER Pro Nutrition",
+  "Optimum Nutrition",
+  "MuscleTech",
+  "Dymatize",
+  "Myprotein",
+  "Cellucor",
+  "MuscleBlaze",
+  "GNC",
+  "Universal Nutrition",
+  "Rule 1"
 ];
 
 export const PRODUCTS = [
   {
-    "id": "rv-ov-01",
-    "name": "Vault 260 GSM Heavyweight Oversized Tee — Onyx Black",
-    "category": "oversized",
-    "categoryName": "Men's Oversized Tees",
-    "gender": "men",
-    "price": 1399,
-    "originalPrice": 2299,
-    "badge": "BESTSELLER",
+    "id": "p01",
+    "name": "Gold Standard 100% Whey Protein",
+    "brand": "Optimum Nutrition",
+    "category": "Whey Protein",
+    "categorySlug": "whey-protein",
+    "image": "/assets/products/01_whey_protein_gold_standard.jpg",
+    "gallery": [
+      "/assets/products/01_whey_protein_gold_standard.jpg",
+      "/assets/products/01_whey_protein_gold_standard.jpg"
+    ],
+    "price": 3299,
+    "mrp": 4299,
+    "discount": 23,
     "rating": 4.9,
-    "reviewCount": 388,
-    "primaryImage": "assets/categories/oversized/repvault-oversized-tee-black.jpg",
-    "hoverImage": "assets/categories/oversized/repvault-oversized-lookbook-black.jpg",
-    "gallery": [
-      "assets/categories/oversized/repvault-oversized-tee-black.jpg",
-      "assets/categories/oversized/repvault-oversized-lookbook-black.jpg",
-      "assets/categories/oversized/repvault-oversized-tee-detail.jpg",
-      "assets/categories/oversized/oversized-back-1.jpg"
+    "reviews": 1840,
+    "size": "2 kg (4.4 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)",
+      "4 kg (8.8 lbs)"
     ],
-    "colors": [
-      {
-        "name": "Onyx Black",
-        "hex": "#111111"
-      },
-      {
-        "name": "Charcoal Grey",
-        "hex": "#2f3136"
-      },
-      {
-        "name": "Off White",
-        "hex": "#f0ede6"
-      }
+    "flavor": "Double Rich Chocolate",
+    "flavors": [
+      "Double Rich Chocolate",
+      "Gourmet Vanilla",
+      "Cafe Mocha",
+      "Cookies & Cream"
     ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 22,
-    "description": "Crafted from custom 260 GSM combed compact cotton for a structured boxy silhouette that never clings. Features double-needle neck ribbing and a drop-shoulder cut engineered specifically for athletic physiques.",
-    "fabric": "100% Combed Compact Cotton (260 GSM)",
+    "badge": "Bestseller",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "The world's benchmark for whey protein. Delivers 24g of high-grade whey protein isolate and concentrate with 5.5g of naturally occurring BCAAs per serving.",
     "features": [
-      "Structured Boxy Cut",
-      "Pre-Shrunk Bio-Washed",
-      "Dense 2x2 Rib Collar",
-      "Signature Hem Vault Tag"
+      "24g Whey Protein Blend",
+      "5.5g Naturally Occurring BCAAs",
+      "4g Glutamine & Glutamic Acid",
+      "Banned Substance Tested"
     ],
-    "tags": [
-      "oversized",
-      "tee",
-      "heavyweight",
-      "streetwear",
-      "black"
-    ]
+    "nutritionFacts": {
+      "protein": "25g",
+      "bcaa": "5.5g",
+      "glutamine": "4.2g",
+      "carbs": "2.8g",
+      "fat": "1.4g",
+      "calories": "125 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
   },
   {
-    "id": "rv-ov-02",
-    "name": "Repvault Heritage Acid Washed Oversized Tee — Charcoal",
-    "category": "oversized",
-    "categoryName": "Men's Oversized Tees",
-    "gender": "men",
-    "price": 1499,
-    "originalPrice": 2499,
-    "badge": "NEW DROP",
-    "rating": 4.8,
-    "reviewCount": 164,
-    "primaryImage": "assets/categories/oversized/repvault_oversized_short_sleeve_tee_black_1794114485298.jpg",
-    "hoverImage": "assets/categories/oversized/repvault_oversized_tee_black_lookbook_1794114508050.jpg",
+    "id": "p02",
+    "name": "Pure Whey Protein Isolate 90%",
+    "brand": "MuscleBlaze",
+    "category": "Whey Isolate",
+    "categorySlug": "whey-isolate",
+    "image": "/assets/products/02_whey_isolate.jpg",
     "gallery": [
-      "assets/categories/oversized/repvault_oversized_short_sleeve_tee_black_1794114485298.jpg",
-      "assets/categories/oversized/repvault_oversized_tee_black_lookbook_1794114508050.jpg",
-      "assets/categories/oversized/oversized-back-2.jpg",
-      "assets/categories/oversized/repvault-oversized-tee-detail.jpg"
+      "/assets/products/02_whey_isolate.jpg",
+      "/assets/products/02_whey_isolate.jpg"
     ],
-    "colors": [
-      {
-        "name": "Charcoal Mineral",
-        "hex": "#2b2b2e"
-      },
-      {
-        "name": "Vintage Olive",
-        "hex": "#4b5320"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 17,
-    "description": "Individually garment-dyed and mineral acid washed for an authentic lived-in patina. Premium heavy French terry jersey with zero shrinkage.",
-    "fabric": "100% Vintage Washed Cotton (240 GSM)",
-    "features": [
-      "Individually Mineral Washed",
-      "Drop Shoulder Aesthetic",
-      "Zero Shrinkage Guaranteed",
-      "Relaxed Fit"
-    ],
-    "tags": [
-      "oversized",
-      "acid wash",
-      "charcoal",
-      "gym tee"
-    ]
-  },
-  {
-    "id": "rv-ov-03",
-    "name": "Vault OG Minimalist Oversized Tee — Olive Green",
-    "category": "oversized",
-    "categoryName": "Men's Oversized Tees",
-    "gender": "men",
-    "price": 1299,
-    "originalPrice": 1999,
-    "badge": "POPULAR",
-    "rating": 4.7,
-    "reviewCount": 215,
-    "primaryImage": "assets/categories/oversized/Product-Banner-05-08-26-_OG-Oversized-T-Shirt-Olive__jpg287f.jpg",
-    "hoverImage": "assets/categories/oversized/Product-Banner-05-08-26-_OG-Oversized-T-Shirt-Olive__jpg63e8.jpg",
-    "gallery": [
-      "assets/categories/oversized/Product-Banner-05-08-26-_OG-Oversized-T-Shirt-Olive__jpg287f.jpg",
-      "assets/categories/oversized/Product-Banner-05-08-26-_OG-Oversized-T-Shirt-Olive__jpg63e8.jpg",
-      "assets/categories/oversized/oversized-back-3.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Military Olive",
-        "hex": "#485338"
-      },
-      {
-        "name": "Matte Black",
-        "hex": "#161618"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 29,
-    "description": "Minimalist chest typography and subtle high-density rubberized vault crest at the nape. Relaxed silhouette cut with widened arm openings.",
-    "fabric": "95% Cotton, 5% Elastane",
-    "features": [
-      "Soft Peachskin Finish",
-      "Subtle High-Density Logo",
-      "Extra Wide Arm Sleeves",
-      "Reinforced Seams"
-    ],
-    "tags": [
-      "oversized",
-      "olive",
-      "minimalist"
-    ]
-  },
-  {
-    "id": "rv-ov-04",
-    "name": "Vault Division Back-Print Oversized Graphic Tee — Bone White",
-    "category": "oversized",
-    "categoryName": "Men's Oversized Tees",
-    "gender": "men",
-    "price": 1399,
-    "originalPrice": 2199,
-    "badge": "LIMITED",
+    "price": 3899,
+    "mrp": 4999,
+    "discount": 22,
     "rating": 4.9,
-    "reviewCount": 92,
-    "primaryImage": "assets/categories/oversized/oversized-back-1.jpg",
-    "hoverImage": "assets/categories/oversized/oversized-back-4.jpg",
-    "gallery": [
-      "assets/categories/oversized/oversized-back-1.jpg",
-      "assets/categories/oversized/oversized-back-4.jpg",
-      "assets/categories/oversized/repvault-oversized-tee-black.jpg"
+    "reviews": 940,
+    "size": "2 kg (4.4 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)",
+      "2.3 kg (5 lbs)"
     ],
-    "colors": [
-      {
-        "name": "Bone White",
-        "hex": "#f3ede3"
-      },
-      {
-        "name": "Washed Black",
-        "hex": "#222224"
-      }
+    "flavor": "Gourmet Vanilla",
+    "flavors": [
+      "Fudge Brownie",
+      "Vanilla Cream",
+      "Strawberry Blast",
+      "Salted Caramel"
     ],
-    "sizes": [
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 8,
-    "description": "Large technical blueprint graphic across the shoulder blades celebrating Repvault's engineering heritage. Screen-printed with breathable discharge inks.",
-    "fabric": "100% Organic Carded Cotton (250 GSM)",
+    "badge": "Top Rated",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Cross-flow micro-filtered whey protein isolate delivering 27g of ultra-pure protein with virtually zero carbs, lactose, and fat for lean muscle definition.",
     "features": [
-      "Breathable Discharge Screen Print",
-      "Relaxed Boxy Fit",
-      "Silicone Softener Wash"
+      "27g Ultra-Pure Whey Isolate",
+      "Less than 1g Fat & Sugar",
+      "Instantized for Rapid Absorption",
+      "100% Clean Label"
     ],
-    "tags": [
-      "oversized",
-      "graphic tee",
-      "white",
-      "limited"
-    ]
+    "nutritionFacts": {
+      "protein": "27g",
+      "bcaa": "6.2g",
+      "glutamine": "4.8g",
+      "carbs": "0.8g",
+      "fat": "0.4g",
+      "calories": "110 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
   },
   {
-    "id": "rv-ov-05",
-    "name": "Vault Raw Cut Drop-Shoulder Oversized Tee — Stealth Black",
-    "category": "oversized",
-    "categoryName": "Men's Oversized Tees",
-    "gender": "men",
-    "price": 1249,
-    "originalPrice": 1899,
-    "badge": "TRENDING",
-    "rating": 4.8,
-    "reviewCount": 141,
-    "primaryImage": "assets/categories/oversized/repvault_oversized_tee_black_1794114464693.jpg",
-    "hoverImage": "assets/categories/oversized/repvault_oversized_tee_black_lookbook.jpg",
+    "id": "p03",
+    "name": "ISO-100 Hydrolyzed Whey Isolate",
+    "brand": "Dymatize",
+    "category": "Whey Isolate",
+    "categorySlug": "whey-isolate",
+    "image": "/assets/products/03_iso100_hydrolyzed_protein.jpg",
     "gallery": [
-      "assets/categories/oversized/repvault_oversized_tee_black_1794114464693.jpg",
-      "assets/categories/oversized/repvault_oversized_tee_black_lookbook.jpg",
-      "assets/categories/oversized/oversized-back-2.jpg"
+      "/assets/products/03_iso100_hydrolyzed_protein.jpg",
+      "/assets/products/03_iso100_hydrolyzed_protein.jpg"
     ],
-    "colors": [
-      {
-        "name": "Stealth Black",
-        "hex": "#0f0f11"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 19,
-    "description": "Engineered with subtle drop sleeves and laser-bonded hems for a contemporary raw aesthetic. Ultra-comfortable for upper-body lifting days.",
-    "fabric": "96% Combed Cotton, 4% Lycra",
-    "features": [
-      "Laser Cut Seams",
-      "Drop Shoulder",
-      "Anti-Pilling Coating"
-    ],
-    "tags": [
-      "oversized",
-      "stealth",
-      "black"
-    ]
-  },
-  {
-    "id": "rv-ov-06",
-    "name": "Vault Monochrome Technical Heavy Tee — Fog Grey",
-    "category": "oversized",
-    "categoryName": "Men's Oversized Tees",
-    "gender": "men",
-    "price": 1349,
-    "originalPrice": 2099,
-    "badge": "NEW",
-    "rating": 4.7,
-    "reviewCount": 78,
-    "primaryImage": "assets/categories/oversized/repvault-oversized-lookbook-black.jpg",
-    "hoverImage": "assets/categories/oversized/repvault-oversized-tee-detail.jpg",
-    "gallery": [
-      "assets/categories/oversized/repvault-oversized-lookbook-black.jpg",
-      "assets/categories/oversized/repvault-oversized-tee-detail.jpg",
-      "assets/categories/oversized/oversized-back-3.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Fog Grey",
-        "hex": "#7a7d84"
-      },
-      {
-        "name": "Onyx Black",
-        "hex": "#121214"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 14,
-    "description": "Neutral grey palette inspired by brutalist architecture. Constructed for breathability and shape retention even after 50+ wash cycles.",
-    "fabric": "100% Premium Compact Cotton (240 GSM)",
-    "features": [
-      "Colorfast Reactive Dyes",
-      "Boxy Fit",
-      "Subtle Shoulder Darting"
-    ],
-    "tags": [
-      "oversized",
-      "fog grey",
-      "minimal"
-    ]
-  },
-  {
-    "id": "rv-ov-07",
-    "name": "Vault Circuit Oversized Pump Cover — Midnight Navy",
-    "category": "oversized",
-    "categoryName": "Men's Oversized Tees",
-    "gender": "men",
-    "price": 1449,
-    "originalPrice": 2399,
-    "badge": "SALE 40% OFF",
-    "rating": 4.8,
-    "reviewCount": 190,
-    "primaryImage": "assets/categories/oversized/oversized-back-3.jpg",
-    "hoverImage": "assets/categories/oversized/oversized-back-1.jpg",
-    "gallery": [
-      "assets/categories/oversized/oversized-back-3.jpg",
-      "assets/categories/oversized/oversized-back-1.jpg",
-      "assets/categories/oversized/repvault-oversized-tee-black.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Midnight Navy",
-        "hex": "#0c1829"
-      },
-      {
-        "name": "Charcoal",
-        "hex": "#22252a"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 12,
-    "description": "The quintessential pump cover. Ample room across chest and lats to keep muscles warm before working sets, drape-tested for ideal proportion.",
-    "fabric": "100% Heavy Jersey Cotton (260 GSM)",
-    "features": [
-      "True Heavyweight Feel",
-      "Reinforced Taped Collar",
-      "Side Split Hem"
-    ],
-    "tags": [
-      "pump cover",
-      "oversized",
-      "navy"
-    ]
-  },
-  {
-    "id": "rv-ov-08",
-    "name": "Repvault Essential Boxy Tee — Sandstone",
-    "category": "oversized",
-    "categoryName": "Men's Oversized Tees",
-    "gender": "men",
-    "price": 1199,
-    "originalPrice": 1899,
-    "badge": "BESTSELLER",
+    "price": 4499,
+    "mrp": 5699,
+    "discount": 21,
     "rating": 4.9,
-    "reviewCount": 312,
-    "primaryImage": "assets/categories/oversized/oversized-back-4.jpg",
-    "hoverImage": "assets/categories/oversized/repvault-oversized-tee-detail.jpg",
-    "gallery": [
-      "assets/categories/oversized/oversized-back-4.jpg",
-      "assets/categories/oversized/repvault-oversized-tee-detail.jpg",
-      "assets/categories/oversized/repvault-oversized-tee-black.jpg"
+    "reviews": 1250,
+    "size": "2.3 kg (5 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)",
+      "2.3 kg (5 lbs)"
     ],
-    "colors": [
-      {
-        "name": "Sandstone",
-        "hex": "#d8cbb8"
-      },
-      {
-        "name": "Pure Black",
-        "hex": "#000000"
-      }
+    "flavor": "Fudge Brownie",
+    "flavors": [
+      "Fudge Brownie",
+      "Vanilla Cream",
+      "Strawberry Blast",
+      "Salted Caramel"
     ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 25,
-    "description": "Versatile neutral tone with ultra-clean finishes. Pairs seamlessly with Repvault slim cargo joggers or 2-in-1 laser shorts.",
-    "fabric": "100% Cotton French Terry",
+    "badge": "Award Winner",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Scientifically formulated hydrolyzed 100% whey protein isolate for ultra-fast digestion and muscle replenishment after demanding training sessions.",
     "features": [
-      "Breathable Weave",
-      "Drop Armhole",
-      "Tonal Branding"
+      "25g Hydrolyzed 100% Whey Isolate",
+      "5.5g BCAAs with 2.6g Leucine",
+      "Zero Sugar & Fat",
+      "Superfast Digestion"
     ],
-    "tags": [
-      "sandstone",
-      "oversized",
-      "essential"
-    ]
+    "nutritionFacts": {
+      "protein": "27g",
+      "bcaa": "6.2g",
+      "glutamine": "4.8g",
+      "carbs": "0.8g",
+      "fat": "0.4g",
+      "calories": "110 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
   },
   {
-    "id": "rv-cp-01",
-    "name": "Vault Pro Compression Short Sleeve — Stealth Black",
-    "category": "compression",
-    "categoryName": "Compression Wear",
-    "gender": "men",
-    "price": 1199,
-    "originalPrice": 1999,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 412,
-    "primaryImage": "assets/categories/compression/repvault-compression-short-black.jpg",
-    "hoverImage": "assets/categories/compression/repvault-compression-tshirt-black-10334a.png",
+    "id": "p04",
+    "name": "Impact Whey Protein Pouch",
+    "brand": "Myprotein",
+    "category": "Whey Protein",
+    "categorySlug": "whey-protein",
+    "image": "/assets/products/04_impact_whey_protein.jpg",
     "gallery": [
-      "assets/categories/compression/repvault-compression-short-black.jpg",
-      "assets/categories/compression/repvault-compression-tshirt-black-10334a.png",
-      "assets/categories/compression/repvault-compression-tshirt-black-10403c.png"
+      "/assets/products/04_impact_whey_protein.jpg",
+      "/assets/products/04_impact_whey_protein.jpg"
     ],
-    "colors": [
-      {
-        "name": "Stealth Black",
-        "hex": "#111113"
-      },
-      {
-        "name": "Optic White",
-        "hex": "#fcfcfc"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 34,
-    "description": "Targeted graduated compression to increase venous return and reduce muscle oscillation during explosive movements. Flatlock seams eliminate chafing.",
-    "fabric": "84% Nylon, 16% Spandex (220 GSM)",
-    "features": [
-      "Graduated Compression",
-      "Sweat-Wicking Anti-Odor",
-      "Chafe-Free Flatlock Seams",
-      "UV 50+ Protection"
-    ],
-    "tags": [
-      "compression",
-      "short sleeve",
-      "black",
-      "rashguard"
-    ]
-  },
-  {
-    "id": "rv-cp-02",
-    "name": "Vault Aero Compression Long Sleeve Rashguard — Charcoal",
-    "category": "compression",
-    "categoryName": "Compression Wear",
-    "gender": "men",
-    "price": 1499,
-    "originalPrice": 2499,
-    "badge": "TOP RATED",
-    "rating": 5,
-    "reviewCount": 279,
-    "primaryImage": "assets/categories/compression/repvault-compression-long-black.jpg",
-    "hoverImage": "assets/categories/oversized/repvault_compression_long_sleeve_charcoal_1794114634190.jpg",
-    "gallery": [
-      "assets/categories/compression/repvault-compression-long-black.jpg",
-      "assets/categories/oversized/repvault_compression_long_sleeve_charcoal_1794114634190.jpg",
-      "assets/categories/compression/repvault-compression-fullsleeve-black-10af77.png"
-    ],
-    "colors": [
-      {
-        "name": "Charcoal Grey",
-        "hex": "#2e3036"
-      },
-      {
-        "name": "Midnight Black",
-        "hex": "#0c0d0e"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 18,
-    "description": "High-density thermal compression engineered for weightlifting and combat training. Ergonomic arm panels provide full rotational freedom.",
-    "fabric": "82% Polyamide, 18% Elastane",
-    "features": [
-      "4-Way Omnistretch",
-      "Raglan Sleeve Construction",
-      "Sublimated Durable Logo"
-    ],
-    "tags": [
-      "long sleeve",
-      "compression",
-      "charcoal",
-      "gym"
-    ]
-  },
-  {
-    "id": "rv-cp-03",
-    "name": "Vault Pro Compression Full-Sleeve — Optic White",
-    "category": "compression",
-    "categoryName": "Compression Wear",
-    "gender": "men",
-    "price": 1499,
-    "originalPrice": 2399,
-    "badge": "POPULAR",
-    "rating": 4.8,
-    "reviewCount": 154,
-    "primaryImage": "assets/categories/compression/repvault-compression-fullsleeve-white-1045a0.png",
-    "hoverImage": "assets/categories/compression/repvault-compression-tshirt-white-100af8.png",
-    "gallery": [
-      "assets/categories/compression/repvault-compression-fullsleeve-white-1045a0.png",
-      "assets/categories/compression/repvault-compression-tshirt-white-100af8.png",
-      "assets/categories/compression/repvault-compression-short-black.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Optic White",
-        "hex": "#ffffff"
-      },
-      {
-        "name": "Stealth Black",
-        "hex": "#121212"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 15,
-    "description": "Crisp white performance compression designed with moisture-channeling microstructure. Reflective logo detailing at forearm and upper spine.",
-    "fabric": "85% Technical Polyester, 15% Spandex",
-    "features": [
-      "Quick-Dry Mesh Zones",
-      "Reflective Spine Accents",
-      "Compression Grip Waist"
-    ],
-    "tags": [
-      "white",
-      "compression",
-      "full sleeve"
-    ]
-  },
-  {
-    "id": "rv-cp-04",
-    "name": "Repvault Muscle-Fit Baselayer Top — Onyx",
-    "category": "compression",
-    "categoryName": "Compression Wear",
-    "gender": "men",
-    "price": 1099,
-    "originalPrice": 1799,
-    "badge": "SALE 35% OFF",
-    "rating": 4.7,
-    "reviewCount": 201,
-    "primaryImage": "assets/categories/oversized/repvault_compression_short_sleeve_black_1794114621617.jpg",
-    "hoverImage": "assets/categories/compression/repvault-compression-tshirt-black-10403c.png",
-    "gallery": [
-      "assets/categories/oversized/repvault_compression_short_sleeve_black_1794114621617.jpg",
-      "assets/categories/compression/repvault-compression-tshirt-black-10403c.png",
-      "assets/categories/compression/repvault-compression-short-black.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Onyx Black",
-        "hex": "#151517"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 27,
-    "description": "Form-fitting baselayer that keeps your core temperature primed. Designed with targeted rib compression around the obliques.",
-    "fabric": "88% Nylon Microfiber, 12% Spandex",
-    "features": [
-      "Core Stabilization",
-      "Second-Skin Feel",
-      "Underarm Laser Vents"
-    ],
-    "tags": [
-      "baselayer",
-      "compression",
-      "muscle fit"
-    ]
-  },
-  {
-    "id": "rv-cp-05",
-    "name": "Vault Hybrid Armored Compression LS — Black/Carbon",
-    "category": "compression",
-    "categoryName": "Compression Wear",
-    "gender": "men",
-    "price": 1599,
-    "originalPrice": 2699,
-    "badge": "LIMITED",
-    "rating": 4.9,
-    "reviewCount": 88,
-    "primaryImage": "assets/categories/compression/repvault-compression-fullsleeve-black-10af77.png",
-    "hoverImage": "assets/categories/compression/repvault-compression-long-black.jpg",
-    "gallery": [
-      "assets/categories/compression/repvault-compression-fullsleeve-black-10af77.png",
-      "assets/categories/compression/repvault-compression-long-black.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Carbon Black",
-        "hex": "#1e1e20"
-      }
-    ],
-    "sizes": [
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 9,
-    "description": "Reinforced elbow and forearm panels protect against turf burns, knurling abrasions, and mat contact.",
-    "fabric": "80% Micro-Nylon, 20% Elastane",
-    "features": [
-      "Abrasion-Resistant Forearm Panels",
-      "High Compression Index",
-      "Anti-Bacterial Silver Finish"
-    ],
-    "tags": [
-      "armored",
-      "compression",
-      "heavy duty"
-    ]
-  },
-  {
-    "id": "rv-cp-06",
-    "name": "Vault Active T-Compression Shirt — Arctic White",
-    "category": "compression",
-    "categoryName": "Compression Wear",
-    "gender": "men",
-    "price": 1149,
-    "originalPrice": 1899,
-    "badge": "NEW",
-    "rating": 4.8,
-    "reviewCount": 65,
-    "primaryImage": "assets/categories/compression/repvault-compression-tshirt-white-100af8.png",
-    "hoverImage": "assets/categories/compression/repvault-compression-fullsleeve-white-1045a0.png",
-    "gallery": [
-      "assets/categories/compression/repvault-compression-tshirt-white-100af8.png",
-      "assets/categories/compression/repvault-compression-fullsleeve-white-1045a0.png"
-    ],
-    "colors": [
-      {
-        "name": "Arctic White",
-        "hex": "#f8f9fa"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 21,
-    "description": "Lightweight short-sleeve compression optimized for warm training conditions and cardio conditioning.",
-    "fabric": "86% Poly-Spandex Blend",
-    "features": [
-      "Cooling Tech Yarn",
-      "Reinforced Collar",
-      "Full Elastic Recovery"
-    ],
-    "tags": [
-      "white compression",
-      "active",
-      "cardio"
-    ]
-  },
-  {
-    "id": "rv-cp-07",
-    "name": "Vault Kinetic Shadow Compression Tee — Dark Heather",
-    "category": "compression",
-    "categoryName": "Compression Wear",
-    "gender": "men",
-    "price": 1249,
-    "originalPrice": 1999,
-    "badge": "POPULAR",
-    "rating": 4.8,
-    "reviewCount": 130,
-    "primaryImage": "assets/categories/compression/repvault-compression-tshirt-black-10403c.png",
-    "hoverImage": "assets/categories/compression/repvault-compression-short-black.jpg",
-    "gallery": [
-      "assets/categories/compression/repvault-compression-tshirt-black-10403c.png",
-      "assets/categories/compression/repvault-compression-short-black.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Dark Heather",
-        "hex": "#32363e"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 16,
-    "description": "Ergonomic seams follow muscle contours from chest through deltoids, highlighting athletic development.",
-    "fabric": "85% Polyamide, 15% Elastane",
-    "features": [
-      "Anatomical Seam Mapping",
-      "Sweat Repellent",
-      "High Durability"
-    ],
-    "tags": [
-      "kinetic",
-      "compression",
-      "heather"
-    ]
-  },
-  {
-    "id": "rv-cp-08",
-    "name": "Vault Velocity Compression Top — Matte Black",
-    "category": "compression",
-    "categoryName": "Compression Wear",
-    "gender": "men",
-    "price": 1299,
-    "originalPrice": 2099,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 182,
-    "primaryImage": "assets/categories/compression/repvault-compression-tshirt-black-10334a.png",
-    "hoverImage": "assets/categories/compression/repvault-compression-short-black.jpg",
-    "gallery": [
-      "assets/categories/compression/repvault-compression-tshirt-black-10334a.png",
-      "assets/categories/compression/repvault-compression-short-black.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Matte Black",
-        "hex": "#17181c"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 30,
-    "description": "Ultra-sleek profile featuring silicone hem gripper tape that stops the shirt from riding up during squats or sprints.",
-    "fabric": "83% Nylon, 17% Spandex",
-    "features": [
-      "Anti-Ride Silicone Waistband",
-      "UPF 50+ Sun Protection",
-      "Quick Dry"
-    ],
-    "tags": [
-      "velocity",
-      "black",
-      "compression"
-    ]
-  },
-  {
-    "id": "rv-ts-01",
-    "name": "Vault Pro Athletic Polo — Stealth Black",
-    "category": "t-shirts",
-    "categoryName": "Gym T-Shirts & Polos",
-    "gender": "men",
-    "price": 1499,
-    "originalPrice": 2299,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 342,
-    "primaryImage": "assets/categories/t-shirts/repvault-polo-tshirt-black-1bf0a.jpg",
-    "hoverImage": "assets/categories/t-shirts/repvault-polo-tshirt-black-2bf0a.jpg",
-    "gallery": [
-      "assets/categories/t-shirts/repvault-polo-tshirt-black-1bf0a.jpg",
-      "assets/categories/t-shirts/repvault-polo-tshirt-black-2bf0a.jpg",
-      "assets/categories/t-shirts/repvault-polo-tshirt-black-6bf0a.jpg",
-      "assets/categories/t-shirts/repvault-polo-key-highlights-54e6b.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Stealth Black",
-        "hex": "#141416"
-      },
-      {
-        "name": "Navy Blue",
-        "hex": "#0c1b33"
-      },
-      {
-        "name": "Chalk White",
-        "hex": "#f5f5f7"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 26,
-    "description": "Engineered for athletes transitioning from high-intensity training to smart lifestyle wear. Crafted with high-stretch pique fabric featuring anti-odor silver ion technology and a reinforced collar that never curls.",
-    "fabric": "92% Performance Cotton, 8% Spandex (240 GSM)",
-    "features": [
-      "Anti-Curl Reinforced Collar",
-      "Moisture-Wicking Fast Dry",
-      "Athletic Tapered Fit",
-      "4-Way Mechanical Stretch"
-    ],
-    "tags": [
-      "polo",
-      "collared",
-      "black",
-      "smart gym"
-    ]
-  },
-  {
-    "id": "rv-ts-02",
-    "name": "Vault Classic Crewneck Gym T-Shirt — Jet Black",
-    "category": "t-shirts",
-    "categoryName": "Gym T-Shirts & Polos",
-    "gender": "men",
-    "price": 999,
-    "originalPrice": 1599,
-    "badge": "POPULAR",
-    "rating": 4.8,
-    "reviewCount": 521,
-    "primaryImage": "assets/categories/t-shirts/repvault-polo-tshirt-black-2bf0a.jpg",
-    "hoverImage": "assets/categories/t-shirts/repvault-polo-tshirt-black-6bf0a.jpg",
-    "gallery": [
-      "assets/categories/t-shirts/repvault-polo-tshirt-black-2bf0a.jpg",
-      "assets/categories/t-shirts/repvault-polo-tshirt-black-6bf0a.jpg",
-      "assets/categories/t-shirts/repvault-polo-key-highlights-54e6b.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Jet Black",
-        "hex": "#121214"
-      },
-      {
-        "name": "Charcoal",
-        "hex": "#32343a"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 40,
-    "description": "The gold standard everyday training tee. Features a fitted chest and biceps with a relaxed taper through the waist.",
-    "fabric": "95% Combed Cotton, 5% Elastane (210 GSM)",
-    "features": [
-      "Tapered Athletic Cut",
-      "Pre-Shrunk Enzyme Wash",
-      "No-Roll Rib Collar"
-    ],
-    "tags": [
-      "crewneck",
-      "essential",
-      "t-shirt",
-      "black"
-    ]
-  },
-  {
-    "id": "rv-ts-03",
-    "name": "Vault Aero Vent Performance Tee — Carbon Grey",
-    "category": "t-shirts",
-    "categoryName": "Gym T-Shirts & Polos",
-    "gender": "men",
-    "price": 1199,
-    "originalPrice": 1899,
-    "badge": "NEW DROP",
-    "rating": 4.8,
-    "reviewCount": 94,
-    "primaryImage": "assets/categories/t-shirts/repvault-polo-tshirt-black-6bf0a.jpg",
-    "hoverImage": "assets/categories/t-shirts/repvault-polo-key-highlights-54e6b.jpg",
-    "gallery": [
-      "assets/categories/t-shirts/repvault-polo-tshirt-black-6bf0a.jpg",
-      "assets/categories/t-shirts/repvault-polo-key-highlights-54e6b.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Carbon Grey",
-        "hex": "#2a2c31"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 19,
-    "description": "Micro-perforated back panel vents excess heat during intense intervals. Ultra-lightweight dry-touch fabric that never sticks.",
-    "fabric": "90% Recycled Poly, 10% Elastane",
-    "features": [
-      "Micro-Perforated Back",
-      "Reflective Logo Accents",
-      "Anti-Chafe Seams"
-    ],
-    "tags": [
-      "aero",
-      "performance",
-      "grey"
-    ]
-  },
-  {
-    "id": "rv-ts-04",
-    "name": "Vault Luxe Supima Cotton Tee — Deep Navy",
-    "category": "t-shirts",
-    "categoryName": "Gym T-Shirts & Polos",
-    "gender": "men",
-    "price": 1299,
-    "originalPrice": 2099,
-    "badge": "PREMIUM",
-    "rating": 4.9,
-    "reviewCount": 147,
-    "primaryImage": "assets/categories/mens/MH0108518aef.jpg",
-    "hoverImage": "assets/categories/mens/1407b.jpg",
-    "gallery": [
-      "assets/categories/mens/MH0108518aef.jpg",
-      "assets/categories/mens/1407b.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Deep Navy",
-        "hex": "#0e1a2b"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 13,
-    "description": "Crafted from long-staple Supima cotton for unmatched softness and long-lasting color saturation.",
-    "fabric": "100% Supima Cotton (200 GSM)",
-    "features": [
-      "Extra-Long Staple Fibers",
-      "Silky Hand Feel",
-      "Tailored Cut"
-    ],
-    "tags": [
-      "supima",
-      "navy",
-      "luxury"
-    ]
-  },
-  {
-    "id": "rv-ts-05",
-    "name": "Vault Tactical Raglan Training Tee — Olive/Black",
-    "category": "t-shirts",
-    "categoryName": "Gym T-Shirts & Polos",
-    "gender": "men",
-    "price": 1149,
-    "originalPrice": 1799,
-    "badge": "SALE 35% OFF",
-    "rating": 4.7,
-    "reviewCount": 118,
-    "primaryImage": "assets/categories/mens/1407b.jpg",
-    "hoverImage": "assets/categories/mens/Mens_Launch_Key_Highlight_22-10-26_jpg5ff9.jpg",
-    "gallery": [
-      "assets/categories/mens/1407b.jpg",
-      "assets/categories/mens/Mens_Launch_Key_Highlight_22-10-26_jpg5ff9.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Tactical Olive",
-        "hex": "#3e4832"
-      },
-      {
-        "name": "Stealth Black",
-        "hex": "#141416"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 22,
-    "description": "Raglan shoulder cut removes the top seam so backpacks and barbell bars sit comfortably with zero pressure points.",
-    "fabric": "94% Cotton, 6% Spandex",
-    "features": [
-      "Seamless Shoulders",
-      "Side Slit Mobility",
-      "Durable Screen Print"
-    ],
-    "tags": [
-      "raglan",
-      "olive",
-      "tactical"
-    ]
-  },
-  {
-    "id": "rv-ts-06",
-    "name": "Vault Apex Seamless Knit T-Shirt — Obsidian",
-    "category": "t-shirts",
-    "categoryName": "Gym T-Shirts & Polos",
-    "gender": "men",
-    "price": 1399,
-    "originalPrice": 2199,
-    "badge": "TOP RATED",
-    "rating": 4.9,
-    "reviewCount": 165,
-    "primaryImage": "assets/categories/mens/Mens_Launch_Key_Highlight_22-10-26_jpg5ff9.jpg",
-    "hoverImage": "assets/categories/mens/MH0108518aef.jpg",
-    "gallery": [
-      "assets/categories/mens/Mens_Launch_Key_Highlight_22-10-26_jpg5ff9.jpg",
-      "assets/categories/mens/MH0108518aef.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Obsidian",
-        "hex": "#1b1b1d"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 15,
-    "description": "Circular knit seamless construction engineered without side seams for complete comfort during long training sessions.",
-    "fabric": "65% Nylon, 35% Polyester Seamless Knit",
-    "features": [
-      "Zero Side Seams",
-      "Engineered Breathability Zones",
-      "4-Way Stretch"
-    ],
-    "tags": [
-      "seamless",
-      "knit",
-      "obsidian"
-    ]
-  },
-  {
-    "id": "rv-ts-07",
-    "name": "Vault Modern Minimalist Polo — Off-White",
-    "category": "t-shirts",
-    "categoryName": "Gym T-Shirts & Polos",
-    "gender": "men",
-    "price": 1549,
-    "originalPrice": 2499,
-    "badge": "LIMITED",
-    "rating": 4.8,
-    "reviewCount": 82,
-    "primaryImage": "assets/categories/t-shirts/repvault-polo-key-highlights-54e6b.jpg",
-    "hoverImage": "assets/categories/t-shirts/repvault-polo-tshirt-black-1bf0a.jpg",
-    "gallery": [
-      "assets/categories/t-shirts/repvault-polo-key-highlights-54e6b.jpg",
-      "assets/categories/t-shirts/repvault-polo-tshirt-black-1bf0a.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Off White",
-        "hex": "#f3ede3"
-      },
-      {
-        "name": "Black",
-        "hex": "#111111"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 11,
-    "description": "Premium hidden-button placket with sleek tonal matte hardware and laser-etched Repvault branding.",
-    "fabric": "94% Cotton Pique, 6% Elastane",
-    "features": [
-      "Hidden Magnetic Placket",
-      "Anti-Roll Knitted Collar",
-      "Smart Casual Fit"
-    ],
-    "tags": [
-      "polo",
-      "off white",
-      "minimalist"
-    ]
-  },
-  {
-    "id": "rv-ts-08",
-    "name": "Vault Everyday Performance Tee — Steel Grey",
-    "category": "t-shirts",
-    "categoryName": "Gym T-Shirts & Polos",
-    "gender": "men",
-    "price": 1049,
-    "originalPrice": 1699,
-    "badge": "BESTSELLER",
-    "rating": 4.8,
-    "reviewCount": 230,
-    "primaryImage": "assets/categories/t-shirts/repvault-polo-tshirt-black-1bf0a.jpg",
-    "hoverImage": "assets/categories/t-shirts/repvault-polo-tshirt-black-6bf0a.jpg",
-    "gallery": [
-      "assets/categories/t-shirts/repvault-polo-tshirt-black-1bf0a.jpg",
-      "assets/categories/t-shirts/repvault-polo-tshirt-black-6bf0a.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Steel Grey",
-        "hex": "#5a5e65"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 31,
-    "description": "Ultra-resilient everyday gym shirt designed to withstand chalk, barbell knurling, and high wash frequencies.",
-    "fabric": "60% Cotton, 40% Polyester",
-    "features": [
-      "Barbell-Resistant Weave",
-      "Quick Air Drying",
-      "Athletic Taper"
-    ],
-    "tags": [
-      "steel grey",
-      "everyday",
-      "t-shirt"
-    ]
-  },
-  {
-    "id": "rv-st-01",
-    "name": "Vault Ironclad Y-Back Stringer — Seagreen",
-    "category": "stringers",
-    "categoryName": "Tanks & Stringers",
-    "gender": "men",
-    "price": 899,
-    "originalPrice": 1499,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 367,
-    "primaryImage": "assets/categories/stringers/SpeedRunningTankSeagreen_137e3.jpg",
-    "hoverImage": "assets/categories/stringers/SpeedRunningTankSeagreen_2a3d8.jpg",
-    "gallery": [
-      "assets/categories/stringers/SpeedRunningTankSeagreen_137e3.jpg",
-      "assets/categories/stringers/SpeedRunningTankSeagreen_2a3d8.jpg",
-      "assets/categories/stringers/SpeedRunningTankSeagreen_3a3d8.jpg",
-      "assets/categories/stringers/SpeedRunningTankSeagreen_3f995.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Seagreen",
-        "hex": "#2e6f66"
-      },
-      {
-        "name": "Stealth Black",
-        "hex": "#151517"
-      },
-      {
-        "name": "Charcoal",
-        "hex": "#35383d"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 28,
-    "description": "Designed for classic bodybuilding physique display. Deep arm cutouts and narrow Y-back straps allow complete shoulder and lat engagement without fabric restriction.",
-    "fabric": "95% Cotton, 5% Lycra (190 GSM)",
-    "features": [
-      "Deep Cut Y-Back Strap",
-      "Drop Curved Scoop Hem",
-      "High-Elasticity Chest Seams",
-      "Fade-Proof Reactive Dye"
-    ],
-    "tags": [
-      "stringer",
-      "y-back",
-      "tank",
-      "bodybuilding"
-    ]
-  },
-  {
-    "id": "rv-st-02",
-    "name": "Vault Speed Running Tank — Teal Green",
-    "category": "stringers",
-    "categoryName": "Tanks & Stringers",
-    "gender": "men",
-    "price": 949,
-    "originalPrice": 1599,
-    "badge": "TOP RATED",
-    "rating": 4.8,
-    "reviewCount": 142,
-    "primaryImage": "assets/categories/stringers/SpeedRunningTankSeagreen_2a3d8.jpg",
-    "hoverImage": "assets/categories/stringers/SpeedRunningTankSeagreen_3a3d8.jpg",
-    "gallery": [
-      "assets/categories/stringers/SpeedRunningTankSeagreen_2a3d8.jpg",
-      "assets/categories/stringers/SpeedRunningTankSeagreen_3a3d8.jpg",
-      "assets/categories/stringers/SpeedRunningTankSeagreen_137e3.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Teal Green",
-        "hex": "#225a52"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 19,
-    "description": "Engineered specifically for marathon sessions and outdoor speed work. Ultralight featherweight mesh weave wicks sweat instantly.",
-    "fabric": "100% Featherweight Aeromesh",
-    "features": [
-      "Ultralight 110 GSM",
-      "Side Split Hem for Stride",
-      "Reflective Chest Strip"
-    ],
-    "tags": [
-      "running tank",
-      "aeromesh",
-      "speed"
-    ]
-  },
-  {
-    "id": "rv-st-03",
-    "name": "Vault Deep Drop Sleeveless Gym Vest — Jet Black",
-    "category": "stringers",
-    "categoryName": "Tanks & Stringers",
-    "gender": "men",
-    "price": 849,
-    "originalPrice": 1399,
-    "badge": "POPULAR",
-    "rating": 4.7,
-    "reviewCount": 210,
-    "primaryImage": "assets/categories/stringers/SpeedRunningTankSeagreen_3a3d8.jpg",
-    "hoverImage": "assets/categories/stringers/SpeedRunningTankSeagreen_3f995.jpg",
-    "gallery": [
-      "assets/categories/stringers/SpeedRunningTankSeagreen_3a3d8.jpg",
-      "assets/categories/stringers/SpeedRunningTankSeagreen_3f995.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Jet Black",
-        "hex": "#111112"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 23,
-    "description": "Clean sleeveless aesthetic with reinforced arm openings that hold shape through hundreds of wash cycles.",
-    "fabric": "96% Combed Cotton, 4% Spandex",
-    "features": [
-      "Reinforced Armhole Binding",
-      "Straight Hem",
-      "Tonal Vault Print"
-    ],
-    "tags": [
-      "vest",
-      "sleeveless",
-      "black"
-    ]
-  },
-  {
-    "id": "rv-st-04",
-    "name": "Vault Division Raw Edge Stringer — Mineral Grey",
-    "category": "stringers",
-    "categoryName": "Tanks & Stringers",
-    "gender": "men",
-    "price": 899,
-    "originalPrice": 1499,
-    "badge": "NEW",
-    "rating": 4.8,
-    "reviewCount": 89,
-    "primaryImage": "assets/categories/stringers/SpeedRunningTankSeagreen_3f995.jpg",
-    "hoverImage": "assets/categories/stringers/SpeedRunningTankSeagreen_137e3.jpg",
-    "gallery": [
-      "assets/categories/stringers/SpeedRunningTankSeagreen_3f995.jpg",
-      "assets/categories/stringers/SpeedRunningTankSeagreen_137e3.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Mineral Grey",
-        "hex": "#45484f"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 16,
-    "description": "Industrial raw edges with lockstitch prevention. Shows off delts and chest line perfectly.",
-    "fabric": "100% Cotton Rib Knit",
-    "features": [
-      "Raw Cut Edges with Stay-Stitch",
-      "Extended Drop Silhouette",
-      "Breathable Rib"
-    ],
-    "tags": [
-      "raw edge",
-      "stringer",
-      "grey"
-    ]
-  },
-  {
-    "id": "rv-st-05",
-    "name": "Vault Aero Racerback Stringer — Royal Blue",
-    "category": "stringers",
-    "categoryName": "Tanks & Stringers",
-    "gender": "men",
-    "price": 929,
-    "originalPrice": 1549,
-    "badge": "SALE 40% OFF",
-    "rating": 4.9,
-    "reviewCount": 114,
-    "primaryImage": "assets/categories/stringers/SpeedRunningTankSeagreen_137e3.jpg",
-    "hoverImage": "assets/categories/stringers/SpeedRunningTankSeagreen_3a3d8.jpg",
-    "gallery": [
-      "assets/categories/stringers/SpeedRunningTankSeagreen_137e3.jpg",
-      "assets/categories/stringers/SpeedRunningTankSeagreen_3a3d8.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Royal Blue",
-        "hex": "#163d7a"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 14,
-    "description": "Ultra-thin racerback spine cut giving total freedom for heavy squats and pull-ups.",
-    "fabric": "90% Polyester, 10% Spandex",
-    "features": [
-      "Extreme Back Mobility",
-      "Fast-Drying Yarn",
-      "Chafe-Free Binding"
-    ],
-    "tags": [
-      "racerback",
-      "blue",
-      "gym tank"
-    ]
-  },
-  {
-    "id": "rv-st-06",
-    "name": "Vault Core Heavy Tank — Bone White",
-    "category": "stringers",
-    "categoryName": "Tanks & Stringers",
-    "gender": "men",
-    "price": 879,
-    "originalPrice": 1399,
-    "badge": "POPULAR",
-    "rating": 4.7,
-    "reviewCount": 96,
-    "primaryImage": "assets/categories/stringers/SpeedRunningTankSeagreen_2a3d8.jpg",
-    "hoverImage": "assets/categories/stringers/SpeedRunningTankSeagreen_137e3.jpg",
-    "gallery": [
-      "assets/categories/stringers/SpeedRunningTankSeagreen_2a3d8.jpg",
-      "assets/categories/stringers/SpeedRunningTankSeagreen_137e3.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Bone White",
-        "hex": "#f0ece3"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 18,
-    "description": "Classic gym-era ribbed tank built from heavyweight 220 GSM cotton. Sits snug across the chest.",
-    "fabric": "100% Heavy Combed Cotton 2x1 Rib",
-    "features": [
-      "Vintage Ribbed Texture",
-      "Reinforced Neckline",
-      "Pre-Washed"
-    ],
-    "tags": [
-      "white tank",
-      "heavy tank",
-      "retro gym"
-    ]
-  },
-  {
-    "id": "rv-st-07",
-    "name": "Vault Hybrid Mesh Training Tank — Smoke",
-    "category": "stringers",
-    "categoryName": "Tanks & Stringers",
-    "gender": "men",
-    "price": 949,
-    "originalPrice": 1599,
-    "badge": "NEW",
-    "rating": 4.8,
-    "reviewCount": 75,
-    "primaryImage": "assets/categories/stringers/SpeedRunningTankSeagreen_3f995.jpg",
-    "hoverImage": "assets/categories/stringers/SpeedRunningTankSeagreen_2a3d8.jpg",
-    "gallery": [
-      "assets/categories/stringers/SpeedRunningTankSeagreen_3f995.jpg",
-      "assets/categories/stringers/SpeedRunningTankSeagreen_2a3d8.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Smoke Grey",
-        "hex": "#4d5159"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 15,
-    "description": "Mesh ventilation side panels maximize airflow across the lats and lower back during heavy sets.",
-    "fabric": "88% Polyester, 12% Spandex",
-    "features": [
-      "Side Airflow Vents",
-      "Subtle Vault Typography",
-      "Quick Dry"
-    ],
-    "tags": [
-      "mesh",
-      "training tank",
-      "smoke"
-    ]
-  },
-  {
-    "id": "rv-st-08",
-    "name": "Vault Signature Athletic Sleeveless — Onyx",
-    "category": "stringers",
-    "categoryName": "Tanks & Stringers",
-    "gender": "men",
-    "price": 999,
-    "originalPrice": 1699,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 220,
-    "primaryImage": "assets/categories/stringers/SpeedRunningTankSeagreen_137e3.jpg",
-    "hoverImage": "assets/categories/stringers/SpeedRunningTankSeagreen_3f995.jpg",
-    "gallery": [
-      "assets/categories/stringers/SpeedRunningTankSeagreen_137e3.jpg",
-      "assets/categories/stringers/SpeedRunningTankSeagreen_3f995.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Onyx Black",
-        "hex": "#131315"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 24,
-    "description": "Clean cut tailored specifically for athletic physiques. Wide shoulders provide coverage while showing upper trap development.",
-    "fabric": "95% Cotton, 5% Spandex",
-    "features": [
-      "Athletic Shoulder Width",
-      "Double-Stitched Seams",
-      "Soft Touch"
-    ],
-    "tags": [
-      "sleeveless",
-      "onyx",
-      "bestseller"
-    ]
-  },
-  {
-    "id": "rv-sh-01",
-    "name": "Vault 2-in-1 Compression Liner Shorts — Stealth Black",
-    "category": "shorts",
-    "categoryName": "Training Shorts",
-    "gender": "men",
-    "price": 1399,
-    "originalPrice": 2199,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 420,
-    "primaryImage": "assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg",
-    "hoverImage": "assets/categories/shorts/repvault-2in1-compression-shorts-white-1097f7.png",
-    "gallery": [
-      "assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg",
-      "assets/categories/shorts/repvault-2in1-compression-shorts-white-1097f7.png",
-      "assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp589c.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Stealth Black",
-        "hex": "#111113"
-      },
-      {
-        "name": "Fire Red",
-        "hex": "#a11818"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 35,
-    "description": "The ultimate training shorts. Outer shell features lightweight 4-way stretch with laser-perforated airflow vents, paired with an integrated compression inner liner featuring a bounce-free phone pocket and shirt loop.",
-    "fabric": "Outer: 90% Polyester, 10% Spandex | Liner: 84% Nylon, 16% Spandex",
-    "features": [
-      "Integrated Compression Liner",
-      "Bounce-Free Internal Phone Pocket",
-      "Laser-Cut Breathable Eyelets",
-      "Towel/Shirt Loop on Waistband"
-    ],
-    "tags": [
-      "shorts",
-      "2-in-1",
-      "compression",
-      "running",
-      "gym"
-    ]
-  },
-  {
-    "id": "rv-sh-02",
-    "name": "Vault Laser-Cut 2-in-1 Shorts — Crimson Red",
-    "category": "shorts",
-    "categoryName": "Training Shorts",
-    "gender": "men",
-    "price": 1449,
-    "originalPrice": 2399,
-    "badge": "TOP RATED",
-    "rating": 4.8,
-    "reviewCount": 198,
-    "primaryImage": "assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp589c.jpg",
-    "hoverImage": "assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp95aa.jpg",
-    "gallery": [
-      "assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp589c.jpg",
-      "assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp95aa.jpg",
-      "assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Crimson Red",
-        "hex": "#a6192e"
-      },
-      {
-        "name": "Stealth Black",
-        "hex": "#121214"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 18,
-    "description": "High-contrast dynamic crimson red shell with black compression liner. Zippered waterproof side pockets protect keys and AirPods.",
-    "fabric": "88% Nylon, 12% Spandex",
-    "features": [
-      "Waterproof Zipper Pockets",
-      "Laser-Perforated Side Paneling",
-      "Reinforced Gusset"
-    ],
-    "tags": [
-      "shorts",
-      "red",
-      "laser cut",
-      "running"
-    ]
-  },
-  {
-    "id": "rv-sh-03",
-    "name": "Vault Compression Liner 7\" Shorts — Chalk White",
-    "category": "shorts",
-    "categoryName": "Training Shorts",
-    "gender": "men",
-    "price": 1399,
-    "originalPrice": 2249,
-    "badge": "NEW DROP",
-    "rating": 4.9,
-    "reviewCount": 112,
-    "primaryImage": "assets/categories/shorts/repvault-2in1-compression-shorts-white-1097f7.png",
-    "hoverImage": "assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg",
-    "gallery": [
-      "assets/categories/shorts/repvault-2in1-compression-shorts-white-1097f7.png",
-      "assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Chalk White",
-        "hex": "#f8f9fa"
-      },
-      {
-        "name": "Onyx Black",
-        "hex": "#111111"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 16,
-    "description": "Clean aesthetic with ultra-soft white compression liner. Anti-chafe technology tested over 100+ kilometers of running.",
-    "fabric": "90% Micro-Poly, 10% Spandex",
-    "features": [
-      "7-Inch Inseam",
-      "Dual Secure Zipper Pockets",
-      "Elastic Jacquard Waistband"
-    ],
-    "tags": [
-      "white shorts",
-      "7 inch",
-      "running"
-    ]
-  },
-  {
-    "id": "rv-sh-04",
-    "name": "Vault Core Heavyweight Terry Shorts — Charcoal",
-    "category": "shorts",
-    "categoryName": "Training Shorts",
-    "gender": "men",
-    "price": 1199,
-    "originalPrice": 1899,
-    "badge": "POPULAR",
-    "rating": 4.8,
-    "reviewCount": 160,
-    "primaryImage": "assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp95aa.jpg",
-    "hoverImage": "assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg",
-    "gallery": [
-      "assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp95aa.jpg",
-      "assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Charcoal Heather",
-        "hex": "#32353a"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 22,
-    "description": "Substantial 320 GSM French terry cotton for classic bodybuilding aesthetic and durable comfort.",
-    "fabric": "100% French Terry Cotton (320 GSM)",
-    "features": [
-      "Raw Cut Edge Hem",
-      "Deep Welt Pockets",
-      "Heavy Braided Drawstring"
-    ],
-    "tags": [
-      "terry shorts",
-      "heavyweight",
-      "charcoal"
-    ]
-  },
-  {
-    "id": "rv-sh-05",
-    "name": "Vault Aero Speed Running Shorts 5\" — Onyx",
-    "category": "shorts",
-    "categoryName": "Training Shorts",
-    "gender": "men",
-    "price": 1149,
-    "originalPrice": 1799,
-    "badge": "NEW",
-    "rating": 4.8,
-    "reviewCount": 88,
-    "primaryImage": "assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg",
-    "hoverImage": "assets/categories/shorts/repvault-2in1-compression-shorts-white-1097f7.png",
-    "gallery": [
-      "assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg",
-      "assets/categories/shorts/repvault-2in1-compression-shorts-white-1097f7.png"
-    ],
-    "colors": [
-      {
-        "name": "Onyx Black",
-        "hex": "#121214"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 19,
-    "description": "Featherlight 5-inch inseam shorts engineered for unrestricted leg mobility and maximum sprint output.",
-    "fabric": "92% Poly, 8% Spandex",
-    "features": [
-      "5-Inch High Split Inseam",
-      "Rear Zipper Key Pocket",
-      "Featherweight 95 GSM"
-    ],
-    "tags": [
-      "5 inch shorts",
-      "speed",
-      "running"
-    ]
-  },
-  {
-    "id": "rv-sh-06",
-    "name": "Vault Cargo Utility Training Shorts — Olive Green",
-    "category": "shorts",
-    "categoryName": "Training Shorts",
-    "gender": "men",
-    "price": 1499,
-    "originalPrice": 2399,
-    "badge": "LIMITED",
-    "rating": 4.9,
-    "reviewCount": 76,
-    "primaryImage": "assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp589c.jpg",
-    "hoverImage": "assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg",
-    "gallery": [
-      "assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp589c.jpg",
-      "assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Olive Green",
-        "hex": "#444e39"
-      }
-    ],
-    "sizes": [
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 11,
-    "description": "Tactical training shorts with low-profile magnetic snap cargo pockets that don't flap during running.",
-    "fabric": "88% Stretch Ripstop, 12% Elastane",
-    "features": [
-      "Low-Profile Cargo Pockets",
-      "Reinforced Ripstop Weave",
-      "D-Ring Gear Clip"
-    ],
-    "tags": [
-      "cargo shorts",
-      "olive",
-      "utility"
-    ]
-  },
-  {
-    "id": "rv-sh-07",
-    "name": "Vault Hybrid Mesh Lift Shorts — Slate Grey",
-    "category": "shorts",
-    "categoryName": "Training Shorts",
-    "gender": "men",
-    "price": 1249,
-    "originalPrice": 1999,
-    "badge": "SALE 35% OFF",
-    "rating": 4.7,
-    "reviewCount": 105,
-    "primaryImage": "assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp95aa.jpg",
-    "hoverImage": "assets/categories/shorts/repvault-2in1-compression-shorts-white-1097f7.png",
-    "gallery": [
-      "assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp95aa.jpg",
-      "assets/categories/shorts/repvault-2in1-compression-shorts-white-1097f7.png"
-    ],
-    "colors": [
-      {
-        "name": "Slate Grey",
-        "hex": "#525760"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 24,
-    "description": "Double-layered aeromesh shorts with soft elastic interior waistband and durable outer mesh.",
-    "fabric": "100% Breathable Aeromesh",
-    "features": [
-      "Double Layer Mesh",
-      "Deep Hand Pockets",
-      "Wide Elastic Waistband"
-    ],
-    "tags": [
-      "mesh shorts",
-      "slate",
-      "gym"
-    ]
-  },
-  {
-    "id": "rv-sh-08",
-    "name": "Vault Tactical Flex Training Shorts — Carbon",
-    "category": "shorts",
-    "categoryName": "Training Shorts",
-    "gender": "men",
-    "price": 1349,
-    "originalPrice": 2099,
-    "badge": "POPULAR",
-    "rating": 4.8,
-    "reviewCount": 151,
-    "primaryImage": "assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg",
-    "hoverImage": "assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp589c.jpg",
-    "gallery": [
-      "assets/categories/shorts/repvault-2in1-shorts-black-c97c.jpg",
-      "assets/categories/shorts/Product-Banner-13-04-26-_2-in-1-laser-shorts-red__jpg.webp589c.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Carbon",
-        "hex": "#1c1e22"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 20,
-    "description": "Engineered for high-rep barbell work with reinforced quad panels to prevent friction wear from bars.",
-    "fabric": "90% Nylon, 10% Spandex",
-    "features": [
-      "Reinforced Quad Strips",
-      "Side Hem Notches",
-      "Concealed Zip Pocket"
-    ],
-    "tags": [
-      "flex shorts",
-      "training",
-      "carbon"
-    ]
-  },
-  {
-    "id": "rv-jg-01",
-    "name": "Vault Hybrid Slim-Taper Joggers — Jet Black",
-    "category": "joggers",
-    "categoryName": "Joggers & Track Pants",
-    "gender": "men",
-    "price": 1899,
-    "originalPrice": 2999,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 478,
-    "primaryImage": "assets/categories/joggers/repvault-hybrid-slim-track-black.jpg",
-    "hoverImage": "assets/categories/joggers/repvault-hybrid-slim-track-black-highlights-42ce4937.png",
-    "gallery": [
-      "assets/categories/joggers/repvault-hybrid-slim-track-black.jpg",
-      "assets/categories/joggers/repvault-hybrid-slim-track-black-highlights-42ce4937.png",
-      "assets/categories/oversized/bottoms_black_joggers_1794114622348.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Jet Black",
-        "hex": "#111113"
-      },
-      {
-        "name": "Charcoal",
-        "hex": "#2b2c30"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 32,
-    "description": "Our signature hybrid joggers. Constructed from premium 4-way stretch poly-cotton with an aggressive calf taper and ribbed ankle cuffs that stay locked in place.",
-    "fabric": "70% Cotton, 25% Polyester, 5% Spandex (300 GSM)",
-    "features": [
-      "Aggressive Ankle Taper",
-      "Concealed Waterproof YKK Zippers",
-      "Reflective Vault Monogram",
-      "Reinforced Crotch Gusset"
-    ],
-    "tags": [
-      "joggers",
-      "track pants",
-      "black",
-      "hybrid",
-      "gym bottoms"
-    ]
-  },
-  {
-    "id": "rv-jg-02",
-    "name": "Vault Utility Carpenter Cargo Pants — Onyx Black",
-    "category": "joggers",
-    "categoryName": "Joggers & Track Pants",
-    "gender": "men",
-    "price": 2199,
-    "originalPrice": 3499,
-    "badge": "TRENDING",
-    "rating": 4.9,
-    "reviewCount": 234,
-    "primaryImage": "assets/categories/joggers/Carpenter_pants_1582a.png",
-    "hoverImage": "assets/categories/joggers/Carpenter_pants_29ffb.png",
-    "gallery": [
-      "assets/categories/joggers/Carpenter_pants_1582a.png",
-      "assets/categories/joggers/Carpenter_pants_29ffb.png",
-      "assets/categories/joggers/Carpenter_pants_3582a.png"
-    ],
-    "colors": [
-      {
-        "name": "Onyx Black",
-        "hex": "#121214"
-      },
-      {
-        "name": "Military Olive",
-        "hex": "#3b442e"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 14,
-    "description": "Athletic streetwear perfection. Features reinforced carpenter knee panels, hammer loop details, and zippered utility cargo pockets with a tapered leg opening.",
-    "fabric": "97% Stretch Cotton Twill, 3% Elastane (280 GSM)",
-    "features": [
-      "Articulated Knee Paneling",
-      "Dual Cargo Utility Pockets",
-      "Custom Metal Hardware",
-      "Tapered Ankle Cut"
-    ],
-    "tags": [
-      "cargo",
-      "carpenter",
-      "streetwear",
-      "black"
-    ]
-  },
-  {
-    "id": "rv-jg-03",
-    "name": "Vault Raw-Washed Straight Tracks — Charcoal Vintage",
-    "category": "joggers",
-    "categoryName": "Joggers & Track Pants",
-    "gender": "men",
-    "price": 1999,
-    "originalPrice": 3199,
-    "badge": "NEW DROP",
-    "rating": 4.8,
-    "reviewCount": 167,
-    "primaryImage": "assets/categories/oversized/Raw-washed-tracks-d-_6e6cf.jpg",
-    "hoverImage": "assets/categories/oversized/Raw-washed-tracks-d-_7a311.jpg",
-    "gallery": [
-      "assets/categories/oversized/Raw-washed-tracks-d-_6e6cf.jpg",
-      "assets/categories/oversized/Raw-washed-tracks-d-_7a311.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Vintage Charcoal",
-        "hex": "#2f3136"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 18,
-    "description": "Straight leg relaxed track pants enzyme-washed for a vintage streetwear texture. Internal ankle bungee cord toggles allow instant conversion to jogger silhouette.",
-    "fabric": "100% French Terry Cotton (340 GSM)",
-    "features": [
-      "Convertible Ankle Bungee Toggles",
-      "Deep Side Inseam Pockets",
-      "Enzyme Stone Wash"
-    ],
-    "tags": [
-      "straight track",
-      "washed",
-      "vintage"
-    ]
-  },
-  {
-    "id": "rv-jg-04",
-    "name": "Vault Ironclad Heavy Fleece Joggers — Black",
-    "category": "joggers",
-    "categoryName": "Joggers & Track Pants",
-    "gender": "men",
-    "price": 1799,
-    "originalPrice": 2899,
-    "badge": "POPULAR",
-    "rating": 4.8,
-    "reviewCount": 310,
-    "primaryImage": "assets/categories/oversized/bottoms_black_joggers_1794114622348.jpg",
-    "hoverImage": "assets/categories/joggers/repvault-hybrid-slim-track-black.jpg",
-    "gallery": [
-      "assets/categories/oversized/bottoms_black_joggers_1794114622348.jpg",
-      "assets/categories/joggers/repvault-hybrid-slim-track-black.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Black Fleece",
-        "hex": "#141416"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 25,
-    "description": "Thick brushed fleece interior keeps your muscles warm through cold-weather warmups and outdoor morning runs.",
-    "fabric": "80% Cotton, 20% Polyester Heavy Fleece (320 GSM)",
-    "features": [
-      "Brushed Thermal Interior",
-      "Ribbed Ankle Cuffs",
-      "Heavy Drawcord with Metal Tips"
-    ],
-    "tags": [
-      "fleece",
-      "warmup",
-      "joggers"
-    ]
-  },
-  {
-    "id": "rv-jg-05",
-    "name": "Vault Technical Aero Track Pants — Stealth",
-    "category": "joggers",
-    "categoryName": "Joggers & Track Pants",
-    "gender": "men",
-    "price": 1899,
-    "originalPrice": 2999,
-    "badge": "LIMITED",
-    "rating": 4.9,
-    "reviewCount": 95,
-    "primaryImage": "assets/categories/joggers/Carpenter_pants_29ffb.png",
-    "hoverImage": "assets/categories/joggers/Carpenter_pants_3582a.png",
-    "gallery": [
-      "assets/categories/joggers/Carpenter_pants_29ffb.png",
-      "assets/categories/joggers/Carpenter_pants_3582a.png"
-    ],
-    "colors": [
-      {
-        "name": "Stealth",
-        "hex": "#16171a"
-      }
-    ],
-    "sizes": [
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 10,
-    "description": "Ultralight ripstop shell with water-resistant DWR finish. Built for running in unexpected weather without absorbing moisture.",
-    "fabric": "90% Nylon Ripstop, 10% Spandex DWR",
-    "features": [
-      "DWR Water-Repellent Finish",
-      "Ankle Zippers for Shoes-On Removal",
-      "Breathable Mesh Inseam"
-    ],
-    "tags": [
-      "water resistant",
-      "ripstop",
-      "track pants"
-    ]
-  },
-  {
-    "id": "rv-jg-06",
-    "name": "Vault Tapered Poly-Track Pants — Obsidian",
-    "category": "joggers",
-    "categoryName": "Joggers & Track Pants",
-    "gender": "men",
-    "price": 1699,
-    "originalPrice": 2699,
-    "badge": "SALE 35% OFF",
-    "rating": 4.7,
-    "reviewCount": 140,
-    "primaryImage": "assets/categories/joggers/repvault-hybrid-slim-track-black-highlights-42ce4937.png",
-    "hoverImage": "assets/categories/joggers/repvault-hybrid-slim-track-black.jpg",
-    "gallery": [
-      "assets/categories/joggers/repvault-hybrid-slim-track-black-highlights-42ce4937.png",
-      "assets/categories/joggers/repvault-hybrid-slim-track-black.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Obsidian",
-        "hex": "#1a1a1c"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 21,
-    "description": "Sleek tricot knit fabric that glides effortlessly during dynamic movement. Features subtle matte side pin-tucks.",
-    "fabric": "100% Performance Tricot Polyester",
-    "features": [
-      "Sleek Pin-Tuck Seams",
-      "Zippered Pockets",
-      "Elastic Ankle Grippers"
-    ],
-    "tags": [
-      "tricot",
-      "track pants",
-      "obsidian"
-    ]
-  },
-  {
-    "id": "rv-jg-07",
-    "name": "Vault Tactical Cargo Tracks — Desert Tan",
-    "category": "joggers",
-    "categoryName": "Joggers & Track Pants",
-    "gender": "men",
-    "price": 2099,
-    "originalPrice": 3299,
-    "badge": "NEW",
-    "rating": 4.8,
-    "reviewCount": 82,
-    "primaryImage": "assets/categories/joggers/Carpenter_pants_3582a.png",
-    "hoverImage": "assets/categories/joggers/Carpenter_pants_1582a.png",
-    "gallery": [
-      "assets/categories/joggers/Carpenter_pants_3582a.png",
-      "assets/categories/joggers/Carpenter_pants_1582a.png"
-    ],
-    "colors": [
-      {
-        "name": "Desert Tan",
-        "hex": "#c2b399"
-      },
-      {
-        "name": "Black",
-        "hex": "#111111"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 13,
-    "description": "Ergonomic 6-pocket cargo configuration designed with gusseted pockets that stay flush when empty.",
-    "fabric": "98% Cotton, 2% Spandex",
-    "features": [
-      "6-Pocket Layout",
-      "Articulated Knee Pleats",
-      "Adjustable Ankle Tabs"
-    ],
-    "tags": [
-      "cargo",
-      "tan",
-      "tactical"
-    ]
-  },
-  {
-    "id": "rv-jg-08",
-    "name": "Vault Performance Tech Joggers — Heather Grey",
-    "category": "joggers",
-    "categoryName": "Joggers & Track Pants",
-    "gender": "men",
-    "price": 1749,
-    "originalPrice": 2799,
-    "badge": "POPULAR",
-    "rating": 4.8,
-    "reviewCount": 220,
-    "primaryImage": "assets/categories/oversized/Raw-washed-tracks-d-_7a311.jpg",
-    "hoverImage": "assets/categories/oversized/Raw-washed-tracks-d-_6e6cf.jpg",
-    "gallery": [
-      "assets/categories/oversized/Raw-washed-tracks-d-_7a311.jpg",
-      "assets/categories/oversized/Raw-washed-tracks-d-_6e6cf.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Heather Grey",
-        "hex": "#8a8d94"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 27,
-    "description": "Versatile medium-weight performance knit with moisture management and comfortable elastic waistband.",
-    "fabric": "75% Cotton, 20% Polyester, 5% Elastane",
-    "features": [
-      "Moisture Management",
-      "Comfort Waistband",
-      "Tapered Cuffs"
-    ],
-    "tags": [
-      "grey joggers",
-      "heather",
-      "performance"
-    ]
-  },
-  {
-    "id": "rv-tr-01",
-    "name": "Vault Ironclad Straight Heavy Tracks — Charcoal",
-    "category": "training",
-    "categoryName": "Performance & Ironclad",
-    "gender": "men",
-    "price": 1899,
-    "originalPrice": 2999,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 310,
-    "primaryImage": "assets/categories/training/IroncladStraightTracks_5_13c3a21d-ce7a-4a93-9a04-53f6bb1c86f6.webpf67f.jpg",
-    "hoverImage": "assets/categories/training/Frame_275_jpg6974.jpg",
-    "gallery": [
-      "assets/categories/training/IroncladStraightTracks_5_13c3a21d-ce7a-4a93-9a04-53f6bb1c86f6.webpf67f.jpg",
-      "assets/categories/training/Frame_275_jpg6974.jpg",
-      "assets/categories/training/repvault-performance-black-22c12.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Iron Charcoal",
-        "hex": "#2b2e34"
-      },
-      {
-        "name": "Midnight Black",
-        "hex": "#111112"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 24,
-    "description": "Engineered for pure heavy lifting. Double-reinforced fabric prevents barbell knurling damage during heavy deadlifts and clean pulls.",
-    "fabric": "72% Cotton, 23% Poly, 5% Spandex (330 GSM)",
-    "features": [
-      "Barbell-Proof Shin Reinforcement",
-      "Relaxed Straight Cut",
-      "Deep Zippered Pockets"
-    ],
-    "tags": [
-      "ironclad",
-      "powerlifting",
-      "tracks"
-    ]
-  },
-  {
-    "id": "rv-tr-02",
-    "name": "Vault Performance Barbell Tee — Onyx Black",
-    "category": "training",
-    "categoryName": "Performance & Ironclad",
-    "gender": "men",
-    "price": 1199,
-    "originalPrice": 1899,
-    "badge": "POPULAR",
-    "rating": 4.8,
-    "reviewCount": 245,
-    "primaryImage": "assets/categories/training/repvault-performance-black-22c12.jpg",
-    "hoverImage": "assets/categories/training/repvault-performance-black-2c8ea.jpg",
-    "gallery": [
-      "assets/categories/training/repvault-performance-black-22c12.jpg",
-      "assets/categories/training/repvault-performance-black-2c8ea.jpg",
-      "assets/categories/training/repvault-performance-black-45067.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Onyx Black",
-        "hex": "#131315"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 30,
-    "description": "Grippy silicone pattern on upper back locks the barbell in place during heavy back squats. Breathable sweat-dispersion weave.",
-    "fabric": "88% Polyester, 12% Spandex",
-    "features": [
-      "Squat Bar Grip Coating",
-      "Underarm Ventilation Vents",
-      "Reinforced Neckline"
-    ],
-    "tags": [
-      "squat tee",
-      "barbell",
-      "training"
-    ]
-  },
-  {
-    "id": "rv-tr-03",
-    "name": "Vault Heavyweight Friction-Resistant Tee — Slate",
-    "category": "training",
-    "categoryName": "Performance & Ironclad",
-    "gender": "men",
-    "price": 1249,
-    "originalPrice": 1999,
-    "badge": "TOP RATED",
-    "rating": 4.9,
-    "reviewCount": 132,
-    "primaryImage": "assets/categories/training/repvault-performance-black-2c8ea.jpg",
-    "hoverImage": "assets/categories/training/repvault-performance-black-45067.jpg",
-    "gallery": [
-      "assets/categories/training/repvault-performance-black-2c8ea.jpg",
-      "assets/categories/training/repvault-performance-black-45067.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Slate",
-        "hex": "#3f434a"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 17,
-    "description": "High-tensile yarn construction specifically tested against rough kettlebells and sandbags without pilling.",
-    "fabric": "100% High-Density Synthetic Cotton Blend",
-    "features": [
-      "Anti-Pilling Standard 4.5+",
-      "Pre-Shrunk",
-      "Athletic Taper"
-    ],
-    "tags": [
-      "friction resistant",
-      "slate",
-      "training"
-    ]
-  },
-  {
-    "id": "rv-tr-04",
-    "name": "Vault Tactical Ironclad Shorts — Carbon",
-    "category": "training",
-    "categoryName": "Performance & Ironclad",
-    "gender": "men",
-    "price": 1399,
-    "originalPrice": 2199,
-    "badge": "NEW",
-    "rating": 4.8,
-    "reviewCount": 91,
-    "primaryImage": "assets/categories/training/repvault-performance-black-45067.jpg",
-    "hoverImage": "assets/categories/training/Frame_275_jpg6974.jpg",
-    "gallery": [
-      "assets/categories/training/repvault-performance-black-45067.jpg",
-      "assets/categories/training/Frame_275_jpg6974.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Carbon",
-        "hex": "#1e2024"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 20,
-    "description": "Tough Cordura-reinforced thigh panels engineered for Olympic weightlifting and rope climbing.",
-    "fabric": "Cordura Stretch Blend",
-    "features": [
-      "Cordura Reinforcement",
-      "Triple-Needle Stitching",
-      "Secure Key Carabiner Loop"
-    ],
-    "tags": [
-      "ironclad shorts",
-      "weightlifting",
-      "cordura"
-    ]
-  },
-  {
-    "id": "rv-tr-05",
-    "name": "Vault Powerlifting Long Sleeve Top — Onyx",
-    "category": "training",
-    "categoryName": "Performance & Ironclad",
-    "gender": "men",
-    "price": 1449,
-    "originalPrice": 2299,
-    "badge": "LIMITED",
-    "rating": 4.9,
-    "reviewCount": 78,
-    "primaryImage": "assets/categories/training/repvault-performance-black-22c12.jpg",
-    "hoverImage": "assets/categories/training/repvault-performance-black-2c8ea.jpg",
-    "gallery": [
-      "assets/categories/training/repvault-performance-black-22c12.jpg",
-      "assets/categories/training/repvault-performance-black-2c8ea.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Onyx",
-        "hex": "#111112"
-      }
-    ],
-    "sizes": [
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 9,
-    "description": "Full elbow and arm protection during heavy bench press and overhead log presses.",
-    "fabric": "90% Nylon, 10% Spandex",
-    "features": [
-      "Elbow Sleeve Compatibility",
-      "High Neckline",
-      "Breathable Back"
-    ],
-    "tags": [
-      "powerlifting",
-      "long sleeve",
-      "onyx"
-    ]
-  },
-  {
-    "id": "rv-tr-06",
-    "name": "Vault Conditioning Raglan Tee — Forest",
-    "category": "training",
-    "categoryName": "Performance & Ironclad",
-    "gender": "men",
-    "price": 1149,
-    "originalPrice": 1799,
-    "badge": "POPULAR",
-    "rating": 4.7,
-    "reviewCount": 115,
-    "primaryImage": "assets/categories/training/Frame_275_jpg6974.jpg",
-    "hoverImage": "assets/categories/training/repvault-performance-black-22c12.jpg",
-    "gallery": [
-      "assets/categories/training/Frame_275_jpg6974.jpg",
-      "assets/categories/training/repvault-performance-black-22c12.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Forest",
-        "hex": "#2c3b2d"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 16,
-    "description": "Designed for high-output conditioning, sled pushes, and interval circuit training.",
-    "fabric": "85% Poly, 15% Spandex",
-    "features": [
-      "Quick Heat Dissipation",
-      "Anti-Odor Polygiene",
-      "Ergonomic Flatlocks"
-    ],
-    "tags": [
-      "conditioning",
-      "forest",
-      "raglan"
-    ]
-  },
-  {
-    "id": "rv-tr-07",
-    "name": "Vault Hybrid Heavy Straight Pants — Black",
-    "category": "training",
-    "categoryName": "Performance & Ironclad",
-    "gender": "men",
-    "price": 1949,
-    "originalPrice": 3099,
-    "badge": "SALE 35% OFF",
-    "rating": 4.8,
-    "reviewCount": 142,
-    "primaryImage": "assets/categories/training/IroncladStraightTracks_5_13c3a21d-ce7a-4a93-9a04-53f6bb1c86f6.webpf67f.jpg",
-    "hoverImage": "assets/categories/training/repvault-performance-black-45067.jpg",
-    "gallery": [
-      "assets/categories/training/IroncladStraightTracks_5_13c3a21d-ce7a-4a93-9a04-53f6bb1c86f6.webpf67f.jpg",
-      "assets/categories/training/repvault-performance-black-45067.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Black",
-        "hex": "#141416"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 18,
-    "description": "Heavyweight straight leg silhouette with zippered side hems for quick footwear changes.",
-    "fabric": "75% Cotton, 25% Polyester",
-    "features": [
-      "Side Ankle Zippers",
-      "Deep Welt Pockets",
-      "Heavy Drawcord"
-    ],
-    "tags": [
-      "straight tracks",
-      "heavyweight",
-      "black"
-    ]
-  },
-  {
-    "id": "rv-tr-08",
-    "name": "Vault Ironclad Compression Tights — Stealth",
-    "category": "training",
-    "categoryName": "Performance & Ironclad",
-    "gender": "men",
-    "price": 1599,
-    "originalPrice": 2599,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 204,
-    "primaryImage": "assets/categories/training/repvault-performance-black-2c8ea.jpg",
-    "hoverImage": "assets/categories/training/repvault-performance-black-22c12.jpg",
-    "gallery": [
-      "assets/categories/training/repvault-performance-black-2c8ea.jpg",
-      "assets/categories/training/repvault-performance-black-22c12.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Stealth",
-        "hex": "#151518"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 22,
-    "description": "Full-length compression leggings designed to wear under training shorts for joint warmth and calf support.",
-    "fabric": "84% Nylon, 16% Spandex",
-    "features": [
-      "Knee Joint Compression",
-      "Phone Pocket",
-      "Wide Comfort Band"
-    ],
-    "tags": [
-      "tights",
-      "leggings",
-      "compression"
-    ]
-  },
-  {
-    "id": "rv-hd-01",
-    "name": "Repvault Aesthetic Hooded Zip-Up — Chalk Beige",
-    "category": "hoodies",
-    "categoryName": "Hoodies & Jackets",
-    "gender": "unisex",
-    "price": 1299,
-    "originalPrice": 2499,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 489,
-    "primaryImage": "assets/featured/zipup-main.jpg",
-    "hoverImage": "assets/featured/zipup-thumb-1.jpg",
-    "gallery": [
-      "assets/featured/zipup-main.jpg",
-      "assets/featured/zipup-thumb-1.jpg",
-      "assets/featured/zipup-thumb-2.jpg",
-      "assets/featured/zipup-thumb-3.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Chalk Beige",
-        "hex": "#eae4d5"
-      },
-      {
-        "name": "Midnight Black",
-        "hex": "#121214"
-      },
-      {
-        "name": "Heather Mist",
-        "hex": "#e2e4e8"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 28,
-    "description": "The viral aesthetic crop zip-up hoodie. Tailored double-layer structured hood that maintains shape, finished with heavy matte gunmetal YKK two-way zipper and signature Repvault tone-on-tone embroidery.",
-    "fabric": "100% French Terry Cotton (360 GSM)",
-    "features": [
-      "Two-Way Matte YKK Zipper",
-      "Double-Layer Stand Hood",
-      "Ribbed Drop Hem",
-      "Embroidered Monogram at Nape"
-    ],
-    "tags": [
-      "hoodie",
-      "zipup",
-      "beige",
-      "crop",
-      "aesthetic"
-    ]
-  },
-  {
-    "id": "rv-hd-02",
-    "name": "Vault Oversized Heavy French Terry Pullover — Onyx Black",
-    "category": "hoodies",
-    "categoryName": "Hoodies & Jackets",
-    "gender": "men",
-    "price": 1999,
-    "originalPrice": 3299,
-    "badge": "TOP RATED",
-    "rating": 5,
-    "reviewCount": 312,
-    "primaryImage": "assets/categories/oversized/hoodie_category.jpg",
-    "hoverImage": "assets/featured/zipup-main.jpg",
-    "gallery": [
-      "assets/categories/oversized/hoodie_category.jpg",
-      "assets/featured/zipup-main.jpg",
-      "assets/featured/zipup-thumb-2.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Onyx Black",
-        "hex": "#101012"
-      },
-      {
-        "name": "Washed Olive",
-        "hex": "#3e4536"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 19,
-    "description": "400 GSM heavyweight French terry engineered with a substantial structured drape and kangaroo pocket with concealed interior phone divider.",
-    "fabric": "100% Heavy Combed Cotton Terry (400 GSM)",
-    "features": [
-      "400 GSM Ultra-Dense Weave",
-      "Crossover Neck Hood (No Strings)",
-      "Internal Phone Divider Pocket"
-    ],
-    "tags": [
-      "heavyweight hoodie",
-      "pullover",
-      "black",
-      "streetwear"
-    ]
-  },
-  {
-    "id": "rv-hd-03",
-    "name": "Repvault Aesthetic Hooded Zip-Up — Onyx Black",
-    "category": "hoodies",
-    "categoryName": "Hoodies & Jackets",
-    "gender": "unisex",
-    "price": 1299,
-    "originalPrice": 2499,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 378,
-    "primaryImage": "assets/featured/zipup-thumb-2.jpg",
-    "hoverImage": "assets/featured/zipup-main.jpg",
-    "gallery": [
-      "assets/featured/zipup-thumb-2.jpg",
-      "assets/featured/zipup-main.jpg",
-      "assets/featured/zipup-thumb-3.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Onyx Black",
-        "hex": "#121214"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 33,
-    "description": "All-black edition of our flagship aesthetic zip-up. Features ribbed cuff thumbholes for cold morning training.",
-    "fabric": "100% French Terry Cotton (360 GSM)",
-    "features": [
-      "Integrated Thumbholes",
-      "Two-Way YKK Zipper",
-      "High Collar Shield"
-    ],
-    "tags": [
-      "black zipup",
-      "hoodie",
-      "thumbholes"
-    ]
-  },
-  {
-    "id": "rv-hd-04",
-    "name": "Vault Tech-Fleece Bomber Jacket — Carbon",
-    "category": "hoodies",
-    "categoryName": "Hoodies & Jackets",
-    "gender": "men",
     "price": 2499,
-    "originalPrice": 3999,
-    "badge": "LIMITED",
-    "rating": 4.9,
-    "reviewCount": 94,
-    "primaryImage": "assets/featured/zipup-thumb-1.jpg",
-    "hoverImage": "assets/featured/zipup-main.jpg",
-    "gallery": [
-      "assets/featured/zipup-thumb-1.jpg",
-      "assets/featured/zipup-main.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Carbon Black",
-        "hex": "#181a1e"
-      }
-    ],
-    "sizes": [
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 8,
-    "description": "Minimalist technical bomber silhouette with water-repellent bonded fleece and magnetic storm closure.",
-    "fabric": "Tech-Fleece Bonded Membrane",
-    "features": [
-      "Bonded Membrane Insulation",
-      "Magnetic Storm Flap",
-      "Hidden Chest Passport Pocket"
-    ],
-    "tags": [
-      "bomber",
-      "jacket",
-      "techwear"
-    ]
-  },
-  {
-    "id": "rv-hd-05",
-    "name": "Vault Acid Washed Boxy Pullover — Mineral Slate",
-    "category": "hoodies",
-    "categoryName": "Hoodies & Jackets",
-    "gender": "men",
-    "price": 1899,
-    "originalPrice": 3099,
-    "badge": "NEW DROP",
-    "rating": 4.8,
-    "reviewCount": 120,
-    "primaryImage": "assets/categories/oversized/hoodie_category.jpg",
-    "hoverImage": "assets/featured/zipup-thumb-3.jpg",
-    "gallery": [
-      "assets/categories/oversized/hoodie_category.jpg",
-      "assets/featured/zipup-thumb-3.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Mineral Slate",
-        "hex": "#43474f"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 15,
-    "description": "Vintage-washed boxy cut pullover hoodie with distressed seam accents and custom vintage finish.",
-    "fabric": "100% Cotton French Terry (380 GSM)",
-    "features": [
-      "Vintage Mineral Wash",
-      "Boxy Silhouette",
-      "Drop Shoulders"
-    ],
-    "tags": [
-      "washed hoodie",
-      "slate",
-      "pullover"
-    ]
-  },
-  {
-    "id": "rv-hd-06",
-    "name": "Repvault Aesthetic Hooded Zip-Up — Heather Grey",
-    "category": "hoodies",
-    "categoryName": "Hoodies & Jackets",
-    "gender": "unisex",
-    "price": 1299,
-    "originalPrice": 2499,
-    "badge": "POPULAR",
-    "rating": 4.8,
-    "reviewCount": 215,
-    "primaryImage": "assets/featured/zipup-thumb-3.jpg",
-    "hoverImage": "assets/featured/zipup-main.jpg",
-    "gallery": [
-      "assets/featured/zipup-thumb-3.jpg",
-      "assets/featured/zipup-main.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Heather Grey",
-        "hex": "#d5d7dc"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 20,
-    "description": "Athletic heather grey melange texture with clean tonal finishes and structured collar.",
-    "fabric": "85% Cotton, 15% Poly French Terry",
-    "features": [
-      "Double Stitched Cuffs",
-      "Two-Way Zip",
-      "Ultra Soft Interior"
-    ],
-    "tags": [
-      "heather grey",
-      "zipup",
-      "aesthetic"
-    ]
-  },
-  {
-    "id": "rv-hd-07",
-    "name": "Vault Sleeveless Gym Pump Cover Hoodie — Stealth",
-    "category": "hoodies",
-    "categoryName": "Hoodies & Jackets",
-    "gender": "men",
-    "price": 1199,
-    "originalPrice": 1999,
-    "badge": "SALE 35% OFF",
+    "mrp": 3299,
+    "discount": 24,
     "rating": 4.7,
-    "reviewCount": 148,
-    "primaryImage": "assets/categories/oversized/hoodie_category.jpg",
-    "hoverImage": "assets/featured/zipup-main.jpg",
-    "gallery": [
-      "assets/categories/oversized/hoodie_category.jpg",
-      "assets/featured/zipup-main.jpg"
+    "reviews": 820,
+    "size": "1 kg (2.2 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)",
+      "4 kg (8.8 lbs)"
     ],
-    "colors": [
-      {
-        "name": "Stealth",
-        "hex": "#161618"
-      }
+    "flavor": "Chocolate Smooth",
+    "flavors": [
+      "Double Rich Chocolate",
+      "Gourmet Vanilla",
+      "Cafe Mocha",
+      "Cookies & Cream"
     ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 22,
-    "description": "Sleeveless cut allows unencumbered bicep and shoulder work while keeping your core warm.",
-    "fabric": "100% French Terry Cotton (300 GSM)",
+    "badge": "Value Pick",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Premium grass-fed whey offering 21g of protein per serving. Labdoor certified for quality, purity, and exceptional value.",
     "features": [
-      "Deep Cut Armholes",
-      "Spacious Hood",
-      "Kangaroo Pocket"
+      "21g Protein per serving",
+      "4.5g BCAAs",
+      "Grade A Rated Quality",
+      "Easy Resealable Pouch"
     ],
-    "tags": [
-      "sleeveless hoodie",
-      "pump cover",
-      "stealth"
-    ]
+    "nutritionFacts": {
+      "protein": "25g",
+      "bcaa": "5.5g",
+      "glutamine": "4.2g",
+      "carbs": "2.8g",
+      "fat": "1.4g",
+      "calories": "125 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
   },
   {
-    "id": "rv-hd-08",
-    "name": "Vault Thermo-Shield Full Zip Windbreaker — Onyx",
-    "category": "hoodies",
-    "categoryName": "Hoodies & Jackets",
-    "gender": "unisex",
-    "price": 2199,
-    "originalPrice": 3499,
-    "badge": "NEW",
-    "rating": 4.9,
-    "reviewCount": 86,
-    "primaryImage": "assets/featured/zipup-main.jpg",
-    "hoverImage": "assets/featured/zipup-thumb-1.jpg",
+    "id": "p05",
+    "name": "Performance Whey Tri-Phase",
+    "brand": "Rule 1",
+    "category": "Whey Protein",
+    "categorySlug": "whey-protein",
+    "image": "/assets/products/05_performance_whey.jpg",
     "gallery": [
-      "assets/featured/zipup-main.jpg",
-      "assets/featured/zipup-thumb-1.jpg"
+      "/assets/products/05_performance_whey.jpg",
+      "/assets/products/05_performance_whey.jpg"
     ],
-    "colors": [
-      {
-        "name": "Onyx",
-        "hex": "#111113"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "inStock": true,
-    "stockCount": 16,
-    "description": "Ultralight packable windbreaker with weather-sealed zippers and breathable underarm eyelets.",
-    "fabric": "100% Ripstop Nylon with DWR",
-    "features": [
-      "Packable into Pocket",
-      "Weatherproof Zips",
-      "Reflective Accents"
-    ],
-    "tags": [
-      "windbreaker",
-      "jacket",
-      "packable"
-    ]
-  },
-  {
-    "id": "rv-wm-01",
-    "name": "Vault Pro Sculpt High-Impact Sports Bra — Ocean Blue",
-    "category": "womens",
-    "categoryName": "Women's Activewear",
-    "gender": "women",
-    "price": 1199,
-    "originalPrice": 1999,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 462,
-    "primaryImage": "assets/categories/womens/repvault-sports-bra-ocean-blue.jpg",
-    "hoverImage": "assets/categories/womens/pro-sports-bra-ocean-blue-size-up29fe.png",
-    "gallery": [
-      "assets/categories/womens/repvault-sports-bra-ocean-blue.jpg",
-      "assets/categories/womens/pro-sports-bra-ocean-blue-size-up29fe.png",
-      "assets/categories/womens/pro-sports-bra-rust-size-up97f3.png"
-    ],
-    "colors": [
-      {
-        "name": "Ocean Blue",
-        "hex": "#1e5b8a"
-      },
-      {
-        "name": "Terracotta Rust",
-        "hex": "#9b4530"
-      },
-      {
-        "name": "Onyx Black",
-        "hex": "#121214"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "inStock": true,
-    "stockCount": 26,
-    "description": "Engineered with compressive molded cups and supportive crossover back straps that eliminate bounce during high-impact training and running. Butter-soft brushed fabric feels like second skin.",
-    "fabric": "75% Nylon Microfiber, 25% Spandex (280 GSM)",
-    "features": [
-      "Removable Anti-Shift Padding",
-      "High-Impact Bounce Control",
-      "Brushed Butter-Soft Finish",
-      "Sweat-Wicking Underband"
-    ],
-    "tags": [
-      "sports bra",
-      "ocean blue",
-      "high impact",
-      "womens activewear"
-    ]
-  },
-  {
-    "id": "rv-wm-02",
-    "name": "Vault Pro Sculpt High-Impact Sports Bra — Terracotta Rust",
-    "category": "womens",
-    "categoryName": "Women's Activewear",
-    "gender": "women",
-    "price": 1199,
-    "originalPrice": 1999,
-    "badge": "POPULAR",
-    "rating": 4.8,
-    "reviewCount": 284,
-    "primaryImage": "assets/categories/womens/pro-sports-bra-rust-size-up97f3.png",
-    "hoverImage": "assets/categories/womens/pro-sports-bra-ocean-blue-size-up29fe.png",
-    "gallery": [
-      "assets/categories/womens/pro-sports-bra-rust-size-up97f3.png",
-      "assets/categories/womens/pro-sports-bra-ocean-blue-size-up29fe.png",
-      "assets/categories/womens/repvault-sports-bra-ocean-blue.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Terracotta Rust",
-        "hex": "#a44634"
-      },
-      {
-        "name": "Ocean Blue",
-        "hex": "#1e5b8a"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "inStock": true,
-    "stockCount": 20,
-    "description": "Rich earth-tone terracotta rust palette. Features bonded edges that won't dig into shoulders.",
-    "fabric": "75% Nylon, 25% Spandex",
-    "features": [
-      "Bonded Shoulder Straps",
-      "Breathable Mesh Lining",
-      "Zero Hardware"
-    ],
-    "tags": [
-      "sports bra",
-      "rust",
-      "terracotta"
-    ]
-  },
-  {
-    "id": "rv-wm-03",
-    "name": "Vault Active High-Rise Sculpt Leggings — Midnight Navy",
-    "category": "womens",
-    "categoryName": "Women's Activewear",
-    "gender": "women",
-    "price": 1699,
-    "originalPrice": 2699,
-    "badge": "TOP RATED",
-    "rating": 5,
-    "reviewCount": 388,
-    "primaryImage": "assets/categories/womens/Active-High-Rise-Leggings-Navy-Key-Highlights8a2e.png",
-    "hoverImage": "assets/categories/womens/Nav-Bar-Banners-_Womens_-_800-x-458_-_01__jpgc804.jpg",
-    "gallery": [
-      "assets/categories/womens/Active-High-Rise-Leggings-Navy-Key-Highlights8a2e.png",
-      "assets/categories/womens/Nav-Bar-Banners-_Womens_-_800-x-458_-_01__jpgc804.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Midnight Navy",
-        "hex": "#101d36"
-      },
-      {
-        "name": "Black Onyx",
-        "hex": "#111112"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "inStock": true,
-    "stockCount": 35,
-    "description": "100% squat-proof 4-way stretch fabric with no front seam to prevent camel toe. Curved contour glute seam accentuates natural curves, with a seamless waistband that stays high and never rolls.",
-    "fabric": "80% Nylon, 20% Elastane Sculpting Knit",
-    "features": [
-      "100% Squat-Proof Guaranteed",
-      "Zero Front Center Seam",
-      "Hidden Waistband Pocket",
-      "Non-Slip Stay-Up High Band"
-    ],
-    "tags": [
-      "leggings",
-      "high rise",
-      "navy",
-      "squat proof"
-    ]
-  },
-  {
-    "id": "rv-wm-04",
-    "name": "Repvault Aesthetic Crop Zip Hoodie — Chalk Beige",
-    "category": "womens",
-    "categoryName": "Women's Activewear",
-    "gender": "women",
-    "price": 1299,
-    "originalPrice": 2499,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 410,
-    "primaryImage": "assets/featured/zipup-main.jpg",
-    "hoverImage": "assets/featured/zipup-thumb-1.jpg",
-    "gallery": [
-      "assets/featured/zipup-main.jpg",
-      "assets/featured/zipup-thumb-1.jpg",
-      "assets/featured/zipup-thumb-2.jpg",
-      "assets/featured/zipup-thumb-3.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Chalk Beige",
-        "hex": "#e7dfd0"
-      },
-      {
-        "name": "Black",
-        "hex": "#121214"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "inStock": true,
-    "stockCount": 22,
-    "description": "Tailored cropped proportion cut above the hips to pair flawlessly with high-rise leggings. Cozy French terry with heavy two-way metal zipper.",
-    "fabric": "100% French Terry Cotton",
-    "features": [
-      "Flattering Crop Proportion",
-      "Two-Way Metal Zipper",
-      "High Collar Hood"
-    ],
-    "tags": [
-      "crop hoodie",
-      "beige",
-      "womens zipup"
-    ]
-  },
-  {
-    "id": "rv-wm-05",
-    "name": "Vault Seamless Rib Crop Training Top — Black",
-    "category": "womens",
-    "categoryName": "Women's Activewear",
-    "gender": "women",
-    "price": 999,
-    "originalPrice": 1599,
-    "badge": "NEW",
-    "rating": 4.8,
-    "reviewCount": 172,
-    "primaryImage": "assets/categories/womens/Nav-Bar-Banners-_Womens_-_800-x-458_-_01__jpgc804.jpg",
-    "hoverImage": "assets/categories/womens/repvault-sports-bra-ocean-blue.jpg",
-    "gallery": [
-      "assets/categories/womens/Nav-Bar-Banners-_Womens_-_800-x-458_-_01__jpgc804.jpg",
-      "assets/categories/womens/repvault-sports-bra-ocean-blue.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Black",
-        "hex": "#121214"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "inStock": true,
-    "stockCount": 25,
-    "description": "Seamless micro-rib crop top with raglan short sleeves and compressive underbust band for light-to-medium support.",
-    "fabric": "92% Seamless Polyamide, 8% Elastane",
-    "features": [
-      "Seamless Micro-Rib",
-      "Supportive Underbust Band",
-      "Raglan Shoulders"
-    ],
-    "tags": [
-      "crop top",
-      "seamless",
-      "training top"
-    ]
-  },
-  {
-    "id": "rv-wm-06",
-    "name": "Vault Biker Compression Shorts 6\" — Midnight Navy",
-    "category": "womens",
-    "categoryName": "Women's Activewear",
-    "gender": "women",
-    "price": 1199,
-    "originalPrice": 1899,
-    "badge": "POPULAR",
-    "rating": 4.8,
-    "reviewCount": 198,
-    "primaryImage": "assets/categories/womens/Active-High-Rise-Leggings-Navy-Key-Highlights8a2e.png",
-    "hoverImage": "assets/categories/womens/repvault-sports-bra-ocean-blue.jpg",
-    "gallery": [
-      "assets/categories/womens/Active-High-Rise-Leggings-Navy-Key-Highlights8a2e.png",
-      "assets/categories/womens/repvault-sports-bra-ocean-blue.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Midnight Navy",
-        "hex": "#111f38"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "inStock": true,
-    "stockCount": 19,
-    "description": "6-inch inseam high-rise biker shorts. Tapered leg cuffs prevent thigh chafing and zero roll-up during cycling and squats.",
-    "fabric": "78% Nylon, 22% Spandex",
-    "features": [
-      "6-Inch Inseam",
-      "Side Drop-In Phone Pocket",
-      "No-Roll Waistband"
-    ],
-    "tags": [
-      "biker shorts",
-      "navy",
-      "womens shorts"
-    ]
-  },
-  {
-    "id": "rv-wm-07",
-    "name": "Vault Longline Cami Sports Bra — Sage Green",
-    "category": "womens",
-    "categoryName": "Women's Activewear",
-    "gender": "women",
-    "price": 1149,
-    "originalPrice": 1799,
-    "badge": "SALE 35% OFF",
-    "rating": 4.7,
-    "reviewCount": 130,
-    "primaryImage": "assets/categories/womens/repvault-sports-bra-ocean-blue.jpg",
-    "hoverImage": "assets/categories/womens/pro-sports-bra-rust-size-up97f3.png",
-    "gallery": [
-      "assets/categories/womens/repvault-sports-bra-ocean-blue.jpg",
-      "assets/categories/womens/pro-sports-bra-rust-size-up97f3.png"
-    ],
-    "colors": [
-      {
-        "name": "Sage Green",
-        "hex": "#778977"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "inStock": true,
-    "stockCount": 17,
-    "description": "Extended longline silhouette that doubles as a crop tank. Delicate double straps provide elegant back framing.",
-    "fabric": "80% Nylon, 20% Spandex",
-    "features": [
-      "Longline Coverage",
-      "Removable Cups",
-      "Double Back Straps"
-    ],
-    "tags": [
-      "cami bra",
-      "longline",
-      "sage"
-    ]
-  },
-  {
-    "id": "rv-wm-08",
-    "name": "Vault Cloud-Touch Relaxed Joggers — Oatmeal",
-    "category": "womens",
-    "categoryName": "Women's Activewear",
-    "gender": "women",
-    "price": 1799,
-    "originalPrice": 2799,
-    "badge": "NEW",
-    "rating": 4.9,
-    "reviewCount": 95,
-    "primaryImage": "assets/categories/womens/repvault-womens-banner-3bc0d.jpg",
-    "hoverImage": "assets/featured/zipup-main.jpg",
-    "gallery": [
-      "assets/categories/womens/repvault-womens-banner-3bc0d.jpg",
-      "assets/featured/zipup-main.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Oatmeal Melange",
-        "hex": "#ded7c8"
-      }
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "inStock": true,
-    "stockCount": 14,
-    "description": "Plush peachskin fleece joggers with high-rise gathered elastic waistband and relaxed taper.",
-    "fabric": "80% Combed Cotton, 20% Polyester Fleece",
-    "features": [
-      "Cloud-Soft Fleece",
-      "High-Rise Gathering",
-      "Deep Pockets"
-    ],
-    "tags": [
-      "joggers",
-      "womens joggers",
-      "oatmeal"
-    ]
-  },
-  {
-    "id": "rv-ac-01",
-    "name": "Vault Elevate Tactical 35L Backpack — Stealth Black",
-    "category": "accessories",
-    "categoryName": "Gear & Accessories",
-    "gender": "unisex",
-    "price": 2499,
-    "originalPrice": 3999,
-    "badge": "BESTSELLER",
-    "rating": 5,
-    "reviewCount": 382,
-    "primaryImage": "assets/categories/accessories/ElevateBackpacks_4a394.jpg",
-    "hoverImage": "assets/categories/accessories/ElevateBackpacks_4bbb4.jpg",
-    "gallery": [
-      "assets/categories/accessories/ElevateBackpacks_4a394.jpg",
-      "assets/categories/accessories/ElevateBackpacks_4bbb4.jpg",
-      "assets/categories/accessories/statement-bp-black-_94aaa.jpg",
-      "assets/categories/accessories/Statement-Backpack-_A_-Description__jpge39d.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Stealth Black",
-        "hex": "#111113"
-      }
-    ],
-    "sizes": [
-      "One Size"
-    ],
-    "inStock": true,
-    "stockCount": 20,
-    "description": "The definitive athletic travel backpack. Constructed from 1000D ballistic water-resistant Cordura with isolated bottom ventilated shoe compartment, padded 16-inch laptop sleeve, external MOLLE webbing, and heavy aluminum luggage handle pass-through.",
-    "fabric": "1000D Ballistic Cordura Nylon + YKK Waterproof Zips",
-    "features": [
-      "Isolated Ventilated Shoe Pocket",
-      "Padded 16-Inch Laptop Compartment",
-      "1000D Waterproof Cordura",
-      "Ergonomic Memory Foam Straps"
-    ],
-    "tags": [
-      "backpack",
-      "tactical",
-      "gym bag",
-      "35L",
-      "accessories"
-    ]
-  },
-  {
-    "id": "rv-ac-02",
-    "name": "Vault Statement Daily Commuter Backpack — Onyx",
-    "category": "accessories",
-    "categoryName": "Gear & Accessories",
-    "gender": "unisex",
-    "price": 2199,
-    "originalPrice": 3499,
-    "badge": "TOP RATED",
-    "rating": 4.9,
-    "reviewCount": 194,
-    "primaryImage": "assets/categories/accessories/statement-bp-black-_94aaa.jpg",
-    "hoverImage": "assets/categories/accessories/Statement-Backpack-_A_-Description__jpge39d.jpg",
-    "gallery": [
-      "assets/categories/accessories/statement-bp-black-_94aaa.jpg",
-      "assets/categories/accessories/Statement-Backpack-_A_-Description__jpge39d.jpg",
-      "assets/categories/accessories/ElevateBackpacks_4a394.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Onyx Black",
-        "hex": "#141416"
-      }
-    ],
-    "sizes": [
-      "One Size"
-    ],
-    "inStock": true,
-    "stockCount": 15,
-    "description": "Sleek low-profile 24L silhouette designed for seamless transition from gym to executive office. Waterproof matte polyurethane coating.",
-    "fabric": "Waterproof Matte Polyurethane + Ballistic Base",
-    "features": [
-      "Clamshell 180° Opening",
-      "Concealed Passport Pocket",
-      "Magnetic Chest Sternum Strap"
-    ],
-    "tags": [
-      "backpack",
-      "commuter",
-      "waterproof",
-      "black"
-    ]
-  },
-  {
-    "id": "rv-ac-03",
-    "name": "Vault Performance Pro Snapback Cap — Stealth Black",
-    "category": "accessories",
-    "categoryName": "Gear & Accessories",
-    "gender": "unisex",
-    "price": 699,
-    "originalPrice": 1199,
-    "badge": "BESTSELLER",
-    "rating": 4.8,
-    "reviewCount": 512,
-    "primaryImage": "assets/categories/accessories/gym-caps-men9766.jpg",
-    "hoverImage": "assets/categories/accessories/ElevateBackpacks_4a394.jpg",
-    "gallery": [
-      "assets/categories/accessories/gym-caps-men9766.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Stealth Black",
-        "hex": "#111112"
-      },
-      {
-        "name": "Charcoal Grey",
-        "hex": "#32353b"
-      }
-    ],
-    "sizes": [
-      "Adjustable Snapback"
-    ],
-    "inStock": true,
-    "stockCount": 45,
-    "description": "Engineered with moisture-wicking technical ripstop and laser-cut breathable perforations. Features a 3D silicone Repvault Vault Monogram.",
-    "fabric": "100% Technical Water-Resistant Ripstop Poly",
-    "features": [
-      "Laser-Perforated Air Vent Crown",
-      "Anti-Bacterial Terry Sweatband",
-      "Pre-Curved Structured Brim"
-    ],
-    "tags": [
-      "cap",
-      "hat",
-      "snapback",
-      "black"
-    ]
-  },
-  {
-    "id": "rv-ac-04",
-    "name": "Vault Minimalist Training Cap — Charcoal Grey",
-    "category": "accessories",
-    "categoryName": "Gear & Accessories",
-    "gender": "unisex",
-    "price": 699,
-    "originalPrice": 1199,
-    "badge": "POPULAR",
-    "rating": 4.7,
-    "reviewCount": 228,
-    "primaryImage": "assets/categories/accessories/gym-caps-men9766.jpg",
-    "hoverImage": "assets/categories/accessories/ElevateBackpacks_4bbb4.jpg",
-    "gallery": [
-      "assets/categories/accessories/gym-caps-men9766.jpg"
-    ],
-    "colors": [
-      {
-        "name": "Charcoal Grey",
-        "hex": "#33363c"
-      }
-    ],
-    "sizes": [
-      "Adjustable Snapback"
-    ],
-    "inStock": true,
-    "stockCount": 38,
-    "description": "Unstructured 6-panel athletic cap that folds flat for packing into gym bags without losing shape.",
-    "fabric": "100% Quick-Dry Taslan Nylon",
-    "features": [
-      "Packable Flexible Visor",
-      "Reflective Rear Strap",
-      "Featherweight 55g"
-    ],
-    "tags": [
-      "training cap",
-      "charcoal",
-      "gym hat"
-    ]
-  },
-  {
-    "id": "rv-ac-05",
-    "name": "Vault Elevate Tactical Duffel Bag 50L — Black",
-    "category": "accessories",
-    "categoryName": "Gear & Accessories",
-    "gender": "unisex",
     "price": 2799,
-    "originalPrice": 4499,
-    "badge": "LIMITED",
-    "rating": 4.9,
-    "reviewCount": 160,
-    "primaryImage": "assets/categories/accessories/ElevateBackpacks_4bbb4.jpg",
-    "hoverImage": "assets/categories/accessories/ElevateBackpacks_4a394.jpg",
-    "gallery": [
-      "assets/categories/accessories/ElevateBackpacks_4bbb4.jpg",
-      "assets/categories/accessories/ElevateBackpacks_4a394.jpg"
+    "mrp": 3599,
+    "discount": 22,
+    "rating": 4.8,
+    "reviews": 610,
+    "size": "2 kg (4.4 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)",
+      "4 kg (8.8 lbs)"
     ],
-    "colors": [
-      {
-        "name": "Black",
-        "hex": "#111113"
-      }
+    "flavor": "Cookies & Cream",
+    "flavors": [
+      "Double Rich Chocolate",
+      "Gourmet Vanilla",
+      "Cafe Mocha",
+      "Cookies & Cream"
     ],
-    "sizes": [
-      "50 Liters"
-    ],
-    "inStock": true,
-    "stockCount": 12,
-    "description": "Massive 50L capacity with separate wet gear pocket, weightlifting belt strap, and detachable shoulder sling.",
-    "fabric": "1000D Cordura Nylon",
+    "badge": "Trending",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Advanced tri-phase protein matrix combining whey isolate, concentrate, and milk peptides for sustained amino acid delivery to working muscles.",
     "features": [
-      "Belt Lash Straps",
-      "Waterproof Wet Pocket",
-      "Reinforced Tarpaulin Bottom"
+      "25g Tri-Phase Protein Matrix",
+      "Added DigeZyme Digestive Enzymes",
+      "Enhanced Protein Bioavailability",
+      "Zero Chalkiness"
     ],
-    "tags": [
-      "duffel bag",
-      "50L",
-      "gear"
-    ]
+    "nutritionFacts": {
+      "protein": "25g",
+      "bcaa": "5.5g",
+      "glutamine": "4.2g",
+      "carbs": "2.8g",
+      "fat": "1.4g",
+      "calories": "125 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
   },
   {
-    "id": "rv-ac-06",
-    "name": "Vault Heavy Duty Lifting Straps (Pair) — Stealth",
-    "category": "accessories",
-    "categoryName": "Gear & Accessories",
-    "gender": "unisex",
-    "price": 499,
-    "originalPrice": 899,
-    "badge": "BESTSELLER",
-    "rating": 4.9,
-    "reviewCount": 395,
-    "primaryImage": "assets/categories/accessories/Statement-Backpack-_A_-Description__jpge39d.jpg",
-    "hoverImage": "assets/categories/accessories/ElevateBackpacks_4a394.jpg",
+    "id": "p06",
+    "name": "Anabolic Mass Gainer Heavy",
+    "brand": "MuscleTech",
+    "category": "Mass Gainers",
+    "categorySlug": "mass-gainers",
+    "image": "/assets/products/06_mass_gainer.jpg",
     "gallery": [
-      "assets/categories/accessories/Statement-Backpack-_A_-Description__jpge39d.jpg"
+      "/assets/products/06_mass_gainer.jpg",
+      "/assets/products/06_mass_gainer.jpg"
     ],
-    "colors": [
-      {
-        "name": "Stealth Black",
-        "hex": "#141416"
-      }
+    "price": 2999,
+    "mrp": 3999,
+    "discount": 25,
+    "rating": 4.7,
+    "reviews": 730,
+    "size": "3 kg (6.6 lbs)",
+    "weights": [
+      "3 kg (6.6 lbs)",
+      "5 kg (11 lbs)"
     ],
-    "sizes": [
-      "Standard (Pair)"
+    "flavor": "Chocolate Fudge",
+    "flavors": [
+      "Rich Chocolate Fudge",
+      "Creamy Banana",
+      "Vanilla Ice Cream"
     ],
-    "inStock": true,
-    "stockCount": 60,
-    "description": "Thick industrial cotton webbing with neoprene wrist padding tested up to 400kg barbell traction.",
-    "fabric": "Industrial Grade Cotton Webbing + Neoprene Padding",
+    "badge": "Bulk Builder",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "High-calorie muscle mass formula packed with 60g multi-source protein, 1,250 clean calories, and complex carbohydrates to break plateaus.",
     "features": [
-      "Tested to 400kg Max Load",
-      "5mm Neoprene Wrist Cushion",
-      "Double Box-X Stitching"
+      "60g High-Grade Protein",
+      "1,250 Clean Mass Calories",
+      "10g Creatine Monohydrate",
+      "Multi-Phase Carb Complex"
     ],
-    "tags": [
-      "lifting straps",
-      "deadlift",
-      "gym gear"
-    ]
+    "nutritionFacts": {
+      "protein": "52g",
+      "bcaa": "11g",
+      "glutamine": "8.5g",
+      "carbs": "245g",
+      "fat": "4.5g",
+      "calories": "1230 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
   },
   {
-    "id": "rv-ac-07",
-    "name": "Vault Premium Shaker Bottle 750ml — Matte Black",
-    "category": "accessories",
-    "categoryName": "Gear & Accessories",
-    "gender": "unisex",
+    "id": "p07",
+    "name": "Serious Mass High Calorie Gainer",
+    "brand": "Optimum Nutrition",
+    "category": "Mass Gainers",
+    "categorySlug": "mass-gainers",
+    "image": "/assets/products/07_serious_mass_gainer.jpg",
+    "gallery": [
+      "/assets/products/07_serious_mass_gainer.jpg",
+      "/assets/products/07_serious_mass_gainer.jpg"
+    ],
+    "price": 3499,
+    "mrp": 4499,
+    "discount": 22,
+    "rating": 4.8,
+    "reviews": 1120,
+    "size": "2.72 kg (6 lbs)",
+    "weights": [
+      "3 kg (6.6 lbs)",
+      "5 kg (11 lbs)"
+    ],
+    "flavor": "Creamy Vanilla",
+    "flavors": [
+      "Rich Chocolate Fudge",
+      "Creamy Banana",
+      "Vanilla Ice Cream"
+    ],
+    "badge": "Bestseller",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "The ultimate weight gain formula providing 50g protein, 252g carbs, and 25 vitamins and minerals per scoop to fuel serious muscle building.",
+    "features": [
+      "50g Protein Matrix",
+      "1,250 Calories per serving",
+      "25 Vitamins & Minerals",
+      "Creatine & Glutamine Enhanced"
+    ],
+    "nutritionFacts": {
+      "protein": "52g",
+      "bcaa": "11g",
+      "glutamine": "8.5g",
+      "carbs": "245g",
+      "fat": "4.5g",
+      "calories": "1230 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p08",
+    "name": "Nitro-Tech Ripped Lean Whey",
+    "brand": "MuscleTech",
+    "category": "Whey Protein",
+    "categorySlug": "whey-protein",
+    "image": "/assets/products/08_nitro_tech_whey.jpg",
+    "gallery": [
+      "/assets/products/08_nitro_tech_whey.jpg",
+      "/assets/products/08_nitro_tech_whey.jpg"
+    ],
+    "price": 3699,
+    "mrp": 4699,
+    "discount": 21,
+    "rating": 4.8,
+    "reviews": 680,
+    "size": "1.8 kg (4 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)",
+      "4 kg (8.8 lbs)"
+    ],
+    "flavor": "French Vanilla Swirl",
+    "flavors": [
+      "Double Rich Chocolate",
+      "Gourmet Vanilla",
+      "Cafe Mocha",
+      "Cookies & Cream"
+    ],
+    "badge": "Lean Muscle",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Dual-action lean whey formula infused with L-Carnitine, CLA, Green Coffee Bean Extract, and pure whey peptides to build lean mass while shedding fat.",
+    "features": [
+      "30g Whey Peptides & Isolate",
+      "Scientifically Dosed CLA & L-Carnitine",
+      "Zero Creatine - No Bloating",
+      "Clinically Researched"
+    ],
+    "nutritionFacts": {
+      "protein": "25g",
+      "bcaa": "5.5g",
+      "glutamine": "4.2g",
+      "carbs": "2.8g",
+      "fat": "1.4g",
+      "calories": "125 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p09",
+    "name": "Elite 100% Whey Protein",
+    "brand": "Dymatize",
+    "category": "Whey Protein",
+    "categorySlug": "whey-protein",
+    "image": "/assets/products/09_elite_whey_protein.jpg",
+    "gallery": [
+      "/assets/products/09_elite_whey_protein.jpg",
+      "/assets/products/09_elite_whey_protein.jpg"
+    ],
+    "price": 3399,
+    "mrp": 4299,
+    "discount": 21,
+    "rating": 4.8,
+    "reviews": 540,
+    "size": "2 kg (4.4 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)",
+      "4 kg (8.8 lbs)"
+    ],
+    "flavor": "Cafe Mocha",
+    "flavors": [
+      "Double Rich Chocolate",
+      "Gourmet Vanilla",
+      "Cafe Mocha",
+      "Cookies & Cream"
+    ],
+    "badge": "Top Rated",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Fast-digesting, fast-absorbing 100% whey protein designed for athletes seeking muscle recovery, strength gains, and incredible taste without clumps.",
+    "features": [
+      "25g 100% Whey Protein",
+      "5.5g BCAAs with 2.7g L-Leucine",
+      "Low in Carbs and Sugars",
+      "Informed Choice Tested"
+    ],
+    "nutritionFacts": {
+      "protein": "25g",
+      "bcaa": "5.5g",
+      "glutamine": "4.2g",
+      "carbs": "2.8g",
+      "fat": "1.4g",
+      "calories": "125 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p10",
+    "name": "Fusion Multi-Source Protein",
+    "brand": "Rule 1",
+    "category": "Whey Protein",
+    "categorySlug": "whey-protein",
+    "image": "/assets/products/10_fusion_protein.jpg",
+    "gallery": [
+      "/assets/products/10_fusion_protein.jpg",
+      "/assets/products/10_fusion_protein.jpg"
+    ],
+    "price": 2899,
+    "mrp": 3799,
+    "discount": 24,
+    "rating": 4.7,
+    "reviews": 430,
+    "size": "2 kg (4.4 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)",
+      "4 kg (8.8 lbs)"
+    ],
+    "flavor": "Peanut Butter Cup",
+    "flavors": [
+      "Double Rich Chocolate",
+      "Gourmet Vanilla",
+      "Cafe Mocha",
+      "Cookies & Cream"
+    ],
+    "badge": "Sustained Release",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "6-stage sustained release protein matrix providing immediate, medium, and extended amino acid delivery over 8 hours for 24/7 muscle feeding.",
+    "features": [
+      "26g Multi-Source Protein",
+      "8-Hour Amino Release Window",
+      "Micellar Casein + Whey Blend",
+      "Digestive Enzyme Fortified"
+    ],
+    "nutritionFacts": {
+      "protein": "25g",
+      "bcaa": "5.5g",
+      "glutamine": "4.2g",
+      "carbs": "2.8g",
+      "fat": "1.4g",
+      "calories": "125 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p11",
+    "name": "Creatine Monohydrate 200 Mesh",
+    "brand": "OLIVER Pro Nutrition",
+    "category": "Creatine",
+    "categorySlug": "creatine",
+    "image": "/assets/products/11_creatine_monohydrate.jpg",
+    "gallery": [
+      "/assets/products/11_creatine_monohydrate.jpg",
+      "/assets/products/11_creatine_monohydrate.jpg"
+    ],
+    "price": 899,
+    "mrp": 1299,
+    "discount": 31,
+    "rating": 4.9,
+    "reviews": 2100,
+    "size": "300 g (100 Servings)",
+    "weights": [
+      "100g (33 Servings)",
+      "250g (83 Servings)",
+      "500g (166 Servings)"
+    ],
+    "flavor": "Unflavored",
+    "flavors": [
+      "Unflavored Micronized",
+      "Fruit Punch",
+      "Blue Raspberry"
+    ],
+    "badge": "Bestseller",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "100% pure pharmaceutical grade creatine monohydrate micronized to 200 mesh for effortless mixability and rapid cellular ATP regeneration.",
+    "features": [
+      "3g Pure Creatine per Scoop",
+      "Ultra-Fine 200 Mesh Particle Size",
+      "Boosts Power, Sprint & Max Reps",
+      "Zero Flavors, Dyes or Fillers"
+    ],
+    "nutritionFacts": {
+      "protein": "0g",
+      "creatine": "3g / 5g",
+      "carbs": "0g",
+      "fat": "0g",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p12",
+    "name": "Micronized Creapure Creatine",
+    "brand": "Optimum Nutrition",
+    "category": "Creatine",
+    "categorySlug": "creatine",
+    "image": "/assets/products/12_creatine_micronized.jpg",
+    "gallery": [
+      "/assets/products/12_creatine_micronized.jpg",
+      "/assets/products/12_creatine_micronized.jpg"
+    ],
+    "price": 1199,
+    "mrp": 1599,
+    "discount": 25,
+    "rating": 4.9,
+    "reviews": 1450,
+    "size": "250 g (83 Servings)",
+    "weights": [
+      "100g (33 Servings)",
+      "250g (83 Servings)",
+      "500g (166 Servings)"
+    ],
+    "flavor": "Unflavored",
+    "flavors": [
+      "Unflavored Micronized",
+      "Fruit Punch",
+      "Blue Raspberry"
+    ],
+    "badge": "Creapure Gold",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Manufactured in Germany under strict cGMP guidelines, Creapure is globally recognized as the purest and highest quality creatine available.",
+    "features": [
+      "99.99% Pure Creapure German Creatine",
+      "Zero Creatinine Byproducts",
+      "Enhances Cellular Hydration",
+      "Mixes Instantly in Water"
+    ],
+    "nutritionFacts": {
+      "protein": "0g",
+      "creatine": "3g / 5g",
+      "carbs": "0g",
+      "fat": "0g",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p13",
+    "name": "Creatine Power Formula Tub",
+    "brand": "MuscleTech",
+    "category": "Creatine",
+    "categorySlug": "creatine",
+    "image": "/assets/products/13_creatine_powder.jpg",
+    "gallery": [
+      "/assets/products/13_creatine_powder.jpg",
+      "/assets/products/13_creatine_powder.jpg"
+    ],
+    "price": 1049,
+    "mrp": 1499,
+    "discount": 30,
+    "rating": 4.8,
+    "reviews": 620,
+    "size": "400 g (133 Servings)",
+    "weights": [
+      "100g (33 Servings)",
+      "250g (83 Servings)",
+      "500g (166 Servings)"
+    ],
+    "flavor": "Fruit Punch",
+    "flavors": [
+      "Unflavored Micronized",
+      "Fruit Punch",
+      "Blue Raspberry"
+    ],
+    "badge": "Flavored Creatine",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Electrolyte-enhanced micronized creatine matrix formulated with sodium, potassium, and magnesium to prevent muscle cramping and maximize workout stamina.",
+    "features": [
+      "5g Micronized Creatine",
+      "Full Mineral Electrolyte Blend",
+      "Refreshing Fruit Punch Flavor",
+      "Accelerates Set-to-Set Recovery"
+    ],
+    "nutritionFacts": {
+      "protein": "0g",
+      "creatine": "3g / 5g",
+      "carbs": "0g",
+      "fat": "0g",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p14",
+    "name": "C4 Original Pre-Workout Ignition",
+    "brand": "Cellucor",
+    "category": "Pre-Workout",
+    "categorySlug": "pre-workout",
+    "image": "/assets/products/14_c4_pre_workout.jpg",
+    "gallery": [
+      "/assets/products/14_c4_pre_workout.jpg",
+      "/assets/products/14_c4_pre_workout.jpg"
+    ],
+    "price": 1999,
+    "mrp": 2599,
+    "discount": 23,
+    "rating": 4.8,
+    "reviews": 1680,
+    "size": "390 g (60 Servings)",
+    "weights": [
+      "300g (30 Servings)",
+      "600g (60 Servings)"
+    ],
+    "flavor": "Icy Blue Razz",
+    "flavors": [
+      "Blue Razz",
+      "Fruit Punch",
+      "Watermelon Burst",
+      "Green Apple"
+    ],
+    "badge": "Bestseller",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "America's legendary pre-workout powder powered by CarnoSyn Beta-Alanine, Nitramax Citrulline, and explosive caffeine energy to power through PRs.",
+    "features": [
+      "150mg Anhydrous Caffeine",
+      "1.6g CarnoSyn Beta-Alanine",
+      "1g Creatine Nitrate (NO3-T)",
+      "Zero Sugar, Extreme Focus"
+    ],
+    "nutritionFacts": {
+      "citrulline": "6000mg",
+      "betaAlanine": "3200mg",
+      "caffeine": "300mg",
+      "taurine": "1000mg",
+      "calories": "5 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p15",
+    "name": "Savage Pump Pre-Workout Formula",
+    "brand": "Rule 1",
+    "category": "Pre-Workout",
+    "categorySlug": "pre-workout",
+    "image": "/assets/products/15_pre_workout_formula.jpg",
+    "gallery": [
+      "/assets/products/15_pre_workout_formula.jpg",
+      "/assets/products/15_pre_workout_formula.jpg"
+    ],
+    "price": 2199,
+    "mrp": 2899,
+    "discount": 24,
+    "rating": 4.8,
+    "reviews": 780,
+    "size": "400 g (40 Servings)",
+    "weights": [
+      "300g (30 Servings)",
+      "600g (60 Servings)"
+    ],
+    "flavor": "Sour Green Apple",
+    "flavors": [
+      "Blue Razz",
+      "Fruit Punch",
+      "Watermelon Burst",
+      "Green Apple"
+    ],
+    "badge": "Max Pump",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Heavy-hitting pre-workout with 6g L-Citrulline Malate, 3.2g Beta-Alanine, and 300mg dual-release caffeine for unmatched vascularity and raw workout intensity.",
+    "features": [
+      "6000mg L-Citrulline Malate 2:1",
+      "3200mg CarnoSyn Beta-Alanine",
+      "300mg Dual Caffeine Surge",
+      "Skin-Splitting Muscle Pumps"
+    ],
+    "nutritionFacts": {
+      "citrulline": "6000mg",
+      "betaAlanine": "3200mg",
+      "caffeine": "300mg",
+      "taurine": "1000mg",
+      "calories": "5 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p16",
+    "name": "BCAA 2:1:1 Amino Fuel",
+    "brand": "OLIVER Pro Nutrition",
+    "category": "Amino Acids",
+    "categorySlug": "amino-acids",
+    "image": "/assets/products/16_bcaa_amino_acids.jpg",
+    "gallery": [
+      "/assets/products/16_bcaa_amino_acids.jpg",
+      "/assets/products/16_bcaa_amino_acids.jpg"
+    ],
+    "price": 1499,
+    "mrp": 1999,
+    "discount": 25,
+    "rating": 4.8,
+    "reviews": 890,
+    "size": "400 g (50 Servings)",
+    "weights": [
+      "250g (35 Servings)",
+      "400g (57 Servings)"
+    ],
+    "flavor": "Watermelon Blast",
+    "flavors": [
+      "Watermelon Splash",
+      "Tangy Orange",
+      "Green Apple",
+      "Lemon Lime"
+    ],
+    "badge": "Recovery Matrix",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Clinically backed 2:1:1 ratio of Leucine, Isoleucine, and Valine enriched with coconut water powder to prevent muscle breakdown during grueling sessions.",
+    "features": [
+      "7g Instantized BCAAs",
+      "Optimal 2:1:1 Ratio",
+      "Coconut Water Electrolytes",
+      "Zero Carbs & Zero Sugar"
+    ],
+    "nutritionFacts": {
+      "bcaa": "7000mg",
+      "eaa": "3000mg",
+      "electrolytes": "450mg",
+      "glutamine": "2500mg",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p17",
+    "name": "Instant BCAA 6000 Powder",
+    "brand": "Optimum Nutrition",
+    "category": "Amino Acids",
+    "categorySlug": "amino-acids",
+    "image": "/assets/products/17_bcaa_powder.jpg",
+    "gallery": [
+      "/assets/products/17_bcaa_powder.jpg",
+      "/assets/products/17_bcaa_powder.jpg"
+    ],
+    "price": 1799,
+    "mrp": 2399,
+    "discount": 25,
+    "rating": 4.8,
+    "reviews": 640,
+    "size": "345 g (60 Servings)",
+    "weights": [
+      "250g (35 Servings)",
+      "400g (57 Servings)"
+    ],
+    "flavor": "Fruit Punch",
+    "flavors": [
+      "Watermelon Splash",
+      "Tangy Orange",
+      "Green Apple",
+      "Lemon Lime"
+    ],
+    "badge": "Intra-Workout",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Instantized branched-chain amino acids for rapid intra-workout sipping. Supports muscle protein synthesis and delays central nervous fatigue.",
+    "features": [
+      "5g Pure Fermented BCAAs",
+      "Mixes Instantly with Spoon",
+      "Supports Lean Muscle Retention",
+      "Zero Calorie Intra-Workout"
+    ],
+    "nutritionFacts": {
+      "bcaa": "7000mg",
+      "eaa": "3000mg",
+      "electrolytes": "450mg",
+      "glutamine": "2500mg",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p18",
+    "name": "EAA Complete Essential Aminos",
+    "brand": "GNC",
+    "category": "Amino Acids",
+    "categorySlug": "amino-acids",
+    "image": "/assets/products/18_eaa_essential_amino_acids.jpg",
+    "gallery": [
+      "/assets/products/18_eaa_essential_amino_acids.jpg",
+      "/assets/products/18_eaa_essential_amino_acids.jpg"
+    ],
+    "price": 1899,
+    "mrp": 2499,
+    "discount": 24,
+    "rating": 4.9,
+    "reviews": 520,
+    "size": "390 g (30 Servings)",
+    "weights": [
+      "250g (35 Servings)",
+      "400g (57 Servings)"
+    ],
+    "flavor": "Blood Orange",
+    "flavors": [
+      "Watermelon Splash",
+      "Tangy Orange",
+      "Green Apple",
+      "Lemon Lime"
+    ],
+    "badge": "Full Spectrum",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Complete 9-essential amino acid spectrum including all BCAAs and raw hydration minerals for maximum muscle protein synthesis beyond standard BCAAs.",
+    "features": [
+      "9.5g Total Essential Amino Acids",
+      "Includes All 9 Human EAAs",
+      "Pink Himalayan Salt Hydration",
+      "100% Fermented Vegan Sourced"
+    ],
+    "nutritionFacts": {
+      "bcaa": "7000mg",
+      "eaa": "3000mg",
+      "electrolytes": "450mg",
+      "glutamine": "2500mg",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p19",
+    "name": "Pure Micronized L-Glutamine",
+    "brand": "Universal Nutrition",
+    "category": "Amino Acids",
+    "categorySlug": "amino-acids",
+    "image": "/assets/products/19_glutamine.jpg",
+    "gallery": [
+      "/assets/products/19_glutamine.jpg",
+      "/assets/products/19_glutamine.jpg"
+    ],
+    "price": 899,
+    "mrp": 1299,
+    "discount": 31,
+    "rating": 4.7,
+    "reviews": 410,
+    "size": "250 g (50 Servings)",
+    "weights": [
+      "250g (35 Servings)",
+      "400g (57 Servings)"
+    ],
+    "flavor": "Unflavored",
+    "flavors": [
+      "Watermelon Splash",
+      "Tangy Orange",
+      "Green Apple",
+      "Lemon Lime"
+    ],
+    "badge": "Gut & Muscle",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Pure pharmaceutical grade L-Glutamine powder to replenish muscle glycogen, protect intestinal wall integrity, and accelerate immune recovery after training.",
+    "features": [
+      "5g L-Glutamine per serving",
+      "Zero Flavor - Mixes into Shakes",
+      "Gut Lining Support",
+      "Reduces Delayed Soreness (DOMS)"
+    ],
+    "nutritionFacts": {
+      "bcaa": "7000mg",
+      "eaa": "3000mg",
+      "electrolytes": "450mg",
+      "glutamine": "2500mg",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p20",
+    "name": "Citrulline Malate 2:1 Pure",
+    "brand": "Rule 1",
+    "category": "Amino Acids",
+    "categorySlug": "amino-acids",
+    "image": "/assets/products/20_citrulline_malate.jpg",
+    "gallery": [
+      "/assets/products/20_citrulline_malate.jpg",
+      "/assets/products/20_citrulline_malate.jpg"
+    ],
+    "price": 1199,
+    "mrp": 1699,
+    "discount": 29,
+    "rating": 4.8,
+    "reviews": 380,
+    "size": "250 g (83 Servings)",
+    "weights": [
+      "250g (35 Servings)",
+      "400g (57 Servings)"
+    ],
+    "flavor": "Unflavored",
+    "flavors": [
+      "Watermelon Splash",
+      "Tangy Orange",
+      "Green Apple",
+      "Lemon Lime"
+    ],
+    "badge": "Nitric Oxide",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Pharmaceutical grade L-Citrulline bonded with malic acid in a 2:1 ratio for dramatic nitric oxide elevation, vasodilation, and aerobic endurance.",
+    "features": [
+      "2g L-Citrulline Malate 2:1",
+      "Powerful Nitric Oxide Precursor",
+      "Amplifies Blood Flow & Oxygen",
+      "Buffering of Lactic Acid"
+    ],
+    "nutritionFacts": {
+      "bcaa": "7000mg",
+      "eaa": "3000mg",
+      "electrolytes": "450mg",
+      "glutamine": "2500mg",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p21",
+    "name": "Daily Athlete Multivitamin 30+",
+    "brand": "OLIVER Pro Nutrition",
+    "category": "Vitamins & Minerals",
+    "categorySlug": "vitamins-minerals",
+    "image": "/assets/products/21_multivitamin.jpg",
+    "gallery": [
+      "/assets/products/21_multivitamin.jpg",
+      "/assets/products/21_multivitamin.jpg"
+    ],
+    "price": 799,
+    "mrp": 1199,
+    "discount": 33,
+    "rating": 4.8,
+    "reviews": 980,
+    "size": "60 Tablets (30 Days)",
+    "weights": [
+      "60 Tablets",
+      "120 Tablets"
+    ],
+    "flavor": "Coated Tablets",
+    "flavors": [
+      "Unflavored Caps"
+    ],
+    "badge": "Essential",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "High-potency multivitamin and multimineral formulated specifically for active lifters, with botanical antioxidants, amino support, and digestive enzymes.",
+    "features": [
+      "35+ Bioactive Micronutrients",
+      "100% Daily Value of B-Complex",
+      "Antioxidant Superfood Blend",
+      "Immune Defense with Zinc & C"
+    ],
+    "nutritionFacts": {
+      "vitamins": "24 Micronutrients",
+      "zinc": "25mg",
+      "magnesium": "100mg",
+      "vitaminD": "2000 IU"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p22",
+    "name": "Daily Wellness & Joint Armor",
+    "brand": "MuscleBlaze",
+    "category": "Vitamins & Minerals",
+    "categorySlug": "vitamins-minerals",
+    "image": "/assets/products/22_daily_wellness.jpg",
+    "gallery": [
+      "/assets/products/22_daily_wellness.jpg",
+      "/assets/products/22_daily_wellness.jpg"
+    ],
+    "price": 999,
+    "mrp": 1499,
+    "discount": 33,
+    "rating": 4.7,
+    "reviews": 430,
+    "size": "90 Capsules (30 Days)",
+    "weights": [
+      "60 Tablets",
+      "120 Tablets"
+    ],
+    "flavor": "Vegetarian Capsules",
+    "flavors": [
+      "Unflavored Caps"
+    ],
+    "badge": "Joint Mobility",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Targeted wellness formula combining Glucosamine, Chondroitin, MSM, and Boswellia Serrata to safeguard cartilage, reduce joint stiffness, and enhance flexibility.",
+    "features": [
+      "1500mg Glucosamine Sulfate",
+      "MSM + Chondroitin Complex",
+      "Standardized Boswellia Extract",
+      "Protects Heavy Lifting Joints"
+    ],
+    "nutritionFacts": {
+      "vitamins": "24 Micronutrients",
+      "zinc": "25mg",
+      "magnesium": "100mg",
+      "vitaminD": "2000 IU"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p23",
+    "name": "Triple Strength Omega-3 Fish Oil",
+    "brand": "GNC",
+    "category": "Fish Oil & Omega-3",
+    "categorySlug": "fish-oil-omega-3",
+    "image": "/assets/products/23_omega_3_fish_oil.jpg",
+    "gallery": [
+      "/assets/products/23_omega_3_fish_oil.jpg",
+      "/assets/products/23_omega_3_fish_oil.jpg"
+    ],
+    "price": 899,
+    "mrp": 1299,
+    "discount": 31,
+    "rating": 4.9,
+    "reviews": 1530,
+    "size": "60 Softgels (60 Days)",
+    "weights": [
+      "60 Softgels",
+      "120 Softgels"
+    ],
+    "flavor": "Enteric Lemon Coated",
+    "flavors": [
+      "Lemon Enteric-Coated"
+    ],
+    "badge": "Bestseller",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Molecularly distilled deep-sea fish oil providing 1,000mg total Omega-3s with 550mg EPA and 380mg DHA per single softgel. Zero fishy burps.",
+    "features": [
+      "1000mg Omega-3 per Softgel",
+      "550mg EPA + 380mg DHA",
+      "Molecularly Distilled (Pure)",
+      "Enteric Coated - Anti-Burp"
+    ],
+    "nutritionFacts": {
+      "epa": "550mg",
+      "dha": "350mg",
+      "totalOmega": "1000mg",
+      "calories": "15 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p24",
+    "name": "ZMA Night Anabolic Recovery",
+    "brand": "Universal Nutrition",
+    "category": "Vitamins & Minerals",
+    "categorySlug": "vitamins-minerals",
+    "image": "/assets/products/24_zma.jpg",
+    "gallery": [
+      "/assets/products/24_zma.jpg",
+      "/assets/products/24_zma.jpg"
+    ],
+    "price": 749,
+    "mrp": 1099,
+    "discount": 32,
+    "rating": 4.7,
+    "reviews": 610,
+    "size": "90 Capsules (45 Days)",
+    "weights": [
+      "60 Tablets",
+      "120 Tablets"
+    ],
+    "flavor": "Capsules",
+    "flavors": [
+      "Unflavored Caps"
+    ],
+    "badge": "Deep Sleep",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Synergistic mineral matrix of Zinc Monomethionine, Magnesium Aspartate, and Vitamin B6 to optimize natural hormone production and deep REM sleep.",
+    "features": [
+      "30mg Zinc Monomethionine",
+      "450mg Magnesium Aspartate",
+      "10.5mg Vitamin B6",
+      "Restorative Sleep & Muscle Repair"
+    ],
+    "nutritionFacts": {
+      "vitamins": "24 Micronutrients",
+      "zinc": "25mg",
+      "magnesium": "100mg",
+      "vitaminD": "2000 IU"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p25",
+    "name": "Test Booster Herbal Complex",
+    "brand": "Rule 1",
+    "category": "Vitamins & Minerals",
+    "categorySlug": "vitamins-minerals",
+    "image": "/assets/products/25_test_booster.jpg",
+    "gallery": [
+      "/assets/products/25_test_booster.jpg",
+      "/assets/products/25_test_booster.jpg"
+    ],
+    "price": 1299,
+    "mrp": 1899,
+    "discount": 32,
+    "rating": 4.6,
+    "reviews": 520,
+    "size": "60 Capsules",
+    "weights": [
+      "60 Tablets",
+      "120 Tablets"
+    ],
+    "flavor": "Capsules",
+    "flavors": [
+      "Unflavored Caps"
+    ],
+    "badge": "Vitality",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Natural vitality formulation with standardized Ashwagandha KSM-66, Tribulus Terrestris (90% saponins), Fenugreek, and Boron to support free testosterone.",
+    "features": [
+      "600mg KSM-66 Ashwagandha",
+      "750mg Tribulus Terrestris",
+      "Standardized Fenugreek Extract",
+      "Natural Free Test Optimization"
+    ],
+    "nutritionFacts": {
+      "vitamins": "24 Micronutrients",
+      "zinc": "25mg",
+      "magnesium": "100mg",
+      "vitaminD": "2000 IU"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p26",
+    "name": "Thermo Shred Fat Burner Matrix",
+    "brand": "OLIVER Pro Nutrition",
+    "category": "Pre-Workout",
+    "categorySlug": "pre-workout",
+    "image": "/assets/products/26_fat_burner.jpg",
+    "gallery": [
+      "/assets/products/26_fat_burner.jpg",
+      "/assets/products/26_fat_burner.jpg"
+    ],
+    "price": 1399,
+    "mrp": 1999,
+    "discount": 30,
+    "rating": 4.7,
+    "reviews": 480,
+    "size": "60 Thermogenic Caps",
+    "weights": [
+      "300g (30 Servings)",
+      "600g (60 Servings)"
+    ],
+    "flavor": "Capsules",
+    "flavors": [
+      "Blue Razz",
+      "Fruit Punch",
+      "Watermelon Burst",
+      "Green Apple"
+    ],
+    "badge": "Metabolism",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Thermogenic metabolic stimulator with Green Tea EGCG, Cayenne Pepper Capsimax, Caffeine, and Synephrine to amplify caloric expenditure and curb appetite.",
+    "features": [
+      "Capsimax Patented Red Pepper",
+      "500mg Green Tea Extract (50% EGCG)",
+      "Clean Thermogenic Energy",
+      "Enhances Calorie Burning"
+    ],
+    "nutritionFacts": {
+      "citrulline": "6000mg",
+      "betaAlanine": "3200mg",
+      "caffeine": "300mg",
+      "taurine": "1000mg",
+      "calories": "5 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p27",
+    "name": "L-Carnitine 3000 Liquid Burn",
+    "brand": "MuscleBlaze",
+    "category": "Amino Acids",
+    "categorySlug": "amino-acids",
+    "image": "/assets/products/27_l_carnitine.jpg",
+    "gallery": [
+      "/assets/products/27_l_carnitine.jpg",
+      "/assets/products/27_l_carnitine.jpg"
+    ],
+    "price": 1199,
+    "mrp": 1699,
+    "discount": 29,
+    "rating": 4.8,
+    "reviews": 590,
+    "size": "500 ml (33 Servings)",
+    "weights": [
+      "250g (35 Servings)",
+      "400g (57 Servings)"
+    ],
+    "flavor": "Tangy Orange",
+    "flavors": [
+      "Watermelon Splash",
+      "Tangy Orange",
+      "Green Apple",
+      "Lemon Lime"
+    ],
+    "badge": "Liquid Fast",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "High-concentration liquid L-Carnitine delivering 3,000mg per serving. Transports long-chain fatty acids into mitochondria to be burned as cellular fuel.",
+    "features": [
+      "3000mg Liquid L-Carnitine",
+      "Zero Sugar & Zero Calories",
+      "Rapid Liquid Absorption",
+      "Converts Stored Fat into Energy"
+    ],
+    "nutritionFacts": {
+      "bcaa": "7000mg",
+      "eaa": "3000mg",
+      "electrolytes": "450mg",
+      "glutamine": "2500mg",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p28",
+    "name": "Hydrolyzed Collagen Peptides",
+    "brand": "GNC",
+    "category": "Vitamins & Minerals",
+    "categorySlug": "vitamins-minerals",
+    "image": "/assets/products/28_collagen_peptides.jpg",
+    "gallery": [
+      "/assets/products/28_collagen_peptides.jpg",
+      "/assets/products/28_collagen_peptides.jpg"
+    ],
+    "price": 1699,
+    "mrp": 2299,
+    "discount": 26,
+    "rating": 4.8,
+    "reviews": 470,
+    "size": "300 g (30 Servings)",
+    "weights": [
+      "60 Tablets",
+      "120 Tablets"
+    ],
+    "flavor": "Unflavored",
+    "flavors": [
+      "Unflavored Caps"
+    ],
+    "badge": "Skin & Tendon",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Type I and Type III grass-fed bovine collagen peptides hydrolyzed for maximum bioavailability to strengthen tendons, ligaments, joints, hair, and skin.",
+    "features": [
+      "10g Pure Hydrolyzed Collagen",
+      "Type I & Type III Peptides",
+      "Mixes Clear in Hot or Cold Drinks",
+      "Keto & Paleo Friendly"
+    ],
+    "nutritionFacts": {
+      "vitamins": "24 Micronutrients",
+      "zinc": "25mg",
+      "magnesium": "100mg",
+      "vitaminD": "2000 IU"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p29",
+    "name": "Organic Vegan Plant Protein",
+    "brand": "Universal Nutrition",
+    "category": "Plant Protein",
+    "categorySlug": "plant-protein",
+    "image": "/assets/products/29_plant_protein.jpg",
+    "gallery": [
+      "/assets/products/29_plant_protein.jpg",
+      "/assets/products/29_plant_protein.jpg"
+    ],
+    "price": 2499,
+    "mrp": 3299,
+    "discount": 24,
+    "rating": 4.8,
+    "reviews": 410,
+    "size": "1 kg (2.2 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)"
+    ],
+    "flavor": "Rich Cocoa Chocolate",
+    "flavors": [
+      "Chocolate Silk",
+      "Natural Vanilla"
+    ],
+    "badge": "100% Vegan",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "A premium blend of organic fermented pea, brown rice, and sacha inchi proteins delivering 25g of complete plant protein with all essential amino acids.",
+    "features": [
+      "25g Complete Plant Protein",
+      "Naturally Sweetened with Stevia",
+      "Dairy-Free, Soy-Free, Gluten-Free",
+      "Smooth Non-Gritty Texture"
+    ],
+    "nutritionFacts": {
+      "protein": "25g",
+      "bcaa": "4.8g",
+      "glutamine": "4g",
+      "iron": "6.5mg",
+      "calories": "120 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p30",
+    "name": "OLIVER Pro Shaker 700ml",
+    "brand": "Rule 1",
+    "category": "Fitness Accessories",
+    "categorySlug": "fitness-accessories",
+    "image": "/assets/products/30_power_house_shaker.jpg",
+    "gallery": [
+      "/assets/products/30_power_house_shaker.jpg",
+      "/assets/products/30_power_house_shaker.jpg"
+    ],
+    "price": 449,
+    "mrp": 699,
+    "discount": 36,
+    "rating": 4.9,
+    "reviews": 1200,
+    "size": "700 ml Capacity",
+    "weights": [
+      "Standard 700ml",
+      "Pro 1000ml"
+    ],
+    "flavor": "Matte Black & Crimson Red",
+    "flavors": [
+      "Matte Black Tactical",
+      "Oliver Red Accent"
+    ],
+    "badge": "Bestseller",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Pro-grade leakproof supplement shaker with surgical stainless steel wire whisk ball, ergonomic carry loop, and BPA-free Tritan construction.",
+    "features": [
+      "100% Leakproof Guarantee",
+      "BPA & DEHP Free Construction",
+      "Surgical Wire Blender Ball",
+      "Embossed Ounce & Milliliter Marks"
+    ],
+    "nutritionFacts": {
+      "material": "BPA-Free Tritan / Ballistic 900D Nylon",
+      "capacity": "700ml / 45L"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p31",
+    "name": "Pure Whey Concentrate 80%",
+    "brand": "OLIVER Pro Nutrition",
+    "category": "Whey Protein",
+    "categorySlug": "whey-protein",
+    "image": "/assets/products/31_whey_protein.jpg",
+    "gallery": [
+      "/assets/products/31_whey_protein.jpg",
+      "/assets/products/31_whey_protein.jpg"
+    ],
+    "price": 2399,
+    "mrp": 3199,
+    "discount": 25,
+    "rating": 4.7,
+    "reviews": 380,
+    "size": "1 kg (2.2 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)",
+      "4 kg (8.8 lbs)"
+    ],
+    "flavor": "Chocolate Caramel",
+    "flavors": [
+      "Double Rich Chocolate",
+      "Gourmet Vanilla",
+      "Cafe Mocha",
+      "Cookies & Cream"
+    ],
+    "badge": "Value Pick",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Premium unadulterated whey protein concentrate delivering 24g of protein with intact immunoglobulins and growth factors for daily recovery.",
+    "features": [
+      "24g Protein per Scoop",
+      "Naturally Rich in BCAAs",
+      "Cold-Microfiltered Quality",
+      "Smooth Creamy Consistency"
+    ],
+    "nutritionFacts": {
+      "protein": "25g",
+      "bcaa": "5.5g",
+      "glutamine": "4.2g",
+      "carbs": "2.8g",
+      "fat": "1.4g",
+      "calories": "125 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p32",
+    "name": "Platinum Whey Isolate Zero",
+    "brand": "MuscleBlaze",
+    "category": "Whey Isolate",
+    "categorySlug": "whey-isolate",
+    "image": "/assets/products/32_whey_isolate.jpg",
+    "gallery": [
+      "/assets/products/32_whey_isolate.jpg",
+      "/assets/products/32_whey_isolate.jpg"
+    ],
+    "price": 3799,
+    "mrp": 4899,
+    "discount": 22,
+    "rating": 4.9,
+    "reviews": 510,
+    "size": "1.8 kg (4 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)",
+      "2.3 kg (5 lbs)"
+    ],
+    "flavor": "Strawberry Milkshake",
+    "flavors": [
+      "Fudge Brownie",
+      "Vanilla Cream",
+      "Strawberry Blast",
+      "Salted Caramel"
+    ],
+    "badge": "Zero Carb",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "100% ion-exchange and cross-flow micro-filtered whey isolate with 0g fat and 0g sugar. Specially crafted for competitive lifters cutting weight.",
+    "features": [
+      "28g Whey Protein Isolate",
+      "0g Total Carbohydrates",
+      "Instant Mix in Cold Water",
+      "Gluten-Free & Lactose Free"
+    ],
+    "nutritionFacts": {
+      "protein": "27g",
+      "bcaa": "6.2g",
+      "glutamine": "4.8g",
+      "carbs": "0.8g",
+      "fat": "0.4g",
+      "calories": "110 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p33",
+    "name": "Hydro 100 Hydrolyzed Whey",
+    "brand": "GNC",
+    "category": "Whey Isolate",
+    "categorySlug": "whey-isolate",
+    "image": "/assets/products/33_iso_100_hydrolyzed_whey.jpg",
+    "gallery": [
+      "/assets/products/33_iso_100_hydrolyzed_whey.jpg",
+      "/assets/products/33_iso_100_hydrolyzed_whey.jpg"
+    ],
+    "price": 4299,
+    "mrp": 5499,
+    "discount": 22,
+    "rating": 4.8,
+    "reviews": 420,
+    "size": "2 kg (4.4 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)",
+      "2.3 kg (5 lbs)"
+    ],
+    "flavor": "Belgian Chocolate",
+    "flavors": [
+      "Fudge Brownie",
+      "Vanilla Cream",
+      "Strawberry Blast",
+      "Salted Caramel"
+    ],
+    "badge": "Fast Absorbing",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Pre-digested enzymatically broken down whey peptide isolate engineered for instantaneous uptake into muscle cells directly after intense training.",
+    "features": [
+      "26g Hydrolyzed Whey Peptides",
+      "Sub-15 Minute Absorption Rate",
+      "Enhanced Leucine Threshold",
+      "Ultra Low Mineral Content"
+    ],
+    "nutritionFacts": {
+      "protein": "27g",
+      "bcaa": "6.2g",
+      "glutamine": "4.8g",
+      "carbs": "0.8g",
+      "fat": "0.4g",
+      "calories": "110 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p34",
+    "name": "Impact Whey Deluxe Tub",
+    "brand": "Universal Nutrition",
+    "category": "Whey Protein",
+    "categorySlug": "whey-protein",
+    "image": "/assets/products/34_impact_whey.jpg",
+    "gallery": [
+      "/assets/products/34_impact_whey.jpg",
+      "/assets/products/34_impact_whey.jpg"
+    ],
+    "price": 2699,
+    "mrp": 3499,
+    "discount": 23,
+    "rating": 4.7,
+    "reviews": 310,
+    "size": "1.5 kg (3.3 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)",
+      "4 kg (8.8 lbs)"
+    ],
+    "flavor": "Mocha Cappuccino",
+    "flavors": [
+      "Double Rich Chocolate",
+      "Gourmet Vanilla",
+      "Cafe Mocha",
+      "Cookies & Cream"
+    ],
+    "badge": "New Flavor",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Delicious daily fitness protein powder crafted with European milk whey. Dissolves instantly with no clumps and offers rich bakery-style flavor.",
+    "features": [
+      "23g High-Yield Protein",
+      "5g Essential BCAAs",
+      "Low Calorie Profile",
+      "Decadent Coffeehouse Taste"
+    ],
+    "nutritionFacts": {
+      "protein": "25g",
+      "bcaa": "5.5g",
+      "glutamine": "4.2g",
+      "carbs": "2.8g",
+      "fat": "1.4g",
+      "calories": "125 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p35",
+    "name": "Titan Mass Gainer 3000",
+    "brand": "Rule 1",
+    "category": "Mass Gainers",
+    "categorySlug": "mass-gainers",
+    "image": "/assets/products/35_mass_gainer.jpg",
+    "gallery": [
+      "/assets/products/35_mass_gainer.jpg",
+      "/assets/products/35_mass_gainer.jpg"
+    ],
+    "price": 2799,
+    "mrp": 3799,
+    "discount": 26,
+    "rating": 4.6,
+    "reviews": 290,
+    "size": "3 kg (6.6 lbs)",
+    "weights": [
+      "3 kg (6.6 lbs)",
+      "5 kg (11 lbs)"
+    ],
+    "flavor": "Chocolate Banana",
+    "flavors": [
+      "Rich Chocolate Fudge",
+      "Creamy Banana",
+      "Vanilla Ice Cream"
+    ],
+    "badge": "Bulking",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Formulated for high-metabolism athletes who struggle to gain size. Contains oat flour, sweet potato powder, and multi-source whey protein.",
+    "features": [
+      "1,100 Nutrient-Dense Calories",
+      "55g Whey Protein Matrix",
+      "Clean Whole-Food Carbs",
+      "Medium Chain Triglycerides (MCTs)"
+    ],
+    "nutritionFacts": {
+      "protein": "52g",
+      "bcaa": "11g",
+      "glutamine": "8.5g",
+      "carbs": "245g",
+      "fat": "4.5g",
+      "calories": "1230 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p36",
+    "name": "Monstrous Serious Gainer",
+    "brand": "OLIVER Pro Nutrition",
+    "category": "Mass Gainers",
+    "categorySlug": "mass-gainers",
+    "image": "/assets/products/36_serious_mass_gainer.jpg",
+    "gallery": [
+      "/assets/products/36_serious_mass_gainer.jpg",
+      "/assets/products/36_serious_mass_gainer.jpg"
+    ],
+    "price": 3299,
+    "mrp": 4299,
+    "discount": 23,
+    "rating": 4.7,
+    "reviews": 350,
+    "size": "4 kg (8.8 lbs)",
+    "weights": [
+      "3 kg (6.6 lbs)",
+      "5 kg (11 lbs)"
+    ],
+    "flavor": "Vanilla Cream",
+    "flavors": [
+      "Rich Chocolate Fudge",
+      "Creamy Banana",
+      "Vanilla Ice Cream"
+    ],
+    "badge": "Mega Tub",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Giant 4kg tub of mass-building fuel featuring 1,300 calories, 60g protein, and 10g BCAAs per full serving to push muscle volume to the limit.",
+    "features": [
+      "60g Protein per serving",
+      "1,300 Solid Calories",
+      "Added L-Glutamine & Minerals",
+      "Super Value 4kg Tub"
+    ],
+    "nutritionFacts": {
+      "protein": "52g",
+      "bcaa": "11g",
+      "glutamine": "8.5g",
+      "carbs": "245g",
+      "fat": "4.5g",
+      "calories": "1230 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p37",
+    "name": "Ultra Fusion 7-Protein Matrix",
+    "brand": "MuscleBlaze",
+    "category": "Whey Protein",
+    "categorySlug": "whey-protein",
+    "image": "/assets/products/37_fusion_protein.jpg",
+    "gallery": [
+      "/assets/products/37_fusion_protein.jpg",
+      "/assets/products/37_fusion_protein.jpg"
+    ],
+    "price": 2999,
+    "mrp": 3999,
+    "discount": 25,
+    "rating": 4.8,
+    "reviews": 260,
+    "size": "2 kg (4.4 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)",
+      "4 kg (8.8 lbs)"
+    ],
+    "flavor": "Dutch Chocolate",
+    "flavors": [
+      "Double Rich Chocolate",
+      "Gourmet Vanilla",
+      "Cafe Mocha",
+      "Cookies & Cream"
+    ],
+    "badge": "All-Day Fuel",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Engineered with 7 diverse protein sources: Whey Isolate, Concentrate, Hydrolyzate, Micellar Casein, Milk Isolate, Egg Albumin, and Calcium Caseinate.",
+    "features": [
+      "25g Time-Release Protein",
+      "Sustained Amino Elevation",
+      "Thick Creamy Milkshake Texture",
+      "Ideal Meal Replacement"
+    ],
+    "nutritionFacts": {
+      "protein": "25g",
+      "bcaa": "5.5g",
+      "glutamine": "4.2g",
+      "carbs": "2.8g",
+      "fat": "1.4g",
+      "calories": "125 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p38",
+    "name": "Pure Creatine Monohydrate 500g",
+    "brand": "GNC",
+    "category": "Creatine",
+    "categorySlug": "creatine",
+    "image": "/assets/products/38_creatine_monohydrate.jpg",
+    "gallery": [
+      "/assets/products/38_creatine_monohydrate.jpg",
+      "/assets/products/38_creatine_monohydrate.jpg"
+    ],
+    "price": 1299,
+    "mrp": 1799,
+    "discount": 28,
+    "rating": 4.9,
+    "reviews": 890,
+    "size": "500 g (166 Servings)",
+    "weights": [
+      "100g (33 Servings)",
+      "250g (83 Servings)",
+      "500g (166 Servings)"
+    ],
+    "flavor": "Unflavored",
+    "flavors": [
+      "Unflavored Micronized",
+      "Fruit Punch",
+      "Blue Raspberry"
+    ],
+    "badge": "Mega Size",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "166 servings of pharmaceutical grade pure creatine monohydrate. Increase muscular power, hydration, workout capacity, and lean mass over time.",
+    "features": [
+      "5g Pure Creatine per Scoop",
+      "166 Servings Value Pack",
+      "Clinically Proven for Strength",
+      "Zero Color, Sugar or Additives"
+    ],
+    "nutritionFacts": {
+      "protein": "0g",
+      "creatine": "3g / 5g",
+      "carbs": "0g",
+      "fat": "0g",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p39",
+    "name": "Micronized Creatine Pure Tub",
+    "brand": "Universal Nutrition",
+    "category": "Creatine",
+    "categorySlug": "creatine",
+    "image": "/assets/products/39_micronized_creatine.jpg",
+    "gallery": [
+      "/assets/products/39_micronized_creatine.jpg",
+      "/assets/products/39_micronized_creatine.jpg"
+    ],
+    "price": 999,
+    "mrp": 1399,
+    "discount": 29,
+    "rating": 4.8,
+    "reviews": 470,
+    "size": "300 g (100 Servings)",
+    "weights": [
+      "100g (33 Servings)",
+      "250g (83 Servings)",
+      "500g (166 Servings)"
+    ],
+    "flavor": "Unflavored",
+    "flavors": [
+      "Unflavored Micronized",
+      "Fruit Punch",
+      "Blue Raspberry"
+    ],
+    "badge": "Fast Dissolve",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Micronized particle technology allows this creatine to disperse quickly in water or juice without settling at the bottom of your shaker cup.",
+    "features": [
+      "Ultra-Micronized Particle Size",
+      "100% Pure Monohydrate",
+      "No Settling at Cup Bottom",
+      "Fast Cellular Uptake"
+    ],
+    "nutritionFacts": {
+      "protein": "0g",
+      "creatine": "3g / 5g",
+      "carbs": "0g",
+      "fat": "0g",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p40",
+    "name": "Ignite Extreme Pre-Workout",
+    "brand": "Rule 1",
+    "category": "Pre-Workout",
+    "categorySlug": "pre-workout",
+    "image": "/assets/products/40_pre_workout.jpg",
+    "gallery": [
+      "/assets/products/40_pre_workout.jpg",
+      "/assets/products/40_pre_workout.jpg"
+    ],
+    "price": 1899,
+    "mrp": 2599,
+    "discount": 27,
+    "rating": 4.8,
+    "reviews": 620,
+    "size": "300 g (30 Servings)",
+    "weights": [
+      "300g (30 Servings)",
+      "600g (60 Servings)"
+    ],
+    "flavor": "Pineapple Punch",
+    "flavors": [
+      "Blue Razz",
+      "Fruit Punch",
+      "Watermelon Burst",
+      "Green Apple"
+    ],
+    "badge": "High Stim",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "High-stimulant pre-training ignition loaded with 350mg caffeine, 4g L-Citrulline, 2.5g Beta-Alanine, and L-Tyrosine for laser tunnel vision in the gym.",
+    "features": [
+      "350mg Stimulant Matrix",
+      "4000mg Pure L-Citrulline",
+      "2500mg Beta-Alanine",
+      "Laser Sharp Cognitive Focus"
+    ],
+    "nutritionFacts": {
+      "citrulline": "6000mg",
+      "betaAlanine": "3200mg",
+      "caffeine": "300mg",
+      "taurine": "1000mg",
+      "calories": "5 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p41",
+    "name": "BCAA Recovery Essential 300g",
+    "brand": "OLIVER Pro Nutrition",
+    "category": "Amino Acids",
+    "categorySlug": "amino-acids",
+    "image": "/assets/products/41_bcaa.jpg",
+    "gallery": [
+      "/assets/products/41_bcaa.jpg",
+      "/assets/products/41_bcaa.jpg"
+    ],
+    "price": 1299,
+    "mrp": 1799,
+    "discount": 28,
+    "rating": 4.7,
+    "reviews": 340,
+    "size": "300 g (30 Servings)",
+    "weights": [
+      "250g (35 Servings)",
+      "400g (57 Servings)"
+    ],
+    "flavor": "Crisp Apple",
+    "flavors": [
+      "Watermelon Splash",
+      "Tangy Orange",
+      "Green Apple",
+      "Lemon Lime"
+    ],
+    "badge": "Anti-Catabolic",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Instantized BCAAs engineered to preserve hard-earned muscle mass during calorie deficits and fasted cardio workouts.",
+    "features": [
+      "6g BCAAs in 2:1:1 Ratio",
+      "Enriched with Vitamin B6",
+      "Anti-Catabolic Protection",
+      "Zero Artificial Colors"
+    ],
+    "nutritionFacts": {
+      "bcaa": "7000mg",
+      "eaa": "3000mg",
+      "electrolytes": "450mg",
+      "glutamine": "2500mg",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p42",
+    "name": "Full Spectrum EAA Complex",
+    "brand": "MuscleBlaze",
+    "category": "Amino Acids",
+    "categorySlug": "amino-acids",
+    "image": "/assets/products/42_eaa_amino_acids.jpg",
+    "gallery": [
+      "/assets/products/42_eaa_amino_acids.jpg",
+      "/assets/products/42_eaa_amino_acids.jpg"
+    ],
+    "price": 1699,
+    "mrp": 2299,
+    "discount": 26,
+    "rating": 4.9,
+    "reviews": 280,
+    "size": "300 g (30 Servings)",
+    "weights": [
+      "250g (35 Servings)",
+      "400g (57 Servings)"
+    ],
+    "flavor": "Mango Tango",
+    "flavors": [
+      "Watermelon Splash",
+      "Tangy Orange",
+      "Green Apple",
+      "Lemon Lime"
+    ],
+    "badge": "Anabolic Drive",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Contains all 9 essential amino acids that your body cannot synthesize on its own. Boosts muscle protein synthesis significantly higher than BCAAs alone.",
+    "features": [
+      "8g Full Spectrum EAAs",
+      "Fast Intra-Workout Absorption",
+      "Electrolyte Hydration Blend",
+      "Natural Mango Flavor"
+    ],
+    "nutritionFacts": {
+      "bcaa": "7000mg",
+      "eaa": "3000mg",
+      "electrolytes": "450mg",
+      "glutamine": "2500mg",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p43",
+    "name": "L-Glutamine Recovery Powder",
+    "brand": "GNC",
+    "category": "Amino Acids",
+    "categorySlug": "amino-acids",
+    "image": "/assets/products/43_glutamine.jpg",
+    "gallery": [
+      "/assets/products/43_glutamine.jpg",
+      "/assets/products/43_glutamine.jpg"
+    ],
+    "price": 799,
+    "mrp": 1199,
+    "discount": 33,
+    "rating": 4.7,
+    "reviews": 230,
+    "size": "200 g (40 Servings)",
+    "weights": [
+      "250g (35 Servings)",
+      "400g (57 Servings)"
+    ],
+    "flavor": "Unflavored",
+    "flavors": [
+      "Watermelon Splash",
+      "Tangy Orange",
+      "Green Apple",
+      "Lemon Lime"
+    ],
+    "badge": "Immune Fuel",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "100% free-form pure L-Glutamine powder to speed recovery, support digestive wellness, and reduce training soreness after heavy lifts.",
+    "features": [
+      "5g Pure L-Glutamine",
+      "Immune System Reinforcement",
+      "Reduces Muscle Soreness",
+      "Zero Flavoring or Fillers"
+    ],
+    "nutritionFacts": {
+      "bcaa": "7000mg",
+      "eaa": "3000mg",
+      "electrolytes": "450mg",
+      "glutamine": "2500mg",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p44",
+    "name": "Citrulline Malate Pro 200g",
+    "brand": "Universal Nutrition",
+    "category": "Amino Acids",
+    "categorySlug": "amino-acids",
+    "image": "/assets/products/44_citrulline_malate.jpg",
+    "gallery": [
+      "/assets/products/44_citrulline_malate.jpg",
+      "/assets/products/44_citrulline_malate.jpg"
+    ],
+    "price": 999,
+    "mrp": 1399,
+    "discount": 29,
+    "rating": 4.8,
+    "reviews": 190,
+    "size": "200 g (66 Servings)",
+    "weights": [
+      "250g (35 Servings)",
+      "400g (57 Servings)"
+    ],
+    "flavor": "Unflavored",
+    "flavors": [
+      "Watermelon Splash",
+      "Tangy Orange",
+      "Green Apple",
+      "Lemon Lime"
+    ],
+    "badge": "Vascularity",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Boost plasma arginine levels and nitric oxide production with pure 2:1 Citrulline Malate. Enhances muscle endurance and workout pump.",
+    "features": [
+      "3g Citrulline Malate 2:1",
+      "Heightened Blood Flow",
+      "Elevated Training Volume",
+      "Unflavored Powder"
+    ],
+    "nutritionFacts": {
+      "bcaa": "7000mg",
+      "eaa": "3000mg",
+      "electrolytes": "450mg",
+      "glutamine": "2500mg",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p45",
+    "name": "L-Carnitine L-Tartrate 1500mg",
+    "brand": "Rule 1",
+    "category": "Amino Acids",
+    "categorySlug": "amino-acids",
+    "image": "/assets/products/45_l_carnitine.jpg",
+    "gallery": [
+      "/assets/products/45_l_carnitine.jpg",
+      "/assets/products/45_l_carnitine.jpg"
+    ],
+    "price": 999,
+    "mrp": 1499,
+    "discount": 33,
+    "rating": 4.7,
+    "reviews": 250,
+    "size": "60 Veg Capsules",
+    "weights": [
+      "250g (35 Servings)",
+      "400g (57 Servings)"
+    ],
+    "flavor": "Capsules",
+    "flavors": [
+      "Watermelon Splash",
+      "Tangy Orange",
+      "Green Apple",
+      "Lemon Lime"
+    ],
+    "badge": "Fat to Fuel",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Highly bioavailable L-Carnitine L-Tartrate capsules to support fat metabolism, aerobic power, and tissue recovery after endurance training.",
+    "features": [
+      "1500mg LCLT per 2 Capsules",
+      "Fast Bioavailable Tartrate Salt",
+      "Supports Fatty Acid Transport",
+      "Zero Stimulants"
+    ],
+    "nutritionFacts": {
+      "bcaa": "7000mg",
+      "eaa": "3000mg",
+      "electrolytes": "450mg",
+      "glutamine": "2500mg",
+      "calories": "0 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p46",
+    "name": "Thermogenic Fat Burner Pro",
+    "brand": "OLIVER Pro Nutrition",
+    "category": "Pre-Workout",
+    "categorySlug": "pre-workout",
+    "image": "/assets/products/46_fat_burner_mockup.jpg",
+    "gallery": [
+      "/assets/products/46_fat_burner_mockup.jpg",
+      "/assets/products/46_fat_burner_mockup.jpg"
+    ],
+    "price": 1299,
+    "mrp": 1899,
+    "discount": 32,
+    "rating": 4.7,
+    "reviews": 310,
+    "size": "60 Capsules",
+    "weights": [
+      "300g (30 Servings)",
+      "600g (60 Servings)"
+    ],
+    "flavor": "Capsules",
+    "flavors": [
+      "Blue Razz",
+      "Fruit Punch",
+      "Watermelon Burst",
+      "Green Apple"
+    ],
+    "badge": "Shred Complex",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Advanced thermogenic fat-loss formula containing Green Coffee Bean, Yohimbine Bark Extract, Bioperine, and Caffeine for accelerated calorie expenditure.",
+    "features": [
+      "Multi-Phase Thermogenic Burn",
+      "Sustained Mental Focus",
+      "Appetite Modulation Matrix",
+      "Zero Crash Formula"
+    ],
+    "nutritionFacts": {
+      "citrulline": "6000mg",
+      "betaAlanine": "3200mg",
+      "caffeine": "300mg",
+      "taurine": "1000mg",
+      "calories": "5 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p47",
+    "name": "Natural Test Matrix 60 Caps",
+    "brand": "MuscleBlaze",
+    "category": "Vitamins & Minerals",
+    "categorySlug": "vitamins-minerals",
+    "image": "/assets/products/47_test_booster_mockup.jpg",
+    "gallery": [
+      "/assets/products/47_test_booster_mockup.jpg",
+      "/assets/products/47_test_booster_mockup.jpg"
+    ],
+    "price": 1199,
+    "mrp": 1699,
+    "discount": 29,
+    "rating": 4.6,
+    "reviews": 270,
+    "size": "60 Capsules",
+    "weights": [
+      "60 Tablets",
+      "120 Tablets"
+    ],
+    "flavor": "Capsules",
+    "flavors": [
+      "Unflavored Caps"
+    ],
+    "badge": "Men's Health",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Herbal synergy capsule blend with Tongkat Ali, D-Aspartic Acid, Maca Root, and Zinc to elevate vitality, recovery, and masculine strength.",
+    "features": [
+      "Standardized Tongkat Ali Extract",
+      "D-Aspartic Acid & Maca",
+      "Zinc & Magnesium Chelate",
+      "Supports Vigor & Stamina"
+    ],
+    "nutritionFacts": {
+      "vitamins": "24 Micronutrients",
+      "zinc": "25mg",
+      "magnesium": "100mg",
+      "vitaminD": "2000 IU"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p48",
+    "name": "ZMA Mineral Recovery 60 Caps",
+    "brand": "GNC",
+    "category": "Vitamins & Minerals",
+    "categorySlug": "vitamins-minerals",
+    "image": "/assets/products/48_zma.jpg",
+    "gallery": [
+      "/assets/products/48_zma.jpg",
+      "/assets/products/48_zma.jpg"
+    ],
+    "price": 649,
+    "mrp": 999,
+    "discount": 35,
+    "rating": 4.7,
+    "reviews": 340,
+    "size": "60 Capsules (30 Days)",
+    "weights": [
+      "60 Tablets",
+      "120 Tablets"
+    ],
+    "flavor": "Capsules",
+    "flavors": [
+      "Unflavored Caps"
+    ],
+    "badge": "Sleep Support",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "High-absorption Zinc, Magnesium, and Vitamin B6 to help athletes sleep deeper, wake refreshed, and restore cellular zinc levels lost in sweat.",
+    "features": [
+      "Zinc Chelate + Magnesium",
+      "Bioavailable Vitamin B6",
+      "Deep Stage 4 Sleep",
+      "Non-Habit Forming Formula"
+    ],
+    "nutritionFacts": {
+      "vitamins": "24 Micronutrients",
+      "zinc": "25mg",
+      "magnesium": "100mg",
+      "vitaminD": "2000 IU"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p49",
+    "name": "Omega-3 Gold Ultra Fish Oil",
+    "brand": "Universal Nutrition",
+    "category": "Fish Oil & Omega-3",
+    "categorySlug": "fish-oil-omega-3",
+    "image": "/assets/products/49_fish_oil_omega_3.jpg",
+    "gallery": [
+      "/assets/products/49_fish_oil_omega_3.jpg",
+      "/assets/products/49_fish_oil_omega_3.jpg"
+    ],
+    "price": 999,
+    "mrp": 1499,
+    "discount": 33,
+    "rating": 4.9,
+    "reviews": 620,
+    "size": "90 Softgels (90 Days)",
+    "weights": [
+      "60 Softgels",
+      "120 Softgels"
+    ],
+    "flavor": "Softgels",
+    "flavors": [
+      "Lemon Enteric-Coated"
+    ],
+    "badge": "Triple Strength",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Triple strength pure omega-3 fish oil softgels providing 600mg EPA and 400mg DHA per capsule for cardiovascular and joint resilience.",
+    "features": [
+      "1250mg Fish Oil per Softgel",
+      "600mg EPA + 400mg DHA",
+      "Molecularly Purified",
+      "Wild-Caught Cold Water Fish"
+    ],
+    "nutritionFacts": {
+      "epa": "550mg",
+      "dha": "350mg",
+      "totalOmega": "1000mg",
+      "calories": "15 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p50",
+    "name": "Daily Active Multivitamin 60 Tabs",
+    "brand": "Rule 1",
+    "category": "Vitamins & Minerals",
+    "categorySlug": "vitamins-minerals",
+    "image": "/assets/products/50_multivitamin.jpg",
+    "gallery": [
+      "/assets/products/50_multivitamin.jpg",
+      "/assets/products/50_multivitamin.jpg"
+    ],
+    "price": 749,
+    "mrp": 1099,
+    "discount": 32,
+    "rating": 4.8,
+    "reviews": 520,
+    "size": "60 Tablets (60 Days)",
+    "weights": [
+      "60 Tablets",
+      "120 Tablets"
+    ],
+    "flavor": "Tablets",
+    "flavors": [
+      "Unflavored Caps"
+    ],
+    "badge": "Daily Core",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "All-in-one daily multivitamin with essential vitamins A, C, D, E, B-Complex, and chelated minerals to plug nutritional gaps in hard-training diets.",
+    "features": [
+      "24 Essential Vitamins & Minerals",
+      "Complete B-Complex for Energy",
+      "Chelated Zinc & Chromium",
+      "One Tablet Daily Convenience"
+    ],
+    "nutritionFacts": {
+      "vitamins": "24 Micronutrients",
+      "zinc": "25mg",
+      "magnesium": "100mg",
+      "vitaminD": "2000 IU"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p51",
+    "name": "Vitamin D3 + K2 (MK-7) Complex",
+    "brand": "OLIVER Pro Nutrition",
+    "category": "Vitamins & Minerals",
+    "categorySlug": "vitamins-minerals",
+    "image": "/assets/products/51_vitamin_d3_k2.jpg",
+    "gallery": [
+      "/assets/products/51_vitamin_d3_k2.jpg",
+      "/assets/products/51_vitamin_d3_k2.jpg"
+    ],
+    "price": 699,
+    "mrp": 999,
+    "discount": 30,
+    "rating": 4.9,
+    "reviews": 410,
+    "size": "60 Veg Capsules",
+    "weights": [
+      "60 Tablets",
+      "120 Tablets"
+    ],
+    "flavor": "Vegetarian Capsules",
+    "flavors": [
+      "Unflavored Caps"
+    ],
+    "badge": "Bone & Heart",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Synergistic pair of 5000 IU Vitamin D3 and 100mcg Vitamin K2 (MenaQ7 MK-7) to guide calcium directly into bones and teeth rather than arterial walls.",
+    "features": [
+      "5000 IU High-Potency Vitamin D3",
+      "100mcg All-Natural K2 MK-7",
+      "Supports Bone Density & Immunity",
+      "100% Plant-Based Capsule"
+    ],
+    "nutritionFacts": {
+      "vitamins": "24 Micronutrients",
+      "zinc": "25mg",
+      "magnesium": "100mg",
+      "vitaminD": "2000 IU"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p52",
+    "name": "Vitamin C 1000mg with Zinc",
+    "brand": "MuscleBlaze",
+    "category": "Vitamins & Minerals",
+    "categorySlug": "vitamins-minerals",
+    "image": "/assets/products/52_vitamin_c.jpg",
+    "gallery": [
+      "/assets/products/52_vitamin_c.jpg",
+      "/assets/products/52_vitamin_c.jpg"
+    ],
     "price": 599,
-    "originalPrice": 999,
-    "badge": "POPULAR",
+    "mrp": 899,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 280,
-    "primaryImage": "assets/categories/accessories/statement-bp-black-_94aaa.jpg",
-    "hoverImage": "assets/categories/accessories/gym-caps-men9766.jpg",
-    "gallery": [
-      "assets/categories/accessories/statement-bp-black-_94aaa.jpg"
+    "reviews": 380,
+    "size": "60 Tablets",
+    "weights": [
+      "60 Tablets",
+      "120 Tablets"
     ],
-    "colors": [
-      {
-        "name": "Matte Black",
-        "hex": "#161618"
-      }
+    "flavor": "Tablets",
+    "flavors": [
+      "Unflavored Caps"
     ],
-    "sizes": [
-      "750 ml"
-    ],
-    "inStock": true,
-    "stockCount": 50,
-    "description": "100% BPA-free Eastman Tritan stainless steel blend shaker with silent whisk ball and leak-proof flip cap.",
-    "fabric": "BPA-Free Eastman Tritan Plastic",
+    "badge": "Immune Armor",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "High-dose 1,000mg Vitamin C with Citrus Bioflavonoids and Zinc for intense cellular antioxidant defense against training-induced oxidative stress.",
     "features": [
-      "Silent Agitator Ball",
-      "100% Guaranteed Leak-Proof",
-      "Odor-Resistant Surface"
+      "1000mg Vitamin C per Tablet",
+      "25mg Zinc for Immune Support",
+      "Natural Citrus Bioflavonoids",
+      "Gentle on Stomach"
     ],
-    "tags": [
-      "shaker",
-      "bottle",
-      "matte black"
-    ]
+    "nutritionFacts": {
+      "vitamins": "24 Micronutrients",
+      "zinc": "25mg",
+      "magnesium": "100mg",
+      "vitaminD": "2000 IU"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
   },
   {
-    "id": "rv-ac-08",
-    "name": "Vault Quick-Dry Microfiber Gym Towel — Slate",
-    "category": "accessories",
-    "categoryName": "Gear & Accessories",
-    "gender": "unisex",
-    "price": 399,
-    "originalPrice": 699,
-    "badge": "BESTSELLER",
-    "rating": 4.8,
-    "reviewCount": 310,
-    "primaryImage": "assets/categories/accessories/gym-caps-men9766.jpg",
-    "hoverImage": "assets/categories/accessories/ElevateBackpacks_4a394.jpg",
+    "id": "p53",
+    "name": "Magnesium Glycinate High Absorption",
+    "brand": "GNC",
+    "category": "Vitamins & Minerals",
+    "categorySlug": "vitamins-minerals",
+    "image": "/assets/products/53_magnesium_glycinate.jpg",
     "gallery": [
-      "assets/categories/accessories/gym-caps-men9766.jpg"
+      "/assets/products/53_magnesium_glycinate.jpg",
+      "/assets/products/53_magnesium_glycinate.jpg"
     ],
-    "colors": [
-      {
-        "name": "Slate Grey",
-        "hex": "#4b4f57"
-      }
+    "price": 799,
+    "mrp": 1199,
+    "discount": 33,
+    "rating": 4.9,
+    "reviews": 310,
+    "size": "90 Veg Capsules",
+    "weights": [
+      "60 Tablets",
+      "120 Tablets"
     ],
-    "sizes": [
-      "40cm x 80cm"
+    "flavor": "Capsules",
+    "flavors": [
+      "Unflavored Caps"
     ],
-    "inStock": true,
-    "stockCount": 75,
-    "description": "Super-absorbent compact microfiber towel with silver ion anti-bacterial treatment and magnetic gym equipment clip.",
-    "fabric": "80% Poly, 20% Polyamide Microfiber with Silver Ions",
+    "badge": "Cramp Relief",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Chelated Magnesium Bisglycinate offering superior bioavailability without the digestive distress or laxative effect of magnesium oxide.",
     "features": [
-      "Magnetic Bench Clip",
-      "Absorbs 4x Its Weight",
-      "Dries 3x Faster Than Cotton"
+      "400mg Elemental Magnesium",
+      "100% Chelated Bisglycinate",
+      "Eliminates Night Muscle Cramps",
+      "Promotes Nerve & Muscle Calming"
     ],
-    "tags": [
-      "gym towel",
-      "microfiber",
-      "slate"
-    ]
+    "nutritionFacts": {
+      "vitamins": "24 Micronutrients",
+      "zinc": "25mg",
+      "magnesium": "100mg",
+      "vitaminD": "2000 IU"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p54",
+    "name": "Calcium Citrate Malate + Vitamin D3",
+    "brand": "Universal Nutrition",
+    "category": "Vitamins & Minerals",
+    "categorySlug": "vitamins-minerals",
+    "image": "/assets/products/54_calcium_d3.jpg",
+    "gallery": [
+      "/assets/products/54_calcium_d3.jpg",
+      "/assets/products/54_calcium_d3.jpg"
+    ],
+    "price": 649,
+    "mrp": 949,
+    "discount": 32,
+    "rating": 4.7,
+    "reviews": 220,
+    "size": "60 Tablets",
+    "weights": [
+      "60 Tablets",
+      "120 Tablets"
+    ],
+    "flavor": "Tablets",
+    "flavors": [
+      "Unflavored Caps"
+    ],
+    "badge": "Bone Health",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Highly soluble Calcium Citrate Malate (CCM) bonded with Vitamin D3 and Magnesium for superior calcium absorption and skeletal joint strength.",
+    "features": [
+      "1200mg Calcium Citrate Malate",
+      "Added Vitamin D3 for Absorption",
+      "Supports Heavy Load-Bearing Bones",
+      "Non-Constipating Formula"
+    ],
+    "nutritionFacts": {
+      "vitamins": "24 Micronutrients",
+      "zinc": "25mg",
+      "magnesium": "100mg",
+      "vitaminD": "2000 IU"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p55",
+    "name": "Marine Collagen Peptides Type 1",
+    "brand": "Rule 1",
+    "category": "Vitamins & Minerals",
+    "categorySlug": "vitamins-minerals",
+    "image": "/assets/products/55_collagen_peptides.jpg",
+    "gallery": [
+      "/assets/products/55_collagen_peptides.jpg",
+      "/assets/products/55_collagen_peptides.jpg"
+    ],
+    "price": 1899,
+    "mrp": 2599,
+    "discount": 27,
+    "rating": 4.9,
+    "reviews": 340,
+    "size": "250 g (25 Servings)",
+    "weights": [
+      "60 Tablets",
+      "120 Tablets"
+    ],
+    "flavor": "Unflavored",
+    "flavors": [
+      "Unflavored Caps"
+    ],
+    "badge": "Premium Marine",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Pure wild deep-sea marine collagen peptides with low molecular weight for 1.5x higher absorption. Nourishes hair, skin, joints, and connective tendons.",
+    "features": [
+      "8000mg Marine Collagen Peptides",
+      "Low Dalton Particle Size",
+      "Sustainably Sourced from Wild Fish",
+      "Dissolves Instantly in Drinks"
+    ],
+    "nutritionFacts": {
+      "vitamins": "24 Micronutrients",
+      "zinc": "25mg",
+      "magnesium": "100mg",
+      "vitaminD": "2000 IU"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p56",
+    "name": "Plant Protein Isolate Clean Blend",
+    "brand": "OLIVER Pro Nutrition",
+    "category": "Plant Protein",
+    "categorySlug": "plant-protein",
+    "image": "/assets/products/56_plant_protein.jpg",
+    "gallery": [
+      "/assets/products/56_plant_protein.jpg",
+      "/assets/products/56_plant_protein.jpg"
+    ],
+    "price": 2299,
+    "mrp": 3099,
+    "discount": 26,
+    "rating": 4.8,
+    "reviews": 290,
+    "size": "1 kg (2.2 lbs)",
+    "weights": [
+      "1 kg (2.2 lbs)",
+      "2 kg (4.4 lbs)"
+    ],
+    "flavor": "Mocha Latte",
+    "flavors": [
+      "Chocolate Silk",
+      "Natural Vanilla"
+    ],
+    "badge": "Dairy-Free",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Complete plant-based amino profile from yellow split peas and sprouted brown rice, enhanced with antioxidant digestive greens and digestive enzymes.",
+    "features": [
+      "24g Clean Plant Protein",
+      "Naturally Sweetened with Stevia",
+      "Added Papain & Bromelain",
+      "100% Vegan & Non-GMO"
+    ],
+    "nutritionFacts": {
+      "protein": "25g",
+      "bcaa": "4.8g",
+      "glutamine": "4g",
+      "iron": "6.5mg",
+      "calories": "120 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p57",
+    "name": "Whole Grain Rolled Oats 1kg",
+    "brand": "OLIVER Foods",
+    "category": "Healthy Foods",
+    "categorySlug": "healthy-foods",
+    "image": "/assets/products/57_rolled_oats.jpg",
+    "gallery": [
+      "/assets/products/57_rolled_oats.jpg",
+      "/assets/products/57_rolled_oats.jpg"
+    ],
+    "price": 349,
+    "mrp": 499,
+    "discount": 30,
+    "rating": 4.9,
+    "reviews": 850,
+    "size": "1 kg Pouch",
+    "weights": [
+      "500g Pack",
+      "1 kg Family Pack"
+    ],
+    "flavor": "Natural Oats",
+    "flavors": [
+      "Natural Creamy",
+      "Dark Chocolate Crunch",
+      "Original Raw"
+    ],
+    "badge": "Clean Carbs",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "100% whole grain jumbo rolled oats offering slow-burning complex carbohydrates, beta-glucan soluble fiber, and sustained muscle energy for pre-workout meals.",
+    "features": [
+      "13g Protein per 100g",
+      "High in Beta-Glucan Soluble Fiber",
+      "Low Glycemic Index (GI)",
+      "Non-GMO & 100% Whole Grain"
+    ],
+    "nutritionFacts": {
+      "protein": "26g",
+      "complexCarbs": "45g",
+      "healthyFats": "16g",
+      "fiber": "11g"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p58",
+    "name": "All-Natural Roasted Peanut Butter 1kg",
+    "brand": "OLIVER Foods",
+    "category": "Healthy Foods",
+    "categorySlug": "healthy-foods",
+    "image": "/assets/products/58_peanut_butter.jpg",
+    "gallery": [
+      "/assets/products/58_peanut_butter.jpg",
+      "/assets/products/58_peanut_butter.jpg"
+    ],
+    "price": 499,
+    "mrp": 699,
+    "discount": 29,
+    "rating": 4.9,
+    "reviews": 1420,
+    "size": "1 kg Tub",
+    "weights": [
+      "500g Pack",
+      "1 kg Family Pack"
+    ],
+    "flavor": "Crunchy / Creamy",
+    "flavors": [
+      "Natural Creamy",
+      "Dark Chocolate Crunch",
+      "Original Raw"
+    ],
+    "badge": "Bestseller",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Made with 100% slow-roasted premium peanuts. Zero added sugar, zero salt, zero hydrogenated oils, zero palm oil, and packed with 30g protein per 100g.",
+    "features": [
+      "30g Protein per 100g",
+      "100% Roasted Peanuts Only",
+      "Zero Trans Fats & Zero Palm Oil",
+      "Rich in Monounsaturated Good Fats"
+    ],
+    "nutritionFacts": {
+      "protein": "26g",
+      "complexCarbs": "45g",
+      "healthyFats": "16g",
+      "fiber": "11g"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p59",
+    "name": "Raw California Whole Almonds 500g",
+    "brand": "OLIVER Foods",
+    "category": "Healthy Foods",
+    "categorySlug": "healthy-foods",
+    "image": "/assets/products/59_almonds.jpg",
+    "gallery": [
+      "/assets/products/59_almonds.jpg",
+      "/assets/products/59_almonds.jpg"
+    ],
+    "price": 549,
+    "mrp": 749,
+    "discount": 27,
+    "rating": 4.8,
+    "reviews": 680,
+    "size": "500 g Zip Pouch",
+    "weights": [
+      "500g Pack",
+      "1 kg Family Pack"
+    ],
+    "flavor": "Raw Natural",
+    "flavors": [
+      "Natural Creamy",
+      "Dark Chocolate Crunch",
+      "Original Raw"
+    ],
+    "badge": "Premium Nuts",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Hand-picked, vacuum-packed raw California almonds loaded with natural Vitamin E, magnesium, dietary fiber, and heart-healthy unsaturated fats.",
+    "features": [
+      "High in Vitamin E & Antioxidants",
+      "Natural Magnesium for Muscle Recovery",
+      "Hand-Sorted Premium Quality",
+      "Crisp, Fresh Vacuum Seal"
+    ],
+    "nutritionFacts": {
+      "protein": "26g",
+      "complexCarbs": "45g",
+      "healthyFats": "16g",
+      "fiber": "11g"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p60",
+    "name": "Organic Black Chia Seeds 250g",
+    "brand": "OLIVER Foods",
+    "category": "Healthy Foods",
+    "categorySlug": "healthy-foods",
+    "image": "/assets/products/60_chia_seeds.jpg",
+    "gallery": [
+      "/assets/products/60_chia_seeds.jpg",
+      "/assets/products/60_chia_seeds.jpg"
+    ],
+    "price": 299,
+    "mrp": 449,
+    "discount": 33,
+    "rating": 4.8,
+    "reviews": 420,
+    "size": "250 g Pouch",
+    "weights": [
+      "500g Pack",
+      "1 kg Family Pack"
+    ],
+    "flavor": "Raw Seeds",
+    "flavors": [
+      "Natural Creamy",
+      "Dark Chocolate Crunch",
+      "Original Raw"
+    ],
+    "badge": "Superfood",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Certified organic whole black chia seeds loaded with plant-based Omega-3 ALA, soluble fiber, and essential minerals. Add to shakes, oatmeal, or puddings.",
+    "features": [
+      "Rich in Plant Omega-3 ALA",
+      "34g Dietary Fiber per 100g",
+      "Hydrophilic Hydration Properties",
+      "Certified Organic & Raw"
+    ],
+    "nutritionFacts": {
+      "protein": "26g",
+      "complexCarbs": "45g",
+      "healthyFats": "16g",
+      "fiber": "11g"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p61",
+    "name": "Golden Whole Flax Seeds 250g",
+    "brand": "OLIVER Foods",
+    "category": "Healthy Foods",
+    "categorySlug": "healthy-foods",
+    "image": "/assets/products/61_flax_seeds.jpg",
+    "gallery": [
+      "/assets/products/61_flax_seeds.jpg",
+      "/assets/products/61_flax_seeds.jpg"
+    ],
+    "price": 249,
+    "mrp": 399,
+    "discount": 38,
+    "rating": 4.7,
+    "reviews": 310,
+    "size": "250 g Pouch",
+    "weights": [
+      "500g Pack",
+      "1 kg Family Pack"
+    ],
+    "flavor": "Raw Seeds",
+    "flavors": [
+      "Natural Creamy",
+      "Dark Chocolate Crunch",
+      "Original Raw"
+    ],
+    "badge": "Lignan Rich",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Golden whole flax seeds packed with dietary lignans, fiber, and alpha-linolenic acid (ALA). Ideal for gut health, satiety, and cardiovascular wellness.",
+    "features": [
+      "High in Antioxidant Lignans",
+      "Plant-Based Omega-3 Fatty Acids",
+      "Gentle Fiber for Gut Wellness",
+      "Cold-Stored for Peak Freshness"
+    ],
+    "nutritionFacts": {
+      "protein": "26g",
+      "complexCarbs": "45g",
+      "healthyFats": "16g",
+      "fiber": "11g"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p62",
+    "name": "Protein Crunch Fruit & Nut Muesli 1kg",
+    "brand": "OLIVER Foods",
+    "category": "Healthy Foods",
+    "categorySlug": "healthy-foods",
+    "image": "/assets/products/62_muesli.jpg",
+    "gallery": [
+      "/assets/products/62_muesli.jpg",
+      "/assets/products/62_muesli.jpg"
+    ],
+    "price": 599,
+    "mrp": 799,
+    "discount": 25,
+    "rating": 4.8,
+    "reviews": 530,
+    "size": "1 kg Box",
+    "weights": [
+      "500g Pack",
+      "1 kg Family Pack"
+    ],
+    "flavor": "Fruit, Nut & Seeds",
+    "flavors": [
+      "Natural Creamy",
+      "Dark Chocolate Crunch",
+      "Original Raw"
+    ],
+    "badge": "High Protein",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Crunchy multi-grain muesli fortified with soy protein nuggets, rolled oats, almonds, raisins, chia seeds, and cranberries. 20g protein per 100g.",
+    "features": [
+      "20g Protein per 100g",
+      "Almonds, Cranberries & Seeds",
+      "Multi-Grain Sustained Energy",
+      "Zero Refined Corn Syrup"
+    ],
+    "nutritionFacts": {
+      "protein": "26g",
+      "complexCarbs": "45g",
+      "healthyFats": "16g",
+      "fiber": "11g"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p63",
+    "name": "OLIVER 20g Whey Protein Bar",
+    "brand": "GNC",
+    "category": "Protein Bars & Snacks",
+    "categorySlug": "protein-bars-snacks",
+    "image": "/assets/products/63_protein_bar.jpg",
+    "gallery": [
+      "/assets/products/63_protein_bar.jpg",
+      "/assets/products/63_protein_bar.jpg"
+    ],
+    "price": 149,
+    "mrp": 199,
+    "discount": 25,
+    "rating": 4.8,
+    "reviews": 790,
+    "size": "65 g Single Bar",
+    "weights": [
+      "Box of 6 Bars",
+      "Box of 12 Bars"
+    ],
+    "flavor": "Fudge Brownie Crunch",
+    "flavors": [
+      "Chocolate Almond Crunch",
+      "Cookies & Cream"
+    ],
+    "badge": "20g Protein",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Delicious real-food protein bar delivering 20g of whey protein isolate, 10g of prebiotic dietary fiber, and under 2g of active sugar per bar.",
+    "features": [
+      "20g High Quality Whey Protein",
+      "Only 2g Sugar per Bar",
+      "Soft Baked Nougat Texture",
+      "Ideal On-The-Go Athlete Snack"
+    ],
+    "nutritionFacts": {
+      "protein": "20g",
+      "carbs": "18g",
+      "dietaryFiber": "10g",
+      "addedSugar": "0g",
+      "calories": "210 kcal"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p64",
+    "name": "Pro Series Shaker Bottle 800ml",
+    "brand": "Universal Nutrition",
+    "category": "Fitness Accessories",
+    "categorySlug": "fitness-accessories",
+    "image": "/assets/products/64_shaker_bottle.jpg",
+    "gallery": [
+      "/assets/products/64_shaker_bottle.jpg",
+      "/assets/products/64_shaker_bottle.jpg"
+    ],
+    "price": 499,
+    "mrp": 749,
+    "discount": 33,
+    "rating": 4.9,
+    "reviews": 840,
+    "size": "800 ml",
+    "weights": [
+      "Standard 700ml",
+      "Pro 1000ml"
+    ],
+    "flavor": "Smoke Black & Crimson",
+    "flavors": [
+      "Matte Black Tactical",
+      "Oliver Red Accent"
+    ],
+    "badge": "Pro Series",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Ergonomic 800ml gym shaker equipped with round bottom base to prevent stuck unmixed powder, leakproof secure flip cap, and stainless steel blender ball.",
+    "features": [
+      "800ml Capacity with Measurement Marks",
+      "Leakproof Screw-On Flip Lid",
+      "Stain & Odor Resistant Tritan Plastic",
+      "Surgical Wire Whisk Ball Included"
+    ],
+    "nutritionFacts": {
+      "material": "BPA-Free Tritan / Ballistic 900D Nylon",
+      "capacity": "700ml / 45L"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
+  },
+  {
+    "id": "p65",
+    "name": "Heavy Duty Tactical Gym Duffel Bag",
+    "brand": "Rule 1",
+    "category": "Fitness Accessories",
+    "categorySlug": "fitness-accessories",
+    "image": "/assets/products/65_gym_duffel_bag.jpg",
+    "gallery": [
+      "/assets/products/65_gym_duffel_bag.jpg",
+      "/assets/products/65_gym_duffel_bag.jpg"
+    ],
+    "price": 1499,
+    "mrp": 2299,
+    "discount": 35,
+    "rating": 4.9,
+    "reviews": 620,
+    "size": "45 Liters Capacity",
+    "weights": [
+      "Standard 700ml",
+      "Pro 1000ml"
+    ],
+    "flavor": "Tactical Black & Red",
+    "flavors": [
+      "Matte Black Tactical",
+      "Oliver Red Accent"
+    ],
+    "badge": "Heavy Duty",
+    "servingSize": "1 Scoop (30g)",
+    "servingsPerContainer": "60 Servings",
+    "desc": "Water-resistant 900D ballistic nylon gym duffel with ventilated shoe compartment, wet-towel pocket, padded shoulder strap, and shaker bottle holder.",
+    "features": [
+      "45L Capacity 900D Water-Resistant Nylon",
+      "Dedicated Ventilated Shoe Compartment",
+      "Waterproof Wet Clothes Pocket",
+      "Reinforced Heavy Duty Metal Zippers"
+    ],
+    "nutritionFacts": {
+      "material": "BPA-Free Tritan / Ballistic 900D Nylon",
+      "capacity": "700ml / 45L"
+    },
+    "suggestedUse": "Mix 1 scoop with 250ml of chilled water or skimmed milk in your shaker. Consume immediately post-workout or as directed by your sports nutritionist.",
+    "ingredients": "Micro-filtered Whey Isolate, Whey Peptide Matrix, Natural Flavors, Sunflower Lecithin, Digestive Enzyme Blend (Protease, Amylase, Lactase), Sucralose.",
+    "allergens": "Contains Milk and Soy derivatives. Produced in an ISO 22000 certified facility.",
+    "storage": "Store in a cool, dry place away from direct sunlight. Keep lid securely fastened.",
+    "inStock": true
   }
 ];
 
 export function getProductById(id) {
-  return PRODUCTS.find(p => p.id === id);
+  return PRODUCTS.find(p => p.id === id) || null;
 }
 
-export function getProductsByCategory(catId) {
-  if (!catId || catId === 'all') return PRODUCTS;
-  return PRODUCTS.filter(p => p.category === catId);
+export function getProductsByCategory(categorySlug) {
+  if (!categorySlug || categorySlug === "all") return PRODUCTS;
+  return PRODUCTS.filter(p => p.categorySlug === categorySlug);
+}
+
+export function getProductsByBrand(brandName) {
+  if (!brandName || brandName === "all") return PRODUCTS;
+  return PRODUCTS.filter(p => p.brand.toLowerCase() === brandName.toLowerCase());
+}
+
+export function getFeaturedProducts(limit = 8) {
+  return PRODUCTS.filter(p => p.rating >= 4.8).slice(0, limit);
+}
+
+export function getBestsellers(limit = 8) {
+  return PRODUCTS.filter(p => p.badge === "Bestseller" || p.reviews > 800).slice(0, limit);
+}
+
+export function getNewArrivals(limit = 8) {
+  return PRODUCTS.slice(25, 25 + limit);
 }
 
 export function searchProducts(query) {
-  if (!query) return PRODUCTS;
+  if (!query || !query.trim()) return [];
   const q = query.toLowerCase().trim();
   return PRODUCTS.filter(p => 
     p.name.toLowerCase().includes(q) ||
-    p.categoryName.toLowerCase().includes(q) ||
-    p.description.toLowerCase().includes(q) ||
-    (p.tags && p.tags.some(t => t.toLowerCase().includes(q)))
+    p.brand.toLowerCase().includes(q) ||
+    p.category.toLowerCase().includes(q) ||
+    p.categorySlug.toLowerCase().includes(q) ||
+    (p.desc && p.desc.toLowerCase().includes(q))
   );
 }

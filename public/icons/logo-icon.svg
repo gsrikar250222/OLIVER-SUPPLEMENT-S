@@ -1,12 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- REPVAULT Luxury Fashion Monogram Mark -->
-  <rect x="2" y="2" width="60" height="60" rx="15" fill="#0d0d11"/>
-  <rect x="3.5" y="3.5" width="57" height="57" rx="13.5" stroke="#27272a" stroke-width="1.5" fill="none"/>
-  
-  <!-- Stylized Precision R-Vault Glyph -->
-  <path d="M23 18 V46 M23 18 H36 C42 18 42 30 36 30 H23 M34 30 L44 46" 
-        stroke="#ffffff" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Chevron Accent -->
-  <path d="M40 19 L46 24.5 L40 30" 
-        stroke="#f4f4f5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  <defs>
+    <linearGradient id="icon-red" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF2424"/>
+      <stop offset="100%" stop-color="#B8000A"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#090909"/>
+  <path d="M32 6 L56 18 L56 46 L32 58 L8 46 L8 18 Z" fill="#171717" stroke="#303030" stroke-width="2"/>
+  <path d="M32 10 L52 20 L52 44 L32 54 L12 44 L12 20 Z" stroke="url(#icon-red)" stroke-width="2"/>
+  <!-- Bold Athletic 'O' -->
+  <path d="M32 16 C41 16 46 22 46 32 C46 42 41 48 32 48 C23 48 18 42 18 32 C18 22 23 16 32 16 Z M32 24 C27 24 25 28 25 32 C25 36 27 40 32 40 C37 40 39 36 39 32 C39 28 37 24 32 24 Z" fill="#FFFFFF"/>
+  <!-- Red Lightning Bolt -->
+  <path d="M40 20 L27 36 H35 L23 46 L28 35 H21 Z" fill="url(#icon-red)"/>
 </svg>

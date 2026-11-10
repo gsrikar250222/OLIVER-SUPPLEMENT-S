@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
-import { Lock, Mail, ArrowRight, User } from 'lucide-react';
+import { Lock, Mail, ArrowRight, User, ShieldCheck } from 'lucide-react';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -14,20 +14,20 @@ export default function Login() {
     e.preventDefault();
     setError('');
     if (!email || !password) {
-      setError('Please fill in both email and password.');
+      setError('Please enter your email and password.');
       return;
     }
     const res = await login(email, password);
     if (res.success) {
-      navigate('/shop');
+      navigate('/account');
     } else {
       setError(res.message);
     }
   };
 
   const handleDemoLogin = async () => {
-    await login('athlete@repvault.com', 'vault2026');
-    navigate('/shop');
+    await login('athlete@oliversupplements.com', 'oliver2026');
+    navigate('/account');
   };
 
   return (
@@ -35,10 +35,12 @@ export default function Login() {
       <div className="auth-card">
         <div className="auth-header text-center">
           <Link to="/">
-            <img src="/icons/logo.svg" alt="REPVAULT" width="180" className="auth-logo" />
+            <img src="/icons/logo.svg" alt="OLIVER Supplement Shop" height="42" className="auth-logo" />
           </Link>
-          <h1 className="auth-title">ACCESS YOUR VAULT</h1>
-          <p className="auth-subtitle">Sign in to track orders, manage saved styles, and access private drops.</p>
+          <h1 className="auth-title">ATHLETE PORTAL LOGIN</h1>
+          <p className="auth-subtitle">
+            Sign in to track live supplement dispatches, review batch certifications, and redeem loyalty rewards.
+          </p>
         </div>
 
         {error && <div className="checkout-alert-error mb-20">{error}</div>}
@@ -50,7 +52,7 @@ export default function Login() {
               <Mail size={18} className="field-icon" />
               <input 
                 type="email" 
-                placeholder="athlete@repvault.com" 
+                placeholder="athlete@oliversupplements.com" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -64,7 +66,7 @@ export default function Login() {
               <Lock size={18} className="field-icon" />
               <input 
                 type="password" 
-                placeholder="••••••••" 
+                placeholder="••••••••••••" 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -72,29 +74,23 @@ export default function Login() {
             </div>
           </div>
 
-          <button type="submit" className="btn btn-primary full-width" disabled={loading}>
-            {loading ? 'SIGNING IN...' : 'SIGN IN TO VAULT'} <ArrowRight size={18} />
+          <button type="submit" className="btn-primary auth-submit-btn" disabled={loading}>
+            {loading ? 'AUTHENTICATING...' : 'SIGN IN TO OLIVER'} <ArrowRight size={16} />
+          </button>
+
+          <button 
+            type="button" 
+            className="btn-secondary auth-demo-btn mt-12"
+            onClick={handleDemoLogin}
+          >
+            Instant Demo Athlete Sign-In
           </button>
         </form>
 
-        <div className="auth-divider">
-          <span>OR</span>
-        </div>
-
-        <button onClick={handleDemoLogin} className="btn btn-outline full-width demo-btn">
-          Quick Demo Athlete Sign-In
-        </button>
-
         <div className="auth-footer text-center mt-24">
-          <p>
-            Don't have an account yet?{' '}
-            <Link to="/register" className="auth-switch-link">
-              Create an Account
-            </Link>
-          </p>
+          <p>New to Oliver Sports Nutrition? <Link to="/register">Create an Athlete Account &rarr;</Link></p>
         </div>
       </div>
     </div>
   );
 }
-

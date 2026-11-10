@@ -5,7 +5,7 @@ const WishlistContext = createContext(null);
 export function WishlistProvider({ children }) {
   const [wishlist, setWishlist] = useState(() => {
     try {
-      const saved = localStorage.getItem('repvault_wishlist');
+      const saved = localStorage.getItem('oliver_wishlist') || localStorage.getItem('repvault_wishlist');
       return saved ? JSON.parse(saved) : [];
     } catch (e) {
       return [];
@@ -14,8 +14,8 @@ export function WishlistProvider({ children }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem('repvault_wishlist', JSON.stringify(wishlist));
-    } catch (e) {}
+      localStorage.setItem('oliver_wishlist', JSON.stringify(wishlist));
+    } catch (e) { }
   }, [wishlist]);
 
   const toggleWishlist = (product) => {
@@ -42,6 +42,7 @@ export function WishlistProvider({ children }) {
       wishlist,
       toggleWishlist,
       isWishlisted,
+      isInWishlist: isWishlisted,
       removeFromWishlist,
       wishlistCount: wishlist.length
     }}>
@@ -55,4 +56,3 @@ export function useWishlist() {
   if (!ctx) throw new Error('useWishlist must be used within WishlistProvider');
   return ctx;
 }
-

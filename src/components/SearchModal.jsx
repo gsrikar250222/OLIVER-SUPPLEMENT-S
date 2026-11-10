@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, X, ArrowRight } from 'lucide-react';
-import { api } from '../services/api.js';
+import { Search, X, ArrowRight, ShieldCheck, Flame, Zap } from 'lucide-react';
+import { searchProducts } from '../data/products.js';
 
 export default function SearchModal({ isOpen, onClose }) {
   const [query, setQuery] = useState('');
@@ -12,7 +12,7 @@ export default function SearchModal({ isOpen, onClose }) {
 
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 100);
+      setTimeout(() => inputRef.current?.focus(), 120);
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -27,15 +27,16 @@ export default function SearchModal({ isOpen, onClose }) {
   useEffect(() => {
     if (!query.trim()) {
       setResults([]);
+      setSearching(false);
       return;
     }
 
-    const timer = setTimeout(async () => {
-      setSearching(true);
-      const res = await api.getProducts({ search: query.trim(), limit: 8 });
-      setResults(res);
+    setSearching(true);
+    const timer = setTimeout(() => {
+      const hits = searchProducts(query.trim());
+      setResults(hits);
       setSearching(false);
-    }, 200);
+    }, 120);
 
     return () => clearTimeout(timer);
   }, [query]);
@@ -47,13 +48,14 @@ export default function SearchModal({ isOpen, onClose }) {
     navigate(`/product/${productId}`);
   };
 
-  const handleCategoryPill = (catSlug) => {
+  const handleViewAll = (e) => {
+    e.preventDefault();
     onClose();
-    navigate(`/category/${catSlug}`);
+    navigate(`/search?q=${encodeURIComponent(query.trim())}`);
   };
 
   return (
-    <div className="search-modal-backdrop" onClick={onClose}>
+    <div className="search-modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
       <div className="search-modal-container" onClick={(e) => e.stopPropagation()}>
         {/* Search Input Bar */}
         <div className="search-input-header">
@@ -61,16 +63,19 @@ export default function SearchModal({ isOpen, onClose }) {
           <input 
             ref={inputRef}
             type="text" 
-            placeholder="Search hoodies, oversized tees, compression, joggers..." 
+            placeholder="Search Whey Protein, Creatine, Pre-Workout, Optimum Nutrition, Isolate..." 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="search-main-input"
             onKeyDown={(e) => {
               if (e.key === 'Escape') onClose();
+              if (e.key === 'Enter' && query.trim()) {
+                handleViewAll(e);
+              }
             }}
           />
           {query && (
-            <button className="clear-search-btn" onClick={() => setQuery('')}>
+            <button className="clear-search-btn" onClick={() => setQuery('')} aria-label="Clear Search">
               <X size={18} />
             </button>
           )}
@@ -79,17 +84,19 @@ export default function SearchModal({ isOpen, onClose }) {
           </button>
         </div>
 
-        {/* Quick Categories Bar */}
+        {/* Quick Suggestion Pills */}
         {!query && (
           <div className="search-suggestions-wrap">
-            <span className="suggestions-label">POPULAR VAULT SEARCHES:</span>
+            <span className="suggestions-label">POPULAR SUPPLEMENT SEARCHES:</span>
             <div className="search-pills-list">
-              <button onClick={() => setQuery('Oversized')}>Oversized Tees</button>
-              <button onClick={() => setQuery('Compression')}>Compression</button>
-              <button onClick={() => setQuery('Aesthetic Zip-Up')}>Aesthetic Zip-Up</button>
-              <button onClick={() => setQuery('Joggers')}>Cargo Joggers</button>
-              <button onClick={() => setQuery('Sports Bra')}>Sports Bra</button>
-              <button onClick={() => setQuery('Backpack')}>Backpack</button>
+              <button type="button" onClick={() => setQuery('Gold Standard')}>Gold Standard Whey</button>
+              <button type="button" onClick={() => setQuery('Creatine')}>Creatine Monohydrate</button>
+              <button type="button" onClick={() => setQuery('ISO-100')}>ISO-100 Hydrolyzed</button>
+              <button type="button" onClick={() => setQuery('Pre-Workout')}>High-Stim Pre-Workout</button>
+              <button type="button" onClick={() => setQuery('Mass Gainer')}>Anabolic Mass Gainer</button>
+              <button type="button" onClick={() => setQuery('Fish Oil')}>Triple Strength Omega-3</button>
+              <button type="button" onClick={() => setQuery('Multivitamin')}>Daily Multivitamin</button>
+              <button type="button" onClick={() => setQuery('BCAA')}>BCAA 2:1:1</button>
             </div>
           </div>
         )}
@@ -97,43 +104,54 @@ export default function SearchModal({ isOpen, onClose }) {
         {/* Live Results List */}
         <div className="search-results-container">
           {searching ? (
-            <div className="search-loading">Searching the Repvault catalog...</div>
-          ) : results.length > 0 ? (
-            <div className="search-results-grid">
-              {results.map(product => (
+            <div className="search-loading">Searching Oliver Sports Nutrition catalogue...</div>
+          ) : query && results.length === 0 ? (
+            <div className="search-no-results">
+              <p>No supplements found for "<strong>{query}</strong>"</p>
+              <p className="no-res-hint">Check spelling or try searching for <em>Whey</em>, <em>Creatine</em>, <em>MuscleTech</em>, or <em>Pre-Workout</em>.</p>
+            </div>
+          ) : (
+            <div className="search-hits-list">
+              {results.slice(0, 8).map((product) => (
                 <div 
                   key={product.id} 
-                  className="search-result-item"
+                  className="search-hit-item"
                   onClick={() => handleSelect(product.id)}
                 >
                   <img 
-                    src={`/${product.primaryImage.replace(/^\//, '')}`} 
+                    src={product.image} 
                     alt={product.name} 
-                    className="search-item-thumb" 
+                    className="search-hit-thumb" 
                   />
-                  <div className="search-item-info">
-                    <span className="search-item-cat">{product.categoryName}</span>
-                    <h4 className="search-item-title">{product.name}</h4>
-                    <div className="search-item-prices">
-                      <span className="search-item-price">₹{product.price.toLocaleString('en-IN')}</span>
-                      {product.originalPrice && (
-                        <span className="search-item-orig">₹{product.originalPrice.toLocaleString('en-IN')}</span>
-                      )}
+                  <div className="search-hit-details">
+                    <span className="search-hit-brand">{product.brand}</span>
+                    <h4 className="search-hit-title">{product.name}</h4>
+                    <div className="search-hit-meta">
+                      <span className="search-hit-cat">{product.category}</span>
+                      <span className="search-hit-weight">{product.size}</span>
+                      {product.flavor && <span className="search-hit-flavor">&bull; {product.flavor}</span>}
                     </div>
                   </div>
-                  <ArrowRight size={18} className="search-item-arrow" />
+                  <div className="search-hit-price-area">
+                    <span className="search-hit-price">₹{product.price.toLocaleString('en-IN')}</span>
+                    {product.mrp && product.mrp > product.price && (
+                      <span className="search-hit-discount">{product.discount}% OFF</span>
+                    )}
+                  </div>
                 </div>
               ))}
+
+              {results.length > 8 && (
+                <div className="search-see-all-wrap">
+                  <button className="btn-secondary see-all-search-btn" onClick={handleViewAll}>
+                    View All {results.length} Supplement Matches <ArrowRight size={16} />
+                  </button>
+                </div>
+              )}
             </div>
-          ) : query ? (
-            <div className="search-no-results">
-              <p>No products found matching "<strong>{query}</strong>"</p>
-              <span>Try checking your spelling or search for "tee", "hoodie", or "shorts".</span>
-            </div>
-          ) : null}
+          )}
         </div>
       </div>
     </div>
   );
 }
-

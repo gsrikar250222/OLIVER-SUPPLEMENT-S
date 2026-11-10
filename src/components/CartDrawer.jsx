@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { X, Trash2, ShoppingBag, ShieldCheck, ArrowRight, Tag, Check } from 'lucide-react';
 import { useCart } from '../context/CartContext.jsx';
 
 export default function CartDrawer() {
@@ -11,36 +12,27 @@ export default function CartDrawer() {
     updateQuantity, 
     subtotal, 
     shippingFee, 
-    freeShipping, 
-    amountNeededForFreeShipping, 
-    freeShippingProgress, 
+    discountAmount, 
+    grandTotal,
+    catalogSavings,
     coupon, 
     applyCoupon, 
     removeCoupon, 
-    discount, 
-    gst, 
-    total,
     totalItemsCount
   } = useCart();
 
   const [couponInput, setCouponInput] = useState('');
-  const [couponError, setCouponError] = useState('');
-  const [applying, setApplying] = useState(false);
+  const [couponMessage, setCouponMessage] = useState(null);
   const navigate = useNavigate();
 
   if (!isCartOpen) return null;
 
-  const handleApplyCoupon = async (e) => {
+  const handleApplyCoupon = (e) => {
     e.preventDefault();
-    setCouponError('');
-    setApplying(true);
-    const res = await applyCoupon(couponInput);
-    setApplying(false);
-    if (!res.success) {
-      setCouponError(res.message);
-    } else {
-      setCouponInput('');
-    }
+    if (!couponInput.trim()) return;
+    const res = applyCoupon(couponInput);
+    setCouponMessage(res);
+    if (res.success) setCouponInput('');
   };
 
   const handleCheckout = () => {
@@ -48,127 +40,126 @@ export default function CartDrawer() {
     navigate('/checkout');
   };
 
+  // Free shipping progress calculation (threshold = 999)
+  const freeShippingThreshold = 999;
+  const isFreeShipping = subtotal >= freeShippingThreshold;
+  const neededForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
+  const shippingProgress = Math.min(100, Math.round((subtotal / freeShippingThreshold) * 100));
+
   return (
     <>
       <div 
-        className="drawer-backdrop" 
-        id="cart-drawer-backdrop" 
-        style={{ display: 'block', opacity: 1 }}
+        className="drawer-backdrop active" 
         onClick={closeCart} 
       />
       <aside 
-        className="cart-drawer" 
-        id="cart-drawer" 
-        aria-label="Shopping Cart Drawer"
-        style={{ transform: 'translateX(0)' }}
+        className="cart-drawer open" 
+        aria-label="Sports Nutrition Cart Drawer"
       >
         {/* Header */}
         <div className="drawer-header">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontWeight: 800, fontSize: '1.05rem', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
-              YOUR CART
-            </span>
-            <span className="action-badge cart-count-badge" style={{ position: 'static', display: 'inline-flex' }}>
-              {totalItemsCount}
-            </span>
+          <div className="drawer-title-group">
+            <ShoppingBag size={20} className="drawer-bag-icon" />
+            <span className="drawer-title">YOUR ATHLETE BAG</span>
+            <span className="drawer-count-badge">{totalItemsCount}</span>
           </div>
           <button 
             className="drawer-close-btn" 
-            id="cart-close-btn" 
             onClick={closeCart} 
             aria-label="Close Cart"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="18" y1="6" x2="6" y2="18"/>
-              <line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
+            <X size={20} />
           </button>
         </div>
 
         {/* Free Shipping Progress Tracker */}
         <div className="free-shipping-progress">
-          <div className="free-shipping-text" id="shipping-progress-text">
-            {freeShipping ? (
-              <span style={{ color: '#059669', fontWeight: 800 }}>
-                ✓ UNLOCKED FREE EXPRESS SHIPPING!
+          <div className="free-shipping-text">
+            {isFreeShipping ? (
+              <span className="free-shipping-unlocked">
+                <Check size={14} className="inline-check" /> UNLOCKED FREE ALL-INDIA EXPRESS SHIPPING!
               </span>
             ) : (
               <span>
-                Add ₹{amountNeededForFreeShipping.toLocaleString('en-IN')} more for FREE Express Shipping
+                Add <strong>₹{neededForFreeShipping.toLocaleString('en-IN')}</strong> more for <strong>FREE Express Shipping</strong>
               </span>
             )}
           </div>
-          <div className="progress-track">
+          <div className="progress-bar-bg">
             <div 
-              className="progress-fill" 
-              style={{ width: `${freeShippingProgress}%` }}
+              className="progress-bar-fill" 
+              style={{ width: `${shippingProgress}%` }}
             />
           </div>
         </div>
 
-        {/* Drawer Body Items */}
-        <div className="drawer-body" id="cart-items-container">
+        {/* Cart Items Area */}
+        <div className="drawer-body">
           {cart.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--text-secondary)' }}>
-              <p style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '8px' }}>Your Cart is Empty</p>
-              <p style={{ fontSize: '0.85rem', marginBottom: '20px' }}>Explore the catalog to add items to your cart.</p>
-              <Link to="/shop" onClick={closeCart} className="btn btn-navy btn-sm" style={{ display: 'inline-block' }}>
-                Start Shopping
-              </Link>
+            <div className="empty-cart-state">
+              <ShoppingBag size={52} className="empty-cart-icon" />
+              <h3>YOUR SUPPLEMENT BAG IS EMPTY</h3>
+              <p>Fuel your body with premium whey protein, creatine, and sports nutrition essentials.</p>
+              <button 
+                className="btn-primary start-shopping-btn" 
+                onClick={() => { closeCart(); navigate('/shop'); }}
+              >
+                EXPLORE SUPPLEMENTS &rarr;
+              </button>
             </div>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {cart.map(item => (
-                <div 
-                  key={item.cartItemId} 
-                  style={{ display: 'flex', gap: '14px', paddingBottom: '16px', borderBottom: '1px solid var(--border-gray)' }}
-                >
+            <div className="drawer-items-list">
+              {cart.map((item) => (
+                <div key={item.cartItemId} className="drawer-cart-item">
                   <img 
-                    src={`/${item.image.replace(/^\//, '')}`} 
+                    src={item.image} 
                     alt={item.name} 
-                    style={{ width: '70px', height: '88px', objectFit: 'cover', borderRadius: '4px' }} 
+                    className="drawer-item-img" 
                   />
-                  <div style={{ flexGrow: 1 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <Link 
-                        to={`/product/${item.productId}`} 
-                        onClick={closeCart}
-                        style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-primary)' }}
-                      >
-                        {item.name}
-                      </Link>
-                      <button 
-                        onClick={() => removeFromCart(item.cartItemId)}
-                        style={{ background: 'none', border: 'none', color: '#999', cursor: 'pointer', fontSize: '14px' }}
-                      >
-                        ✕
-                      </button>
+                  <div className="drawer-item-details">
+                    <span className="drawer-item-brand">{item.brand}</span>
+                    <h4 className="drawer-item-title">{item.name}</h4>
+                    <div className="drawer-item-variants">
+                      <span className="variant-tag">{item.weight || item.size}</span>
+                      {item.flavor && item.flavor !== 'Standard' && (
+                        <span className="variant-tag">{item.flavor}</span>
+                      )}
                     </div>
 
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', margin: '4px 0' }}>
-                      Size: <strong>{item.size}</strong> {item.color ? `• Color: ${item.color}` : ''}
-                    </div>
-
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
-                      <div style={{ display: 'inline-flex', alignItems: 'center', border: '1px solid var(--border-gray)', borderRadius: '4px' }}>
+                    <div className="drawer-item-bottom">
+                      <div className="drawer-qty-control">
                         <button 
-                          style={{ padding: '2px 8px', cursor: 'pointer' }}
+                          type="button" 
                           onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
-                        >
-                          -
-                        </button>
-                        <span style={{ padding: '2px 8px', fontWeight: 700, fontSize: '0.85rem' }}>{item.quantity}</span>
+                          aria-label="Decrease"
+                        >-</button>
+                        <span>{item.quantity}</span>
                         <button 
-                          style={{ padding: '2px 8px', cursor: 'pointer' }}
+                          type="button" 
                           onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
-                        >
-                          +
-                        </button>
+                          aria-label="Increase"
+                        >+</button>
                       </div>
 
-                      <span style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--text-primary)' }}>
-                        ₹{(item.price * item.quantity).toLocaleString('en-IN')}
-                      </span>
+                      <div className="drawer-item-pricing">
+                        <span className="drawer-item-price">
+                          ₹{(item.price * item.quantity).toLocaleString('en-IN')}
+                        </span>
+                        {item.mrp && item.mrp > item.price && (
+                          <span className="drawer-item-mrp">
+                            ₹{(item.mrp * item.quantity).toLocaleString('en-IN')}
+                          </span>
+                        )}
+                      </div>
+
+                      <button 
+                        type="button" 
+                        className="drawer-remove-btn"
+                        onClick={() => removeFromCart(item.cartItemId)}
+                        aria-label="Remove item"
+                      >
+                        <Trash2 size={16} />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -177,62 +168,75 @@ export default function CartDrawer() {
           )}
         </div>
 
-        {/* Drawer Footer */}
+        {/* Footer / Checkout */}
         {cart.length > 0 && (
-          <div className="drawer-footer" id="cart-footer">
-            {/* Coupon Box */}
-            <div style={{ marginBottom: '14px' }}>
+          <div className="drawer-footer">
+            {/* Coupon Code Section */}
+            <div className="drawer-coupon-box">
               {coupon ? (
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#ecfdf5', padding: '8px 12px', borderRadius: '4px', fontSize: '0.85rem' }}>
-                  <span>✓ <strong>{coupon.code}</strong> applied</span>
-                  <button onClick={removeCoupon} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#dc2626' }}>✕</button>
+                <div className="applied-coupon-row">
+                  <span className="coupon-applied-pill">
+                    <Tag size={13} /> {coupon.code} (-₹{discountAmount})
+                  </span>
+                  <button className="remove-coupon-btn" onClick={removeCoupon}>Remove</button>
                 </div>
               ) : (
-                <form onSubmit={handleApplyCoupon} style={{ display: 'flex', gap: '6px' }}>
+                <form onSubmit={handleApplyCoupon} className="drawer-coupon-form">
                   <input 
                     type="text" 
-                    placeholder="Coupon (e.g. VAULT10)" 
+                    placeholder="Promo code (try OLIVER10)..." 
                     value={couponInput}
                     onChange={(e) => setCouponInput(e.target.value)}
-                    style={{ flexGrow: 1, padding: '8px 10px', border: '1px solid var(--border-gray)', borderRadius: '4px', fontSize: '0.85rem' }}
+                    className="coupon-input"
                   />
-                  <button type="submit" className="btn btn-navy btn-sm" disabled={applying}>
-                    Apply
-                  </button>
+                  <button type="submit" className="coupon-apply-btn">APPLY</button>
                 </form>
               )}
-              {couponError && <p style={{ color: '#dc2626', fontSize: '0.75rem', marginTop: '4px' }}>{couponError}</p>}
+              {couponMessage && !coupon && (
+                <span className="coupon-error-msg">{couponMessage.message}</span>
+              )}
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', fontSize: '0.9rem' }}>
-              <span style={{ color: 'var(--text-secondary)' }}>Subtotal</span>
-              <span style={{ fontWeight: 800, color: 'var(--text-primary)' }}>₹{subtotal.toLocaleString('en-IN')}</span>
-            </div>
-
-            {discount > 0 && (
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', fontSize: '0.9rem', color: '#059669' }}>
-                <span>Coupon Discount</span>
-                <span style={{ fontWeight: 800 }}>-₹{discount.toLocaleString('en-IN')}</span>
+            {/* Price Calculations */}
+            <div className="drawer-breakdown">
+              <div className="breakdown-row">
+                <span>Subtotal ({totalItemsCount} items)</span>
+                <span>₹{subtotal.toLocaleString('en-IN')}</span>
               </div>
-            )}
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', fontSize: '0.9rem' }}>
-              <span style={{ color: 'var(--text-secondary)' }}>Shipping</span>
-              <span style={{ fontWeight: 800 }}>{shippingFee === 0 ? 'FREE' : `₹${shippingFee}`}</span>
+              {discountAmount > 0 && (
+                <div className="breakdown-row discount-row">
+                  <span>Coupon Discount</span>
+                  <span>-₹{discountAmount.toLocaleString('en-IN')}</span>
+                </div>
+              )}
+              <div className="breakdown-row">
+                <span>Estimated Shipping</span>
+                <span>{shippingFee === 0 ? <strong className="free-text">FREE</strong> : `₹${shippingFee}`}</span>
+              </div>
+              {catalogSavings > 0 && (
+                <div className="breakdown-row savings-row">
+                  <span>Total MRP Savings</span>
+                  <span className="savings-val">₹{catalogSavings.toLocaleString('en-IN')}</span>
+                </div>
+              )}
+              <div className="breakdown-row total-row">
+                <strong>GRAND TOTAL</strong>
+                <strong className="grand-price">₹{grandTotal.toLocaleString('en-IN')}</strong>
+              </div>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderTop: '1px solid var(--border-gray)', paddingTop: '10px' }}>
-              <span style={{ fontSize: '1rem', textTransform: 'uppercase', fontWeight: 800 }}>Estimated Total</span>
-              <span style={{ fontWeight: 900, fontSize: '1.2rem', color: 'var(--text-primary)' }}>₹{total.toLocaleString('en-IN')}</span>
+            {/* Security Guarantee */}
+            <div className="drawer-security-note">
+              <ShieldCheck size={14} /> 100% Authentic Products &bull; Secure Encrypted Checkout
             </div>
 
-            <button 
-              className="btn btn-buy-now" 
-              id="checkout-btn"
-              onClick={handleCheckout}
-            >
-              PROCEED TO CHECKOUT &rarr;
+            {/* CTAs */}
+            <button className="btn-primary drawer-checkout-btn" onClick={handleCheckout}>
+              PROCEED TO SECURE CHECKOUT &rarr;
             </button>
+            <Link to="/cart" onClick={closeCart} className="drawer-view-cart-link">
+              View Detailed Bag & Cart Summary
+            </Link>
           </div>
         )}
       </aside>

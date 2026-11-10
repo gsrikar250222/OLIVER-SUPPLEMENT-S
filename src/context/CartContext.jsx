@@ -1,12 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { api } from '../services/api.js';
 
 const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState(() => {
     try {
-      const saved = localStorage.getItem('repvault_cart');
+      const saved = localStorage.getItem('oliver_cart') || localStorage.getItem('repvault_cart');
       return saved ? JSON.parse(saved) : [];
     } catch (e) {
       return [];
@@ -15,7 +14,7 @@ export function CartProvider({ children }) {
 
   const [coupon, setCoupon] = useState(() => {
     try {
-      const saved = localStorage.getItem('repvault_coupon');
+      const saved = localStorage.getItem('oliver_coupon');
       return saved ? JSON.parse(saved) : null;
     } catch (e) {
       return null;
@@ -27,16 +26,16 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem('repvault_cart', JSON.stringify(cart));
+      localStorage.setItem('oliver_cart', JSON.stringify(cart));
     } catch (e) {}
   }, [cart]);
 
   useEffect(() => {
     try {
       if (coupon) {
-        localStorage.setItem('repvault_coupon', JSON.stringify(coupon));
+        localStorage.setItem('oliver_coupon', JSON.stringify(coupon));
       } else {
-        localStorage.removeItem('repvault_coupon');
+        localStorage.removeItem('oliver_coupon');
       }
     } catch (e) {}
   }, [coupon]);
@@ -48,9 +47,31 @@ export function CartProvider({ children }) {
     }, 3200);
   };
 
-  const addToCart = (product, size = 'M', color = null, quantity = 1) => {
-    const selectedColor = color || (product.colors && product.colors[0]?.name) || 'Standard';
-    const cartItemId = `${product.id}-${size}-${selectedColor}`;
+  /**
+   * Flexible addToCart:
+   * Supports addToCart(product, quantity, options)
+   * And legacy signature addToCart(product, size, color, quantity)
+   */
+  const addToCart = (product, arg2 = 1, arg3 = {}, arg4 = null) => {
+    let quantity = 1;
+    let flavor = 'Standard';
+    let weight = 'Standard';
+
+    if (typeof arg2 === 'number') {
+      quantity = arg2;
+      if (typeof arg3 === 'object' && arg3 !== null) {
+        flavor = arg3.flavor || arg3.color || product.flavor || product.flavors?.[0] || 'Standard';
+        weight = arg3.weight || arg3.size || product.size || product.weights?.[0] || 'Standard';
+      }
+    } else if (typeof arg2 === 'string') {
+      // Legacy: addToCart(product, size, color, quantity)
+      weight = arg2;
+      flavor = typeof arg3 === 'string' ? arg3 : (product.flavor || product.flavors?.[0] || 'Standard');
+      if (typeof arg4 === 'number') quantity = arg4;
+    }
+
+    const cartItemId = `${product.id}-${weight}-${flavor}`;
+    const img = product.image || product.primaryImage || '/assets/products/01_whey_protein_gold_standard.jpg';
 
     setCart(prev => {
       const existingIndex = prev.findIndex(item => item.cartItemId === cartItemId);
@@ -67,21 +88,26 @@ export function CartProvider({ children }) {
           {
             cartItemId,
             productId: product.id,
+            id: product.id,
             name: product.name,
-            categoryName: product.categoryName,
+            brand: product.brand || 'OLIVER',
+            category: product.category || 'Supplements',
+            categoryName: product.category || 'Supplements',
             price: product.price,
-            originalPrice: product.originalPrice,
-            image: product.primaryImage,
-            size,
-            color: selectedColor,
+            originalPrice: product.mrp || product.originalPrice || product.price,
+            mrp: product.mrp || product.originalPrice || product.price,
+            image: img,
+            weight: weight,
+            size: weight,
+            flavor: flavor,
+            color: flavor,
             quantity
           }
         ];
       }
     });
 
-    showToast(`Added ${product.name} (${size}) to Bag!`);
-    setIsCartOpen(true);
+    showToast(`Added ${product.name} to cart!`);
   };
 
   const removeFromCart = (cartItemId) => {
@@ -106,50 +132,52 @@ export function CartProvider({ children }) {
     setCoupon(null);
   };
 
-  const openCart = () => setIsCartOpen(true);
-  const closeCart = () => setIsCartOpen(false);
-
-  // Financial calculations
-  const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-  const totalItemsCount = cart.reduce((acc, item) => acc + item.quantity, 0);
-
-  const FREE_SHIPPING_THRESHOLD = 1000;
-  const freeShipping = subtotal >= FREE_SHIPPING_THRESHOLD || coupon?.type === 'free_shipping';
-  const shippingFee = cart.length === 0 ? 0 : (freeShipping ? 0 : 99);
-  const amountNeededForFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
-  const freeShippingProgress = Math.min(100, Math.round((subtotal / FREE_SHIPPING_THRESHOLD) * 100));
-
-  let discount = 0;
-  if (coupon && subtotal > 0) {
-    if (coupon.type === 'percent') {
-      discount = Math.round((subtotal * coupon.value) / 100);
-    } else if (coupon.type === 'flat') {
-      discount = Math.min(subtotal, coupon.value);
+  const applyCoupon = (code) => {
+    const cleanCode = (code || '').trim().toUpperCase();
+    if (cleanCode === 'OLIVER10') {
+      const c = { code: 'OLIVER10', type: 'percent', value: 10, label: '10% OFF Sports Nutrition' };
+      setCoupon(c);
+      showToast('Promo OLIVER10 applied: 10% Discount!');
+      return { success: true, message: 'Coupon OLIVER10 applied!' };
     }
-  }
-
-  const taxableAmount = Math.max(0, subtotal - discount);
-  const gst = cart.length === 0 ? 0 : Math.round(taxableAmount * 0.05);
-  const total = cart.length === 0 ? 0 : (taxableAmount + shippingFee + gst);
-
-  const applyCoupon = async (code) => {
-    if (!code || !code.trim()) {
-      return { success: false, message: 'Please enter a coupon code' };
+    if (cleanCode === 'FUEL20') {
+      const c = { code: 'FUEL20', type: 'percent', value: 20, minSubtotal: 4999, label: '20% OFF Orders over ₹4,999' };
+      setCoupon(c);
+      showToast('Promo FUEL20 applied: 20% Discount!');
+      return { success: true, message: 'Coupon FUEL20 applied!' };
     }
-    const res = await api.validateCoupon(code.trim(), subtotal);
-    if (res.success) {
-      setCoupon(res.coupon);
-      showToast(`Coupon ${res.coupon.code} applied!`);
-      return { success: true };
-    } else {
-      return { success: false, message: res.message };
+    if (cleanCode === 'FIRSTORDER') {
+      const c = { code: 'FIRSTORDER', type: 'flat', value: 300, label: 'Flat ₹300 OFF First Order' };
+      setCoupon(c);
+      showToast('Promo FIRSTORDER applied: Flat ₹300 Discount!');
+      return { success: true, message: 'Coupon FIRSTORDER applied!' };
     }
+    return { success: false, message: 'Invalid or expired coupon code. Try OLIVER10 or FIRSTORDER.' };
   };
 
   const removeCoupon = () => {
     setCoupon(null);
     showToast('Coupon removed');
   };
+
+  // Financial Calculations
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const totalMrp = cart.reduce((sum, item) => sum + ((item.mrp || item.originalPrice || item.price) * item.quantity), 0);
+  const catalogSavings = Math.max(0, totalMrp - subtotal);
+
+  let discountAmount = 0;
+  if (coupon) {
+    if (coupon.type === 'percent') {
+      discountAmount = Math.round((subtotal * coupon.value) / 100);
+    } else if (coupon.type === 'flat') {
+      discountAmount = Math.min(coupon.value, subtotal);
+    }
+  }
+
+  // Free shipping threshold ₹999
+  const shippingFee = subtotal >= 999 || subtotal === 0 ? 0 : 99;
+  const grandTotal = Math.max(0, subtotal - discountAmount + shippingFee);
+  const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <CartContext.Provider value={{
@@ -158,22 +186,20 @@ export function CartProvider({ children }) {
       removeFromCart,
       updateQuantity,
       clearCart,
-      isCartOpen,
-      openCart,
-      closeCart,
+      totalItemsCount,
+      subtotal,
+      totalMrp,
+      catalogSavings,
+      shippingFee,
+      discountAmount,
+      grandTotal,
       coupon,
       applyCoupon,
       removeCoupon,
-      subtotal,
-      totalItemsCount,
-      shippingFee,
-      freeShipping,
-      FREE_SHIPPING_THRESHOLD,
-      amountNeededForFreeShipping,
-      freeShippingProgress,
-      discount,
-      gst,
-      total,
+      isCartOpen,
+      setIsCartOpen,
+      openCart: () => setIsCartOpen(true),
+      closeCart: () => setIsCartOpen(false),
       toastMessage,
       showToast
     }}>
@@ -184,7 +210,6 @@ export function CartProvider({ children }) {
 
 export function useCart() {
   const ctx = useContext(CartContext);
-  if (!ctx) throw new Error('useCart must be used within CartProvider');
+  if (!ctx) throw new Error('useCart must be used within a CartProvider');
   return ctx;
 }
-

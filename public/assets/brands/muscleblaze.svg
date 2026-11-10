@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+    <rect width="200" height="60" rx="8" fill="#171717" stroke="#303030"/>
+    <polygon points="26,14 36,28 30,28 34,44 18,28 24,28" fill="#FF5722"/>
+    <text x="44" y="36" font-family="Montserrat" font-size="15" font-weight="900" fill="#ffffff" letter-spacing="1.5">MUSCLEBLAZE</text>
+  </svg>
