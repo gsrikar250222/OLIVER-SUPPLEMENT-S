@@ -52,10 +52,9 @@ export default function Home({ onOpenGuide }) {
 
   // Refs for GSAP
   const heroRef = useRef(null);
+  const heroBgRef = useRef(null);
   const headlineLine1Ref = useRef(null);
   const headlineLine2Ref = useRef(null);
-  const athleteRef = useRef(null);
-  const tubRef = useRef(null);
   const badgesRef = useRef(null);
   const ctaRef = useRef(null);
   const quickCatsRef = useRef(null);
@@ -67,7 +66,7 @@ export default function Home({ onOpenGuide }) {
     setNewArrivals(getNewArrivals(8));
   }, []);
 
-  // Quick Category Bar Data (Matching the exact 10 tiles in the mockup)
+  // Quick Category Bar Data (Matching the 10 tiles in mockup)
   const quickCategories = [
     { name: 'Whey Protein', slug: 'whey-protein', img: '/assets/category_icons/whey-protein.png' },
     { name: 'Creatine', slug: 'creatine', img: '/assets/category_icons/creatine.png' },
@@ -92,7 +91,6 @@ export default function Home({ onOpenGuide }) {
       specs: ['27g Pure Protein', '6.2g BCAAs', 'Zero Bloat'],
       ctaText: 'SHOP WHEY PROTEIN',
       ctaLink: '/category/whey-protein',
-      bgImg: '/assets/hero/hero-cinematic-banner-2k.png',
       prodImg: '/assets/hero/hero-whey-tub.png'
     },
     {
@@ -104,7 +102,6 @@ export default function Home({ onOpenGuide }) {
       specs: ['Mesh 200 Ultra-Fine', 'Creapure Certified', 'Zero Sugar'],
       ctaText: 'EXPLORE CREATINE',
       ctaLink: '/category/creatine',
-      bgImg: '/assets/hero/hero-cinematic-banner-2k.png',
       prodImg: '/assets/products/12_creatine_micronized.jpg'
     },
     {
@@ -116,7 +113,6 @@ export default function Home({ onOpenGuide }) {
       specs: ['Lab-Tested Purity', 'Direct Importers', '24h Dispatch'],
       ctaText: 'VIEW ALL SUPPLEMENTS',
       ctaLink: '/shop',
-      bgImg: '/assets/hero/hero-cinematic-banner-2k.png',
       prodImg: '/assets/products/14_c4_pre_workout.jpg'
     }
   ];
@@ -151,91 +147,68 @@ export default function Home({ onOpenGuide }) {
     }
   ];
 
-  // GSAP Cinematic Hero & ScrollTrigger Setup
+  // GSAP Cinematic Animations
   useEffect(() => {
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (isReduced) return;
 
     const ctx = gsap.context(() => {
-      // 1. Hero Master Timeline
+      // 1. Slow, subtle background zoom for cinema feel
+      if (heroBgRef.current) {
+        gsap.fromTo(heroBgRef.current, 
+          { scale: 1.05 },
+          { scale: 1.0, duration: 2.4, ease: 'power2.out' }
+        );
+      }
+
+      // 2. Headline & Content Timeline
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      // Athlete enters from left
-      if (athleteRef.current) {
-        tl.from(athleteRef.current, {
-          x: -90,
-          opacity: 0,
-          scale: 0.96,
-          duration: 1.1
-        }, 0.1);
-      }
+      tl.from('.hero-tracking-tag', {
+        y: 18,
+        opacity: 0,
+        duration: 0.5
+      }, 0.2);
 
-      // Whey tub enters from right
-      if (tubRef.current) {
-        tl.from(tubRef.current, {
-          x: 90,
-          opacity: 0,
-          scale: 0.95,
-          duration: 1.2
-        }, 0.15);
-
-        // Subtle idle floating breathing animation
-        gsap.to(tubRef.current, {
-          y: -10,
-          duration: 2.8,
-          ease: 'sine.inOut',
-          yoyo: true,
-          repeat: -1,
-          delay: 1.3
-        });
-      }
-
-      // Text Reveal
-      if (headlineLine1Ref.current && headlineLine2Ref.current) {
-        tl.from('.hero-tracking-tag', {
-          y: 20,
-          opacity: 0,
-          duration: 0.6
-        }, 0.3);
-
+      if (headlineLine1Ref.current) {
         tl.from(headlineLine1Ref.current.querySelectorAll('.hero-word'), {
-          y: 45,
+          y: 40,
           opacity: 0,
           stagger: 0.08,
-          duration: 0.8
-        }, 0.4);
-
-        tl.from(headlineLine2Ref.current.querySelectorAll('.hero-word'), {
-          y: 45,
-          opacity: 0,
-          stagger: 0.08,
-          duration: 0.8
-        }, 0.6);
+          duration: 0.75
+        }, 0.35);
       }
 
-      // Badges Stagger
+      if (headlineLine2Ref.current) {
+        tl.from(headlineLine2Ref.current.querySelectorAll('.hero-word'), {
+          y: 40,
+          opacity: 0,
+          stagger: 0.08,
+          duration: 0.75
+        }, 0.55);
+      }
+
       if (badgesRef.current) {
         tl.from(badgesRef.current.querySelectorAll('.hero-quality-badge'), {
-          y: 25,
+          y: 22,
           opacity: 0,
-          scale: 0.92,
-          stagger: 0.1,
-          duration: 0.6,
-          ease: 'back.out(1.6)'
-        }, 0.8);
+          scale: 0.94,
+          stagger: 0.09,
+          duration: 0.55,
+          ease: 'back.out(1.5)'
+        }, 0.75);
       }
 
-      // CTA Button
       if (ctaRef.current) {
         tl.from(ctaRef.current, {
           scale: 0.88,
           opacity: 0,
-          duration: 0.6,
+          duration: 0.55,
           ease: 'back.out(2)'
-        }, 1.0);
+        }, 0.95);
       }
 
-      // 2. ScrollTrigger for Quick Categories Bar
+      // 3. ScrollTrigger for Quick Categories Bar
       if (quickCatsRef.current) {
         gsap.from(quickCatsRef.current.querySelectorAll('.quick-cat-card'), {
           scrollTrigger: {
@@ -243,15 +216,15 @@ export default function Home({ onOpenGuide }) {
             start: 'top 88%',
             toggleActions: 'play none none none'
           },
-          y: 35,
+          y: 30,
           opacity: 0,
-          stagger: 0.05,
-          duration: 0.7,
+          stagger: 0.04,
+          duration: 0.65,
           ease: 'power2.out'
         });
       }
 
-      // 3. ScrollTrigger for Best Sellers Section Header
+      // 4. ScrollTrigger for Best Sellers Section Header
       if (bestSellersHeaderRef.current) {
         gsap.from(bestSellersHeaderRef.current.querySelector('.section-title-line'), {
           scrollTrigger: {
@@ -276,7 +249,7 @@ export default function Home({ onOpenGuide }) {
         });
       }
 
-      // 4. Section Reveals
+      // 5. Section Reveals
       gsap.utils.toArray('.reveal-section').forEach((sec) => {
         gsap.from(sec, {
           scrollTrigger: {
@@ -284,9 +257,9 @@ export default function Home({ onOpenGuide }) {
             start: 'top 85%',
             toggleActions: 'play none none none'
           },
-          y: 40,
+          y: 35,
           opacity: 0,
-          duration: 0.8,
+          duration: 0.75,
           ease: 'power2.out'
         });
       });
@@ -298,92 +271,83 @@ export default function Home({ onOpenGuide }) {
   return (
     <div className="home-page-wrap" ref={heroRef}>
       {/* ========================================================
-          1. CINEMATIC HERO SECTION (MATCHING USER MOCKUP EXACTLY)
+          1. FULL-WIDTH CINEMATIC BACKGROUND HERO (NO SEPARATE BOXES)
           ======================================================== */}
-      <section className="mockup-cinematic-hero">
-        <div className="hero-dark-atmosphere-bg"></div>
-        <div className="hero-red-ambient-flare"></div>
+      <section className="fullwidth-cinematic-hero">
+        {/* Full-width background image covering left-to-right */}
+        <div className="hero-cinematic-bg-layer" ref={heroBgRef}></div>
 
-        <div className="container mockup-hero-container">
-          {/* Athlete Visual on Left (Kevin with red rim lighting) */}
-          <div className="mockup-hero-athlete-col" ref={athleteRef}>
-            <img 
-              src="/assets/hero/hero-athlete-kevin.png" 
-              alt="Oliver Athlete Kevin aesthetic"
-              className="mockup-hero-athlete-img"
-              loading="eager"
-            />
-          </div>
+        {/* Multi-layered cinematic overlays */}
+        <div className="hero-overlay-dark-vignette"></div>
+        <div className="hero-overlay-edge-flares"></div>
+        <div className="hero-overlay-center-glow"></div>
 
-          {/* Center Brand Typography & Badges */}
-          <div className="mockup-hero-center-col">
+        {/* Central Foreground Content */}
+        <div className="container hero-foreground-container">
+          <div className="hero-center-content">
             <span className="hero-tracking-tag">OLIVER SUPPLEMENT SHOP</span>
             
-            <h1 className="mockup-hero-headline">
+            <h1 className="hero-cinematic-headline">
               <span className="hero-headline-line line-1" ref={headlineLine1Ref}>
                 <span className="hero-word">FUEL</span>{' '}
                 <span className="hero-word">YOUR</span>{' '}
-                <span className="hero-word highlight-red">BODY</span>
+                <span className="hero-word">BODY</span>
               </span>
               <span className="hero-headline-line line-2" ref={headlineLine2Ref}>
-                <span className="hero-word">BUILD</span>{' '}
-                <span className="hero-word">YOUR</span>{' '}
+                <span className="hero-word highlight-red">BUILD</span>{' '}
+                <span className="hero-word highlight-red">YOUR</span>{' '}
                 <span className="hero-word highlight-red">BEST</span>
               </span>
             </h1>
 
-            {/* 3 Quality Badges (Matching Mockup) */}
-            <div className="mockup-hero-badges-row" ref={badgesRef}>
+            {/* 3 Quality Badges (Quality | Strength | Performance - Exact Match to Brand Reference) */}
+            <div className="hero-badges-row" ref={badgesRef}>
               <div className="hero-quality-badge">
-                <div className="badge-icon-box">
-                  <Flame size={15} />
+                <div className="badge-icon-box" title="100% Certified Authentic Sports Nutrition">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 3h12v2H6V3zm-1 3h14a1 1 0 0 1 1 1v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a1 1 0 0 1 1-1zm8 2l-4 6h3l-1 4 4-6h-3l1-4z"/>
+                  </svg>
                 </div>
                 <span className="badge-name">QUALITY</span>
               </div>
 
               <div className="hero-quality-badge">
-                <div className="badge-icon-box">
-                  <Zap size={15} />
+                <div className="badge-icon-box" title="Explosive Strength & Muscle Hypertrophy">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.5 11c-.3-1.6-1.5-2.8-3.1-3.1-.7-.1-1.4 0-2 .3l-1.8-1.8c-.8-.8-2-.9-2.9-.4L8.4 4.7C7.6 4.3 6.6 4.4 6 5l-2 2c-.6.6-.7 1.6-.3 2.4l1.3 2.3c-.5.9-.4 2.1.4 2.9l1.8 1.8c-.3.6-.4 1.3-.3 2 .3 1.6 1.5 2.8 3.1 3.1.4.1.7.1 1.1 0 1.2-.2 2.2-.9 2.7-2l1.6-3.2c.4-.8 1.2-1.3 2.1-1.3.4 0 .7.1 1.1.2.6.2 1.3.1 1.8-.3.6-.5.9-1.2.8-1.9z"/>
+                  </svg>
                 </div>
                 <span className="badge-name">STRENGTH</span>
               </div>
 
               <div className="hero-quality-badge">
-                <div className="badge-icon-box">
-                  <ShieldCheck size={15} />
+                <div className="badge-icon-box" title="Peak Athletic Endurance & Clean Botanicals">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-10 7-1.4 3.5-.7 6.4 1 8.2-1.4-2.8-1.2-5.7.8-8.2 1.4-1.8 3.2-2.5 5.2-2z"/>
+                  </svg>
                 </div>
                 <span className="badge-name">PERFORMANCE</span>
               </div>
             </div>
 
-            {/* Glowing Red CTA Button (Matching Mockup) */}
-            <div className="mockup-hero-cta-wrap" ref={ctaRef}>
-              <Link to="/shop" className="mockup-hero-shop-btn">
+            {/* Prominent Glowing Red CTA Button */}
+            <div className="hero-cta-wrap" ref={ctaRef}>
+              <Link to="/shop" className="hero-shop-pill-btn">
                 <span>SHOP NOW</span>
-                <ArrowRight size={17} />
+                <ArrowRight size={18} />
               </Link>
             </div>
-          </div>
-
-          {/* Oliver Whey Protein Tub with Chocolate Splash on Right */}
-          <div className="mockup-hero-tub-col" ref={tubRef}>
-            <img 
-              src="/assets/hero/hero-whey-tub.png" 
-              alt="OLIVER Whey Protein Chocolate Flavour"
-              className="mockup-hero-tub-img"
-              loading="eager"
-            />
           </div>
         </div>
       </section>
 
       {/* ========================================================
-          2. QUICK CATEGORIES BAR (MATCHING MOCKUP 10 TILES)
+          2. QUICK CATEGORIES BAR (10 GLOWING TILES)
           ======================================================== */}
       <section className="quick-categories-bar-section" ref={quickCatsRef}>
         <div className="container">
           <div className="quick-categories-scroll-row">
-            {quickCategories.map((cat, idx) => (
+            {quickCategories.map((cat) => (
               <Link 
                 key={cat.slug} 
                 to={cat.slug === 'all' ? '/shop' : `/category/${cat.slug}`}
@@ -400,11 +364,11 @@ export default function Home({ onOpenGuide }) {
       </section>
 
       {/* ========================================================
-          3. BEST SELLERS SWIPER SLIDER (MATCHING MOCKUP EXACTLY)
+          3. BEST SELLERS SWIPER SLIDER
           ======================================================== */}
       <section className="bestsellers-swiper-section reveal-section" ref={bestSellersHeaderRef}>
         <div className="container">
-          {/* Header matching mockup: Red vertical bar + italic title + view all pill */}
+          {/* Header with Red vertical bar */}
           <div className="mockup-section-header">
             <div className="header-text-group">
               <div className="title-with-bar">
@@ -434,7 +398,8 @@ export default function Home({ onOpenGuide }) {
               spaceBetween={14}
               slidesPerView={1.5}
               breakpoints={{
-                480: { slidesPerView: 2.2, spaceBetween: 14 },
+                320: { slidesPerView: 1.3, spaceBetween: 10 },
+                480: { slidesPerView: 2.1, spaceBetween: 12 },
                 768: { slidesPerView: 3.2, spaceBetween: 16 },
                 1024: { slidesPerView: 4.5, spaceBetween: 18 },
                 1280: { slidesPerView: 5.5, spaceBetween: 20 },
@@ -461,7 +426,7 @@ export default function Home({ onOpenGuide }) {
       </section>
 
       {/* ========================================================
-          4. CINEMATIC 3-SLIDE PROMOTIONAL SHOWCASE (SPEC #5)
+          4. CINEMATIC 3-SLIDE PROMOTIONAL SHOWCASE
           ======================================================== */}
       <section className="cinematic-promo-slider-section reveal-section">
         <div className="container">
@@ -600,11 +565,11 @@ export default function Home({ onOpenGuide }) {
             <Swiper
               modules={[Autoplay]}
               autoplay={{ delay: 2400, disableOnInteraction: false }}
-              spaceBetween={16}
-              slidesPerView={2.5}
+              spaceBetween={14}
+              slidesPerView={2.8}
               breakpoints={{
-                480: { slidesPerView: 3.5, spaceBetween: 16 },
-                768: { slidesPerView: 4.5, spaceBetween: 20 },
+                480: { slidesPerView: 3.8, spaceBetween: 16 },
+                768: { slidesPerView: 4.8, spaceBetween: 20 },
                 1024: { slidesPerView: 6, spaceBetween: 24 },
                 1280: { slidesPerView: 8, spaceBetween: 24 }
               }}
@@ -658,7 +623,7 @@ export default function Home({ onOpenGuide }) {
               modules={[Pagination, Autoplay]}
               pagination={{ clickable: true }}
               autoplay={{ delay: 5000 }}
-              spaceBetween={20}
+              spaceBetween={16}
               slidesPerView={1}
               breakpoints={{
                 768: { slidesPerView: 2 },
