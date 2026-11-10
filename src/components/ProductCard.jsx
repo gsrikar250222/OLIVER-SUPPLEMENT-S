@@ -146,6 +146,9 @@ export default function ProductCard({ product }) {
               {product.mrp && product.mrp > product.price && (
                 <span className="price-mrp">₹{product.mrp.toLocaleString('en-IN')}</span>
               )}
+              {discountPercent > 0 && (
+                <span className="price-discount-pill">{discountPercent}% OFF</span>
+              )}
             </div>
 
             <button 

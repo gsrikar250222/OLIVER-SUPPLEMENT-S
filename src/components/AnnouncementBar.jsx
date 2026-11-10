@@ -1,38 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, Truck, Lock, PhoneCall } from 'lucide-react';
+import { ShieldCheck, Truck, Zap, PhoneCall } from 'lucide-react';
 
 export default function AnnouncementBar() {
   return (
     <aside className="announcement-bar">
       <div className="announcement-container">
-        <div className="announcement-left">
-          <span className="announcement-item highlight-seal">
-            <ShieldCheck size={13} className="inline-icon pulse-red" />
-            100% GENUINE SUPPLEMENTS &bull; DIRECT BRAND IMPORTERS
-          </span>
-          <span className="announcement-divider">|</span>
-          <span className="announcement-item">
+        <div className="announcement-items-row">
+          <span className="announcement-pill-item">
             <Truck size={13} className="inline-icon" />
-            FREE EXPRESS SHIPPING OVER ₹999 &bull; ALL-INDIA DISPATCH
+            Free Delivery on Orders Above ₹1,999
           </span>
-          <span className="announcement-divider">|</span>
-          <span className="announcement-item promo-code">
-            CODE: <strong>OLIVER10</strong> FOR 10% OFF
+          <span className="announcement-pill-item">
+            <ShieldCheck size={13} className="inline-icon" />
+            100% Genuine Products
           </span>
-        </div>
-        <div className="announcement-right">
-          <Link to="/track-order" className="announcement-link">
-            Track Order
-          </Link>
-          <span className="announcement-divider">|</span>
-          <Link to="/faq" className="announcement-link">
-            Authenticity Check
-          </Link>
-          <span className="announcement-divider">|</span>
-          <Link to="/contact" className="announcement-link hotline">
-            <PhoneCall size={12} className="inline-icon" /> Support: +91 98888 01234
-          </Link>
+          <span className="announcement-pill-item">
+            <Zap size={13} className="inline-icon" />
+            Express Delivery Available
+          </span>
+          <a href="tel:+917708688023" className="announcement-pill-item hotline">
+            <PhoneCall size={13} className="inline-icon" />
+            Need Help? <strong>+91 7708688023</strong>
+          </a>
         </div>
       </div>
     </aside>

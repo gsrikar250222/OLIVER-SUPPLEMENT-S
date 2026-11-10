@@ -72,15 +72,51 @@ export default function Navbar({ onOpenSearch, onOpenGuide }) {
               {/* Home */}
               <li className="nav-item">
                 <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-                  HOME
+                  Home
                 </NavLink>
               </li>
 
-              {/* Shop All */}
+              {/* Shop */}
               <li className="nav-item">
                 <NavLink to="/shop" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-                  SHOP ALL
+                  Shop <ChevronDown size={12} className="nav-chevron" />
                 </NavLink>
+              </li>
+
+              {/* BRANDS Mega Menu */}
+              <li 
+                className="nav-item has-mega"
+                onMouseEnter={() => setActiveDropdown('brands')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <Link to="/brands" className="nav-link">
+                  Brands <ChevronDown size={12} className="nav-chevron" />
+                </Link>
+
+                <div className={`nav-dropdown mega-menu brands-mega ${activeDropdown === 'brands' ? 'visible' : ''}`}>
+                  <div className="brands-mega-grid">
+                    {[
+                      { name: 'OLIVER Pro Nutrition', tag: 'Flagship In-House', img: '/assets/brands/oliver.svg', link: '/shop?brand=OLIVER+Pro+Nutrition' },
+                      { name: 'Optimum Nutrition', tag: 'Gold Standard', img: '/assets/brands/optimum-nutrition.svg', link: '/shop?brand=Optimum+Nutrition' },
+                      { name: 'MuscleTech', tag: 'Nitro-Tech Science', img: '/assets/brands/muscletech.svg', link: '/shop?brand=MuscleTech' },
+                      { name: 'Dymatize', tag: 'ISO-100 Leaders', img: '/assets/brands/dymatize.svg', link: '/shop?brand=Dymatize' },
+                      { name: 'Myprotein', tag: 'Impact Whey', img: '/assets/brands/myprotein.svg', link: '/shop?brand=Myprotein' },
+                      { name: 'Cellucor', tag: 'C4 Pre-Workout', img: '/assets/brands/cellucor.svg', link: '/shop?brand=Cellucor' },
+                      { name: 'MuscleBlaze', tag: 'Biozyme Series', img: '/assets/brands/muscleblaze.svg', link: '/shop?brand=MuscleBlaze' },
+                      { name: 'GNC', tag: 'Live Well Foundation', img: '/assets/brands/gnc.svg', link: '/shop?brand=GNC' }
+                    ].map((b) => (
+                      <Link key={b.name} to={b.link} className="brand-mega-card">
+                        <span className="brand-card-name">{b.name}</span>
+                        <span className="brand-card-tag">{b.tag}</span>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mega-bottom-bar">
+                    <Link to="/brands" className="view-all-brands-btn">
+                      View All Certified Partner Brands &rarr;
+                    </Link>
+                  </div>
+                </div>
               </li>
 
               {/* CATEGORIES Mega Menu */}
@@ -90,7 +126,7 @@ export default function Navbar({ onOpenSearch, onOpenGuide }) {
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <Link to="/shop" className="nav-link">
-                  CATEGORIES <ChevronDown size={14} className="nav-chevron" />
+                  Categories <ChevronDown size={12} className="nav-chevron" />
                 </Link>
 
                 <div className={`nav-dropdown mega-menu ${activeDropdown === 'categories' ? 'visible' : ''}`}>
@@ -167,57 +203,26 @@ export default function Navbar({ onOpenSearch, onOpenGuide }) {
                 </div>
               </li>
 
-              {/* BRANDS Mega Menu */}
-              <li 
-                className="nav-item has-mega"
-                onMouseEnter={() => setActiveDropdown('brands')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <Link to="/brands" className="nav-link">
-                  BRANDS <ChevronDown size={14} className="nav-chevron" />
-                </Link>
-
-                <div className={`nav-dropdown mega-menu brands-mega ${activeDropdown === 'brands' ? 'visible' : ''}`}>
-                  <div className="brands-mega-grid">
-                    {[
-                      { name: 'OLIVER Pro Nutrition', tag: 'Flagship In-House', img: '/assets/brands/oliver.svg', link: '/shop?brand=OLIVER+Pro+Nutrition' },
-                      { name: 'Optimum Nutrition', tag: 'Gold Standard', img: '/assets/brands/optimum-nutrition.svg', link: '/shop?brand=Optimum+Nutrition' },
-                      { name: 'MuscleTech', tag: 'Nitro-Tech Science', img: '/assets/brands/muscletech.svg', link: '/shop?brand=MuscleTech' },
-                      { name: 'Dymatize', tag: 'ISO-100 Leaders', img: '/assets/brands/dymatize.svg', link: '/shop?brand=Dymatize' },
-                      { name: 'Myprotein', tag: 'Impact Whey', img: '/assets/brands/myprotein.svg', link: '/shop?brand=Myprotein' },
-                      { name: 'Cellucor', tag: 'C4 Pre-Workout', img: '/assets/brands/cellucor.svg', link: '/shop?brand=Cellucor' },
-                      { name: 'MuscleBlaze', tag: 'Biozyme Series', img: '/assets/brands/muscleblaze.svg', link: '/shop?brand=MuscleBlaze' },
-                      { name: 'GNC', tag: 'Live Well Foundation', img: '/assets/brands/gnc.svg', link: '/shop?brand=GNC' }
-                    ].map((b) => (
-                      <Link key={b.name} to={b.link} className="brand-mega-card">
-                        <span className="brand-card-name">{b.name}</span>
-                        <span className="brand-card-tag">{b.tag}</span>
-                      </Link>
-                    ))}
-                  </div>
-                  <div className="mega-bottom-bar">
-                    <Link to="/brands" className="view-all-brands-btn">
-                      View All Certified Partner Brands &rarr;
-                    </Link>
-                  </div>
-                </div>
-              </li>
-
               {/* DEALS */}
               <li className="nav-item">
                 <Link to="/shop?sort=discount" className="nav-link deals-link">
-                  <Percent size={14} className="deals-icon" /> DEALS
-                  <span className="sale-pill">UP TO 35% OFF</span>
+                  Deals
                 </Link>
               </li>
 
-              {/* ABOUT */}
+              {/* ABOUT US */}
               <li className="nav-item">
                 <NavLink to="/about" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-                  ABOUT
+                  About Us
                 </NavLink>
               </li>
             </ul>
+
+            {/* Nav Search Pill (Matching Mockup) */}
+            <div className="nav-search-pill" onClick={onOpenSearch} role="button" tabIndex={0}>
+              <Search size={15} className="search-pill-icon" />
+              <span className="search-pill-placeholder">Search supplements, brands...</span>
+            </div>
 
             {/* Action Bar (Search, Nutrition Guide, Account, Wishlist, Cart) */}
             <div className="nav-actions">
