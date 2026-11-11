@@ -115,3 +115,4 @@ export function logAdminActivity(user, action, targetEntity, details = {}) {
     console.error('Failed to log admin activity:', err);
   }
 }
+

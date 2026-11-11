@@ -210,3 +210,4 @@ export default function BrandsManager() {
     </div>
   );
 }
+
