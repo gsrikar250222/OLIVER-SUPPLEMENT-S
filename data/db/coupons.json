@@ -1,0 +1,54 @@
+[
+  {
+    "id": "coup_1",
+    "code": "OLIVER10",
+    "type": "percent",
+    "value": 10,
+    "minOrder": 0,
+    "maxDiscount": 1500,
+    "description": "10% Off Sitewide on Authentic Sports Nutrition",
+    "status": "active",
+    "usageCount": 142,
+    "usageLimit": 5000,
+    "expiryDate": "2028-12-31"
+  },
+  {
+    "id": "coup_2",
+    "code": "FUEL20",
+    "type": "percent",
+    "value": 20,
+    "minOrder": 2499,
+    "maxDiscount": 2000,
+    "description": "20% Off Big Stacks Over ₹2,499",
+    "status": "active",
+    "usageCount": 89,
+    "usageLimit": 2000,
+    "expiryDate": "2028-12-31"
+  },
+  {
+    "id": "coup_3",
+    "code": "FIRSTORDER",
+    "type": "flat",
+    "value": 200,
+    "minOrder": 1499,
+    "maxDiscount": 200,
+    "description": "Flat ₹200 Off for New Athletes",
+    "status": "active",
+    "usageCount": 65,
+    "usageLimit": 10000,
+    "expiryDate": "2028-12-31"
+  },
+  {
+    "id": "coup_4",
+    "code": "FREESHIP",
+    "type": "free_shipping",
+    "value": 0,
+    "minOrder": 0,
+    "maxDiscount": 99,
+    "description": "Free Express Shipping Sitewide",
+    "status": "active",
+    "usageCount": 310,
+    "usageLimit": 10000,
+    "expiryDate": "2028-12-31"
+  }
+]

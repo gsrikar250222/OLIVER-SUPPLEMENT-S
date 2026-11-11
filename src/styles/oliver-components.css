@@ -182,6 +182,17 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--white);
 }
 
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--brand-red, #E50914);
+  box-shadow: 0 0 8px rgba(229, 9, 20, 0.7);
+}
+
 .nav-link.deals-link {
   color: var(--brand-red);
 }
@@ -4140,8 +4151,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .quick-cat-card {
-  background: #141414;
-  border: 1px solid #281414;
+  background: #121212;
+  border: 1px solid rgba(229, 9, 20, 0.35);
   border-radius: 12px;
   padding: 8px 6px 10px;
   display: flex;
@@ -4151,7 +4162,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   text-align: center;
   transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(229, 9, 20, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 8px rgba(229, 9, 20, 0.15);
   min-width: 0;
 }
 
@@ -4159,7 +4170,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #181212;
   border-color: #E50914;
   transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.35), inset 0 0 18px rgba(229, 9, 20, 0.2);
+  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.45), 0 0 18px rgba(229, 9, 20, 0.35);
 }
 
 .quick-cat-icon-frame {

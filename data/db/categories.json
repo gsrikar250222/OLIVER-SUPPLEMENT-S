@@ -1,0 +1,114 @@
+[
+  {
+    "id": "whey-protein",
+    "name": "Whey Protein",
+    "slug": "whey-protein",
+    "description": "Fast-absorbing premium whey concentrate and isolate blends for peak muscle protein synthesis and recovery.",
+    "banner": "/assets/products/01_whey_protein_gold_standard.jpg",
+    "itemCount": 9
+  },
+  {
+    "id": "whey-isolate",
+    "name": "Whey Protein Isolate",
+    "slug": "whey-isolate",
+    "description": "Ultra-filtered 90%+ pure protein with minimal carbs, lactose, and fat for shredded lean muscle definition.",
+    "banner": "/assets/products/02_whey_isolate.jpg",
+    "itemCount": 4
+  },
+  {
+    "id": "mass-gainers",
+    "name": "Mass Gainers",
+    "slug": "mass-gainers",
+    "description": "Calorie-dense complex carbs and multi-stage proteins engineered for hardgainers building serious size.",
+    "banner": "/assets/products/06_mass_gainer.jpg",
+    "itemCount": 4
+  },
+  {
+    "id": "creatine",
+    "name": "Creatine",
+    "slug": "creatine",
+    "description": "Pure micronized & Creapure creatine monohydrate to regenerate cellular ATP, power output, and muscle fullness.",
+    "banner": "/assets/products/11_creatine_monohydrate.jpg",
+    "itemCount": 5
+  },
+  {
+    "id": "pre-workout",
+    "name": "Pre-Workout",
+    "slug": "pre-workout",
+    "description": "High-octane formulas powered by Citrulline, Beta-Alanine, and caffeine for explosive energy, pumps, and focus.",
+    "banner": "/assets/products/14_c4_pre_workout.jpg",
+    "itemCount": 5
+  },
+  {
+    "id": "amino-acids",
+    "name": "BCAA & EAA",
+    "slug": "amino-acids",
+    "description": "Fermented BCAAs, complete EAAs, L-Glutamine, and Citrulline Malate to combat fatigue and catabolism.",
+    "banner": "/assets/products/16_bcaa_amino_acids.jpg",
+    "itemCount": 11
+  },
+  {
+    "id": "vitamins-minerals",
+    "name": "Vitamins & Minerals",
+    "slug": "vitamins-minerals",
+    "description": "Bioactive multivitamins, joint mobility formulas, ZMA, D3+K2, and foundational micronutrient packs.",
+    "banner": "/assets/products/21_multivitamin.jpg",
+    "itemCount": 13
+  },
+  {
+    "id": "fish-oil-omega-3",
+    "name": "Fish Oil & Omega-3",
+    "slug": "fish-oil-omega-3",
+    "description": "Triple strength molecularly distilled EPA and DHA fatty acids for heart, brain, joint, and cellular recovery.",
+    "banner": "/assets/products/23_omega_3_fish_oil.jpg",
+    "itemCount": 2
+  },
+  {
+    "id": "protein-bars-snacks",
+    "name": "Protein Bars & Snacks",
+    "slug": "protein-bars-snacks",
+    "description": "Convenient on-the-go athlete nutrition: high protein, low sugar bars and macro-friendly snacks.",
+    "banner": "/assets/products/63_protein_bar.jpg",
+    "itemCount": 1
+  },
+  {
+    "id": "electrolytes",
+    "name": "Electrolytes & Hydration",
+    "slug": "electrolytes",
+    "description": "Cellular hydration salts and mineral replenishments for endurance, anti-cramping, and stamina.",
+    "banner": "/assets/products/20_citrulline_malate.jpg",
+    "itemCount": 0
+  },
+  {
+    "id": "health-wellness",
+    "name": "Health & Wellness",
+    "slug": "health-wellness",
+    "description": "Digestive enzymes, probiotics, detox complexes, and vitality boosters for total athlete health.",
+    "banner": "/assets/products/22_daily_wellness.jpg",
+    "itemCount": 0
+  },
+  {
+    "id": "plant-protein",
+    "name": "Plant Protein",
+    "slug": "plant-protein",
+    "description": "100% organic vegan pea, brown rice, and botanical protein blends with complete amino acid spectra.",
+    "banner": "/assets/products/29_plant_protein.jpg",
+    "itemCount": 2
+  },
+  {
+    "id": "healthy-foods",
+    "name": "Healthy Foods",
+    "slug": "healthy-foods",
+    "description": "Clean complex fuel: whole rolled oats, 100% natural peanut butter, raw almonds, chia, flax, and protein muesli.",
+    "banner": "/assets/products/58_peanut_butter.jpg",
+    "itemCount": 6
+  },
+  {
+    "id": "fitness-accessories",
+    "name": "Fitness Accessories",
+    "slug": "fitness-accessories",
+    "description": "Leakproof shakers, 45L tactical gym duffels, and essential workout equipment built for iron warriors.",
+    "banner": "/assets/products/30_power_house_shaker.jpg",
+    "itemCount": 3
+  }
+]

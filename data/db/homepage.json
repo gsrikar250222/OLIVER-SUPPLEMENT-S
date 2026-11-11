@@ -1,0 +1,222 @@
+[
+  {
+    "id": "active_homepage_v1",
+    "version": 1,
+    "status": "published",
+    "publishedAt": "2026-11-11T03:07:37.342Z",
+    "announcementBar": {
+      "enabled": true,
+      "bgColor": "#000000",
+      "textColor": "#FFFFFF",
+      "accentColor": "#E50914",
+      "items": [
+        {
+          "id": "1",
+          "text": "Free Delivery on Orders Above ₹1,999",
+          "icon": "Truck",
+          "link": "/shop"
+        },
+        {
+          "id": "2",
+          "text": "100% Genuine Products",
+          "icon": "ShieldCheck",
+          "link": "/about"
+        },
+        {
+          "id": "3",
+          "text": "Express Delivery Available",
+          "icon": "Zap",
+          "link": "/shipping-policy"
+        },
+        {
+          "id": "4",
+          "text": "Need Help? +91 7708688023",
+          "icon": "PhoneCall",
+          "link": "tel:+917708688023"
+        }
+      ]
+    },
+    "header": {
+      "logoUrl": "/icons/logo.svg",
+      "logoAlt": "OLIVER SUPPLEMENT SHOP",
+      "logoHeight": 44,
+      "searchPlaceholder": "Search supplements, brands...",
+      "navLinks": [
+        {
+          "label": "Home",
+          "href": "/",
+          "isHighlight": false
+        },
+        {
+          "label": "Shop",
+          "href": "/shop",
+          "isHighlight": false
+        },
+        {
+          "label": "Brands",
+          "href": "/brands",
+          "isHighlight": false
+        },
+        {
+          "label": "Categories",
+          "href": "/shop",
+          "isHighlight": false
+        },
+        {
+          "label": "Deals",
+          "href": "/shop?sort=discount",
+          "isHighlight": true
+        },
+        {
+          "label": "About Us",
+          "href": "/about",
+          "isHighlight": false
+        }
+      ]
+    },
+    "hero": {
+      "kicker": "OLIVER SUPPLEMENT SHOP",
+      "headlineLine1": "FUEL YOUR BODY",
+      "headlineLine2": "BUILD YOUR BEST",
+      "headlineColor1": "#FFFFFF",
+      "headlineColor2": "#E50914",
+      "desktopBgUrl": "/assets/hero/hero-cinematic-full-bg-4k.png",
+      "mobileBgUrl": "/assets/hero/hero-cinematic-mobile-bg.png",
+      "overlayDarkness": 0.7,
+      "redGlowIntensity": 0.18,
+      "ctaText": "SHOP NOW",
+      "ctaLink": "/shop",
+      "ctaBgGradient": "linear-gradient(135deg, #FF1E27 0%, #D8000C 100%)",
+      "badges": [
+        {
+          "id": "b1",
+          "name": "QUALITY",
+          "icon": "tub",
+          "title": "100% Certified Authentic Sports Nutrition"
+        },
+        {
+          "id": "b2",
+          "name": "STRENGTH",
+          "icon": "arm",
+          "title": "Explosive Strength & Muscle Hypertrophy"
+        },
+        {
+          "id": "b3",
+          "name": "PERFORMANCE",
+          "icon": "leaves",
+          "title": "Peak Athletic Endurance & Clean Botanicals"
+        }
+      ]
+    },
+    "quickCategories": [
+      {
+        "id": "qc1",
+        "name": "Whey Protein",
+        "slug": "whey-protein",
+        "img": "/assets/category_icons/whey-protein.png",
+        "enabled": true
+      },
+      {
+        "id": "qc2",
+        "name": "Creatine",
+        "slug": "creatine",
+        "img": "/assets/category_icons/creatine.png",
+        "enabled": true
+      },
+      {
+        "id": "qc3",
+        "name": "Pre-Workout",
+        "slug": "pre-workout",
+        "img": "/assets/category_icons/pre-workout.png",
+        "enabled": true
+      },
+      {
+        "id": "qc4",
+        "name": "Vitamin & Minerals",
+        "slug": "vitamins-minerals",
+        "img": "/assets/category_icons/vitamins-minerals.png",
+        "enabled": true
+      },
+      {
+        "id": "qc5",
+        "name": "Fish Oil & Omega-3",
+        "slug": "fish-oil-omega-3",
+        "img": "/assets/category_icons/fish-oil.png",
+        "enabled": true
+      },
+      {
+        "id": "qc6",
+        "name": "Protein Bars & Snacks",
+        "slug": "protein-bars-snacks",
+        "img": "/assets/category_icons/protein-bars.png",
+        "enabled": true
+      },
+      {
+        "id": "qc7",
+        "name": "Mass Gainers",
+        "slug": "mass-gainers",
+        "img": "/assets/category_icons/mass-gainers.png",
+        "enabled": true
+      },
+      {
+        "id": "qc8",
+        "name": "Amino Acids",
+        "slug": "amino-acids",
+        "img": "/assets/category_icons/amino-acids.png",
+        "enabled": true
+      },
+      {
+        "id": "qc9",
+        "name": "Fitness Accessories",
+        "slug": "gym-accessories",
+        "img": "/assets/category_icons/fitness-accessories.png",
+        "enabled": true
+      },
+      {
+        "id": "qc10",
+        "name": "All Categories →",
+        "slug": "all",
+        "img": "/assets/category_icons/all-categories.png",
+        "enabled": true
+      }
+    ],
+    "bestSellersSection": {
+      "enabled": true,
+      "title": "Best Sellers",
+      "subtitle": "Top choice supplements trusted by fitness enthusiasts",
+      "limit": 10,
+      "viewAllLink": "/shop?sort=bestseller"
+    },
+    "testimonialsSection": {
+      "enabled": true,
+      "title": "ATHLETE REVIEWS & AUTHENTIC FEEDBACK",
+      "subtitle": "Verified lifters, bodybuilders and fitness enthusiasts across India",
+      "testimonials": [
+        {
+          "id": "t1",
+          "name": "Vikram Rajput",
+          "title": "National Men’s Physique Competitor",
+          "rating": 5,
+          "comment": "The authenticity of Oliver Supplement Shop is unmatched in India. Every single tub checked out on the brand portal instantly with the scratch code. Delivery to Delhi took only 24 hours!",
+          "productUsed": "ISO-100 Hydrolyzed Whey"
+        },
+        {
+          "id": "t2",
+          "name": "Dr. Rohan Mehra",
+          "title": "Sports Physician & Crossfit Coach",
+          "rating": 5,
+          "comment": "As a medical professional, purity and zero doping contaminants are paramount for my athletes. Oliver’s clean lab-tested protein and heavy-metal verified fish oils give me 100% confidence.",
+          "productUsed": "Gold Standard 100% Whey"
+        },
+        {
+          "id": "t3",
+          "name": "Simran Kaur",
+          "title": "Powerlifter & Strength Athlete",
+          "rating": 5,
+          "comment": "Switched to Oliver Creatine and Whey 6 months ago. Added 15kg to my squat with zero digestion issues or bloating. Customer support is incredible.",
+          "productUsed": "Oliver Micronized Creatine"
+        }
+      ]
+    }
+  }
+]

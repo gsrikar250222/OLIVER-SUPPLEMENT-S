@@ -1,0 +1,42 @@
+[
+  {
+    "id": "page_about",
+    "slug": "about",
+    "title": "About Oliver Supplement Shop",
+    "status": "published",
+    "lastUpdated": "2026-11-11T03:07:37.344Z",
+    "content": "Oliver Supplement Shop was built on a single, uncompromising premise: Indian athletes deserve 100% genuine, unadulterated sports nutrition delivered directly from certified brand importers. We eliminate middlemen and grey-market supply chains, ensuring every tub of whey protein, creatine, and pre-workout comes with authentic importer holograms and QR verification scratch codes."
+  },
+  {
+    "id": "page_shipping",
+    "slug": "shipping-policy",
+    "title": "Shipping & Delivery Policy",
+    "status": "published",
+    "lastUpdated": "2026-11-11T03:07:37.344Z",
+    "content": "All orders are processed and dispatched within 24 hours from our climate-controlled fulfillment centers. We provide free express shipping across India on orders exceeding ₹1,999. Standard delivery takes 2 to 4 business days depending on location."
+  },
+  {
+    "id": "page_returns",
+    "slug": "return-policy",
+    "title": "Return & Refund Policy",
+    "status": "published",
+    "lastUpdated": "2026-11-11T03:07:37.344Z",
+    "content": "Due to strict quality and hygiene safety standards for dietary supplements, returns are accepted within 7 days of delivery only for items with damaged packaging, broken seals upon delivery, or incorrect items. Once inspected, full refunds are processed within 3-5 business days."
+  },
+  {
+    "id": "page_privacy",
+    "slug": "privacy-policy",
+    "title": "Privacy Policy",
+    "status": "published",
+    "lastUpdated": "2026-11-11T03:07:37.344Z",
+    "content": "Your privacy is sacred to Oliver Supplement Shop. We do not sell or lease customer contact information to third parties. All transactions are protected by 256-bit SSL encryption."
+  },
+  {
+    "id": "page_terms",
+    "slug": "terms",
+    "title": "Terms & Conditions",
+    "status": "published",
+    "lastUpdated": "2026-11-11T03:07:37.344Z",
+    "content": "By purchasing from Oliver Supplement Shop, you confirm that you are at least 18 years of age and that dietary supplements are intended to support an active fitness regimen rather than substitute medical advice."
+  }
+]

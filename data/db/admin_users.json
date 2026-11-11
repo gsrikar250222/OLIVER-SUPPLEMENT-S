@@ -1,0 +1,15 @@
+[
+  {
+    "id": "admin_super_1",
+    "name": "Oliver Master Administrator",
+    "email": "admin@olivershop.com",
+    "passwordHash": "2ff5632054abd01763aed993bc39924f:33830da810240c7b56580647e69e1a7203532a98630fa17c1d74738cb7d252e172ad39a05633fd45f58df898aa7862c51d7c98659dae53c7bff69d0a2d69199a",
+    "role": "Super Admin",
+    "status": "active",
+    "phone": "+91 7708688023",
+    "avatar": "/icons/logo.svg",
+    "createdAt": "2026-11-11T03:07:37.333Z",
+    "lastLogin": "2026-11-11T03:10:10.498Z",
+    "updatedAt": "2026-11-11T03:10:10.498Z"
+  }
+]

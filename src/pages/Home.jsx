@@ -27,6 +27,7 @@ import {
   getBestsellers, 
   getNewArrivals 
 } from '../data/products.js';
+import { api } from '../services/api.js';
 import ProductCard from '../components/ProductCard.jsx';
 
 // GSAP & ScrollTrigger
@@ -45,6 +46,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home({ onOpenGuide }) {
   const navigate = useNavigate();
+  const [dynamicHome, setDynamicHome] = useState(null);
   const [bestsellers, setBestsellers] = useState([]);
   const [newArrivals, setNewArrivals] = useState([]);
   const [activeCategoryTab, setActiveCategoryTab] = useState('all');
@@ -61,9 +63,20 @@ export default function Home({ onOpenGuide }) {
   const bestSellersHeaderRef = useRef(null);
 
   useEffect(() => {
-    // Populate products
-    setBestsellers(getBestsellers(10));
-    setNewArrivals(getNewArrivals(8));
+    // Dynamic Homepage & Products from Database
+    api.getHomepage().then(cfg => {
+      if (cfg) setDynamicHome(cfg);
+    });
+
+    api.getProducts({ sort: 'bestseller', limit: 10 }).then(prods => {
+      if (prods && prods.length) setBestsellers(prods);
+      else setBestsellers(getBestsellers(10));
+    });
+
+    api.getProducts({ sort: 'newest', limit: 8 }).then(prods => {
+      if (prods && prods.length) setNewArrivals(prods);
+      else setNewArrivals(getNewArrivals(8));
+    });
   }, []);
 
   // Quick Category Bar Data (Matching the 10 tiles in mockup)
@@ -274,66 +287,83 @@ export default function Home({ onOpenGuide }) {
           1. FULL-WIDTH CINEMATIC BACKGROUND HERO (NO SEPARATE BOXES)
           ======================================================== */}
       <section className="fullwidth-cinematic-hero">
-        {/* Full-width background image covering left-to-right */}
-        <div className="hero-cinematic-bg-layer" ref={heroBgRef}></div>
+        {/* Full-width background image covering left-to-right (Dynamic Admin Controlled) */}
+        <div 
+          className="hero-cinematic-bg-layer" 
+          ref={heroBgRef}
+          style={{
+            backgroundImage: `url('${dynamicHome?.hero?.desktopBgUrl || '/assets/hero/hero-cinematic-full-bg-4k.png'}')`
+          }}
+        ></div>
 
         {/* Multi-layered cinematic overlays */}
-        <div className="hero-overlay-dark-vignette"></div>
+        <div 
+          className="hero-overlay-dark-vignette"
+          style={{
+            backgroundColor: `rgba(9, 9, 9, ${(dynamicHome?.hero?.overlayDarkness ?? 0.70) * 0.4})`
+          }}
+        ></div>
         <div className="hero-overlay-edge-flares"></div>
         <div className="hero-overlay-center-glow"></div>
 
         {/* Central Foreground Content */}
         <div className="container hero-foreground-container">
           <div className="hero-center-content">
-            <span className="hero-tracking-tag">OLIVER SUPPLEMENT SHOP</span>
+            <span className="hero-tracking-tag">
+              {dynamicHome?.hero?.kicker || 'OLIVER SUPPLEMENT SHOP'}
+            </span>
             
             <h1 className="hero-cinematic-headline">
               <span className="hero-headline-line line-1" ref={headlineLine1Ref}>
-                <span className="hero-word">FUEL</span>{' '}
-                <span className="hero-word">YOUR</span>{' '}
-                <span className="hero-word">BODY</span>
+                {(dynamicHome?.hero?.headlineLine1 || 'FUEL YOUR BODY').split(' ').map((w, i) => (
+                  <React.Fragment key={i}>
+                    <span className="hero-word">{w}</span>{' '}
+                  </React.Fragment>
+                ))}
               </span>
               <span className="hero-headline-line line-2" ref={headlineLine2Ref}>
-                <span className="hero-word highlight-red">BUILD</span>{' '}
-                <span className="hero-word highlight-red">YOUR</span>{' '}
-                <span className="hero-word highlight-red">BEST</span>
+                {(dynamicHome?.hero?.headlineLine2 || 'BUILD YOUR BEST').split(' ').map((w, i) => (
+                  <React.Fragment key={i}>
+                    <span className="hero-word highlight-red">{w}</span>{' '}
+                  </React.Fragment>
+                ))}
               </span>
             </h1>
 
             {/* 3 Quality Badges (Quality | Strength | Performance - Exact Match to Brand Reference) */}
             <div className="hero-badges-row" ref={badgesRef}>
-              <div className="hero-quality-badge">
-                <div className="badge-icon-box" title="100% Certified Authentic Sports Nutrition">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M6 3h12v2H6V3zm-1 3h14a1 1 0 0 1 1 1v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a1 1 0 0 1 1-1zm8 2l-4 6h3l-1 4 4-6h-3l1-4z"/>
-                  </svg>
+              {(dynamicHome?.hero?.badges || [
+                { id: 'b1', name: 'QUALITY', title: '100% Certified Authentic Sports Nutrition' },
+                { id: 'b2', name: 'STRENGTH', title: 'Explosive Strength & Muscle Hypertrophy' },
+                { id: 'b3', name: 'PERFORMANCE', title: 'Peak Athletic Endurance & Clean Botanicals' }
+              ]).map((b, idx) => (
+                <div key={b.id || idx} className="hero-quality-badge">
+                  <div className="badge-icon-box" title={b.title}>
+                    {idx === 0 && (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 3h12v2H6V3zm-1 3h14a1 1 0 0 1 1 1v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a1 1 0 0 1 1-1zm8 2l-4 6h3l-1 4 4-6h-3l1-4z"/>
+                      </svg>
+                    )}
+                    {idx === 1 && (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.5 11c-.3-1.6-1.5-2.8-3.1-3.1-.7-.1-1.4 0-2 .3l-1.8-1.8c-.8-.8-2-.9-2.9-.4L8.4 4.7C7.6 4.3 6.6 4.4 6 5l-2 2c-.6.6-.7 1.6-.3 2.4l1.3 2.3c-.5.9-.4 2.1.4 2.9l1.8 1.8c-.3.6-.4 1.3-.3 2 .3 1.6 1.5 2.8 3.1 3.1.4.1.7.1 1.1 0 1.2-.2 2.2-.9 2.7-2l1.6-3.2c.4-.8 1.2-1.3 2.1-1.3.4 0 .7.1 1.1.2.6.2 1.3.1 1.8-.3.6-.5.9-1.2.8-1.9z"/>
+                      </svg>
+                    )}
+                    {idx >= 2 && (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-10 7-1.4 3.5-.7 6.4 1 8.2-1.4-2.8-1.2-5.7.8-8.2 1.4-1.8 3.2-2.5 5.2-2z"/>
+                      </svg>
+                    )}
+                  </div>
+                  <span className="badge-name">{b.name}</span>
                 </div>
-                <span className="badge-name">QUALITY</span>
-              </div>
-
-              <div className="hero-quality-badge">
-                <div className="badge-icon-box" title="Explosive Strength & Muscle Hypertrophy">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.5 11c-.3-1.6-1.5-2.8-3.1-3.1-.7-.1-1.4 0-2 .3l-1.8-1.8c-.8-.8-2-.9-2.9-.4L8.4 4.7C7.6 4.3 6.6 4.4 6 5l-2 2c-.6.6-.7 1.6-.3 2.4l1.3 2.3c-.5.9-.4 2.1.4 2.9l1.8 1.8c-.3.6-.4 1.3-.3 2 .3 1.6 1.5 2.8 3.1 3.1.4.1.7.1 1.1 0 1.2-.2 2.2-.9 2.7-2l1.6-3.2c.4-.8 1.2-1.3 2.1-1.3.4 0 .7.1 1.1.2.6.2 1.3.1 1.8-.3.6-.5.9-1.2.8-1.9z"/>
-                  </svg>
-                </div>
-                <span className="badge-name">STRENGTH</span>
-              </div>
-
-              <div className="hero-quality-badge">
-                <div className="badge-icon-box" title="Peak Athletic Endurance & Clean Botanicals">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-10 7-1.4 3.5-.7 6.4 1 8.2-1.4-2.8-1.2-5.7.8-8.2 1.4-1.8 3.2-2.5 5.2-2z"/>
-                  </svg>
-                </div>
-                <span className="badge-name">PERFORMANCE</span>
-              </div>
+              ))}
             </div>
 
             {/* Prominent Glowing Red CTA Button */}
             <div className="hero-cta-wrap" ref={ctaRef}>
-              <Link to="/shop" className="hero-shop-pill-btn">
-                <span>SHOP NOW</span>
+              <Link to={dynamicHome?.hero?.ctaLink || '/shop'} className="hero-shop-pill-btn">
+                <span>{dynamicHome?.hero?.ctaText || 'SHOP NOW'}</span>
                 <ArrowRight size={18} />
               </Link>
             </div>

@@ -5,6 +5,7 @@ import App from './App.jsx';
 import 'swiper/css';
 import './styles/main.css';
 import './styles/oliver-components.css';
+import './styles/admin.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

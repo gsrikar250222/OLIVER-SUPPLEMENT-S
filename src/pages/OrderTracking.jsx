@@ -68,7 +68,7 @@ export default function OrderTracking() {
                 <div>
                   <span className="info-label">SHIPMENT STATUS:</span>
                   <div className="info-status-badge">
-                    <Truck size={16} /> IN TRANSIT &bull; ON TIME
+                    <Truck size={16} /> {trackedOrder.status || 'IN TRANSIT'}
                   </div>
                 </div>
                 <div>
@@ -77,20 +77,29 @@ export default function OrderTracking() {
                 </div>
                 <div>
                   <span className="info-label">COURIER PARTNER:</span>
-                  <strong className="info-carrier">BlueDart Air Express (AWB: BD-882910482)</strong>
+                  <strong className="info-carrier">
+                    {trackedOrder.courier || 'BlueDart Air Express'} ({trackedOrder.trackingId || 'Processing'})
+                  </strong>
+                  {trackedOrder.trackingUrl && (
+                    <div style={{ marginTop: '4px' }}>
+                      <a href={trackedOrder.trackingUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#E50914', fontSize: '0.78rem' }}>
+                        Track on Courier Website &rarr;
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
 
               {/* Progress Node Line */}
               <div className="tracking-progress-timeline mt-35">
-                {steps.map((st, i) => (
-                  <div key={i} className={`tracking-progress-step ${st.completed ? 'done' : ''} ${i === 2 ? 'current' : ''}`}>
+                {(trackedOrder.statusTimeline && trackedOrder.statusTimeline.length > 0 ? trackedOrder.statusTimeline : steps).map((st, i) => (
+                  <div key={i} className={`tracking-progress-step ${st.completed ? 'done' : ''} ${st.status === trackedOrder.status ? 'current' : ''}`}>
                     <div className="step-circle">
                       {st.completed ? <CheckCircle2 size={18} /> : <span>{i + 1}</span>}
                     </div>
                     <div className="step-text-content">
-                      <strong className="step-title-text">{st.label}</strong>
-                      <p className="step-desc-text">{st.desc}</p>
+                      <strong className="step-title-text">{st.status || st.label}</strong>
+                      <p className="step-desc-text">{st.date || st.desc}</p>
                     </div>
                   </div>
                 ))}

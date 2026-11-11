@@ -4,6 +4,8 @@ import Lenis from 'lenis';
 import { CartProvider } from './context/CartContext.jsx';
 import { WishlistProvider } from './context/WishlistContext.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
+import { AdminProvider } from './context/AdminContext.jsx';
+import AdminApp from './admin/AdminApp.jsx';
 
 // Components
 import AnnouncementBar from './components/AnnouncementBar.jsx';
@@ -51,6 +53,16 @@ function ScrollToTop() {
 export default function App() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [guideOpen, setGuideOpen] = useState(false);
+  const location = useLocation();
+
+  // Route directly to Master Admin Control Center without customer storefront wrapper
+  if (location.pathname.startsWith('/admin')) {
+    return (
+      <AdminProvider>
+        <AdminApp />
+      </AdminProvider>
+    );
+  }
 
   // Smooth Lenis Scroll
   useEffect(() => {

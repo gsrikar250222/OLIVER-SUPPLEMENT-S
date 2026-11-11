@@ -1,0 +1,47 @@
+[
+  {
+    "id": "general_settings",
+    "storeName": "OLIVER SUPPLEMENT SHOP",
+    "tagline": "Fuel Your Body. Build Your Best.",
+    "contactEmail": "support@olivershop.com",
+    "contactPhone": "+91 7708688023",
+    "whatsappNumber": "+91 7708688023",
+    "supportHours": "Mon - Sat: 9:00 AM - 9:00 PM",
+    "warehouseAddress": "Oliver Sports Nutrition Hub, Bandra West, Mumbai, Maharashtra 400050",
+    "shipping": {
+      "freeShippingThreshold": 1999,
+      "standardDeliveryFee": 99,
+      "expressDeliveryFee": 199,
+      "estimatedDeliveryDays": 3,
+      "codAvailable": true,
+      "codExtraCharge": 0
+    },
+    "payment": {
+      "upiEnabled": true,
+      "cardsEnabled": true,
+      "netbankingEnabled": true,
+      "codEnabled": true,
+      "razorpayEnabled": false,
+      "razorpayKeyId": ""
+    },
+    "taxGstRate": 18,
+    "socials": {
+      "instagram": "https://instagram.com/oliversupplements",
+      "youtube": "https://youtube.com/@oliversupplements",
+      "facebook": "https://facebook.com/oliversupplements",
+      "twitter": "https://twitter.com/olivershop"
+    },
+    "theme": {
+      "primaryColor": "#090909",
+      "accentColor": "#E50914",
+      "cardBg": "#141414",
+      "textPrimary": "#FFFFFF",
+      "textSecondary": "#A0A0A0"
+    },
+    "seo": {
+      "metaTitle": "OLIVER SUPPLEMENT SHOP | 100% Genuine Whey Protein & Sports Nutrition",
+      "metaDescription": "Shop certified authentic Whey Protein, Creatine, Pre-Workouts and Mass Gainers from top brands with express delivery across India. Batch verified authentic.",
+      "ogImage": "/assets/hero/hero-cinematic-full-bg-4k.png"
+    }
+  }
+]
