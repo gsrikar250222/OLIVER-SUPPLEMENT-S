@@ -55,6 +55,8 @@ export default function Home({ onOpenGuide }) {
   // Refs for GSAP
   const heroRef = useRef(null);
   const heroBgRef = useRef(null);
+  const heroAthleteRef = useRef(null);
+  const heroProductRef = useRef(null);
   const headlineLine1Ref = useRef(null);
   const headlineLine2Ref = useRef(null);
   const badgesRef = useRef(null);
@@ -177,6 +179,26 @@ export default function Home({ onOpenGuide }) {
       // 2. Headline & Content Timeline
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
+      if (heroAthleteRef.current) {
+        tl.from(heroAthleteRef.current, {
+          x: -30,
+          opacity: 0,
+          scale: 0.96,
+          duration: 0.85,
+          ease: 'power2.out'
+        }, 0.2);
+      }
+
+      if (heroProductRef.current) {
+        tl.from(heroProductRef.current, {
+          x: 30,
+          opacity: 0,
+          scale: 0.96,
+          duration: 0.85,
+          ease: 'power2.out'
+        }, 0.2);
+      }
+
       tl.from('.hero-tracking-tag', {
         y: 18,
         opacity: 0,
@@ -284,15 +306,15 @@ export default function Home({ onOpenGuide }) {
   return (
     <div className="home-page-wrap" ref={heroRef}>
       {/* ========================================================
-          1. FULL-WIDTH CINEMATIC BACKGROUND HERO (NO SEPARATE BOXES)
+          1. FULL-WIDTH CINEMATIC HERO WITH OFFICIAL ATHLETE & WHEY TUB
           ======================================================== */}
       <section className="fullwidth-cinematic-hero">
-        {/* Full-width background image covering left-to-right (Dynamic Admin Controlled) */}
+        {/* Clean atmospheric dark gym background (zero baked-in text!) */}
         <div 
           className="hero-cinematic-bg-layer" 
           ref={heroBgRef}
           style={{
-            backgroundImage: `url('${dynamicHome?.hero?.desktopBgUrl || '/assets/hero/hero-cinematic-full-bg-4k.png'}')`
+            backgroundImage: `url('${dynamicHome?.hero?.desktopBgUrl || '/assets/hero/hero-clean-backdrop-4k.png'}')`
           }}
         ></div>
 
@@ -306,8 +328,20 @@ export default function Home({ onOpenGuide }) {
         <div className="hero-overlay-edge-flares"></div>
         <div className="hero-overlay-center-glow"></div>
 
-        {/* Central Foreground Content */}
+        {/* Central Foreground Content with Athlete on Left & Whey Tub on Right */}
         <div className="container hero-foreground-container">
+          {/* LEFT: Official Oliver Athlete (Supplied High Contrast Portrait) */}
+          <div className="hero-athlete-col" ref={heroAthleteRef}>
+            <img 
+              src="/assets/hero/oliver_athlete_official.png" 
+              alt="Oliver Pro Athlete" 
+              className="hero-athlete-img"
+              loading="eager"
+            />
+            <div className="hero-athlete-blend-overlay"></div>
+          </div>
+
+          {/* CENTER: Main Brand Headline & Badges & CTA */}
           <div className="hero-center-content">
             <span className="hero-tracking-tag">
               {dynamicHome?.hero?.kicker || 'OLIVER SUPPLEMENT SHOP'}
@@ -367,6 +401,16 @@ export default function Home({ onOpenGuide }) {
                 <ArrowRight size={18} />
               </Link>
             </div>
+          </div>
+
+          {/* RIGHT: Oliver Whey Protein Tub with Chocolate Splash (Exact Mockup Match) */}
+          <div className="hero-product-col" ref={heroProductRef}>
+            <img 
+              src="/assets/hero/hero-whey-tub.png" 
+              alt="Oliver Premium Whey Protein Blend" 
+              className="hero-whey-tub-img"
+              loading="eager"
+            />
           </div>
         </div>
       </section>
@@ -428,8 +472,9 @@ export default function Home({ onOpenGuide }) {
               spaceBetween={14}
               slidesPerView={1.5}
               breakpoints={{
-                320: { slidesPerView: 1.3, spaceBetween: 10 },
-                480: { slidesPerView: 2.1, spaceBetween: 12 },
+                320: { slidesPerView: 1.5, spaceBetween: 10 },
+                375: { slidesPerView: 1.85, spaceBetween: 12 },
+                480: { slidesPerView: 2.3, spaceBetween: 12 },
                 768: { slidesPerView: 3.2, spaceBetween: 16 },
                 1024: { slidesPerView: 4.5, spaceBetween: 18 },
                 1280: { slidesPerView: 5.5, spaceBetween: 20 },

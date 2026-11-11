@@ -14,10 +14,21 @@ body.oliver-theme,
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 .app-content-wrap {
   flex: 1 0 auto;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .container {
@@ -31,8 +42,8 @@ body.oliver-theme,
 
 @media (max-width: 768px) {
   .container {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 14px;
+    padding-right: 14px;
   }
 }
 
@@ -449,8 +460,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .mobile-menu-btn {
   display: none;
+  background: transparent;
+  border: none;
   color: var(--white);
-  padding: 6px;
+  padding: 8px;
+  cursor: pointer;
 }
 
 @media (max-width: 1024px) {
@@ -458,7 +472,64 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
   }
   .mobile-menu-btn {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-wrapper {
+    height: 56px !important;
+  }
+  .navbar {
+    height: 56px !important;
+    gap: 8px !important;
+    padding: 0 !important;
+  }
+  .mobile-menu-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    padding: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .nav-brand {
+    display: inline-flex !important;
+    align-items: center;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .brand-logo-img {
+    height: 28px !important;
+    max-width: 135px !important;
+    width: auto !important;
+    object-fit: contain;
+  }
+  .nav-actions {
+    display: flex !important;
+    align-items: center;
+    gap: 4px !important;
+    flex-shrink: 0;
+  }
+  .nav-actions .action-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    padding: 6px !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .desktop-only-action {
+    display: none !important;
   }
 }
 
@@ -585,6 +656,29 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--brand-red);
     background: #202020;
     color: #fff;
+  }
+
+  .mobile-guide-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(229, 9, 20, 0.12);
+    border: 1px solid rgba(229, 9, 20, 0.35);
+    border-radius: 6px;
+    color: #FFFFFF;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-guide-btn:hover {
+    background: rgba(229, 9, 20, 0.25);
+    border-color: var(--brand-red);
   }
 
   .mobile-links-list {
@@ -1427,29 +1521,81 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 860px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    gap: 12px;
+  }
+  .product-card {
+    border-radius: 8px;
   }
   .product-media {
-    min-height: 220px;
-    padding: 16px;
+    min-height: 180px;
+    height: 180px;
+    padding: 12px;
   }
   .product-img {
-    max-height: 180px;
+    max-height: 145px;
+  }
+  .product-card-actions {
+    display: none !important;
   }
 }
+
 @media (max-width: 480px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
+  .product-media {
+    min-height: 160px;
+    height: 160px;
+    padding: 10px;
+  }
+  .product-img {
+    max-height: 130px;
+  }
   .product-info {
-    padding: 12px;
+    padding: 10px;
+  }
+  .product-specs-pills {
+    display: none !important;
   }
   .product-title {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
+    line-height: 1.25;
+    height: 2.5em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .product-pricing-row {
+    padding-top: 8px;
+    gap: 4px;
   }
   .price-current {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
+  }
+  .price-mrp {
+    font-size: 0.72rem;
+  }
+  .price-discount-pill {
+    font-size: 0.62rem;
+    padding: 1px 4px;
+  }
+  .card-cart-btn {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 5px;
+  }
+  .product-wishlist-btn {
+    width: 28px;
+    height: 28px;
+    top: 6px;
+    right: 6px;
+  }
+  .authenticity-badge {
+    font-size: 0.58rem;
+    padding: 2px 5px;
   }
 }
 
@@ -3778,22 +3924,85 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Announcement Bar (Exact Mockup Match)
+   1. Announcement Bar (Compact Single-Row on Desktop & Mobile)
    -------------------------------------------------------------------------- */
 .announcement-bar {
   background: #0d0d0d;
   border-bottom: 1px solid #202020;
-  padding: 9px 0;
-  font-size: 0.78rem;
+  height: 34px;
+  padding: 0;
+  font-size: 0.76rem;
   color: #c0c0c0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 100;
 }
 
-.announcement-items-row {
+.announcement-container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
+}
+
+.desktop-only-announcements {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+}
+
+.mobile-only-announcements {
+  display: none;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.announcement-mobile-rotating {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.announcement-mobile-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: #d6d6d6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: announcementFade 0.4s ease;
+}
+
+.mobile-announcement-link {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+@keyframes announcementFade {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .announcement-pill-item {
@@ -3819,17 +4028,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
-  .announcement-items-row {
-    justify-content: center;
-    gap: 12px;
+  .announcement-bar {
+    height: 30px !important;
   }
-  .announcement-pill-item:not(:first-child):not(.hotline) {
-    display: none;
+  .desktop-only-announcements {
+    display: none !important;
+  }
+  .mobile-only-announcements {
+    display: flex !important;
+  }
+  .announcement-container {
+    padding: 0 12px;
   }
 }
 
 /* --------------------------------------------------------------------------
-   2. Nav Integrated Search Pill (Exact Mockup Match)
+   2. Nav Integrated Search Pill (Desktop)
    -------------------------------------------------------------------------- */
 .nav-search-pill {
   display: flex;
@@ -3876,14 +4090,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   3. FULL-WIDTH CINEMATIC HERO SECTION (EXACT MOCKUP MATCH - NO SEPARATE BOXES)
+   3. FULL-WIDTH CINEMATIC HERO (WITH OFFICIAL ATHLETE & WHEY TUB)
    -------------------------------------------------------------------------- */
 .fullwidth-cinematic-hero {
   position: relative;
   width: 100%;
+  height: 560px;
   min-height: 520px;
-  height: 540px;
-  max-height: 75vh;
+  max-height: 82vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3897,7 +4111,7 @@ h1, h2, h3, h4, h5, h6 {
   inset: 0;
   width: 100%;
   height: 100%;
-  background: url('/assets/hero/hero-cinematic-full-bg-4k.png') center center / cover no-repeat;
+  background: url('/assets/hero/hero-clean-backdrop-4k.png') center center / cover no-repeat;
   z-index: 1;
   transform-origin: center center;
   will-change: transform;
@@ -3909,9 +4123,9 @@ h1, h2, h3, h4, h5, h6 {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(9, 9, 9, 0.70) 0%,
-    rgba(9, 9, 9, 0.15) 25%,
-    rgba(9, 9, 9, 0.15) 75%,
+    rgba(9, 9, 9, 0.65) 0%,
+    rgba(9, 9, 9, 0.10) 25%,
+    rgba(9, 9, 9, 0.10) 75%,
     rgba(9, 9, 9, 0.95) 100%
   );
   z-index: 2;
@@ -3926,7 +4140,7 @@ h1, h2, h3, h4, h5, h6 {
     transparent 35%,
     rgba(9, 9, 9, 0.65) 100%
   );
-  z-index: 3;
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -3939,31 +4153,88 @@ h1, h2, h3, h4, h5, h6 {
   height: 380px;
   background: radial-gradient(
     ellipse at center,
-    rgba(229, 9, 20, 0.18) 0%,
-    rgba(229, 9, 20, 0.04) 50%,
+    rgba(229, 9, 20, 0.22) 0%,
+    rgba(229, 9, 20, 0.05) 50%,
     transparent 75%
   );
-  z-index: 3;
+  z-index: 2;
   pointer-events: none;
-  filter: blur(25px);
+  filter: blur(30px);
 }
 
 .hero-foreground-container {
   position: relative;
-  z-index: 5;
+  z-index: 4;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 20px 24px;
+  height: 100%;
+  padding: 0 24px;
 }
 
+/* LEFT: Official Oliver Athlete (Supplied Portrait) */
+.hero-athlete-col {
+  position: absolute;
+  left: 1%;
+  bottom: 0;
+  height: 98%;
+  max-height: 550px;
+  width: 380px;
+  display: flex;
+  align-items: flex-end;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hero-athlete-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom left;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.95));
+}
+
+.hero-athlete-blend-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 65%, #090909 100%),
+              linear-gradient(to top, #090909 0%, transparent 22%);
+  pointer-events: none;
+}
+
+/* RIGHT: Oliver Whey Protein Tub with Chocolate Splash */
+.hero-product-col {
+  position: absolute;
+  right: 0%;
+  bottom: 0;
+  height: 95%;
+  max-height: 520px;
+  width: 440px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hero-whey-tub-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom right;
+  filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.9));
+}
+
+/* CENTER: Central Headline & Badges */
 .hero-center-content {
+  position: relative;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 820px;
+  max-width: 620px;
   margin: 0 auto;
 }
 
@@ -3986,7 +4257,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
   font-style: italic;
   font-weight: 900;
-  font-size: clamp(2.4rem, 6.2vw, 4.8rem);
+  font-size: clamp(2.4rem, 6.2vw, 4.6rem);
   line-height: 0.94;
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -4017,13 +4288,13 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 0 0 35px rgba(229, 9, 20, 0.55);
 }
 
-/* Badges row: Quality | Strength | Performance - Exact Match */
+/* Badges row: Quality | Strength | Performance */
 .hero-badges-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
-  margin-bottom: 28px;
+  gap: 28px;
+  margin-bottom: 26px;
 }
 
 .hero-quality-badge {
@@ -4095,42 +4366,117 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
 }
 
-/* Mobile responsive hero */
+/* Tablet & Mobile responsive hero */
+@media (max-width: 1080px) {
+  .hero-athlete-col {
+    width: 300px;
+  }
+  .hero-product-col {
+    width: 320px;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero-product-col {
+    display: none !important;
+  }
+  .hero-athlete-col {
+    width: 260px;
+  }
+}
+
 @media (max-width: 768px) {
   .fullwidth-cinematic-hero {
-    min-height: 480px;
-    height: 510px;
+    height: clamp(490px, 76svh, 580px) !important;
+    min-height: 470px !important;
+    padding: 18px 0 24px !important;
   }
 
   .hero-cinematic-bg-layer {
-    background: url('/assets/hero/hero-cinematic-mobile-bg.png') top center / cover no-repeat;
+    background: url('/assets/hero/hero-clean-mobile-bg.png') center center / cover no-repeat !important;
+  }
+
+  /* Mobile Athlete: Seamlessly integrated behind text with dark vignette so text has 100% contrast */
+  .hero-athlete-col {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    opacity: 0.38 !important;
+    z-index: 2 !important;
+  }
+
+  .hero-athlete-img {
+    height: 100% !important;
+    width: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    object-position: center 15% !important;
+  }
+
+  .hero-athlete-blend-overlay {
+    background: radial-gradient(circle at 50% 38%, rgba(9, 9, 9, 0.45) 0%, rgba(9, 9, 9, 0.94) 75%, #090909 100%),
+                linear-gradient(to top, #090909 0%, transparent 28%) !important;
+  }
+
+  .hero-center-content {
+    position: relative !important;
+    z-index: 5 !important;
+    width: 100% !important;
+    padding: 0 12px !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-tracking-tag {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.16em !important;
+    margin-bottom: 8px !important;
   }
 
   .hero-cinematic-headline {
-    font-size: clamp(2.1rem, 9.2vw, 3.4rem);
-    margin-bottom: 20px;
+    font-size: clamp(2.1rem, 9.2vw, 2.85rem) !important;
+    line-height: 1.05 !important;
+    margin-bottom: 16px !important;
   }
 
   .hero-badges-row {
-    gap: 18px;
-    margin-bottom: 22px;
+    gap: 10px !important;
+    margin-bottom: 20px !important;
   }
 
-  .badge-icon-box {
-    width: 32px;
-    height: 32px;
+  .hero-quality-badge {
+    gap: 4px;
   }
 
-  .badge-name {
-    font-size: 0.72rem;
+  .hero-quality-badge .badge-icon-box {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 6px !important;
+  }
+
+  .hero-quality-badge .badge-icon-box svg {
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  .hero-quality-badge .badge-name {
+    font-size: 0.65rem !important;
+    letter-spacing: 0.05em !important;
   }
 
   .hero-shop-pill-btn {
-    width: 100%;
-    max-width: 290px;
-    justify-content: center;
-    padding: 12px 28px;
-    font-size: 0.98rem;
+    width: auto !important;
+    min-width: 200px !important;
+    max-width: 280px !important;
+    padding: 12px 28px !important;
+    font-size: 1.02rem !important;
+    min-height: 44px;
+    margin: 0 auto;
   }
 }
 
@@ -4141,6 +4487,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #090909;
   padding: 16px 0 24px;
   border-bottom: 1px solid #1a1a1a;
+  overflow: hidden;
 }
 
 .quick-categories-scroll-row {
@@ -4216,12 +4563,32 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding-bottom: 6px;
+    padding: 2px 16px 10px;
+    gap: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
   }
+  .quick-categories-scroll-row::-webkit-scrollbar {
+    display: none;
+  }
   .quick-cat-card {
-    flex: 0 0 95px;
+    flex: 0 0 84px;
+    width: 84px;
+    height: 88px;
     scroll-snap-align: start;
+    padding: 6px 4px 8px;
+    border-radius: 10px;
+  }
+  .quick-cat-icon-frame {
+    height: 42px;
+    margin-bottom: 4px;
+  }
+  .quick-cat-img {
+    max-height: 38px;
+  }
+  .quick-cat-title {
+    font-size: 0.72rem;
   }
 }
 

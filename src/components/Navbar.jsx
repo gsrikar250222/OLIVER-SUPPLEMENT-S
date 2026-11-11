@@ -233,30 +233,30 @@ export default function Navbar({ onOpenSearch, onOpenGuide }) {
                 aria-label="Search Supplements" 
                 title="Search Supplements"
               >
-                <Search size={20} />
+                <Search size={19} />
               </button>
 
-              {/* Nutrition & Dosage Guide Trigger */}
+              {/* Nutrition & Dosage Guide Trigger (Desktop) */}
               {onOpenGuide && (
                 <button 
-                  className="action-btn guide-open-btn" 
+                  className="action-btn guide-open-btn desktop-only-action" 
                   onClick={onOpenGuide}
                   aria-label="Dosage & Nutrition Calculator" 
                   title="Protein Calculator & Guide"
                 >
-                  <BookOpen size={20} />
+                  <BookOpen size={19} />
                   <span className="guide-dot"></span>
                 </button>
               )}
 
-              {/* Account */}
+              {/* Account (Desktop) */}
               <Link 
                 to={isAuthenticated ? "/account" : "/login"} 
-                className="action-btn user-btn" 
+                className="action-btn user-btn desktop-only-action" 
                 aria-label="User Account"
                 title={isAuthenticated ? `Logged in as ${user?.name || 'Athlete'}` : "Login to Oliver"}
               >
-                <User size={20} />
+                <User size={19} />
                 {isAuthenticated && <span className="auth-indicator-dot"></span>}
               </Link>
 
@@ -267,7 +267,7 @@ export default function Navbar({ onOpenSearch, onOpenGuide }) {
                 aria-label="Wishlist" 
                 title="Wishlist"
               >
-                <Heart size={20} />
+                <Heart size={19} />
                 {wishlistCount > 0 && (
                   <span className="action-badge wishlist-count">{wishlistCount}</span>
                 )}
@@ -280,7 +280,7 @@ export default function Navbar({ onOpenSearch, onOpenGuide }) {
                 aria-label="Shopping Cart" 
                 title="Shopping Bag"
               >
-                <ShoppingBag size={20} />
+                <ShoppingBag size={19} />
                 {totalItemsCount > 0 && (
                   <span className="action-badge cart-count">{totalItemsCount}</span>
                 )}
@@ -298,7 +298,7 @@ export default function Navbar({ onOpenSearch, onOpenGuide }) {
       <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}>
         <div className="mobile-drawer-header">
           <Link to="/" className="mobile-brand" onClick={() => setMobileMenuOpen(false)}>
-            <img src="/icons/logo.svg" alt="OLIVER Supplement Shop" height="36" />
+            <img src="/icons/logo.svg" alt="OLIVER Supplement Shop" height="32" />
           </Link>
           <button 
             className="mobile-close-btn" 
@@ -314,6 +314,17 @@ export default function Navbar({ onOpenSearch, onOpenGuide }) {
             <Search size={16} />
             <span>Search 65+ supplements...</span>
           </div>
+
+          {onOpenGuide && (
+            <button 
+              type="button" 
+              className="mobile-guide-btn" 
+              onClick={() => { setMobileMenuOpen(false); onOpenGuide(); }}
+            >
+              <BookOpen size={16} />
+              <span>Protein Dosage Calculator & Guide</span>
+            </button>
+          )}
 
           <div className="mobile-links-list">
             <Link to="/" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>
